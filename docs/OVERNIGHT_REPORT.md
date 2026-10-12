@@ -3,7 +3,7 @@
 Coordinator log for the unattended run described in `docs/OVERNIGHT_PLAN.md`. Each stage was built by its own
 subagent; this file records each subagent's summary, checked against the pushed branch.
 
-Next step: Stage 5-lite (`claude/stage-5-datasets`, from the Stage 3 branch).
+Next step: Stage 4-lite (`claude/stage-4-hybrid-retrieval`, from the Stage 5 branch).
 
 ## Stages
 
@@ -11,6 +11,7 @@ Next step: Stage 5-lite (`claude/stage-5-datasets`, from the Stage 3 branch).
 |---|---|---|---|---|---|
 | 2 | `claude/stage-2-temporal-schema` | [#3](https://github.com/PavitranVC/AI-Memory-Organizer/pull/3) | done | 153/153 (9 suites) | None. CI green (Node 20/22, MongoDB 7 and 8). |
 | 3 | `claude/stage-3-llm-extraction` | [#4](https://github.com/PavitranVC/AI-Memory-Organizer/pull/4) | done | 193 (153 + 40 new) | Live smoke test not run (no paid calls tonight). |
+| 5 | `claude/stage-5-datasets` | [#5](https://github.com/PavitranVC/AI-Memory-Organizer/pull/5) | done (5-lite) | 209 (16 new) | LongMemEval / WildChat not loaded (Hugging Face blocked). |
 
 ## Stage details
 
@@ -38,8 +39,25 @@ Next step: Stage 5-lite (`claude/stage-5-datasets`, from the Stage 3 branch).
 - Noted in the PR, not fixed: the messages index has no `_id` tie-break (small in-memory sort); `npm audit`
   reports existing advisories.
 
+### Stage 5-lite: Real datasets
+- Head `55251e7`, verified on `origin`. Stacked on #4.
+- `dataset` label and original-id `source` on users, conversations, messages and memories; new `evalitems`
+  collection for LoCoMo QA.
+- New: `npm run data:download`, `data:load:locomo`, `data:synthetic` (seeded), `data:stats`.
+- Real LoCoMo load (`benchmark`): 10 users, 272 conversations, 5,882 messages, 1,986 questions, 3 evidence ids
+  unmatched. Reload is idempotent. Synthetic: 10k memories in 0.7 s, 100k in 7.3 s. Recorded in
+  `results/stage5-*`.
+- Not done: LongMemEval and WildChat (huggingface.co blocked, no loaders, nothing tested; the LongMemEval URL is
+  `TODO: verify`). Skipped per plan: PII scrubbing, sampler, annotation tool and guidelines, kappa script.
+- LoCoMo question-type names were checked against the data, not the authors' code (`TODO: verify`).
+- Note for Stage 6: LoCoMo's second speaker is stored as `assistant`, and the extractor only reads `user`
+  messages.
+
 ## Needs you
 - Stage 2: convert your laptop MongoDB service to a replica set (`docs/stages/STAGE-2.md`, section 6), then run
   `npm test` and `npm run migrate` locally.
 - Stage 3: with `ANTHROPIC_API_KEY` in `.env`, run `npm run test:live` (projected about $0.41). It writes
   `results/stage3-live-smoke-<date>.json`.
+- Stage 5: accept LoCoMo's CC BY-NC 4.0 licence. To get LongMemEval / WildChat, allow Hugging Face in the
+  environment's network settings or download them on your laptop.
+- Stage 5: verify the LoCoMo question-type names and the LongMemEval URL (marked `TODO: verify`).
