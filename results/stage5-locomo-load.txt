@@ -1,0 +1,23 @@
+# command: npm run data:load:locomo (then again, to show it is idempotent)
+# commit: 72f46b0
+# date: 2026-10-12T18:05:25Z
+# dataset: LoCoMo locomo10.json (benchmark), sha256 79fa87e90f04081343b8c8debecb80a9a6842b76a7aa537dc9fdf651ea698ff4
+# database: aimemory, after npm run seed, MongoDB 7 in Docker
+## first run
+conv-26: loaded (19 sessions, 419 messages, 199 questions, 0 unresolved evidence ids)
+conv-30: loaded (19 sessions, 369 messages, 105 questions, 0 unresolved evidence ids)
+conv-41: loaded (32 sessions, 663 messages, 193 questions, 0 unresolved evidence ids)
+conv-42: loaded (29 sessions, 629 messages, 260 questions, 2 unresolved evidence ids)
+conv-43: loaded (29 sessions, 680 messages, 242 questions, 0 unresolved evidence ids)
+conv-44: loaded (28 sessions, 675 messages, 158 questions, 0 unresolved evidence ids)
+conv-47: loaded (31 sessions, 689 messages, 190 questions, 1 unresolved evidence ids)
+conv-48: loaded (30 sessions, 681 messages, 239 questions, 0 unresolved evidence ids)
+conv-49: loaded (25 sessions, 509 messages, 196 questions, 0 unresolved evidence ids)
+conv-50: loaded (30 sessions, 568 messages, 204 questions, 0 unresolved evidence ids)
+{"samples":10,"loaded":10,"skipped":0,"replaced":0,"users":10,"conversations":272,"messages":5882,"evalItems":1986,"unresolvedEvidence":3}
+
+real	0m2.216s
+user	0m2.741s
+sys	0m0.213s
+## second run (must skip everything)
+{"samples":10,"loaded":0,"skipped":10,"replaced":0,"users":0,"conversations":0,"messages":0,"evalItems":0,"unresolvedEvidence":0}

@@ -1,0 +1,93 @@
+{
+  "command": "npm run data:stats",
+  "commit": "72f46b0",
+  "date": "2026-10-12T18:05:51.395Z",
+  "dataset": "LoCoMo (benchmark) file and database counts by dataset label",
+  "locomoFile": {
+    "file": "data/locomo/locomo10.json",
+    "bytes": 2805274,
+    "sha256": "79fa87e90f04081343b8c8debecb80a9a6842b76a7aa537dc9fdf651ea698ff4",
+    "samples": 10,
+    "sessions": 272,
+    "turns": 5882,
+    "imageTurns": 1226,
+    "questions": 1986,
+    "questionsWithoutCategory": 0,
+    "byCategory": {
+      "1": {
+        "name": "multi-hop",
+        "questions": 282,
+        "startsWithWhenPct": 1.4,
+        "multiEvidencePct": 98.2,
+        "hasAdversarialAnswerPct": 0,
+        "noAnswerPct": 0
+      },
+      "2": {
+        "name": "temporal",
+        "questions": 321,
+        "startsWithWhenPct": 76.6,
+        "multiEvidencePct": 12.5,
+        "hasAdversarialAnswerPct": 0,
+        "noAnswerPct": 0
+      },
+      "3": {
+        "name": "open-domain",
+        "questions": 96,
+        "startsWithWhenPct": 0,
+        "multiEvidencePct": 52.1,
+        "hasAdversarialAnswerPct": 0,
+        "noAnswerPct": 0
+      },
+      "4": {
+        "name": "single-hop",
+        "questions": 841,
+        "startsWithWhenPct": 0.8,
+        "multiEvidencePct": 5.5,
+        "hasAdversarialAnswerPct": 0,
+        "noAnswerPct": 0
+      },
+      "5": {
+        "name": "adversarial",
+        "questions": 446,
+        "startsWithWhenPct": 1.1,
+        "multiEvidencePct": 3.1,
+        "hasAdversarialAnswerPct": 100,
+        "noAnswerPct": 99.6
+      }
+    },
+    "evidenceRefsAfterNormalising": 2823,
+    "evidenceRefsUnresolved": 3
+  },
+  "database": {
+    "database": "aimemory",
+    "users": {
+      "(app data, no label)": 3,
+      "benchmark": 10,
+      "synthetic": 10
+    },
+    "conversations": {
+      "(app data, no label)": 5,
+      "benchmark": 272
+    },
+    "messages": {
+      "(app data, no label)": 19,
+      "benchmark": 5882
+    },
+    "memories": {
+      "(app data, no label)": 61,
+      "synthetic": 10000
+    },
+    "evalItems": {
+      "benchmark": 1986
+    },
+    "evalItemsByType": {
+      "adversarial": 446,
+      "multi-hop": 282,
+      "open-domain": 96,
+      "single-hop": 841,
+      "temporal": 321
+    },
+    "evalItemsWithUnresolvedEvidence": 3,
+    "evalItemsWithNoResolvedEvidence": 4
+  }
+}
