@@ -114,7 +114,8 @@ with real data, because it deletes everything first.
 | `RETRIEVAL_MIN_VECTOR` | the embedder's (lexical `0.3`) | Minimum cosine for a memory with no keyword match |
 | `RETRIEVAL_HALF_LIFE_DAYS` | `90` | Recency halves every N days |
 | `ANSWER_MODEL` | `claude-opus-5-5` | Model that answers `POST /api/ask` (with `LLM_PROVIDER=anthropic`) |
-| `MONGO_URI_BENCH` | `mongodb://127.0.0.1:27017/aimemory_bench` | Database for `npm run bench:retrieval`. **It is dropped**; its name must contain `bench` |
+| `MONGO_URI_BENCH` | `mongodb://127.0.0.1:27017/aimemory_bench` | Database for `npm run bench:retrieval` and `npm run bench:indexes`. **It is dropped**; its name must contain `bench` |
+| `MONGO_URI_EVAL` | `mongodb://127.0.0.1:27017/aimemory_eval` | Database for `npm run eval` (Stage 6). **It is dropped** before each sample; its name must contain `eval` |
 | `DATA_DIR` | `./data` | Where `npm run data:download` saves datasets (gitignored) |
 | `HF_TOKEN` | unset | Hugging Face read token, for gated datasets. Sent only to `huggingface.co` |
 
@@ -137,6 +138,10 @@ with real data, because it deletes everything first.
 | `npm run embed:backfill` | Embed every memory version that has no vector from the current model (`-- --dataset synthetic`, `-- --batch 50`). Safe to re-run |
 | `npm run atlas:index` | Create the Atlas vector index from `atlas/vector-index.json` (Atlas only); `-- --print` just prints it |
 | `npm run bench:retrieval` | Retrieval latency p50/p95 at 1k and 10k **synthetic** memories; writes `results/stage4-retrieval-latency.csv` and `.txt` (`-- --sizes 1000,10000 --queries 200`) |
+| `npm run bench:indexes` | Stage 6 DBMS experiment: the main queries with and without indexes at 10k / 100k / 1M **synthetic** memories (`explain("executionStats")` + wall-clock); writes `results/stage6-index-bench*.csv`, `.txt` and SVG charts (`-- --sizes 10000 --repeats 10 --out /tmp/x`) |
+| `npm run eval` | Stage 6 evaluation on LoCoMo: six systems answer the same questions, scored by token F1 and an LLM judge; writes `results/<run-id>/`. Mock model by default; any paid provider needs `-- --paid` (see [Evaluation](#evaluation-stage-6)) |
+| `npm run eval:cost` | Cost projection for the paid evaluation (no API calls); writes `results/stage6-cost-projection.csv` and `.txt` |
+| `npm run eval:judge-agreement -- results/<run-id>` | After you label `judge_validation.csv`: agreement and Cohen's kappa between you and the LLM judge |
 | `npm run migrate` | Upgrade an older database to the current schema: runs the Stage 1 and Stage 2 migrations in order (see [Upgrading an old database](#upgrading-an-old-database)) |
 
 ## Using the API
@@ -627,7 +632,9 @@ services/retrieval/  Stage 4: hybrid ranking, local and Atlas vector backends, r
 services/askService.js  Stage 4: POST /api/ask (retrieve top-k, answer, check citations)
 atlas/              Atlas vector index definition (vector-index.json)
 services/datasets/  Stage 5: LoCoMo loader, synthetic scale generator, shared reset and seeded random helpers
-prompts/            Versioned LLM prompts (extract.v1.md, reconcile.v1.md, answer.v1.md)
+prompts/            Versioned LLM prompts (extract.v1.md, reconcile.v1.md, answer.v1.md; Stage 6: eval-answer.v1.md, judge.v1.md)
+eval/               Stage 6: evaluation harness (run.js, harness.js, systems.js, metrics.js, report.js, stats.js),
+                    index benchmark (bench-indexes.js), cost projection, judge agreement, SVG charts from CSVs
 scripts/            explain.js (query plans), migrate.js (runs migrate-stage1.js, then migrate-stage2.js),
                     worker.js (extraction worker), live-smoke.js (npm run test:live), llm-costs.js,
                     embed-backfill.js, atlas-index.js, bench-retrieval.js (Stage 4)
@@ -639,7 +646,25 @@ tests/              Jest + supertest tests
 docs/               Roadmap, prompt playbook, and per-stage notes (docs/stages/STAGE-N.md)
 ```
 
-## Known limitations (up to Stage 4)
+## Evaluation (Stage 6)
+
+The harness in `eval/` compares six systems on LoCoMo questions: the whole conversation (`full_context`), plain RAG
+over raw messages, an overwrite-style memory (no history), ours (bi-temporal memories with provenance), and two
+ablations of ours (without the temporal fields, without provenance). All use the same answer prompt
+(`prompts/eval-answer.v1.md`) and model; only the context differs. Answers are scored with LoCoMo-style token F1
+and an LLM judge (`prompts/judge.v1.md`), with bootstrap 95% confidence intervals. Results, method and
+limitations: [docs/RESULTS.md](docs/RESULTS.md).
+
+```bash
+npm run bench:indexes                         # index benchmark, 10k/100k/1M synthetic memories (~6 min here)
+LLM_PROVIDER=mock npm run eval -- --questions 10   # pipeline check on the mock: NOT a result
+npm run eval:cost                             # projected cost of the paid run (no API calls)
+# Paid (only after checking the projection): pilot first, then the full run
+LLM_PROVIDER=anthropic npm run eval -- --questions 10 --paid --run-id stage6-pilot
+LLM_PROVIDER=anthropic npm run eval -- --samples all --questions 0 --paid --run-id stage6-locomo-full
+```
+
+## Known limitations (up to Stage 6)
 
 - **Login only.** There is no password reset, email verification, refresh token or rate limiting on login.
   Do not expose it to the internet as it is.
@@ -664,7 +689,10 @@ docs/               Roadmap, prompt playbook, and per-stage notes (docs/stages/S
   "I am allergic to", ...). Only the real model's output (`LLM_PROVIDER=anthropic`) says anything about quality.
 - **LoCoMo is a chat between two people**, not a person and an assistant. The loader stores the first speaker as
   `user` and the second as `assistant`; the extractor only mines `user` messages, so facts said by the second
-  speaker are not extracted unless Stage 6 changes that. See [docs/DATASETS.md](docs/DATASETS.md).
+  speaker are not extracted by the app. The Stage 6 harness mines both speakers by adding a mirror user with the
+  roles swapped (see [docs/RESULTS.md](docs/RESULTS.md)).
+- **No real evaluation result yet.** The Stage 6 harness has only run on the mock model (a pipeline check). The paid
+  LoCoMo run needs your approval; its projected cost is in `results/stage6-cost-projection.txt`.
 - **Only LoCoMo is loaded.** LongMemEval and WildChat are on Hugging Face, which is blocked in the cloud session;
   there is no loader for them yet, and no PII scrubbing or annotation tool (see docs/DATASETS.md).
 - **One worker, one job at a time.** Two workers would be safe (claiming is atomic) but could reconcile two facts of
