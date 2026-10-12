@@ -7,14 +7,19 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    # Node 20 and 22 on MongoDB 7 (the version the project targets), plus MongoDB 8, which reports some
+    # query plans differently (EXPRESS_IXSCAN)
     strategy:
       fail-fast: false
       matrix:
-        node: [20, 22]
+        include:
+          - { node: 20, mongo: 7 }
+          - { node: 22, mongo: 7 }
+          - { node: 22, mongo: 8 }
 
     services:
       mongo:
-        image: mongo:7
+        image: mongo:${{ matrix.mongo }}
         ports:
           - 27017:27017
         options: >-
