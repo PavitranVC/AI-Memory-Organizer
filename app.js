@@ -21,11 +21,12 @@ app.get('/', (req, res) => {
       updateAccount: 'PUT    /api/users/me',
       deleteAccount: 'DELETE /api/users/me',
       categories: 'GET    /api/categories | GET /api/categories/:id | POST, PUT, DELETE (admin only)',
-      conversations: 'GET, POST /api/conversations | GET, PUT, DELETE /api/conversations/:id',
+      conversations: 'GET, POST /api/conversations | GET, PUT, DELETE /api/conversations/:id   (DELETE erases what was derived from it)',
       messages: 'GET, POST /api/conversations/:id/messages   (a user message queues an extraction job)',
+      deleteMessage: 'DELETE /api/conversations/:id/messages/:messageId   (erases every memory derived only from it)',
       jobs: 'GET    /api/jobs?status= | GET /api/jobs/:id   (extraction jobs and their decisions)',
       createMemory: 'POST   /api/memories',
-      listMemories: 'GET    /api/memories?status=&category=&minImportance=&asOf=&knownAt=',
+      listMemories: 'GET    /api/memories?status=&category=&minImportance=&asOf=&knownAt=&needsReview=',
       getMemory: 'GET    /api/memories/:id',
       memoryHistory: 'GET    /api/memories/:id/history',
       updateMemory: 'PUT    /api/memories/:id   (supersedes: creates a new version)',
@@ -36,6 +37,10 @@ app.get('/', (req, res) => {
       textSearch: 'GET    /api/memories/search?q=',
       retrieve: 'GET    /api/memories/retrieve?q=&asOf=&k=   (hybrid: text + vector + recency + importance)',
       ask: 'POST   /api/ask   { question, asOf?, k? }   (answer with citations to the memories used)',
+      consent: 'GET    /api/me/consent | PUT /api/me/consent/:category   { mode: store|ask|never, eraseExisting? }',
+      suggestions: 'GET    /api/me/suggestions | POST /api/me/suggestions/:id/accept | DELETE /api/me/suggestions/:id',
+      exportData: 'GET    /api/me/export?embeddings=   (everything stored about you, as JSON)',
+      erasureCheck: 'GET    /api/me/erasure-check?text=   (proves nothing derived from erased data remains)',
     },
   });
 });
@@ -48,6 +53,7 @@ app.use('/api/memories', require('./routes/memory'));
 app.use('/api/audit', require('./routes/audit'));
 app.use('/api/jobs', require('./routes/jobs'));
 app.use('/api/ask', require('./routes/ask'));
+app.use('/api/me', require('./routes/me'));
 
 // Unknown routes
 app.use((req, res) => {

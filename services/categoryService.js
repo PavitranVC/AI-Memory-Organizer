@@ -1,5 +1,8 @@
 const Category = require('../models/Category');
 const Memory = require('../models/Memory');
+const Consent = require('../models/Consent');
+const Suggestion = require('../models/Suggestion');
+const { withTransaction } = require('./transaction');
 const { badRequest, notFound, conflict } = require('./errors');
 const { toObjectId } = require('./ids');
 const { paginate } = require('./pagination');
@@ -68,9 +71,14 @@ async function deleteCategory(id) {
   const categoryId = toObjectId(id);
   const inUse = await Memory.countDocuments({ categoryId, retractedAt: null });
   if (inUse > 0) throw conflict(`Category is used by ${inUse} memories (including past versions); move or delete them first`);
-  const category = await Category.findByIdAndDelete(categoryId);
-  if (!category) throw notFound('Category not found');
-  return category;
+  // Stage 7: every user's consent setting and pending suggestions for it go with it (no dangling references)
+  return withTransaction(async (session) => {
+    const category = await Category.findByIdAndDelete(categoryId, { session });
+    if (!category) throw notFound('Category not found');
+    await Consent.deleteMany({ categoryId }, { session });
+    await Suggestion.deleteMany({ categoryId }, { session });
+    return category;
+  });
 }
 
 module.exports = { resolveCategoryId, listCategories, getCategory, createCategory, updateCategory, deleteCategory };

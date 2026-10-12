@@ -9,6 +9,7 @@ const { resolveCategoryId } = require('./categoryService');
 const { withTransaction } = require('./transaction');
 const audit = require('./auditService');
 const embeddings = require('./embeddings');
+const consent = require('./consentService');
 
 const STATUSES = ['Active', 'Archived'];
 const POPULATE = [{ path: 'categoryId', select: 'name' }];
@@ -131,6 +132,8 @@ async function createMemory(userId, body = {}, options = {}) {
   const { content, importance, status, tags } = body;
   const now = new Date();
   const categoryId = await resolveCategoryId(body);
+  // Stage 7: a category the user set to "never" is refused here, so no path (API or extractor) can store one
+  if (categoryId) await consent.assertMayStore(userId, categoryId);
   const conversation = body.conversationId ? await findOwnConversation(userId, body.conversationId) : null;
   const doc = {
     userId,
@@ -171,6 +174,11 @@ async function listMemories(userId, query) {
     filter.categoryId = await resolveCategoryId({ category: query.category, categoryId: query.categoryId });
   }
   if (query.minImportance !== undefined) filter.importance = { $gte: parseMinImportance(query.minImportance) };
+  // Stage 7: ?needsReview=true lists the versions an erasure flagged (see erasureService)
+  if (query.needsReview !== undefined) {
+    if (!['true', 'false'].includes(query.needsReview)) throw badRequest('needsReview must be true or false');
+    filter.erasureReview = query.needsReview === 'true' ? { $ne: null } : null;
+  }
 
   const { items, limit, nextCursor } = await paginate(Memory, filter, query, { populate: POPULATE });
   return { count: items.length, limit, nextCursor, asOf, knownAt, memories: items };
@@ -213,6 +221,7 @@ async function updateMemory(userId, id, body = {}, options = {}) {
     if (body[field] !== undefined) changes[field] = body[field];
   }
   const categoryId = await resolveCategoryId(body);
+  if (categoryId) await consent.assertMayStore(userId, categoryId);
   if (categoryId) changes.categoryId = categoryId;
   if (body.conversationId !== undefined) {
     // null detaches the memory from its conversation
@@ -272,7 +281,8 @@ async function updateMemory(userId, id, body = {}, options = {}) {
 }
 
 // Deleting is a RETRACTION: the version stays in the database with retractedAt set, so the history and
-// "?knownAt=" queries still show that it was once believed. (Hard erasure is a Stage 7 feature.)
+// "?knownAt=" queries still show that it was once believed. Hard erasure (Stage 7) is by lineage: deleting the
+// source message or conversation, withdrawing consent for the category, or retention (erasureService).
 async function deleteMemory(userId, id) {
   const memoryId = toObjectId(id);
   return withTransaction(async (session) => {

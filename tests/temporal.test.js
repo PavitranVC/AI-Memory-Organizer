@@ -401,7 +401,9 @@ describe('transactions: a failure part-way leaves no trace', () => {
 });
 
 describe('deleting a conversation', () => {
-  test('removes the deleted messages from sourceMessageIds of every version, so no reference dangles', async () => {
+  // Stage 7 changed this: versions derived only from the deleted messages are now erased (lineage-based
+  // erasure, see tests/erasure.test.js), instead of kept with an empty sourceMessageIds
+  test('erases every version derived only from its messages, so no reference dangles', async () => {
     const { token } = await setup();
     const conversation = (await api(token).post('/api/conversations').send({ title: 'Chat' })).body;
     const message = (await api(token).post(`/api/conversations/${conversation._id}/messages`).send({ role: 'user', content: 'I moved' })).body;
@@ -409,6 +411,6 @@ describe('deleting a conversation', () => {
     await api(token).put(`/api/memories/${v1._id}`).send({ content: 'b' });
     expect((await api(token).delete(`/api/conversations/${conversation._id}`)).status).toBe(200);
     expect(await models.Memory.countDocuments({ sourceMessageIds: message._id })).toBe(0);
-    expect(await models.Memory.countDocuments()).toBe(2);
+    expect(await models.Memory.countDocuments()).toBe(0);
   });
 });
