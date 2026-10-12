@@ -23,7 +23,7 @@ function localFilter({ userId, temporal, model }) {
 async function localSearch({ userId, temporal, queryVector, model, limit }) {
   const hits = [];
   // A cursor streams the rows in batches, so 10k vectors are never all held as documents at once
-  const cursor = Memory.find(localFilter({ userId, temporal, model })).select('_id +embedding').lean().cursor({ batchSize: 1000 });
+  const cursor = Memory.find(localFilter({ userId, temporal, model })).select('_id embedding').lean().cursor({ batchSize: 1000 });
   for await (const doc of cursor) hits.push({ _id: doc._id, vectorScore: toScore(cosine(queryVector, doc.embedding)) });
   return hits.sort(byScore).slice(0, limit);
 }
