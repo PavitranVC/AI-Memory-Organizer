@@ -30,7 +30,10 @@
       "Bash(tail *)",
       "Bash(wc *)",
       "Bash(grep *)",
-      "Bash(mkdir *)"
+      "Bash(mkdir *)",
+      "Bash(ollama *)",
+      "Bash(gh pr *)",
+      "Bash(gh run *)"
     ],
     "deny": [
       "Bash(git push --force *)",

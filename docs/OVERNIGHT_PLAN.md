@@ -107,7 +107,7 @@ deterministic mocks, even if a key is set. Live tests are built behind opt-in np
 | N | Branch | Base branch | Overnight changes to the stage prompt in `PROMPTS.md` |
 |---|---|---|---|
 | 2 | `claude/stage-2-temporal-schema` | `origin/main` | Run MongoDB as a single-node replica set in Docker and in CI. In `STAGE-2.md`, give exact steps for converting a Windows MongoDB service into a replica set. |
-| 3 | `claude/stage-3-llm-extraction` | stage 2 branch | Don't run the live smoke test. Leave `npm run test:live` ready with a cost estimate. Put stable prompt text first so prompt caching can be used, and log cache-read tokens in `llmcalls`. Send the extractor only the new message and a short recent window, not the whole conversation. **Add an `ollama` provider** (`LLM_PROVIDER=ollama`, `OLLAMA_URL` default `http://localhost:11434`, `OLLAMA_MODEL` default `qwen3:8b`) using Ollama's HTTP API with JSON-format output; it is the free default for real runs. Tests use the mock only. |
+| 3 | `claude/stage-3-llm-extraction` | stage 2 branch | Don't run the live smoke test. Leave `npm run test:live` ready with a cost estimate. Put stable prompt text first so prompt caching can be used, and log cache-read tokens in `llmcalls`. Send the extractor only the new message and a short recent window, not the whole conversation. **Add an `ollama` provider** (`LLM_PROVIDER=ollama`, `OLLAMA_URL` default `http://localhost:11434`, `OLLAMA_MODEL` default `qwen2.5-coder:14b`, `JUDGE_MODEL` default `deepseek-r1:14b`, with any `<think>...</think>` block stripped before parsing) using Ollama's HTTP API with JSON-format output; it is the free default for real runs. Tests use the mock only. |
 | 5 | `claude/stage-5-datasets` | stage 3 branch | LoCoMo only (raw.githubusercontent.com works): download, load with `dataset: benchmark`, QA labels in `evalitems`. Add the synthetic scale generator (`dataset: synthetic`) and `docs/DATASETS.md`. Loaders for LongMemEval and WildChat are optional; mark them "not run: Hugging Face is blocked here" and never claim they were tested. Skip the annotation tool and PII scrubbing, and list them as not done. Inspect the data with capped scripts, never by printing it. |
 | 4 | `claude/stage-4-hybrid-retrieval` | stage 5 branch | `VECTOR_BACKEND=local` (brute-force cosine) only. Embeddings: the mock, a deterministic offline lexical embedder (labelled as a lexical baseline, not a semantic model), an **`ollama` embeddings provider** (`OLLAMA_EMBED_MODEL` default `nomic-embed-text`, the free default for real runs), and a Voyage provider behind `VOYAGE_API_KEY`. None of the real providers are run tonight. For Atlas, commit the index JSON and the setup steps, but don't run them. Cap the memories sent to the answer model with top-k. |
 | 6 | `claude/stage-6-evaluation` | stage 4 branch | See the Stage 6 details below. |
@@ -222,27 +222,27 @@ Ollama runs open models on your own GPU, with no API key and no bill. Downloads 
 do them while your internet is good. After that, everything works offline.
 
 ```powershell
-# 1. Install Ollama (Windows installer from ollama.com), then in PowerShell:
-ollama pull qwen3:8b            # chat model, about 5 GB, runs on your 12 GB GPU
-ollama pull nomic-embed-text    # embedding model, about 0.3 GB
-ollama run qwen3:8b "Say hello in one word"    # quick check, then type /bye
+ollama list                      # should show qwen2.5-coder:14b and deepseek-r1:14b
+ollama pull nomic-embed-text     # embedding model, about 0.3 GB
 ```
-If `qwen3:8b` isn't available, use `llama3.1:8b`. Once the first pilot works, you can try `qwen3:14b` (about 9 GB) for
-better quality.
 
 Then in your project `.env`:
 ```
 LLM_PROVIDER=ollama
-OLLAMA_MODEL=qwen3:8b
+OLLAMA_MODEL=qwen2.5-coder:14b
+JUDGE_MODEL=deepseek-r1:14b
 OLLAMA_EMBED_MODEL=nomic-embed-text
 ```
+`qwen2.5-coder:14b` does extraction, reconciliation and answers (it is good at clean JSON). `deepseek-r1:14b` is
+the evaluation judge: it is slower, but reasons carefully, and using a different model as judge is good practice.
+Full laptop setup: [`LOCAL_SETUP.md`](LOCAL_SETUP.md).
 
 ### Morning prompt (run in Claude Code on your laptop, not in the cloud)
 The cloud session can't reach Ollama on your laptop, so this step runs locally. Use Sonnet 5.5 at high effort.
 
 ```text
 Read CLAUDE.md, docs/OVERNIGHT_PLAN.md and docs/OVERNIGHT_REPORT.md. I'm on Windows (PowerShell) with Ollama
-running locally (qwen3:8b and nomic-embed-text pulled) and LLM_PROVIDER=ollama in .env.
+running locally (qwen2.5-coder:14b, deepseek-r1:14b and nomic-embed-text pulled) and LLM_PROVIDER=ollama in .env.
 
 1. Check out the newest stage branch, then run npm install and npm test.
 2. Stage 3: run the live extraction smoke test with the ollama provider. Show what it extracted and how long it took.
