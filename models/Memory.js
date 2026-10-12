@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { datasetField } = require('./dataset');
 
 const { ObjectId } = mongoose.Schema.Types;
 
@@ -31,6 +32,9 @@ const memorySchema = new mongoose.Schema(
     },
     status: { type: String, enum: ['Active', 'Archived'], default: 'Active' },
     tags: [{ type: String, trim: true, lowercase: true }],
+    // Stage 5: 'synthetic' for generated scale-test memories; 'benchmark' when extracted from benchmark
+    // messages (copied from the conversation). Unset for the app's own data.
+    dataset: datasetField,
 
     // --- Valid time: when the fact holds in the real world ---
     validFrom: { type: Date, required: true, default: Date.now },

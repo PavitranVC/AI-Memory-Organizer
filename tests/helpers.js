@@ -10,9 +10,10 @@ const Memory = require('../models/Memory');
 const AuditLog = require('../models/AuditLog');
 const Job = require('../models/Job');
 const LlmCall = require('../models/LlmCall');
+const EvalItem = require('../models/EvalItem');
 const { signToken, hashPassword } = require('../services/authService');
 
-const MODELS = [User, Category, Conversation, Message, Memory, AuditLog, Job, LlmCall];
+const MODELS = [User, Category, Conversation, Message, Memory, AuditLog, Job, LlmCall, EvalItem];
 
 // Each test file gets a clean database and all schema indexes built
 async function connect() {
@@ -61,4 +62,4 @@ function api(token) {
   };
 }
 
-module.exports = { app, request, connect, disconnect, clear, createUser, createAdmin, createCategory, api, models: { User, Category, Conversation, Message, Memory, AuditLog, Job, LlmCall } };
+module.exports = { app, request, connect, disconnect, clear, createUser, createAdmin, createCategory, api, models: { User, Category, Conversation, Message, Memory, AuditLog, Job, LlmCall, EvalItem } };

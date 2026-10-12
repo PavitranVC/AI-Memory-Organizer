@@ -1,2 +1,5 @@
 node_modules/
 .env
+
+# Stage 5: downloaded datasets (large, and not ours to redistribute). See docs/DATASETS.md.
+data/
