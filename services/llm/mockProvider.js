@@ -1,8 +1,8 @@
 const { LlmError, LlmRefusalError } = require('./errors');
 
 // A deterministic stand-in for the LLM, used by every test and by default (LLM_PROVIDER=mock), so CI never
-// needs an API key and never spends money. It answers the same two tasks with the same JSON shapes as the
-// real model, using simple patterns instead of understanding. It is a test double, NOT a baseline: its
+// needs an API key and never spends money. It answers the same three tasks (extract, reconcile, answer) with
+// the same JSON shapes as the real model, using simple patterns instead of understanding. It is a test double, NOT a baseline: its
 // output must never be reported as a model result.
 //
 // Test hooks: a message containing "[mock:fail]" raises a retryable error, "[mock:refuse]" a refusal.
@@ -72,6 +72,14 @@ function reconcile(candidate, existing) {
   return { action: 'ADD', targetMemoryId: null, content: candidate.content, reason: 'No existing memory states this fact.' };
 }
 
+// Stage 4: "answers" with the best-ranked memory and cites it. It does not read the question; it only proves
+// that retrieval, citations and logging are wired up.
+function answer(memories) {
+  if (memories.length === 0) return { answer: 'I have no memories about that.', citedMemories: [], insufficient: true };
+  const top = memories[0];
+  return { answer: `From your memories: ${top.content}.`, citedMemories: [top.label], insufficient: false };
+}
+
 const estimateTokens = (text) => Math.ceil(String(text).length / 4);
 
 class MockProvider {
@@ -80,13 +88,14 @@ class MockProvider {
   }
 
   async generateJson({ task, model, system, user, vars = {} }) {
-    const text = String(vars.message || (vars.candidate && vars.candidate.content) || '');
+    const text = String(vars.message || vars.question || (vars.candidate && vars.candidate.content) || '');
     if (text.includes('[mock:fail]')) throw new LlmError('mock: simulated temporary failure');
     if (text.includes('[mock:refuse]')) throw new LlmRefusalError('mock: simulated refusal');
 
     let data;
     if (task === 'extract') data = extract(vars.message);
     else if (task === 'reconcile') data = reconcile(vars.candidate, vars.existing || []);
+    else if (task === 'answer') data = answer(vars.memories || []);
     else throw new LlmError(`mock: unknown task ${task}`, { retryable: false });
 
     return {
@@ -99,4 +108,4 @@ class MockProvider {
   }
 }
 
-module.exports = { MockProvider, extract, reconcile, SINGLE_VALUED };
+module.exports = { MockProvider, extract, reconcile, answer, SINGLE_VALUED };

@@ -7,6 +7,7 @@ function snapshot(doc) {
   if (!doc) return null;
   const plain = typeof doc.toObject === 'function' ? doc.toObject({ depopulate: true }) : { ...doc };
   delete plain.__v;
+  delete plain.embedding; // derived data (Stage 4): hundreds of numbers that say nothing about the change
   return plain;
 }
 

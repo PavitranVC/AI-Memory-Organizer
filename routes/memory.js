@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('../middleware/asyncHandler');
 const { requireAuth } = require('../middleware/auth');
 const memoryService = require('../services/memoryService');
+const { retrieve } = require('../services/retrieval');
 
 const router = express.Router();
 router.use(requireAuth);
@@ -13,6 +14,8 @@ const uid = (req) => req.user._id;
 router.get('/stats/by-category', asyncHandler(async (req, res) => res.json(await memoryService.statsByCategory(uid(req)))));
 router.get('/stats/status-ratio', asyncHandler(async (req, res) => res.json(await memoryService.statusRatio(uid(req)))));
 router.get('/search', asyncHandler(async (req, res) => res.json(await memoryService.searchMemories(uid(req), req.query))));
+// Stage 4: hybrid retrieval without the answer model, with each memory's score parts: ?q=&asOf=&k=
+router.get('/retrieve', asyncHandler(async (req, res) => res.json(await retrieve(uid(req), { query: req.query.q, asOf: req.query.asOf, k: req.query.k }))));
 
 // CREATE: body { content, category: "Health" (or categoryId), importance?, status?, tags?, conversationId? }
 router.post('/', asyncHandler(async (req, res) => res.status(201).json(await memoryService.createMemory(uid(req), req.body))));

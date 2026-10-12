@@ -5,13 +5,14 @@ const { costUsd } = require('./pricing');
 const { MockProvider } = require('./mockProvider');
 const { AnthropicProvider } = require('./anthropicProvider');
 const { LlmError, LlmRefusalError } = require('./errors');
-const { EXTRACT_SCHEMA, RECONCILE_SCHEMA } = require('./schemas');
+const { EXTRACT_SCHEMA, RECONCILE_SCHEMA, ANSWER_SCHEMA } = require('./schemas');
 
 // Every LLM call in the project goes through callLlm(): it picks the provider from LLM_PROVIDER, fills the
 // versioned prompt, and logs the call (tokens, cache reads, latency, cost) to the llmcalls collection.
 const TASKS = {
   extract: { schema: EXTRACT_SCHEMA, maxTokens: 8000 },
   reconcile: { schema: RECONCILE_SCHEMA, maxTokens: 4000 },
+  answer: { schema: ANSWER_SCHEMA, maxTokens: 4000 }, // Stage 4: POST /api/ask
 };
 
 let override = null; // a provider set by tests or scripts (setProvider), instead of the one from the env

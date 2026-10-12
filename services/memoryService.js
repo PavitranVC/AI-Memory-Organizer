@@ -8,6 +8,7 @@ const { paginate, parseLimit } = require('./pagination');
 const { resolveCategoryId } = require('./categoryService');
 const { withTransaction } = require('./transaction');
 const audit = require('./auditService');
+const embeddings = require('./embeddings');
 
 const STATUSES = ['Active', 'Archived'];
 const POPULATE = [{ path: 'categoryId', select: 'name' }];
@@ -149,6 +150,9 @@ async function createMemory(userId, body = {}, options = {}) {
     // Health facts are "special" unless the client says otherwise
     sensitivity: body.sensitivity !== undefined ? body.sensitivity : categoryId && (await isSpecialCategory(categoryId)) ? 'special' : undefined,
   };
+  // Stage 4: the vector is computed BEFORE the transaction, so a slow embedding call never holds it open.
+  // Invalid content is left to the schema validation below (no point embedding it).
+  if (typeof content === 'string' && content.trim() !== '') Object.assign(doc, await embeddings.embeddingFields(doc));
 
   const memory = await withTransaction(async (session) => {
     const [created] = await Memory.create([doc], { session });
@@ -218,6 +222,19 @@ async function updateMemory(userId, id, body = {}, options = {}) {
   if (body.sourceMessageIds !== undefined) changes.sourceMessageIds = await assertOwnMessages(userId, body.sourceMessageIds);
   if (categoryId && body.sensitivity === undefined && (await isSpecialCategory(categoryId))) changes.sensitivity = 'special';
 
+  // Stage 4: the new version gets its own vector, computed before the transaction. Versions are immutable, so
+  // the old version's text read here is the same one the transaction will see. If the text does not change
+  // (e.g. only importance changes), the old vector is reused instead of calling the provider again.
+  const before = await Memory.findOne({ _id: memoryId, userId, retractedAt: null }).select('content tags +embedding embeddingModel').lean();
+  if (!before) throw notFound('Memory not found');
+  const text = { content: changes.content !== undefined ? changes.content : before.content, tags: changes.tags !== undefined ? changes.tags : before.tags };
+  let vector = { embedding: undefined, embeddingModel: null };
+  if (embeddings.memoryText(text) === embeddings.memoryText(before) && before.embedding && before.embeddingModel && before.embeddingModel === embeddings.currentModelId()) {
+    vector = { embedding: before.embedding, embeddingModel: before.embeddingModel };
+  } else if (typeof text.content === 'string' && text.content.trim() !== '') {
+    vector = await embeddings.embeddingFields(text);
+  }
+
   const created = await withTransaction(async (session) => {
     const now = new Date();
     const old = await Memory.findOne({ _id: memoryId, userId, retractedAt: null }).session(session);
@@ -232,7 +249,7 @@ async function updateMemory(userId, id, body = {}, options = {}) {
 
     const next = Object.fromEntries(COPIED.map((field) => [field, old[field]]));
     const [version] = await Memory.create(
-      [{ ...next, ...changes, userId, validFrom: effectiveFrom, validTo: null, recordedAt: now, supersedes: old._id }],
+      [{ ...next, ...changes, ...vector, userId, validFrom: effectiveFrom, validTo: null, recordedAt: now, supersedes: old._id }],
       { session }
     );
 
