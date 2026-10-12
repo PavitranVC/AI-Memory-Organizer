@@ -17,6 +17,41 @@ session.
   The description says what changed, how to run it, and what the student
   should be able to explain.
 
+## Stage notes (every stage)
+Write `docs/stages/STAGE-N.md` for the student, who must defend the work in a viva. Use plain language and
+these sections:
+1. **In one paragraph**: what the stage does and why it matters for the project.
+2. **What changed**: every file added or changed, one line each on why.
+3. **Concepts**: each DB/AI idea used, with its textbook name and a one-line explanation.
+4. **Examiner questions**: 10 likely questions, each with a short model answer.
+5. **Weak points**: the honest limitations and how to answer if asked.
+6. **Demo on your laptop**: exact Windows PowerShell commands to run and show it.
+Keep the notes in sync with the code. If the code changes, update them in the same PR.
+
+## Context budget
+The context window is the scarcest resource in a long run. Spend it on decisions, not on output.
+- **Short command output.**
+  - Tests: `npm test 2>&1 | tail -40`. On a failure, rerun only the failing file.
+  - Long logs: `| tail` or `| grep`, never the whole thing.
+- **Never read data into context.** No `cat` of datasets, `results/` CSVs, lockfiles or large JSON. Inspect them
+  with a small `node -e` script that prints counts, keys or a few sample rows (capped).
+- **Long jobs write to files.** Benchmarks, downloads and evaluations write to `results/` or a log file and
+  print a short summary.
+- **Read narrowly.** Use Grep to find code, then Read only the lines needed. Don't re-read a file you just
+  edited.
+- **Keep state on disk, not in memory.** After every stage or major step, update the "Next step" line in
+  `docs/OVERNIGHT_REPORT.md` (or the PR description in a normal session) and push.
+- **After compaction**, first re-read this file, `docs/OVERNIGHT_REPORT.md`, `git status` and
+  `git log --oneline -10`, then continue. A SessionStart hook in `.claude/settings.json` prints these
+  automatically.
+- **One stage per context.** In multi-stage runs, each stage is done by its own subagent, and the coordinator keeps
+  only each stage's short summary.
+
+## Unattended runs
+When running without the user (for example the overnight plan in `docs/OVERNIGHT_PLAN.md`): never stop to
+ask, make no paid API calls unless the prompt explicitly allows them, push after every logical step, and record
+anything that needs the user in `docs/OVERNIGHT_REPORT.md`.
+
 ## Before every push
 - `npm test` passes against a real MongoDB. In a cloud session, start one
   with `dockerd &` then `docker run -d -p 27017:27017 mongo:7`.
