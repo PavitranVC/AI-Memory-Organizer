@@ -28,6 +28,25 @@ these sections:
 6. **Demo on your laptop**: exact Windows PowerShell commands to run and show it.
 Keep the notes in sync with the code. If the code changes, update them in the same PR.
 
+## Context budget
+The context window is the scarcest resource in a long run. Spend it on decisions, not on output.
+- **Short command output.**
+  - Tests: `npm test 2>&1 | tail -40`. On a failure, rerun only the failing file.
+  - Long logs: `| tail` or `| grep`, never the whole thing.
+- **Never read data into context.** No `cat` of datasets, `results/` CSVs, lockfiles or large JSON. Inspect them
+  with a small `node -e` script that prints counts, keys or a few sample rows (capped).
+- **Long jobs write to files.** Benchmarks, downloads and evaluations write to `results/` or a log file and
+  print a short summary.
+- **Read narrowly.** Use Grep to find code, then Read only the lines needed. Don't re-read a file you just
+  edited.
+- **Keep state on disk, not in memory.** After every stage or major step, update the "Next step" line in
+  `docs/OVERNIGHT_REPORT.md` (or the PR description in a normal session) and push.
+- **After compaction**, first re-read this file, `docs/OVERNIGHT_REPORT.md`, `git status` and
+  `git log --oneline -10`, then continue. A SessionStart hook in `.claude/settings.json` prints these
+  automatically.
+- **One stage per context.** In multi-stage runs, each stage is done by its own subagent, and the coordinator keeps
+  only each stage's short summary.
+
 ## Unattended runs
 When running without the user (for example the overnight plan in `docs/OVERNIGHT_PLAN.md`): never stop to
 ask, make no paid API calls unless the prompt explicitly allows them, push after every logical step, and record

@@ -66,68 +66,124 @@ flowchart TD
 
 ## The overnight prompt
 
+The session acts as a **coordinator**. It hands each stage to a fresh **subagent** and keeps only that
+subagent's short summary, so its own context stays small all night (see
+[Context window](#context-window-how-this-run-stays-inside-it)).
+
 ```text
-Read CLAUDE.md, docs/ROADMAP.md, docs/PROMPTS.md and docs/OVERNIGHT_PLAN.md first, and follow them.
+Read CLAUDE.md, docs/ROADMAP.md and docs/OVERNIGHT_PLAN.md first, and follow them.
 
-You are running UNATTENDED overnight. Nobody will answer questions until morning, so never stop to ask.
-When something needs me, write it in docs/OVERNIGHT_REPORT.md and continue with work that doesn't depend on it.
+You are the COORDINATOR of an unattended overnight run. Nobody will answer questions until morning, so never
+stop to ask. When something needs me, write it in docs/OVERNIGHT_REPORT.md and continue with work that doesn't
+depend on it.
 
-Build these stages in this order. Each stage gets its own branch, created from the previous stage's branch
-(Stage 2 from origin/main), and follows its prompt in docs/PROMPTS.md with the overnight changes below:
-  1. Stage 2      -> claude/stage-2-temporal-schema
-  2. Stage 3      -> claude/stage-3-llm-extraction
-  3. Stage 5-lite -> claude/stage-5-datasets
-  4. Stage 4-lite -> claude/stage-4-hybrid-retrieval
-  5. Stage 6-prep -> claude/stage-6-evaluation
-  6. Stage 7-lite -> claude/stage-7-governance
-You have my explicit permission to create and push all of these branches. Never push to main.
-
-Overnight changes:
-- NO PAID API CALLS, even if ANTHROPIC_API_KEY or any other key is set. All LLM and embedding calls use the
-  deterministic mocks. Build live tests behind opt-in npm scripts, but don't run them.
-- Stage 2: set up MongoDB as a single-node replica set in Docker and in CI. In docs/stages/STAGE-2.md, include
-  exact steps for converting my local Windows MongoDB service into a replica set.
-- Stage 3: build everything in its prompt, but don't run the live smoke test. Leave `npm run test:live` ready
-  and give an estimated cost for it.
-- Stage 5-lite: only LoCoMo (raw.githubusercontent.com works). Download it, load it with dataset: benchmark,
-  and store the QA labels in evalitems. Add the synthetic scale generator (dataset: synthetic) and
-  docs/DATASETS.md. You may write loaders for LongMemEval and WildChat, but mark them "not run: Hugging Face is
-  blocked here" and never claim they were tested. Skip the annotation tool and PII scrubbing; list them as
-  not done.
-- Stage 4-lite: VECTOR_BACKEND=local (brute-force cosine) only. For embeddings, provide the mock, plus a
-  deterministic offline lexical embedder (clearly labelled as a lexical baseline, not a semantic model), plus a
-  Voyage provider behind VOYAGE_API_KEY that is not run. For Atlas, commit the index JSON and the setup steps,
-  but don't run them.
-- Stage 6-prep: build the evaluation harness (systems, metrics, results/ layout, bootstrap CIs).
-  - Run it end to end on a few LoCoMo items with the mock model only, as a pipeline check. Label that output
-    "pipeline check (mock model), not a result".
-  - Actually run the DBMS index benchmark: 10k, 100k and 1M synthetic memories, with and without indexes,
-    using explain("executionStats") and wall-clock time. Write results/ CSVs with command, commit, date and
-    dataset, plus charts. If 1M takes more than 30 minutes, stop at 100k and say so.
-  - Write a cost projection for the real LoCoMo evaluation, clearly labelled as a projection.
-- Stage 7-lite: consent per category, lineage-based erasure when a conversation or message is deleted, an
-  erasure verification script, GET /api/me/export, and docs/PRIVACY.md (DPDP Act 2023 and GDPR, with
-  "TODO: verify" on anything unsure). Skip retention if time is short.
-
-For every stage:
-- npm test passes against a real MongoDB in Docker, and CI is updated to match.
-- Commit in logical steps and push after each one (the container can be reclaimed).
-- Open a pull request into main titled "Stage N: <name>". Say in the body which PR it is stacked on and that PRs
-  must be merged in order.
-- Write docs/stages/STAGE-N.md following the "Stage notes" rule in CLAUDE.md.
-- Append that stage's section to docs/OVERNIGHT_REPORT.md: status (done / partial / blocked), PR link, test
-  count, what was not done and why, and what I must do.
-
-If a stage fails:
-- If its tests still fail after a serious attempt, push the work to a branch named <stage branch>-wip and
-  describe it in the report.
-- Start the next stage from the last green branch, and skip any stage that depends on the broken one.
-- If Stage 2 fails, stop after reporting, because everything depends on it.
-- Never skip or disable tests, never force-push, never rebase pushed branches, and never invent results.
+Do not build the stages yourself; that would fill your context window. For each row of the stage table in
+docs/OVERNIGHT_PLAN.md ("Stage instructions for tonight"), in order:
+  1. Launch ONE subagent with the Agent tool (general-purpose, in the foreground) and give it this task, filling
+     in N, the branch and the base branch from the table:
+     "Read CLAUDE.md (especially 'Context budget' and 'Stage notes'), docs/ROADMAP.md, docs/OVERNIGHT_PLAN.md
+     and the Stage N prompt in docs/PROMPTS.md. Build Stage N on branch <branch>, created from <base>. Follow
+     the Stage N row and the 'Rules for every stage' in docs/OVERNIGHT_PLAN.md, which override the Stage N
+     prompt where they differ. You have explicit permission to create and push <branch>; never push to main.
+     Reply with at most 15 lines: branch, PR URL, status (done / partial / blocked), number of tests passing,
+     what was not done and why, and what the user must do."
+  2. When it returns, check its claims cheaply:
+     git ls-remote origin <branch>
+     git log --oneline -3 origin/<branch>
+  3. Update docs/OVERNIGHT_REPORT.md from its summary, setting the "Next step:" line to the next stage. Commit it
+     on <branch> and push.
+  4. Apply "If a stage fails" from docs/OVERNIGHT_PLAN.md, then move on to the next row.
+Keep only these facts per stage in your own context: branch, PR URL, status, test count, blockers.
 
 When you finish, or are about to run out of usage, make sure everything is pushed. End with a message
 containing: a table of stages with status and PR links, then my morning checklist in order.
 ```
+
+## Stage instructions for tonight
+
+Each subagent reads its row here. **Nothing tonight costs API money**: all LLM and embedding calls use the
+deterministic mocks, even if a key is set. Live tests are built behind opt-in npm scripts but not run.
+
+| N | Branch | Base branch | Overnight changes to the stage prompt in `PROMPTS.md` |
+|---|---|---|---|
+| 2 | `claude/stage-2-temporal-schema` | `origin/main` | Run MongoDB as a single-node replica set in Docker and in CI. In `STAGE-2.md`, give exact steps for converting a Windows MongoDB service into a replica set. |
+| 3 | `claude/stage-3-llm-extraction` | stage 2 branch | Don't run the live smoke test. Leave `npm run test:live` ready with a cost estimate. Put stable prompt text first so prompt caching can be used, and log cache-read tokens in `llmcalls`. Send the extractor only the new message and a short recent window, not the whole conversation. |
+| 5 | `claude/stage-5-datasets` | stage 3 branch | LoCoMo only (raw.githubusercontent.com works): download, load with `dataset: benchmark`, QA labels in `evalitems`. Add the synthetic scale generator (`dataset: synthetic`) and `docs/DATASETS.md`. Loaders for LongMemEval and WildChat are optional; mark them "not run: Hugging Face is blocked here" and never claim they were tested. Skip the annotation tool and PII scrubbing, and list them as not done. Inspect the data with capped scripts, never by printing it. |
+| 4 | `claude/stage-4-hybrid-retrieval` | stage 5 branch | `VECTOR_BACKEND=local` (brute-force cosine) only. Embeddings: the mock, a deterministic offline lexical embedder (labelled as a lexical baseline, not a semantic model), and a Voyage provider behind `VOYAGE_API_KEY` that is not run. For Atlas, commit the index JSON and the setup steps, but don't run them. Cap the memories sent to the answer model with top-k. |
+| 6 | `claude/stage-6-evaluation` | stage 4 branch | See the Stage 6 details below. |
+| 7 | `claude/stage-7-governance` | stage 6 branch | Consent per category, lineage-based erasure when a conversation or message is deleted, an erasure verification script, `GET /api/me/export`, and `docs/PRIVACY.md` (DPDP Act 2023 and GDPR, with `TODO: verify` on anything unsure). Skip retention if time is short. |
+
+**Stage 6 details:**
+- **Build** the evaluation harness: systems, metrics, the `results/` layout, and bootstrap confidence intervals.
+- **Pipeline check:** run the harness end to end on a few LoCoMo items with the **mock** model only. Label that
+  output "pipeline check (mock model), not a result".
+- **Index benchmark, actually run:**
+  - 10k, 100k and 1M synthetic memories, with and without indexes, measured with `explain("executionStats")`
+    and wall-clock time.
+  - Write `results/` CSVs recording the command, commit, date and dataset, plus charts.
+  - If 1M takes more than 30 minutes, stop at 100k and say so.
+- **Cost projection** for the real LoCoMo evaluation, using prompt caching for the shared prefix of the
+  full-context baseline, clearly labelled as a projection.
+
+### Rules for every stage
+- **Tests:** `npm test` passes against a real MongoDB in Docker, and CI is updated to match.
+- **Pushing:** commit in logical steps and push after each one (the container can be reclaimed).
+- **Pull request:** open one into `main` titled "Stage N: <name>". The body says which PR it is stacked on and that
+  PRs must be merged in order.
+- **Notes:** write `docs/stages/STAGE-N.md` following "Stage notes" in `CLAUDE.md`.
+- **Context:** follow "Context budget" in `CLAUDE.md`. Short outputs, no data dumps, long jobs write to files.
+- **Never:** skip or disable tests, force-push, rebase pushed branches, or invent results.
+
+### If a stage fails
+- If its tests still fail after a serious attempt, the subagent pushes its work to `<branch>-wip`. The
+  coordinator marks the stage **partial** in the report.
+- The next stage starts from the last green branch. Any stage that depends on the broken one is skipped
+  (3 → 4 → 6; 5 → 6).
+- If Stage 2 fails, stop after reporting, because everything depends on it.
+
+## Context window: how this run stays inside it
+
+A long agent run fails quietly when its context window fills up. Claude Code then **compacts**: it replaces older
+conversation with a summary, and details can be lost. This plan avoids that in four layers:
+
+```mermaid
+flowchart TD
+  C[Coordinator session<br/>keeps 5 facts per stage] -->|one task| A2[Subagent: Stage 2<br/>fresh context]
+  C -->|one task| A3[Subagent: Stage 3<br/>fresh context]
+  C -->|one task| A6[Subagent: Stage ...<br/>fresh context]
+  A2 -->|15-line summary| C
+  A3 -->|15-line summary| C
+  A6 -->|15-line summary| C
+  C --> R[(docs/OVERNIGHT_REPORT.md<br/>Next step: ...)]
+  A2 --> G[(GitHub<br/>commits + PRs)]
+  A3 --> G
+  A6 --> G
+  K[Compaction happens] --> H[SessionStart hook prints<br/>branch, recent commits, report]
+  H --> C
+```
+
+| Layer | What it does | Where it's set |
+|---|---|---|
+| 1. A fresh context per stage | Each stage runs in its own subagent with a new context window. The coordinator only receives a 15-line summary, so even 6 stages use a small part of its window. | The overnight prompt |
+| 2. Small outputs | Test output is tailed. Datasets are inspected with capped scripts. Benchmarks write to files and print a summary. Code is found with Grep before reading. | `CLAUDE.md` → "Context budget" |
+| 3. State on disk | Progress lives in Git (pushed after every step) and in `docs/OVERNIGHT_REPORT.md` with a "Next step:" line, not only in the conversation. | `CLAUDE.md`, the overnight prompt |
+| 4. Recovery after compaction | If compaction still happens, a hook prints the current branch, the last 5 commits and the end of the report, and the rules say to re-read them before continuing. | `.claude/settings.json` (SessionStart hook, matcher `compact`) |
+
+### In your own (daytime) Claude Code sessions
+- **`/context`** shows how full the context window is.
+- **`/compact <what to keep>`** compacts early, on your terms. For example:
+  `/compact keep the Stage 2 decisions and the failing test names`.
+- **`/clear`** between unrelated tasks, such as after finishing one stage's review and before starting the next.
+- **New session per stage.** Each prompt in `PROMPTS.md` already starts by reading `CLAUDE.md` and the roadmap, so
+  a new session loses nothing.
+- **Big files:** ask for a summary or for specific lines, not "show me the whole file".
+
+### In the project's own AI runs (Stages 3, 4 and 6)
+The same idea saves money when the app calls Claude:
+- The extractor gets only the new message plus a short recent window, not the whole chat.
+- `/api/ask` gets only the top-k retrieved memories.
+- Stable prompt text comes first, so **prompt caching** can reuse it. The `llmcalls` collection logs cache hits.
+- In the evaluation, the full-context baseline is the expensive system. Its cost is projected before anything runs.
 
 ---
 
@@ -139,6 +195,7 @@ containing: a table of stages with status and PR links, then my morning checklis
 | A stage is marked **partial** and has a `-wip` branch | Its tests didn't pass in time | Use the **Resume** prompt in `docs/PROMPTS.md` for that stage |
 | The session is waiting on a permission prompt | Auto mode wasn't on | Approve it, then switch the mode to Auto |
 | No PRs at all | The session never really started | Check that the PR from step 1 was merged, then start again |
+| The report says a stage was redone or skipped after "context compacted" | Compaction happened and the coordinator lost track | Check the stage's branch and PR; use the **Resume** prompt in `docs/PROMPTS.md` if it's incomplete |
 
 Everything that was pushed is safe on GitHub, even if the cloud session itself is gone.
 

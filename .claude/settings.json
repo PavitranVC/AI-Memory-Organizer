@@ -40,5 +40,19 @@
       "Bash(git rebase *)",
       "Bash(git reset --hard *)"
     ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Context was just compacted. Re-read CLAUDE.md and docs/OVERNIGHT_REPORT.md before continuing.\"; echo \"Branch: $(git branch --show-current)\"; git log --oneline -5; if [ -f docs/OVERNIGHT_REPORT.md ]; then tail -n 30 docs/OVERNIGHT_REPORT.md; fi",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
   }
 }
