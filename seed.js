@@ -1,6 +1,9 @@
 /**
  * Seeder for the AI Memory Organizer database.
- * Clears every collection, then inserts 3 users, 4 categories, 5 conversations and 55 memories.
+ * Clears every collection, then inserts 3 users, 4 categories, 5 conversations (19 messages) and 55 memories.
+ *
+ * All seeded users log in with the same development password (SEED_PASSWORD, default "DevPassword123").
+ * That is for local development only: never run this seed against a real database.
  *
  * Run with:  npm run seed   (or: node seed.js)
  */
@@ -10,15 +13,18 @@ const mongoose = require('mongoose');
 const User = require('./models/User');
 const Category = require('./models/Category');
 const Conversation = require('./models/Conversation');
+const Message = require('./models/Message');
 const Memory = require('./models/Memory');
+const { hashPassword } = require('./services/authService');
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/aimemory';
+const SEED_PASSWORD = process.env.SEED_PASSWORD || 'DevPassword123';
 
 // ---------------------------------------------------------------------------
-// Users (3)
+// Users (3). Aarav is the admin: only admins can create, rename or delete categories.
 // ---------------------------------------------------------------------------
 const users = [
-  { key: 'aarav', name: 'Aarav Mehta', email: 'aarav.mehta@example.com', occupation: 'Computer Science student' },
+  { key: 'aarav', name: 'Aarav Mehta', email: 'aarav.mehta@example.com', occupation: 'Computer Science student', role: 'admin' },
   { key: 'priya', name: 'Priya Nair', email: 'priya.nair@example.com', occupation: 'UX designer' },
   { key: 'daniel', name: 'Daniel Fernandes', email: 'daniel.fernandes@example.com', occupation: 'Chartered accountant' },
 ];
@@ -34,7 +40,7 @@ const categories = [
 ];
 
 // ---------------------------------------------------------------------------
-// Conversations (5), with messages embedded as sub-documents
+// Conversations (5). Their messages are inserted into the separate messages collection.
 // ---------------------------------------------------------------------------
 const conversations = [
   {
@@ -238,30 +244,42 @@ async function seed() {
   console.log(`Connected to ${MONGO_URI}`);
 
   // Make sure the collections and schema indexes exist before inserting
-  await Promise.all([User.init(), Category.init(), Conversation.init(), Memory.init()]);
+  await Promise.all([User.init(), Category.init(), Conversation.init(), Message.init(), Memory.init()]);
 
   // 1) Clear the database
   await Promise.all([
     User.deleteMany({}),
     Category.deleteMany({}),
     Conversation.deleteMany({}),
+    Message.deleteMany({}),
     Memory.deleteMany({}),
   ]);
   console.log('Cleared existing data');
 
-  // 2) Users
-  const userDocs = await User.insertMany(users.map(({ key, ...user }) => user));
+  // 2) Users (passwords are stored as bcrypt hashes)
+  const passwordHash = await hashPassword(SEED_PASSWORD);
+  const userDocs = await User.insertMany(users.map(({ key, ...user }) => ({ ...user, passwordHash })));
   const userIds = Object.fromEntries(users.map((u, i) => [u.key, userDocs[i]._id]));
 
   // 3) Categories
   const categoryDocs = await Category.insertMany(categories);
   const categoryIds = Object.fromEntries(categoryDocs.map((c) => [c.name, c._id]));
 
-  // 4) Conversations
+  // 4) Conversations, then their messages (one minute apart so the order is explicit)
   const conversationDocs = await Conversation.insertMany(
-    conversations.map(({ key, user, ...conversation }) => ({ ...conversation, userId: userIds[user] }))
+    conversations.map(({ key, user, messages, ...conversation }) => ({ ...conversation, userId: userIds[user] }))
   );
   const conversationsByKey = Object.fromEntries(conversations.map((c, i) => [c.key, conversationDocs[i]]));
+  const startedAt = Date.now() - 24 * 60 * 60 * 1000;
+  await Message.insertMany(
+    conversations.flatMap((c, i) =>
+      c.messages.map((message, n) => ({
+        ...message,
+        conversationId: conversationDocs[i]._id,
+        sentAt: new Date(startedAt + n * 60 * 1000),
+      }))
+    )
+  );
 
   // 5) Memories
   const memories = Object.entries(memoriesByConversation).flatMap(([conversationKey, list]) =>
@@ -279,14 +297,15 @@ async function seed() {
     users: await User.countDocuments(),
     categories: await Category.countDocuments(),
     conversations: await Conversation.countDocuments(),
+    messages: await Message.countDocuments(),
     memories: await Memory.countDocuments(),
   };
   counts.total = Object.values(counts).reduce((sum, n) => sum + n, 0);
   console.log('\nSeed complete:');
   console.table(counts);
 
-  console.log('User IDs (use one as "userId" in POST /api/memories):');
-  userDocs.forEach((u) => console.log(`  ${u.name.padEnd(18)} ${u._id}`));
+  console.log(`Log in with POST /api/auth/login (password for every seeded user: ${SEED_PASSWORD}):`);
+  userDocs.forEach((u) => console.log(`  ${u.email.padEnd(32)} ${u.role}`));
 
   const indexes = await Memory.collection.indexes();
   console.log(`\nIndexes on "memories": ${indexes.map((i) => i.name).join(', ')}`);
