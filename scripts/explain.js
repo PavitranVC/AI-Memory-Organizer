@@ -18,6 +18,9 @@ const AuditLog = require('../models/AuditLog');
 const Job = require('../models/Job');
 const LlmCall = require('../models/LlmCall');
 const EvalItem = require('../models/EvalItem');
+const Consent = require('../models/Consent');
+const Suggestion = require('../models/Suggestion');
+const { expiredFilter } = require('../services/retentionService');
 const { CURRENT, temporalFilter } = require('../services/memoryService');
 const { localFilter } = require('../services/retrieval/vectorStore');
 
@@ -51,8 +54,9 @@ async function main() {
   // 1) Index list per collection (the same index must never appear twice)
   console.log('INDEXES');
   // The Stage 3 collections stay empty until a message is posted, so make sure they (and their indexes) exist
-  await Promise.all([Job.init(), LlmCall.init()]);
-  for (const Model of [User, Category, Conversation, Message, Memory, AuditLog, Job, LlmCall, EvalItem]) {
+  // (and so do the Stage 7 ones until a user sets a consent mode)
+  await Promise.all([Job.init(), LlmCall.init(), Consent.init(), Suggestion.init()]);
+  for (const Model of [User, Category, Conversation, Message, Memory, AuditLog, Job, LlmCall, EvalItem, Consent, Suggestion]) {
     const indexes = await Model.collection.indexes();
     const names = indexes.map((i) => i.name);
     const duplicates = names.filter((n, i) => names.indexOf(n) !== i);
@@ -75,6 +79,7 @@ async function main() {
   // A memory with a version chain, if the seed made one for this user
   const versioned = (await Memory.findOne({ userId: user._id, supersedes: { $ne: null } }).lean()) || memory;
   const at = versioned.validFrom.toISOString();
+  const sourceId = (await Message.findOne({ conversationId: conversation._id }).select('_id').lean() || { _id: new mongoose.Types.ObjectId() })._id;
   console.log(`\nQUERY PLANS (for ${user.email}; time-travel queries at ${at})`);
 
   const queries = [
@@ -105,6 +110,12 @@ async function main() {
     ['messages: recent window before a message', () => Message.find({ conversationId: conversation._id, sentAt: { $lt: new Date() } }).sort({ sentAt: -1, _id: -1 }).limit(6).explain('executionStats')],
     ['llmcalls: my calls, newest first', () => LlmCall.find({ userId: user._id }).sort({ _id: -1 }).limit(21).explain('executionStats')],
     ['users: login by email', () => User.find({ email: user.email }).explain('executionStats')],
+    // Stage 7: lineage lookup of an erasure, the retention scan, the consent check and the suggestions
+    ['memories: lineage (versions derived from a message)', () => Memory.find({ userId: user._id, sourceMessageIds: sourceId }).explain('executionStats')],
+    ['memories: retention (expired special versions, all users)', () => Memory.find(expiredFilter(new Date())).select('_id userId').explain('executionStats')],
+    ['consents: my mode for a category', () => Consent.find({ userId: user._id, categoryId: memory.categoryId }).explain('executionStats')],
+    ['suggestions: mine, newest first', () => Suggestion.find({ userId: user._id }).sort({ _id: -1 }).limit(21).explain('executionStats')],
+    ['suggestions: by source message (erasure)', () => Suggestion.find({ userId: user._id, messageId: sourceId }).explain('executionStats')],
   ];
 
   for (const [label, run] of queries) {
