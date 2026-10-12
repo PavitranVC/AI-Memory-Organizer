@@ -35,7 +35,9 @@ function parseK(value, fallback) {
 // temporalFilter() takes the strings of a query string; services may also pass Dates
 const asText = (value) => (value instanceof Date ? value.toISOString() : value);
 
-async function retrieve(userId, { query, asOf, knownAt, k, weights, touch = true, config = retrievalConfig() } = {}) {
+// allVersions: Stage 6 ablation "ours without the temporal model" only. Every version the database still
+// believes (superseded ones included) is a candidate, and asOf/knownAt are ignored. The app never sets it.
+async function retrieve(userId, { query, asOf, knownAt, k, weights, touch = true, allVersions = false, config = retrievalConfig() } = {}) {
   if (typeof query !== 'string' || query.trim() === '') throw badRequest('A question (query text) is required');
   if (query.length > MAX_QUERY) throw badRequest(`The question can be at most ${MAX_QUERY} characters`);
   const text = query.trim();
@@ -46,7 +48,8 @@ async function retrieve(userId, { query, asOf, knownAt, k, weights, touch = true
   } catch (err) {
     throw badRequest(err.message);
   }
-  const { filter: temporal, asOf: asOfDate, knownAt: knownAtDate } = temporalFilter({ asOf: asText(asOf), knownAt: asText(knownAt) });
+  const parsed = allVersions ? { filter: { retractedAt: null }, asOf: null, knownAt: null } : temporalFilter({ asOf: asText(asOf), knownAt: asText(knownAt) });
+  const { filter: temporal, asOf: asOfDate, knownAt: knownAtDate } = parsed;
   const at = asOfDate || knownAtDate || new Date();
   const pool = Math.max(config.candidates, topK);
   const warnings = [];

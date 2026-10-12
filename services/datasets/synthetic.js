@@ -169,4 +169,4 @@ async function removeSynthetic() {
   return removeUsers(existing.map((u) => u._id));
 }
 
-module.exports = { generateSynthetic, removeSynthetic, factChain, SOURCE };
+module.exports = { generateSynthetic, removeSynthetic, factChain, ensureCategories, SOURCE, DEFAULT_CATEGORIES };
