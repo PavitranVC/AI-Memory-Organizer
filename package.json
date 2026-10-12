@@ -10,7 +10,10 @@
     "seed": "node seed.js",
     "migrate": "node scripts/migrate.js",
     "explain": "node scripts/explain.js",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "worker": "node scripts/worker.js",
+    "test:live": "node scripts/live-smoke.js",
+    "llm:costs": "node scripts/llm-costs.js"
   },
   "engines": {
     "node": ">=20"
