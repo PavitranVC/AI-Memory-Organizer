@@ -1,0 +1,11 @@
+Stage 4 retrieval latency benchmark
+command: npm run bench:retrieval -- --sizes 1000,10000 --queries 200
+git commit: f495f89a85c3ae9be7c0453afcfbc34a22b5ab8a (the code that ran; results are committed in a later commit)
+date: 2026-10-12T18:30:00.008Z
+dataset: SYNTHETIC (services/datasets/synthetic.js, seed 42, one user). Performance numbers only, never accuracy.
+embedder: lexical-hash-v1-256 (offline LEXICAL baseline, not a semantic model); vector backend: local brute-force cosine
+retrieval: k=5, candidates=50, weights={"text":0.4,"vector":0.4,"recency":0.1,"importance":0.1}
+queries per row: 200 measured after 10 warm-up queries; percentiles are nearest-rank; single run, warm cache
+p50_ms/p95_ms: the whole retrieve() call; vector_*: the local vector search alone; text_*: the $text candidate query alone
+machine: 4 x Intel(R) Xeon(R) Processor @ 2.80GHz, 16 GB RAM, linux 6.18.44-fc-v114
+node: v22.22.0; mongodb: 7.0.43 (Docker, same machine)
