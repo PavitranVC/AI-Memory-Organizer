@@ -19,6 +19,7 @@ const Job = require('../models/Job');
 const LlmCall = require('../models/LlmCall');
 const EvalItem = require('../models/EvalItem');
 const { CURRENT, temporalFilter } = require('../services/memoryService');
+const { localFilter } = require('../services/retrieval/vectorStore');
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/aimemory';
 
@@ -88,6 +89,11 @@ async function main() {
     // Each $graphLookup hop of the history endpoint is a lookup by _id
     ['memories: history hop (version by _id)', () => Memory.find({ _id: versioned._id, userId: user._id }).explain('executionStats')],
     ['memories: text search (current)', () => Memory.find({ userId: user._id, ...CURRENT, $text: { $search: 'learn' } }).explain('executionStats')],
+    // Stage 4: the two candidate queries of hybrid retrieval (the local vector backend reads the user's rows
+    // through the current-state / time-travel indexes, then computes cosine in Node)
+    ['retrieval: vector candidates, current (local backend)', () => Memory.find(localFilter({ userId: user._id, temporal: CURRENT, model: memory.embeddingModel })).select('_id embedding').explain('executionStats')],
+    ['retrieval: vector candidates, ?asOf= (local backend)', () => Memory.find(localFilter({ userId: user._id, temporal: temporalFilter({ asOf: at }).filter, model: memory.embeddingModel })).select('_id embedding').explain('executionStats')],
+    ['retrieval: keyword candidates, ?asOf=', () => Memory.find({ userId: user._id, ...temporalFilter({ asOf: at }).filter, $text: { $search: 'live' } }).explain('executionStats')],
     ['memories: category in use? (delete check)', () => Memory.find({ categoryId: memory.categoryId, retractedAt: null }).limit(1).explain('executionStats')],
     ['aggregation: $match current (by-category / status-ratio)', () => Memory.aggregate([{ $match: { userId: user._id, ...CURRENT } }, { $group: { _id: '$categoryId', count: { $sum: 1 } } }]).explain('executionStats')],
     ['auditlog: my entries, newest first', () => AuditLog.find({ userId: user._id }).sort({ _id: -1 }).limit(21).explain('executionStats')],

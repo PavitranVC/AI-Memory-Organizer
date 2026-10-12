@@ -17,7 +17,10 @@
     "data:download": "node scripts/datasets/download.js",
     "data:load:locomo": "node scripts/datasets/load-locomo.js",
     "data:synthetic": "node scripts/datasets/generate-synthetic.js",
-    "data:stats": "node scripts/datasets/stats.js"
+    "data:stats": "node scripts/datasets/stats.js",
+    "embed:backfill": "node scripts/embed-backfill.js",
+    "atlas:index": "node scripts/atlas-index.js",
+    "bench:retrieval": "node scripts/bench-retrieval.js"
   },
   "engines": {
     "node": ">=20"

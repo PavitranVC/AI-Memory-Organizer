@@ -22,6 +22,7 @@ const Job = require('./models/Job');
 const LlmCall = require('./models/LlmCall');
 const EvalItem = require('./models/EvalItem');
 const { hashPassword } = require('./services/authService');
+const { backfillEmbeddings } = require('./services/embeddings/backfill');
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/aimemory';
 const SEED_PASSWORD = process.env.SEED_PASSWORD || 'DevPassword123';
@@ -398,6 +399,15 @@ async function seed() {
     ...chains.audit,
   ]);
 
+  // 7) Stage 4: a vector for every memory version, from the configured embedder (EMBEDDING_PROVIDER, default
+  // the offline lexical one). If it fails (e.g. voyage without a key), the seed still succeeds.
+  let embedded;
+  try {
+    embedded = await backfillEmbeddings();
+  } catch (err) {
+    console.warn(`Embeddings skipped (${err.message}). Run "npm run embed:backfill" later.`);
+  }
+
   // Summary
   const counts = {
     users: await User.countDocuments(),
@@ -407,7 +417,9 @@ async function seed() {
     memories: await Memory.countDocuments(),
     currentMemories: await Memory.countDocuments({ validTo: null, retractedAt: null }),
     auditEntries: await AuditLog.countDocuments(),
+    embeddedMemories: embedded ? embedded.embedded : 0,
   };
+  if (embedded) console.log(`Embedding model: ${embedded.model} (${embedded.dims} dimensions)`);
   console.log('\nSeed complete:');
   console.table(counts);
 
