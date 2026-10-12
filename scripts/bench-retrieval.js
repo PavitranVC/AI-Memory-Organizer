@@ -70,7 +70,22 @@ async function timeQueries({ userId, queries, asOfs, config }) {
   return { total: summary(total), vector: summary(vector), text: summary(text), n: total.length };
 }
 
+// The commit that runs, read BEFORE any result file is written (a rewritten results file would look like an
+// uncommitted change)
+function gitCommit() {
+  let commit = 'unknown';
+  try {
+    commit = execSync('git rev-parse HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+    const dirty = execSync('git status --porcelain --untracked-files=no', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+    commit += dirty ? ' + uncommitted changes' : '';
+  } catch (err) {
+    // not a git checkout
+  }
+  return commit;
+}
+
 async function main() {
+  const commit = gitCommit();
   const args = process.argv.slice(2);
   const sizes = String(option(args, '--sizes', '1000,10000')).split(',').map(Number);
   const queryCount = Number(option(args, '--queries', 200));
@@ -139,14 +154,6 @@ async function main() {
   const header = Object.keys(rows[0]);
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(`${out}.csv`, [header.join(','), ...rows.map((r) => header.map((h) => r[h]).join(','))].join('\n') + '\n');
-  let commit = 'unknown';
-  try {
-    commit = execSync('git rev-parse HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
-    const dirty = execSync('git status --porcelain --untracked-files=no', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
-    commit += dirty ? ' + uncommitted changes' : '';
-  } catch (err) {
-    // not a git checkout
-  }
   const cpus = os.cpus();
   fs.writeFileSync(
     `${out}.txt`,
