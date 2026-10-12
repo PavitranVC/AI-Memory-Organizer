@@ -38,7 +38,7 @@ async function moved(user, add) {
 describe('configuration', () => {
   test('defaults, weights from the environment, and bad values rejected', () => {
     const config = retrievalConfig({});
-    expect(config).toMatchObject({ backend: 'local', topK: 5, candidates: 50, halfLifeDays: 90, minVector: 0.1, weights: DEFAULT_WEIGHTS });
+    expect(config).toMatchObject({ backend: 'local', topK: 5, candidates: 50, halfLifeDays: 90, minVector: null, weights: DEFAULT_WEIGHTS });
     expect(retrievalConfig({ RETRIEVAL_W_TEXT: '0', RETRIEVAL_W_VECTOR: '1' }).weights).toEqual({ ...DEFAULT_WEIGHTS, text: 0, vector: 1 });
     expect(() => retrievalConfig({ VECTOR_BACKEND: 'faiss' })).toThrow(/VECTOR_BACKEND/);
     expect(() => retrievalConfig({ RETRIEVAL_TOP_K: '50' })).toThrow(/RETRIEVAL_TOP_K/);
@@ -249,5 +249,19 @@ describe('reconciliation uses hybrid retrieval (Stage 3 -> 4)', () => {
     expect(similar[0].categoryId.name).toBe('Personal');
     expect(spy).toHaveBeenCalledWith(user._id, expect.objectContaining({ touch: false, weights: { text: 0.5, vector: 0.5, recency: 0, importance: 0 } }));
     expect((await models.Memory.findOne({ content: 'Lives in Pune' }).lean()).accessCount).toBe(0);
+  });
+});
+
+describe('relevance cut-off for vector-only matches', () => {
+  test("the embedder's own cut-off applies unless RETRIEVAL_MIN_VECTOR is set", async () => {
+    const { user, add } = await setup();
+    // A fake embedder: the question and the memory have cosine 0.6, and no shared keyword
+    const vec = (t) => (/question/i.test(t) ? [1, 0] : [0.6, 0.8]);
+    embeddings.setEmbedder({ name: 'fake', id: 'fake-2', dims: 2, minVector: 0.7, embed: async (texts) => texts.map(vec) });
+    await add('Rents an apartment');
+    expect((await retrieve(user._id, { query: 'question' })).results).toHaveLength(0); // 0.6 < 0.7
+    const config = { ...retrievalConfig({}), minVector: 0.5 };
+    expect((await retrieve(user._id, { query: 'question', config })).results).toHaveLength(1);
+    expect(new (require('../services/embeddings/lexicalProvider').LexicalEmbeddingProvider)().minVector).toBe(0.3);
   });
 });

@@ -52,7 +52,7 @@ async function embedDocuments(texts, provider = getEmbedder()) {
 
 async function embedQuery(text, provider = getEmbedder()) {
   const [vector] = checkVectors(provider, [text], await provider.embed([text], { inputType: 'query' }));
-  return { model: provider.id, vector };
+  return { model: provider.id, vector, minVector: provider.minVector };
 }
 
 // The embedding fields for a memory version about to be written. Embedding is a derived value, like an index

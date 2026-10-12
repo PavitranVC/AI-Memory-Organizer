@@ -111,7 +111,7 @@ with real data, because it deletes everything first.
 | `ATLAS_VECTOR_INDEX` | `memory_vector_index` | Name of the Atlas vector index |
 | `RETRIEVAL_W_TEXT`, `RETRIEVAL_W_VECTOR`, `RETRIEVAL_W_RECENCY`, `RETRIEVAL_W_IMPORTANCE` | `0.4`, `0.4`, `0.1`, `0.1` | Weights of the hybrid score |
 | `RETRIEVAL_TOP_K`, `RETRIEVAL_CANDIDATES` | `5`, `50` | Memories sent to the answer model (max 20); size of each candidate list |
-| `RETRIEVAL_MIN_VECTOR` | `0.1` | Minimum cosine for a memory with no keyword match |
+| `RETRIEVAL_MIN_VECTOR` | the embedder's (lexical `0.3`) | Minimum cosine for a memory with no keyword match |
 | `RETRIEVAL_HALF_LIFE_DAYS` | `90` | Recency halves every N days |
 | `ANSWER_MODEL` | `claude-opus-5-5` | Model that answers `POST /api/ask` (with `LLM_PROVIDER=anthropic`) |
 | `MONGO_URI_BENCH` | `mongodb://127.0.0.1:27017/aimemory_bench` | Database for `npm run bench:retrieval`. **It is dropped**; its name must contain `bench` |
@@ -350,7 +350,7 @@ over your own memories:
    `$vectorSearch`.
 4. **Hybrid score** for every candidate: `0.4*text + 0.4*vector + 0.1*recency + 0.1*importance` (weights in
    `.env`), where text is normalised to [0, 1], recency halves every 90 days and importance 1..5 maps to 0..1.
-   A candidate with no keyword match and a cosine below 0.1 is dropped.
+   A candidate with no keyword match and a cosine below the embedder's cut-off (0.3 for `lexical`) is dropped.
 5. **Top-k** (default 5) go to the answer model with short labels (`m1`, `m2`, ...). The answer cites labels,
    which the server checks and maps back to memory ids (`citedMemoryIds`).
 

@@ -18,7 +18,7 @@ const vectorStore = require('./vectorStore');
 // Steps: (1) the time filter (valid at asOf, default now) is part of BOTH candidate queries, so a fact that was
 // not true at that time can never be returned; (2) keyword candidates from the text index; (3) vector
 // candidates from the vector backend; (4) union, score every candidate on all four parts, keep the relevant
-// ones (some keyword match, or cosine >= minVector), sort, top k; (5) count the access on the returned rows.
+// ones (some keyword match, or cosine >= the embedder's cut-off), sort, top k; (5) count the access on the returned rows.
 
 const POPULATE = [{ path: 'categoryId', select: 'name' }];
 const DAY = 24 * 60 * 60 * 1000;
@@ -61,8 +61,9 @@ async function retrieve(userId, { query, asOf, knownAt, k, weights, touch = true
   // (3) Vector candidates. If the embedding provider is down, fall back to keywords only and say so.
   let queryVector = null;
   let model = null;
+  let embedderMin = null;
   try {
-    ({ vector: queryVector, model } = await embedQuery(text));
+    ({ vector: queryVector, model, minVector: embedderMin } = await embedQuery(text));
   } catch (err) {
     warnings.push(`Vector search skipped (embedding failed): ${err.message}`);
   }
@@ -79,6 +80,8 @@ async function retrieve(userId, { query, asOf, knownAt, k, weights, touch = true
   const textScore = new Map(textHits.map((h) => [String(h._id), maxText > 0 ? h.score / maxText : 0]));
   const vectorScore = new Map(vectorHits.map((h) => [String(h._id), 2 * h.vectorScore - 1])); // back to cosine
   const halfLife = config.halfLifeDays * DAY;
+  // The relevance cut-off for vector-only matches: RETRIEVAL_MIN_VECTOR if set, else the embedder's own
+  const minVector = [config.minVector, embedderMin, 0.1].find((v) => typeof v === 'number');
 
   const scored = [];
   for (const doc of docs) {
@@ -90,7 +93,7 @@ async function retrieve(userId, { query, asOf, knownAt, k, weights, touch = true
       recency: Math.pow(0.5, Math.max(0, at - doc.validFrom) / halfLife),
       importance: ((doc.importance || 3) - 1) / 4,
     };
-    if (parts.text === 0 && parts.vector < config.minVector) continue; // recent and important, but not about the question
+    if (parts.text === 0 && parts.vector < minVector) continue; // recent and important, but not about the question
     const score = w.text * parts.text + w.vector * parts.vector + w.recency * parts.recency + w.importance * parts.importance;
     const { embedding, ...memory } = doc;
     scored.push({ memory, score, components: parts });

@@ -43,6 +43,11 @@ class LexicalEmbeddingProvider {
     this.dims = DIMS;
     this.id = `lexical-hash-v${VERSION}-${DIMS}`;
     this.semantic = false; // a lexical baseline: say so wherever its results are reported
+    // The cosine below which a memory with no keyword match is treated as unrelated. Hashed trigrams give
+    // unrelated sentences a cosine of about 0.1 to 0.2 (shared letter triples, bucket collisions), so the
+    // cut-off sits above that. Chosen by inspecting the seed data, not tuned on any benchmark; Stage 6 should
+    // tune it on a development split. RETRIEVAL_MIN_VECTOR overrides it.
+    this.minVector = 0.3;
   }
 
   async embed(texts) {

@@ -33,8 +33,9 @@ function retrievalConfig(env = process.env) {
     // Memories sent to the answer model (top-k), and the size of each candidate list (keyword and vector)
     topK: number(env.RETRIEVAL_TOP_K, 5, 'RETRIEVAL_TOP_K', { min: 1, max: MAX_K, integer: true }),
     candidates: number(env.RETRIEVAL_CANDIDATES, 50, 'RETRIEVAL_CANDIDATES', { min: 1, max: 1000, integer: true }),
-    // A memory with no keyword match needs at least this cosine similarity to count as relevant at all
-    minVector: number(env.RETRIEVAL_MIN_VECTOR, 0.1, 'RETRIEVAL_MIN_VECTOR', { max: 1 }),
+    // A memory with no keyword match needs at least this cosine similarity to count as relevant at all.
+    // null = the embedder's own cut-off (its "minVector": the noise level differs between embedders)
+    minVector: number(env.RETRIEVAL_MIN_VECTOR, null, 'RETRIEVAL_MIN_VECTOR', { max: 1 }),
     // Recency halves every N days since the fact became true
     halfLifeDays: number(env.RETRIEVAL_HALF_LIFE_DAYS, 90, 'RETRIEVAL_HALF_LIFE_DAYS', { min: 1 }),
     weights: parseWeights({

@@ -77,7 +77,7 @@ function reconcile(candidate, existing) {
 function answer(memories) {
   if (memories.length === 0) return { answer: 'I have no memories about that.', citedMemories: [], insufficient: true };
   const top = memories[0];
-  return { answer: `From your memories: ${top.content}.`, citedMemories: [top.label], insufficient: false };
+  return { answer: `From your memories: ${top.content.replace(/[.!?]+$/, '')}.`, citedMemories: [top.label], insufficient: false };
 }
 
 const estimateTokens = (text) => Math.ceil(String(text).length / 4);

@@ -13,6 +13,7 @@ class MockEmbeddingProvider {
     this.name = 'mock';
     this.dims = DIMS;
     this.id = `mock-hash-${DIMS}`; // stored on each memory as embeddingModel
+    this.minVector = 0.1; // see LexicalEmbeddingProvider
   }
 
   async embed(texts) {

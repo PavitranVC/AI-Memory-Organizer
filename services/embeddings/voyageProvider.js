@@ -18,6 +18,7 @@ class VoyageEmbeddingProvider {
     this.dims = dims;
     this.id = `voyage:${model}:${dims}`;
     this.semantic = true;
+    this.minVector = 0.3; // TODO: calibrate on real Voyage vectors (unrelated texts are rarely near 0 cosine)
     this.apiKey = apiKey;
     this.fetch = fetchImpl;
     this.lastUsage = null; // total_tokens of the last call, for cost checks
