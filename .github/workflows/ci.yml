@@ -69,3 +69,16 @@ jobs:
         run: npm run data:stats
       - name: Explain (with dataset users present)
         run: npm run explain
+      # Stage 4: embed the synthetic memories with the offline lexical embedder (re-running must embed
+      # nothing), print the Atlas index definition (no Atlas in CI), and check the retrieval benchmark runs.
+      # The benchmark output goes to /tmp: numbers from a shared CI runner are not results.
+      - name: Embedding backfill (offline lexical embedder, twice)
+        env:
+          EMBEDDING_PROVIDER: lexical
+        run: |
+          npm run embed:backfill
+          npm run embed:backfill | tail -1 | grep -q '"embedded":0'
+      - name: Atlas index definition (print only)
+        run: npm run atlas:index -- --print
+      - name: Retrieval benchmark (smoke run, not a result)
+        run: npm run bench:retrieval -- --sizes 1000 --queries 20 --out /tmp/stage4-bench

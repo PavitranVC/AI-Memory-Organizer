@@ -28,6 +28,10 @@ This README describes the code as of **Stage 2: bi-temporal memory schema**.
   for durable facts about the user, compares each one with similar existing memories and decides ADD, UPDATE,
   SUPERSEDE or NOOP, then writes it through the bi-temporal service. A deterministic mock LLM is the default, so
   nothing costs money until you switch to Claude. See [LLM extraction pipeline](#llm-extraction-pipeline).
+- **Hybrid retrieval and question answering** (Stage 4). Every memory version stores an embedding. A question is
+  answered from the top-k memories ranked by keyword score + vector similarity + recency + importance, using only
+  facts that were valid at the question's date (`asOf`), and the answer cites the memories it used
+  (`POST /api/ask`). See [Hybrid retrieval and /api/ask](#hybrid-retrieval-and-apiask-stage-4).
 
 ## Quick start
 
@@ -101,6 +105,16 @@ with real data, because it deletes everything first.
 | `WORKER_IN_PROCESS` | `false` | `true` runs the worker inside `npm start` (one-window demo) |
 | `WORKER_POLL_MS`, `JOB_RETRY_DELAY_MS`, `JOB_LOCK_TIMEOUT_MS` | `2000`, `5000`, `300000` | Worker poll interval, first retry delay (doubles each attempt), and how long before a dead worker's job is taken back |
 | `MONGO_URI_LIVE` | `mongodb://127.0.0.1:27017/aimemory_live` | Database for `npm run test:live`. **It is dropped** |
+| `EMBEDDING_PROVIDER` | `lexical` | `lexical` (offline hashed words + trigrams: a **lexical baseline, not a semantic model**), `mock` (test double, used by `npm test`) or `voyage` (semantic, paid) |
+| `VOYAGE_API_KEY`, `VOYAGE_MODEL`, `VOYAGE_DIMENSIONS` | unset, `voyage-3.5`, `1024` | Voyage AI embeddings (only with `EMBEDDING_PROVIDER=voyage`) |
+| `VECTOR_BACKEND` | `local` | `local`: brute-force cosine over the user's memories (any MongoDB). `atlas`: `$vectorSearch` (Atlas only) |
+| `ATLAS_VECTOR_INDEX` | `memory_vector_index` | Name of the Atlas vector index |
+| `RETRIEVAL_W_TEXT`, `RETRIEVAL_W_VECTOR`, `RETRIEVAL_W_RECENCY`, `RETRIEVAL_W_IMPORTANCE` | `0.4`, `0.4`, `0.1`, `0.1` | Weights of the hybrid score |
+| `RETRIEVAL_TOP_K`, `RETRIEVAL_CANDIDATES` | `5`, `50` | Memories sent to the answer model (max 20); size of each candidate list |
+| `RETRIEVAL_MIN_VECTOR` | `0.1` | Minimum cosine for a memory with no keyword match |
+| `RETRIEVAL_HALF_LIFE_DAYS` | `90` | Recency halves every N days |
+| `ANSWER_MODEL` | `claude-opus-5-5` | Model that answers `POST /api/ask` (with `LLM_PROVIDER=anthropic`) |
+| `MONGO_URI_BENCH` | `mongodb://127.0.0.1:27017/aimemory_bench` | Database for `npm run bench:retrieval`. **It is dropped**; its name must contain `bench` |
 | `DATA_DIR` | `./data` | Where `npm run data:download` saves datasets (gitignored) |
 | `HF_TOKEN` | unset | Hugging Face read token, for gated datasets. Sent only to `huggingface.co` |
 
@@ -120,6 +134,9 @@ with real data, because it deletes everything first.
 | `npm run data:load:locomo` | Load LoCoMo as benchmark users, conversations, messages and `evalitems`. Skips loaded samples; `-- --reset` replaces them |
 | `npm run data:synthetic` | Generate synthetic memories for scale tests: `-- --memories 100000 [--users N] [--seed 42] [--reset]`, or `-- --remove` |
 | `npm run data:stats` | Count documents per dataset label and check the LoCoMo file; writes `results/stage5-dataset-stats.json` |
+| `npm run embed:backfill` | Embed every memory version that has no vector from the current model (`-- --dataset synthetic`, `-- --batch 50`). Safe to re-run |
+| `npm run atlas:index` | Create the Atlas vector index from `atlas/vector-index.json` (Atlas only); `-- --print` just prints it |
+| `npm run bench:retrieval` | Retrieval latency p50/p95 at 1k and 10k **synthetic** memories; writes `results/stage4-retrieval-latency.csv` and `.txt` (`-- --sizes 1000,10000 --queries 200`) |
 | `npm run migrate` | Upgrade an older database to the current schema: runs the Stage 1 and Stage 2 migrations in order (see [Upgrading an old database](#upgrading-an-old-database)) |
 
 ## Using the API
@@ -166,6 +183,8 @@ curl -s "http://localhost:5000/api/memories?category=health&limit=2" -H "Authori
 | `GET /api/memories/stats/by-category` | Count, active count and average importance per category (current versions) |
 | `GET /api/memories/stats/status-ratio` | Active vs Archived: counts, percentages, ratio (current versions) |
 | `GET /api/memories/search?q=` | Keyword search over the content and tags of current versions, ranked by relevance. Takes `limit` but no `cursor` |
+| `GET /api/memories/retrieve?q=&asOf=&k=` | Hybrid retrieval (Stage 4): the top `k` (default 5, max 20) memories valid at `asOf` (default now), each with its `score` and the four parts (`text`, `vector`, `recency`, `importance`). Counts as an access |
+| `POST /api/ask` | Body: `{ question, asOf?, k? }`. Retrieves the top-k memories valid at `asOf` and answers with the LLM. Returns `{ answer, insufficient, citedMemoryIds, citations, memories }`. With no relevant memory it answers "I don't have any memories..." without calling the LLM. `502` if the model fails or cites a memory it was not shown |
 
 `GET /` returns this list as JSON.
 
@@ -317,6 +336,58 @@ npm run llm:costs -- --include-mock
 npm run test:live -- --estimate
 npm run test:live
 ```
+
+## Hybrid retrieval and /api/ask (Stage 4)
+
+`POST /api/ask {"question": "Where do I live?", "asOf": "2022-06-01"}` runs **retrieval-augmented generation**
+over your own memories:
+
+1. **Time filter first.** Only versions valid at `asOf` (default now) and not retracted are candidates: the same
+   filter as `GET /api/memories?asOf=`. A superseded fact can never be used to answer a question about today.
+2. **Keyword candidates** from the MongoDB text index (top 50).
+3. **Vector candidates**: the question is embedded and compared with the stored embeddings by cosine similarity
+   (top 50). `VECTOR_BACKEND=local` does this by brute force in Node; `VECTOR_BACKEND=atlas` uses Atlas
+   `$vectorSearch`.
+4. **Hybrid score** for every candidate: `0.4*text + 0.4*vector + 0.1*recency + 0.1*importance` (weights in
+   `.env`), where text is normalised to [0, 1], recency halves every 90 days and importance 1..5 maps to 0..1.
+   A candidate with no keyword match and a cosine below 0.1 is dropped.
+5. **Top-k** (default 5) go to the answer model with short labels (`m1`, `m2`, ...). The answer cites labels,
+   which the server checks and maps back to memory ids (`citedMemoryIds`).
+
+`GET /api/memories/retrieve?q=...` shows step 4's ranking without calling the LLM. Reconciliation (Stage 3) now
+finds similar memories with the same retrieval (text + vector only, no access counted).
+
+**Embeddings.** Each memory version stores `embedding` (hidden from API responses) and `embeddingModel`. The
+default embedder, `lexical`, hashes words and character trigrams into 256 numbers: it is offline and free but it
+is a **lexical baseline, not a semantic model** ("flat" does not match "apartment"). For real semantic search set
+`EMBEDDING_PROVIDER=voyage` and `VOYAGE_API_KEY` (costs money), then run `npm run embed:backfill` to re-embed
+existing memories. The Voyage provider has not been run against the real API yet.
+
+**Latency** of one `retrieve()` call (synthetic data, lexical embedder, local backend, all memories owned by one
+user, 200 queries, one run on the 4-CPU cloud container; `results/stage4-retrieval-latency.csv` and `.txt`):
+
+| Memories (one user) | Mode | p50 | p95 |
+|---|---|---|---|
+| 1,000 | current | 40.45 ms | 51.82 ms |
+| 1,000 | asOf | 34.5 ms | 49.43 ms |
+| 10,000 | current | 275.22 ms | 325.66 ms |
+| 10,000 | asOf | 214.7 ms | 326.59 ms |
+
+Most of the time is the brute-force vector scan, which grows linearly with the memories per user.
+
+### Atlas vector search (optional, on your laptop)
+
+The cloud session cannot reach Atlas, so this path is not run in tests or CI; its pipeline is checked against an
+emulator (`tests/fixtures/atlasEmulator.js`).
+
+1. Create a free **M0** cluster on [MongoDB Atlas](https://www.mongodb.com/atlas), a database user, and allow
+   your IP under *Network Access*.
+2. In `.env`: `MONGO_URI=mongodb+srv://<user>:<password>@<cluster>/aimemory` and `VECTOR_BACKEND=atlas`.
+3. `npm run seed` (Atlas clusters are replica sets, so transactions work).
+4. `npm run atlas:index` creates `memory_vector_index` from `atlas/vector-index.json`, with `numDimensions` set
+   to your embedder's size (256 for `lexical`, 1024 for `voyage`). Wait until it shows **READY** in the Atlas UI
+   (*Atlas Search* tab). Alternatively paste the `definition` from the JSON file into the UI's JSON editor.
+5. `npm start` and call `POST /api/ask` as usual.
 
 ## Datasets (Stage 5)
 
@@ -533,7 +604,8 @@ npm test
 (`MONGO_URI_TEST`, default `aimemory_test`), which is **dropped and recreated**. They cover CRUD, validation errors,
 referential integrity, login and token handling, user isolation (user A cannot see or change user B's data),
 pagination, both aggregations (including the orphan-category fix), text search, index design with `explain()`,
-both migrations, and (Stage 2, `tests/temporal.test.js`) supersede, correction, retraction, history, `asOf` vs
+both migrations, Stage 4 embeddings, hybrid ranking, `asOf` filtering, local/Atlas parity and `/api/ask`
+(`tests/embeddings.test.js`, `tests/retrieval.test.js`, `tests/ask.test.js`), and (Stage 2, `tests/temporal.test.js`) supersede, correction, retraction, history, `asOf` vs
 `knownAt`, the audit log, concurrent updates, and transaction rollback when a step fails half-way.
 
 GitHub Actions runs the same tests on every push and pull request (Node 20 and 22 on MongoDB 7, and Node 22 on
@@ -550,10 +622,15 @@ services/           Business logic: integrity checks, scoping, cascades, aggrega
 routes/             Thin HTTP layer over the services
 middleware/         JWT authentication, admin check, async error forwarding
 services/llm/       LLM providers (Anthropic, mock), versioned prompt loader, schemas, pricing, call logging
+services/embeddings/ Stage 4: embedding providers (mock, lexical, voyage), backfill
+services/retrieval/  Stage 4: hybrid ranking, local and Atlas vector backends, retrieval settings
+services/askService.js  Stage 4: POST /api/ask (retrieve top-k, answer, check citations)
+atlas/              Atlas vector index definition (vector-index.json)
 services/datasets/  Stage 5: LoCoMo loader, synthetic scale generator, shared reset and seeded random helpers
-prompts/            Versioned LLM prompts (extract.v1.md, reconcile.v1.md)
+prompts/            Versioned LLM prompts (extract.v1.md, reconcile.v1.md, answer.v1.md)
 scripts/            explain.js (query plans), migrate.js (runs migrate-stage1.js, then migrate-stage2.js),
-                    worker.js (extraction worker), live-smoke.js (npm run test:live), llm-costs.js
+                    worker.js (extraction worker), live-smoke.js (npm run test:live), llm-costs.js,
+                    embed-backfill.js, atlas-index.js, bench-retrieval.js (Stage 4)
 scripts/datasets/   download.js, load-locomo.js, generate-synthetic.js, stats.js (the npm run data:* commands)
 data/               Downloaded datasets (gitignored, never committed)
 results/            Outputs of committed scripts, each with its command, commit, date and dataset
@@ -562,7 +639,7 @@ tests/              Jest + supertest tests
 docs/               Roadmap, prompt playbook, and per-stage notes (docs/stages/STAGE-N.md)
 ```
 
-## Known limitations (Stage 5)
+## Known limitations (up to Stage 4)
 
 - **Login only.** There is no password reset, email verification, refresh token or rate limiting on login.
   Do not expose it to the internet as it is.
@@ -574,9 +651,15 @@ docs/               Roadmap, prompt playbook, and per-stage notes (docs/stages/S
 - **No future-dated facts.** `validFrom` cannot be in the future (for example "I move to Pune next month"); that
   keeps "current" a simple equality on `validTo = null`.
 - **Every update creates a version**, even a status change, so storage grows with the number of edits.
-- **Search matches words, not meaning** ("nut allergy" will not find "allergic to peanuts"). Semantic search is planned for Stage 4.
-  The extractor uses the same keyword search to find similar memories, so it can miss a related memory that shares
-  no words with the new fact (and then ADD a near-duplicate).
+- **Retrieval still matches words, not meaning, by default.** The offline `lexical` embedder is a lexical baseline
+  ("nut allergy" will not find "allergic to peanuts"); real semantic search needs `EMBEDDING_PROVIDER=voyage`
+  (paid, not run yet). The extractor uses the same retrieval to find similar memories, so with the lexical embedder
+  it can still miss a related memory that shares no words with the new fact (and then ADD a near-duplicate).
+- **The local vector backend is brute force**: it reads every memory of the user that matches the time filter, so
+  its cost grows linearly (see `results/stage4-retrieval-latency.csv`). Atlas `$vectorSearch` is approximate
+  (HNSW) and was not run here.
+- **Vectors are stored as arrays of doubles**: about 2.4 KB per memory version for the 256-number lexical vector,
+  most of each document's size (measured in the benchmark). Every version keeps its own vector.
 - **The mock LLM is a test double, not a model.** It recognises a few sentence patterns ("I live in", "I moved to",
   "I am allergic to", ...). Only the real model's output (`LLM_PROVIDER=anthropic`) says anything about quality.
 - **LoCoMo is a chat between two people**, not a person and an assistant. The loader stores the first speaker as
