@@ -9,7 +9,9 @@ Goal: turn the DBMS-review prototype into a research-grade project:
 > memory, at a measurable storage and latency cost, and makes user-governed
 > erasure exact.
 
-Every stage is a separate branch with its own pull request. Each stage leaves
+Every stage is a separate branch with its own pull request. The copy-paste
+prompt, the steps to do before running it, and the model and effort to use
+for each stage are in [`PROMPTS.md`](PROMPTS.md). Each stage leaves
 the app runnable and the tests green.
 
 ---

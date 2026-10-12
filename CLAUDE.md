@@ -1,8 +1,9 @@
 # Instructions for Claude
 
 Project: AI Memory Organizer. Node.js + Express + Mongoose (MongoDB) backend.
-The plan, stages and branch names are in `docs/ROADMAP.md`. Read it first in
-every session.
+The plan, stages and branch names are in `docs/ROADMAP.md`. The exact task for
+each stage is its prompt in `docs/PROMPTS.md`. Read both first in every
+session.
 
 ## Branches
 - One branch per stage, named exactly as in the roadmap table
@@ -55,4 +56,5 @@ every session.
   api.anthropic.com.
 - Blocked: huggingface.co (LongMemEval, WildChat) and fastdl.mongodb.org
   (`mongodb-memory-server` downloads). Use Docker `mongo:7` instead.
+- Pushing `claude/stage-*` branches works (verified).
 - The container is temporary. Only pushed commits survive.
