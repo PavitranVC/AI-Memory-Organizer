@@ -368,10 +368,10 @@ user, 200 queries, one run on the 4-CPU cloud container; `results/stage4-retriev
 
 | Memories (one user) | Mode | p50 | p95 |
 |---|---|---|---|
-| 1,000 | current | 40.45 ms | 51.82 ms |
-| 1,000 | asOf | 34.5 ms | 49.43 ms |
-| 10,000 | current | 275.22 ms | 325.66 ms |
-| 10,000 | asOf | 214.7 ms | 326.59 ms |
+| 1,000 | current | 39.43 ms | 50.39 ms |
+| 1,000 | asOf | 33.53 ms | 45.48 ms |
+| 10,000 | current | 259.45 ms | 322.24 ms |
+| 10,000 | asOf | 212.65 ms | 331.54 ms |
 
 Most of the time is the brute-force vector scan, which grows linearly with the memories per user.
 
