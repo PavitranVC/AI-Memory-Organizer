@@ -1,0 +1,36 @@
+{
+  "runId": "stage6-pipeline-check-mock-2026-10-12",
+  "questionsPerSample": 10,
+  "samples": [
+    "conv-26"
+  ],
+  "k": 10,
+  "seed": 1,
+  "systems": [
+    "full_context",
+    "rag_messages",
+    "overwrite_memory",
+    "ours",
+    "ours_no_temporal",
+    "ours_no_provenance"
+  ],
+  "llm": {
+    "provider": "mock",
+    "models": {
+      "extract": "claude-opus-5-5",
+      "reconcile": "claude-opus-5-5",
+      "answer": "claude-opus-5-5",
+      "judge": "claude-opus-5-5"
+    },
+    "effort": "medium"
+  },
+  "embeddings": {
+    "provider": "lexical"
+  },
+  "prompts": {
+    "answer": "eval-answer.v1",
+    "judge": "judge.v1",
+    "extract": "extract.v1",
+    "reconcile": "reconcile.v1"
+  }
+}

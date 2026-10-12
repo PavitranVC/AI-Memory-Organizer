@@ -1,0 +1,5 @@
+sample,store,messages_mined,decisions,memory_versions,memory_current,memory_bytes,extract_calls,reconcile_calls,build_input_tokens,build_output_tokens,build_cost_usd,build_seconds
+conv-26,raw messages,0,,,,144546,,,,,,
+conv-26,rag message vectors,0,,,,858112,,,,,,
+conv-26,bitemporal,419,ADD=13 UPDATE=1,14,13,39602,419,12,452752,3033,0,3.9
+conv-26,overwrite,419,ADD=13 UPDATE=1,13,13,36827,0,12,9165,403,0,2.1

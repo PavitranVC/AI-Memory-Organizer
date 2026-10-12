@@ -1,0 +1,14 @@
+Stage 6 COST PROJECTION for the paid LoCoMo evaluation. A projection, NOT a measured cost.
+command: npm run eval:cost
+git commit: e1e896b3db7023939dff396431b3d9fe93fac8ef
+date: 2026-10-12T22:41:35.667Z
+dataset: BENCHMARK - LoCoMo (data/locomo/locomo10.json), used only for its sizes
+models (from the env, else the default): extract claude-opus-5-5, reconcile claude-opus-5-5, answer claude-opus-5-5, judge claude-opus-5-5
+prices: services/llm/pricing.js (USD per million tokens; cache write 1.25 x input, cache read listed rate)
+input tokens: characters / 4 of the prompt text (an estimate; real tokenization differs)
+ASSUMPTIONS: 0.5 facts per message reach reconcile; 300 output tokens per call (thinking included);
+  k = 10; a memory line is ~260 characters; the cache stays warm between calls (5-minute lifetime).
+  The pilot measures real facts/message and output tokens: re-run this script with them before the full run.
+
+pilot (1 sample, 10 questions): 7.01 USD
+full LoCoMo (10 samples, all questions): 268.95 USD
