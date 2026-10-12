@@ -12,9 +12,9 @@ function snapshot(doc) {
 
 // Called inside the same transaction as the change it records, so a change is never saved without its
 // log entry (or the other way round).
-async function record({ userId, memoryId, action, actorId = null, at = new Date(), before = null, after = null }, session) {
+async function record({ userId, memoryId, action, actorId = null, at = new Date(), before = null, after = null, via = null, reason = null }, session) {
   const [entry] = await AuditLog.create(
-    [{ userId, memoryId, action, actorId, at, before: snapshot(before), after: snapshot(after) }],
+    [{ userId, memoryId, action, actorId, at, before: snapshot(before), after: snapshot(after), via, reason }],
     { session }
   );
   return entry;

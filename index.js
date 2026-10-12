@@ -9,6 +9,8 @@ const models = [
   require('./models/Message'),
   require('./models/Memory'),
   require('./models/AuditLog'),
+  require('./models/Job'),
+  require('./models/LlmCall'),
 ];
 
 const PORT = process.env.PORT || 5000;
@@ -41,6 +43,12 @@ mongoose
       console.warn('See "Run MongoDB as a replica set" in the README (one-time setup).');
     }
     app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+    // Optional: run the extraction worker inside the API process (handy for a one-window demo). In production
+    // run it separately with "npm run worker", so a slow LLM never competes with API requests.
+    if (process.env.WORKER_IN_PROCESS === 'true') {
+      require('./services/worker').start();
+      console.log(`Extraction worker running in-process (LLM provider: ${require('./services/llm/config').llmConfig().provider})`);
+    }
   })
   .catch((err) => {
     console.error('MongoDB connection failed:', err.message);

@@ -1,11 +1,13 @@
 const Conversation = require('../models/Conversation');
 const Message = require('../models/Message');
 const Memory = require('../models/Memory');
+const Job = require('../models/Job');
 const { badRequest, notFound } = require('./errors');
 const { toObjectId } = require('./ids');
 const { paginate, parseLimit, parseCursor } = require('./pagination');
 const { requireString } = require('./authService');
 const { withTransaction } = require('./transaction');
+const jobService = require('./jobService');
 
 // Loads a conversation only if it belongs to the user. Someone else's conversation is reported as
 // "not found", so ids of other users' data cannot be probed.
@@ -48,6 +50,8 @@ async function deleteConversation(userId, id) {
     if (messageIds.length > 0) {
       await Memory.updateMany({ userId, sourceMessageIds: { $in: messageIds } }, { $pull: { sourceMessageIds: { $in: messageIds } } }, { session });
     }
+    // Extraction jobs of this conversation have nothing left to read
+    await Job.deleteMany({ userId, 'payload.conversationId': conversation._id }, { session });
     await Conversation.deleteOne({ _id: conversation._id }, { session });
     return { conversation, deletedMessages: messages.deletedCount, unlinkedMemories: memories.modifiedCount };
   });
@@ -76,9 +80,19 @@ async function listMessages(userId, conversationId, query) {
   return { count: messages.length, limit, nextCursor: hasMore ? messages[messages.length - 1]._id : null, messages };
 }
 
+// Saves the message and, for a user message, queues an extraction job in the SAME transaction (the
+// transactional outbox pattern): the job exists if and only if the message does. The request returns
+// as soon as both are saved; the LLM runs later in the worker, so the API never waits for it.
 async function createMessage(userId, conversationId, { role, content } = {}) {
   const conversation = await getOwnedConversation(userId, conversationId);
-  return Message.create({ conversationId: conversation._id, role, content });
+  return withTransaction(async (session) => {
+    const [message] = await Message.create([{ conversationId: conversation._id, role, content }], { session });
+    let job = null;
+    if (message.role === 'user' && jobService.extractionEnabled()) {
+      job = await jobService.enqueueExtraction({ userId, messageId: message._id, conversationId: conversation._id }, session);
+    }
+    return { ...message.toObject(), extractionJobId: job ? job._id : null };
+  });
 }
 
 module.exports = {

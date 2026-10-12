@@ -110,7 +110,17 @@ async function isSpecialCategory(categoryId) {
 // Every function takes the authenticated user's id first and puts it in the query filter, so a user can
 // never read or change another user's memories, whatever ids the request contains.
 
-async function createMemory(userId, body = {}) {
+// Who made a change, for the audit log. A client request is the user acting through the API. The Stage 3
+// extractor passes { actorId: null, via: 'extractor', reason } because no person made that decision.
+function actor(userId, options = {}) {
+  return {
+    actorId: options.actorId !== undefined ? options.actorId : userId,
+    via: options.via || 'api',
+    reason: options.reason || null,
+  };
+}
+
+async function createMemory(userId, body = {}, options = {}) {
   const { content, importance, status, tags } = body;
   const now = new Date();
   const categoryId = await resolveCategoryId(body);
@@ -132,7 +142,7 @@ async function createMemory(userId, body = {}) {
 
   const memory = await withTransaction(async (session) => {
     const [created] = await Memory.create([doc], { session });
-    await audit.record({ userId, memoryId: created._id, action: 'create', actorId: userId, at: now, after: created }, session);
+    await audit.record({ userId, memoryId: created._id, action: 'create', ...actor(userId, options), at: now, after: created }, session);
     return created;
   });
   await memory.populate(POPULATE);
@@ -174,7 +184,7 @@ const COPIED = ['conversationId', 'categoryId', 'content', 'importance', 'status
 //  - CORRECTION (body.correction = true): the old version was wrong all along. It is retracted (transaction
 //    time ends) and the new version takes over its valid time.
 // Only the current version can be updated; updating an older one is a 409 that names its successor.
-async function updateMemory(userId, id, body = {}) {
+async function updateMemory(userId, id, body = {}, options = {}) {
   const memoryId = toObjectId(id);
   const correction = body.correction === true;
   if (body.correction !== undefined && typeof body.correction !== 'boolean') throw badRequest('correction must be true or false');
@@ -225,7 +235,7 @@ async function updateMemory(userId, id, body = {}) {
     if (!closed) throw conflict('This memory was changed by another request; reload it and try again');
 
     await audit.record(
-      { userId, memoryId: version._id, action: correction ? 'correct' : 'supersede', actorId: userId, at: now, before: old, after: version },
+      { userId, memoryId: version._id, action: correction ? 'correct' : 'supersede', ...actor(userId, options), at: now, before: old, after: version },
       session
     );
     return version;
@@ -244,7 +254,7 @@ async function deleteMemory(userId, id) {
     if (!old) throw notFound('Memory not found');
     const retracted = await Memory.findOneAndUpdate({ _id: old._id, retractedAt: null }, { $set: { retractedAt: now } }, { new: true, session });
     if (!retracted) throw conflict('This memory was changed by another request; reload it and try again');
-    await audit.record({ userId, memoryId: old._id, action: 'retract', actorId: userId, at: now, before: old, after: retracted }, session);
+    await audit.record({ userId, memoryId: old._id, action: 'retract', ...actor(userId), at: now, before: old, after: retracted }, session);
     return retracted;
   });
 }
@@ -375,6 +385,7 @@ async function searchMemories(userId, query) {
 module.exports = {
   CURRENT,
   SPECIAL_CATEGORIES,
+  MAX_SOURCES,
   createMemory,
   listMemories,
   getMemory,

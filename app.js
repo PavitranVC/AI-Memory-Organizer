@@ -22,7 +22,8 @@ app.get('/', (req, res) => {
       deleteAccount: 'DELETE /api/users/me',
       categories: 'GET    /api/categories | GET /api/categories/:id | POST, PUT, DELETE (admin only)',
       conversations: 'GET, POST /api/conversations | GET, PUT, DELETE /api/conversations/:id',
-      messages: 'GET, POST /api/conversations/:id/messages',
+      messages: 'GET, POST /api/conversations/:id/messages   (a user message queues an extraction job)',
+      jobs: 'GET    /api/jobs?status= | GET /api/jobs/:id   (extraction jobs and their decisions)',
       createMemory: 'POST   /api/memories',
       listMemories: 'GET    /api/memories?status=&category=&minImportance=&asOf=&knownAt=',
       getMemory: 'GET    /api/memories/:id',
@@ -43,6 +44,7 @@ app.use('/api/categories', require('./routes/categories'));
 app.use('/api/conversations', require('./routes/conversations'));
 app.use('/api/memories', require('./routes/memory'));
 app.use('/api/audit', require('./routes/audit'));
+app.use('/api/jobs', require('./routes/jobs'));
 
 // Unknown routes
 app.use((req, res) => {
