@@ -9,7 +9,7 @@ const { LlmError, LlmRefusalError } = require('./errors');
 
 const NAME = "([A-Z][\\w&'-]*(?: [A-Z][\\w&'-]*)*)"; // capitalised words: "Pune", "Tata Steel"
 const THING = '([A-Za-z][\\w+# -]*?)'; // lowercase phrase, cut by the stop words below
-const END = '(?=\\s+(?:since|in|for|because|from|at|now)\\b|$)';
+const END = '(?=\\s+(?:since|in|for|because|from|at|now|too|also|as well)\\b|$)';
 const MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
 
 // pattern -> fact. "single" topics can hold one value at a time (a new value supersedes the old one).
