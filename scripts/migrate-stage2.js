@@ -20,7 +20,7 @@ const AuditLog = require('../models/AuditLog');
 
 // Stage 1 memory indexes that are replaced by the Stage 2 ones (see models/Memory.js)
 const OLD_INDEXES = ['userId_1__id_-1', 'userId_1_status_1__id_-1', 'userId_1_categoryId_1__id_-1', 'categoryId_1'];
-const SPECIAL_CATEGORIES = ['health'];
+const { SPECIAL_CATEGORIES } = require('../services/memoryService');
 const BATCH_SIZE = 500;
 
 async function dropOldIndexes(db) {

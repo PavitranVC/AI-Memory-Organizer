@@ -13,7 +13,8 @@ const STATUSES = ['Active', 'Archived'];
 const POPULATE = [{ path: 'categoryId', select: 'name' }];
 // The version a user sees today: still true (validTo) and still believed (retractedAt)
 const CURRENT = Object.freeze({ validTo: null, retractedAt: null });
-// Categories whose memories are "special category" personal data (health: GDPR Art. 9, DPDP Act)
+// Categories whose memories default to sensitivity "special" (health data is a special category under GDPR Art. 9;
+// the full legal mapping is Stage 7)
 const SPECIAL_CATEGORIES = ['health'];
 const MAX_SOURCES = 50;
 
@@ -373,6 +374,7 @@ async function searchMemories(userId, query) {
 
 module.exports = {
   CURRENT,
+  SPECIAL_CATEGORIES,
   createMemory,
   listMemories,
   getMemory,

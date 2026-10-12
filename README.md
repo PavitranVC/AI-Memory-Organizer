@@ -53,7 +53,7 @@ a replica set ("single-node"). That is all transactions need. It is a one-time s
 
 - **Docker:** the two commands in the Quick start above.
 - **MongoDB installed as a Windows service:** step-by-step PowerShell commands are in
-  [`docs/stages/STAGE-2.md`](docs/stages/STAGE-2.md#demo-on-your-laptop). In short: add
+  [`docs/stages/STAGE-2.md`](docs/stages/STAGE-2.md#6-demo-on-your-laptop). In short: add
   `replication:` / `  replSetName: rs0` to `mongod.cfg`, restart the `MongoDB` service, then run
   `mongosh --eval "rs.initiate()"` once.
 - **Linux / macOS install:** add the same two lines to `/etc/mongod.conf` (or `/opt/homebrew/etc/mongod.conf`),
