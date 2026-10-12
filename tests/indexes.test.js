@@ -78,12 +78,16 @@ describe('queries use the indexes (explain)', () => {
     return out;
   };
 
+  // MongoDB 8 reports a single-field equality lookup with limit(1) as EXPRESS_IXSCAN (a faster path that still
+  // uses the index), while MongoDB 7 reports IXSCAN. Both mean "an index was used".
+  const usesIndex = (stages) => stages.some((stage) => /IXSCAN$/.test(stage));
+
   const explainFind = (query) => query.explain('executionStats');
 
   test('listing a user\'s memories uses an index, reads only their documents and needs no SORT', async () => {
     const e = await explainFind(models.Memory.find({ userId: user._id }).sort({ _id: -1 }).limit(21));
     const stages = stagesOf(e.queryPlanner.winningPlan);
-    expect(stages).toContain('IXSCAN');
+    expect(usesIndex(stages)).toBe(true);
     expect(stages).not.toContain('COLLSCAN');
     expect(stages).not.toContain('SORT');
     expect(e.executionStats.totalDocsExamined).toBeLessThanOrEqual(21);
@@ -92,7 +96,7 @@ describe('queries use the indexes (explain)', () => {
   test('filtering by status uses an index with no SORT', async () => {
     const e = await explainFind(models.Memory.find({ userId: user._id, status: 'Active' }).sort({ _id: -1 }).limit(21));
     const stages = stagesOf(e.queryPlanner.winningPlan);
-    expect(stages).toContain('IXSCAN');
+    expect(usesIndex(stages)).toBe(true);
     expect(stages).not.toContain('COLLSCAN');
     expect(stages).not.toContain('SORT');
   });
@@ -100,14 +104,14 @@ describe('queries use the indexes (explain)', () => {
   test('filtering by category uses an index with no SORT', async () => {
     const e = await explainFind(models.Memory.find({ userId: user._id, categoryId: category._id }).sort({ _id: -1 }).limit(21));
     const stages = stagesOf(e.queryPlanner.winningPlan);
-    expect(stages).toContain('IXSCAN');
+    expect(usesIndex(stages)).toBe(true);
     expect(stages).not.toContain('COLLSCAN');
     expect(stages).not.toContain('SORT');
   });
 
   test('the "is this category in use" check uses the categoryId index', async () => {
     const e = await explainFind(models.Memory.find({ categoryId: category._id }).limit(1));
-    expect(stagesOf(e.queryPlanner.winningPlan)).toContain('IXSCAN');
+    expect(usesIndex(stagesOf(e.queryPlanner.winningPlan))).toBe(true);
     expect(stagesOf(e.queryPlanner.winningPlan)).not.toContain('COLLSCAN');
   });
 
@@ -115,9 +119,9 @@ describe('queries use the indexes (explain)', () => {
     const conversation = await models.Conversation.create({ userId: user._id, title: 'x' });
     await models.Message.create({ conversationId: conversation._id, role: 'user', content: 'x' });
     const c = await explainFind(models.Conversation.find({ userId: user._id }).sort({ _id: -1 }).limit(21));
-    expect(stagesOf(c.queryPlanner.winningPlan)).toContain('IXSCAN');
+    expect(usesIndex(stagesOf(c.queryPlanner.winningPlan))).toBe(true);
     const m = await explainFind(models.Message.find({ conversationId: conversation._id }).sort({ sentAt: 1 }).limit(21));
-    expect(stagesOf(m.queryPlanner.winningPlan)).toContain('IXSCAN');
+    expect(usesIndex(stagesOf(m.queryPlanner.winningPlan))).toBe(true);
     expect(stagesOf(m.queryPlanner.winningPlan)).not.toContain('SORT');
   });
 });

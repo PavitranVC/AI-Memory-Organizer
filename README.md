@@ -239,6 +239,9 @@ memories: list newest first
   returned: 20, keys examined: 20, docs examined: 20
 ```
 
+On MongoDB 8 the simple lookups by one field (login by email, "is this category in use?") are reported as
+`EXPRESS_IXSCAN` instead of `IXSCAN`. That is MongoDB's faster path for these queries and it still uses the index.
+
 The messages query shows a `SORT` stage: the tie-break on `_id` (needed so messages with the same timestamp
 paginate in a stable order) is not part of the index. It only sorts one conversation's messages, so it stays small.
 Adding `_id` as a third key of that index would remove it.
@@ -275,8 +278,8 @@ referential integrity, login and token handling, user isolation (user A cannot s
 pagination, both aggregations (including the orphan-category fix), text search, index design with `explain()`,
 and the migration.
 
-GitHub Actions runs the same tests on every push and pull request against a `mongo:7` service container,
-then seeds a database and runs `npm run explain` as a smoke test (`.github/workflows/ci.yml`).
+GitHub Actions runs the same tests on every push and pull request (Node 20 and 22 on MongoDB 7, and Node 22 on
+MongoDB 8) against a MongoDB service container, then seeds a database and runs `npm run explain` as a smoke test (`.github/workflows/ci.yml`).
 
 ## Project structure
 

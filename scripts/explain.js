@@ -1,6 +1,7 @@
 /**
  * Prints the indexes of every collection and the query plan (explain "executionStats") of the main
- * queries, so you can see whether each one uses an index (IXSCAN) or reads the whole collection (COLLSCAN).
+ * queries, so you can see whether each one uses an index (IXSCAN, or EXPRESS_IXSCAN on MongoDB 8 for simple
+ * equality lookups) or reads the whole collection (COLLSCAN).
  * Run on a seeded database with:  npm run explain
  *
  * Exits with an error if a collection has duplicate indexes or a query falls back to COLLSCAN.
