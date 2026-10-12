@@ -82,3 +82,14 @@ jobs:
         run: npm run atlas:index -- --print
       - name: Retrieval benchmark (smoke run, not a result)
         run: npm run bench:retrieval -- --sizes 1000 --queries 20 --out /tmp/stage4-bench
+      # Stage 6: the index benchmark and the evaluation harness, as smoke runs on the mock model only (CI never
+      # needs an API key). Output goes to /tmp: numbers from a shared CI runner are not results.
+      - name: Index benchmark (smoke run, not a result)
+        run: npm run bench:indexes -- --sizes 1000 --repeats 3 --out /tmp/stage6-index-bench
+      - name: Evaluation harness pipeline check (mock model, not a result)
+        env:
+          LLM_PROVIDER: mock
+          EMBEDDING_PROVIDER: lexical
+        run: npm run eval -- --questions 5 --out /tmp/stage6-eval
+      - name: Cost projection (no API calls)
+        run: npm run eval:cost -- --out /tmp/stage6-cost-projection

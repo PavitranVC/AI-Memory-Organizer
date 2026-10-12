@@ -38,4 +38,19 @@ function pairedBootstrap(a, b, { resamples = 2000, seed = 1, level = 0.95 } = {}
   return { n, diff: mean(diffs), low: percentile(stats, tail), high: percentile(stats, 100 - tail), resamples };
 }
 
-module.exports = { percentile, mean, round, summary, pairedBootstrap };
+// Bootstrap 95% interval for ONE system's mean score (percentile method, seeded): the whisker on the charts
+function bootstrapMean(values, { resamples = 2000, seed = 1, level = 0.95 } = {}) {
+  const n = values.length;
+  if (n === 0) return { n: 0, mean: null, low: null, high: null, resamples };
+  const rng = createRng(seed);
+  const stats = [];
+  for (let r = 0; r < resamples; r += 1) {
+    let sum = 0;
+    for (let i = 0; i < n; i += 1) sum += values[rng.int(0, n - 1)];
+    stats.push(sum / n);
+  }
+  const tail = ((1 - level) / 2) * 100;
+  return { n, mean: mean(values), low: percentile(stats, tail), high: percentile(stats, 100 - tail), resamples };
+}
+
+module.exports = { percentile, mean, round, summary, pairedBootstrap, bootstrapMean };
