@@ -4,8 +4,10 @@ const User = require('../models/User');
 const Conversation = require('../models/Conversation');
 const Message = require('../models/Message');
 const Memory = require('../models/Memory');
+const AuditLog = require('../models/AuditLog');
 const { badRequest, forbidden, conflict, unauthorized } = require('./errors');
 const { toObjectId } = require('./ids');
+const { withTransaction } = require('./transaction');
 const { hashPassword, validatePassword, requireString } = require('./authService');
 
 // "Self only": the id in the URL must be the caller's own id (or the word "me")
@@ -46,23 +48,28 @@ async function updateUser(user, id, body = {}) {
   return doc;
 }
 
-// Cascade delete, children first and the user last: if it fails half-way the user still exists,
-// so the request can be repeated (a plain mongod has no multi-document transactions).
+// Cascade delete inside one transaction (MongoDB runs as a replica set since Stage 2): either the account
+// and everything it owns is gone, or nothing is. This is a hard delete: every memory version and the
+// user's audit log entries go too, because erasing a person must also erase the copies kept in the history.
 async function deleteUser(user, id) {
   assertSelf(user, id);
-  const conversations = await Conversation.find({ userId: user._id }).select('_id').lean();
-  const conversationIds = conversations.map((c) => c._id);
+  return withTransaction(async (session) => {
+    const conversations = await Conversation.find({ userId: user._id }).select('_id').session(session).lean();
+    const conversationIds = conversations.map((c) => c._id);
 
-  const memories = await Memory.deleteMany({ userId: user._id });
-  const messages = await Message.deleteMany({ conversationId: { $in: conversationIds } });
-  const removedConversations = await Conversation.deleteMany({ userId: user._id });
-  await User.deleteOne({ _id: user._id });
+    const memories = await Memory.deleteMany({ userId: user._id }, { session });
+    const auditEntries = await AuditLog.deleteMany({ userId: user._id }, { session });
+    const messages = await Message.deleteMany({ conversationId: { $in: conversationIds } }, { session });
+    const removedConversations = await Conversation.deleteMany({ userId: user._id }, { session });
+    await User.deleteOne({ _id: user._id }, { session });
 
-  return {
-    memories: memories.deletedCount,
-    messages: messages.deletedCount,
-    conversations: removedConversations.deletedCount,
-  };
+    return {
+      memories: memories.deletedCount,
+      messages: messages.deletedCount,
+      conversations: removedConversations.deletedCount,
+      auditEntries: auditEntries.deletedCount,
+    };
+  });
 }
 
 module.exports = { getUser, updateUser, deleteUser };

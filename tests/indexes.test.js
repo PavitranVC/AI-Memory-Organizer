@@ -22,10 +22,12 @@ describe('index design', () => {
     expect(indexes.map(keyOf).sort()).toEqual(
       [
         { _id: 1 },
-        { userId: 1, _id: -1 },
-        { userId: 1, status: 1, _id: -1 },
-        { userId: 1, categoryId: 1, _id: -1 },
-        { categoryId: 1 },
+        { userId: 1, validTo: 1, retractedAt: 1, _id: -1 },
+        { userId: 1, validTo: 1, retractedAt: 1, status: 1, _id: -1 },
+        { userId: 1, validTo: 1, retractedAt: 1, categoryId: 1, _id: -1 },
+        { userId: 1, _id: -1, validFrom: 1, recordedAt: 1 },
+        { categoryId: 1, retractedAt: 1 },
+        { supersedes: 1 },
         { userId: 1, _fts: 'text', _ftsx: 1 },
       ]
         .map((k) => JSON.stringify(k))

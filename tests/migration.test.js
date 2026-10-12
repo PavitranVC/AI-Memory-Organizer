@@ -59,7 +59,8 @@ describe('Stage 1 migration', () => {
     const memoryIndexes = (await models.Memory.collection.indexes()).map((i) => i.name);
     expect(memoryIndexes).not.toContain('userId_1');
     expect(memoryIndexes).not.toContain('status_1');
-    expect(memoryIndexes).toEqual(expect.arrayContaining(['userId_1__id_-1', 'userId_1_status_1__id_-1', 'userId_1_categoryId_1__id_-1', 'categoryId_1', 'userId_1_content_text_tags_text']));
+    // (the indexes now built are the current schema's, which Stage 2 changed; see migration-stage2.test.js)
+    expect(memoryIndexes).toEqual(expect.arrayContaining(['userId_1_validTo_1_retractedAt_1__id_-1', 'userId_1_content_text_tags_text']));
 
     const messages = await models.Message.find({ conversationId }).sort({ sentAt: 1 }).lean();
     expect(messages.map((m) => m.content)).toEqual(['first', 'second']);

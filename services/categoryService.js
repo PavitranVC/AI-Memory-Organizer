@@ -61,11 +61,13 @@ async function updateCategory(id, { name, description } = {}) {
   }
 }
 
-// MongoDB has no ON DELETE RESTRICT, so the check is done here
+// MongoDB has no ON DELETE RESTRICT, so the check is done here. Every version the database still believes
+// counts (current and superseded ones), so the history never points at a missing category. Retracted
+// (deleted) versions do not block it.
 async function deleteCategory(id) {
   const categoryId = toObjectId(id);
-  const inUse = await Memory.countDocuments({ categoryId });
-  if (inUse > 0) throw conflict(`Category is used by ${inUse} memories; move or delete them first`);
+  const inUse = await Memory.countDocuments({ categoryId, retractedAt: null });
+  if (inUse > 0) throw conflict(`Category is used by ${inUse} memories (including past versions); move or delete them first`);
   const category = await Category.findByIdAndDelete(categoryId);
   if (!category) throw notFound('Category not found');
   return category;

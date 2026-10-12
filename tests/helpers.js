@@ -7,13 +7,19 @@ const Category = require('../models/Category');
 const Conversation = require('../models/Conversation');
 const Message = require('../models/Message');
 const Memory = require('../models/Memory');
+const AuditLog = require('../models/AuditLog');
 const { signToken, hashPassword } = require('../services/authService');
 
-const MODELS = [User, Category, Conversation, Message, Memory];
+const MODELS = [User, Category, Conversation, Message, Memory, AuditLog];
 
 // Each test file gets a clean database and all schema indexes built
 async function connect() {
   await mongoose.connect(process.env.MONGO_URI_TEST);
+  // Updates run in transactions, which need a replica set. Fail with a clear message instead of 503s.
+  const hello = await mongoose.connection.db.admin().command({ hello: 1 });
+  if (!hello.setName) {
+    throw new Error('MongoDB is not running as a replica set, so transactions fail. See "Run MongoDB as a replica set" in the README.');
+  }
   await mongoose.connection.dropDatabase();
   await Promise.all(MODELS.map((Model) => Model.init()));
 }
@@ -53,4 +59,4 @@ function api(token) {
   };
 }
 
-module.exports = { app, request, connect, disconnect, clear, createUser, createAdmin, createCategory, api, models: { User, Category, Conversation, Message, Memory } };
+module.exports = { app, request, connect, disconnect, clear, createUser, createAdmin, createCategory, api, models: { User, Category, Conversation, Message, Memory, AuditLog } };
