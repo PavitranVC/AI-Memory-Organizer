@@ -17,6 +17,22 @@ session.
   The description says what changed, how to run it, and what the student
   should be able to explain.
 
+## Stage notes (every stage)
+Write `docs/stages/STAGE-N.md` for the student, who must defend the work in a viva. Use plain language and
+these sections:
+1. **In one paragraph**: what the stage does and why it matters for the project.
+2. **What changed**: every file added or changed, one line each on why.
+3. **Concepts**: each DB/AI idea used, with its textbook name and a one-line explanation.
+4. **Examiner questions**: 10 likely questions, each with a short model answer.
+5. **Weak points**: the honest limitations and how to answer if asked.
+6. **Demo on your laptop**: exact Windows PowerShell commands to run and show it.
+Keep the notes in sync with the code. If the code changes, update them in the same PR.
+
+## Unattended runs
+When running without the user (for example the overnight plan in `docs/OVERNIGHT_PLAN.md`): never stop to
+ask, make no paid API calls unless the prompt explicitly allows them, push after every logical step, and record
+anything that needs the user in `docs/OVERNIGHT_REPORT.md`.
+
 ## Before every push
 - `npm test` passes against a real MongoDB. In a cloud session, start one
   with `dockerd &` then `docker run -d -p 27017:27017 mongo:7`.
