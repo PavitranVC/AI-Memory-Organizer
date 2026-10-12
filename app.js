@@ -1,0 +1,65 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+
+// The Express app, separate from index.js (which connects to MongoDB and listens) so tests can import it
+const app = express();
+app.disable('x-powered-by');
+app.use(cors());
+app.use(express.json());
+
+// Health check + list of available endpoints
+app.get('/', (req, res) => {
+  res.json({
+    name: 'AI Memory Organizer API',
+    database: mongoose.connection.name,
+    note: 'Everything except /api/auth/* needs "Authorization: Bearer <token>". List endpoints take ?limit= (max 100) and ?cursor=.',
+    endpoints: {
+      register: 'POST   /api/auth/register',
+      login: 'POST   /api/auth/login',
+      getAccount: 'GET    /api/users/me',
+      updateAccount: 'PUT    /api/users/me',
+      deleteAccount: 'DELETE /api/users/me',
+      categories: 'GET    /api/categories | GET /api/categories/:id | POST, PUT, DELETE (admin only)',
+      conversations: 'GET, POST /api/conversations | GET, PUT, DELETE /api/conversations/:id',
+      messages: 'GET, POST /api/conversations/:id/messages',
+      createMemory: 'POST   /api/memories',
+      listMemories: 'GET    /api/memories?status=&category=&minImportance=',
+      getMemory: 'GET    /api/memories/:id',
+      updateMemory: 'PUT    /api/memories/:id',
+      deleteMemory: 'DELETE /api/memories/:id',
+      countByCategory: 'GET    /api/memories/stats/by-category',
+      activeVsArchived: 'GET    /api/memories/stats/status-ratio',
+      textSearch: 'GET    /api/memories/search?q=',
+    },
+  });
+});
+
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/users', require('./routes/users'));
+app.use('/api/categories', require('./routes/categories'));
+app.use('/api/conversations', require('./routes/conversations'));
+app.use('/api/memories', require('./routes/memory'));
+
+// Unknown routes
+app.use((req, res) => {
+  res.status(404).json({ error: `Route ${req.method} ${req.originalUrl} not found` });
+});
+
+// Error handler: maps known failures to 4xx, hides the details of unexpected ones
+app.use((err, req, res, next) => {
+  if (res.headersSent) return next(err);
+  let status = err.status;
+  if (!status) {
+    if (err.name === 'ValidationError' || err.name === 'CastError') status = 400;
+    else if (err.type === 'entity.parse.failed') status = 400; // malformed JSON body
+    else if (err.code === 11000) status = 409;
+  }
+  if (!status) {
+    console.error(err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+  res.status(status).json({ error: err.message });
+});
+
+module.exports = app;

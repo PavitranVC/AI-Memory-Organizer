@@ -1,26 +1,17 @@
 const mongoose = require('mongoose');
 
-// Messages are embedded sub-documents (NoSQL denormalisation):
-// a whole conversation is read in a single query, with no join needed.
-const messageSchema = new mongoose.Schema(
-  {
-    role: { type: String, enum: ['user', 'assistant'], required: true },
-    content: { type: String, required: true, trim: true },
-    sentAt: { type: Date, default: Date.now },
-  },
-  { _id: false }
-);
-
+// Messages live in their own collection (see Message.js): an embedded array would grow without
+// bound and hit MongoDB's 16 MB document limit in long chats.
 const conversationSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: [true, 'userId is required'] },
-    title: { type: String, required: [true, 'title is required'], trim: true },
-    messages: [messageSchema],
+    title: { type: String, required: [true, 'title is required'], trim: true, maxlength: 200 },
   },
   { timestamps: true }
 );
 
-// A user's conversations, newest first
-conversationSchema.index({ userId: 1, createdAt: -1 });
+// Query: { userId } sorted by _id descending (newest first, the keyset pagination order).
+// Equality on userId, then the sort key, so the index returns rows already in order: no SORT stage.
+conversationSchema.index({ userId: 1, _id: -1 });
 
 module.exports = mongoose.model('Conversation', conversationSchema);
