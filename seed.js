@@ -20,6 +20,7 @@ const Memory = require('./models/Memory');
 const AuditLog = require('./models/AuditLog');
 const Job = require('./models/Job');
 const LlmCall = require('./models/LlmCall');
+const EvalItem = require('./models/EvalItem');
 const { hashPassword } = require('./services/authService');
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/aimemory';
@@ -327,7 +328,7 @@ async function seed() {
   console.log(`Connected to ${MONGO_URI}`);
 
   // Make sure the collections and schema indexes exist before inserting
-  await Promise.all([User.init(), Category.init(), Conversation.init(), Message.init(), Memory.init(), AuditLog.init(), Job.init(), LlmCall.init()]);
+  await Promise.all([User.init(), Category.init(), Conversation.init(), Message.init(), Memory.init(), AuditLog.init(), Job.init(), LlmCall.init(), EvalItem.init()]);
 
   // 1) Clear the database
   await Promise.all([
@@ -339,6 +340,8 @@ async function seed() {
     AuditLog.deleteMany({}),
     Job.deleteMany({}),
     LlmCall.deleteMany({}),
+    // Loaded benchmark questions would otherwise point at deleted users (load datasets again after seeding)
+    EvalItem.deleteMany({}),
   ]);
   console.log('Cleared existing data');
 
