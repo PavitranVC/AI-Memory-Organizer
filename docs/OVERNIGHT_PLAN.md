@@ -8,14 +8,14 @@ and merge them over the following days.
 | Order | Stage | Branch | Done tonight | Left for you |
 |---|---|---|---|---|
 | 1 | 2: Bi-temporal schema | `claude/stage-2-temporal-schema` | Everything | Switch laptop MongoDB to a replica set |
-| 2 | 3: LLM extraction | `claude/stage-3-llm-extraction` | Everything, using a **mock** LLM | Run the live smoke test with your API key |
+| 2 | 3: LLM extraction | `claude/stage-3-llm-extraction` | Everything, using a **mock** LLM, plus a free Ollama provider | Run the smoke test locally with Ollama |
 | 3 | 5-lite: Real datasets | `claude/stage-5-datasets` | LoCoMo download + loader, synthetic scale generator | LongMemEval / WildChat (Hugging Face is blocked) |
-| 4 | 4-lite: Hybrid retrieval | `claude/stage-4-hybrid-retrieval` | Local vector search + offline lexical embedder, mock in tests | Real embeddings (Voyage key or Atlas), if you want them |
-| 5 | 6-prep: Evaluation | `claude/stage-6-evaluation` | Harness built and checked on the mock; **the full index benchmark actually runs** (no API cost) | Approve and run the paid LLM evaluation |
+| 4 | 4-lite: Hybrid retrieval | `claude/stage-4-hybrid-retrieval` | Local vector search + offline lexical embedder, mock in tests | Real embeddings via Ollama (free) |
+| 5 | 6-prep: Evaluation | `claude/stage-6-evaluation` | Harness built and checked on the mock; **the full index benchmark actually runs** (no API cost) | Run the real evaluation free on your laptop with Ollama |
 | 6 | 7-lite: Privacy | `claude/stage-7-governance` | Erasure by lineage, export, consent, DPDP/GDPR mapping | Have someone check the legal mapping |
 
 **Nothing tonight costs API money.** Every LLM call goes through the mock, even if a key is set.
-Paid runs happen in the morning, after you've seen the projected cost.
+Real AI runs happen later on your laptop with Ollama, which is free and works offline.
 
 ```mermaid
 flowchart LR
@@ -101,15 +101,15 @@ containing: a table of stages with status and PR links, then my morning checklis
 
 ## Stage instructions for tonight
 
-Each subagent reads its row here. **Nothing tonight costs API money**: all LLM and embedding calls use the
+Each subagent reads its row here. **Nothing tonight costs money**: all LLM and embedding calls use the
 deterministic mocks, even if a key is set. Live tests are built behind opt-in npm scripts but not run.
 
 | N | Branch | Base branch | Overnight changes to the stage prompt in `PROMPTS.md` |
 |---|---|---|---|
 | 2 | `claude/stage-2-temporal-schema` | `origin/main` | Run MongoDB as a single-node replica set in Docker and in CI. In `STAGE-2.md`, give exact steps for converting a Windows MongoDB service into a replica set. |
-| 3 | `claude/stage-3-llm-extraction` | stage 2 branch | Don't run the live smoke test. Leave `npm run test:live` ready with a cost estimate. Put stable prompt text first so prompt caching can be used, and log cache-read tokens in `llmcalls`. Send the extractor only the new message and a short recent window, not the whole conversation. |
+| 3 | `claude/stage-3-llm-extraction` | stage 2 branch | Don't run the live smoke test. Leave `npm run test:live` ready with a cost estimate. Put stable prompt text first so prompt caching can be used, and log cache-read tokens in `llmcalls`. Send the extractor only the new message and a short recent window, not the whole conversation. **Add an `ollama` provider** (`LLM_PROVIDER=ollama`, `OLLAMA_URL` default `http://localhost:11434`, `OLLAMA_MODEL` default `qwen2.5-coder:14b`, `JUDGE_MODEL` default `deepseek-r1:14b`, with any `<think>...</think>` block stripped before parsing) using Ollama's HTTP API with JSON-format output; it is the free default for real runs. Tests use the mock only. |
 | 5 | `claude/stage-5-datasets` | stage 3 branch | LoCoMo only (raw.githubusercontent.com works): download, load with `dataset: benchmark`, QA labels in `evalitems`. Add the synthetic scale generator (`dataset: synthetic`) and `docs/DATASETS.md`. Loaders for LongMemEval and WildChat are optional; mark them "not run: Hugging Face is blocked here" and never claim they were tested. Skip the annotation tool and PII scrubbing, and list them as not done. Inspect the data with capped scripts, never by printing it. |
-| 4 | `claude/stage-4-hybrid-retrieval` | stage 5 branch | `VECTOR_BACKEND=local` (brute-force cosine) only. Embeddings: the mock, a deterministic offline lexical embedder (labelled as a lexical baseline, not a semantic model), and a Voyage provider behind `VOYAGE_API_KEY` that is not run. For Atlas, commit the index JSON and the setup steps, but don't run them. Cap the memories sent to the answer model with top-k. |
+| 4 | `claude/stage-4-hybrid-retrieval` | stage 5 branch | `VECTOR_BACKEND=local` (brute-force cosine) only. Embeddings: the mock, a deterministic offline lexical embedder (labelled as a lexical baseline, not a semantic model), an **`ollama` embeddings provider** (`OLLAMA_EMBED_MODEL` default `nomic-embed-text`, the free default for real runs), and a Voyage provider behind `VOYAGE_API_KEY`. None of the real providers are run tonight. For Atlas, commit the index JSON and the setup steps, but don't run them. Cap the memories sent to the answer model with top-k. |
 | 6 | `claude/stage-6-evaluation` | stage 4 branch | See the Stage 6 details below. |
 | 7 | `claude/stage-7-governance` | stage 6 branch | Consent per category, lineage-based erasure when a conversation or message is deleted, an erasure verification script, `GET /api/me/export`, and `docs/PRIVACY.md` (DPDP Act 2023 and GDPR, with `TODO: verify` on anything unsure). Skip retention if time is short. |
 
@@ -122,8 +122,8 @@ deterministic mocks, even if a key is set. Live tests are built behind opt-in np
     and wall-clock time.
   - Write `results/` CSVs recording the command, commit, date and dataset, plus charts.
   - If 1M takes more than 30 minutes, stop at 100k and say so.
-- **Cost projection** for the real LoCoMo evaluation, using prompt caching for the shared prefix of the
-  full-context baseline, clearly labelled as a projection.
+- **Run plan** for the real LoCoMo evaluation on the student's laptop with Ollama (free; RTX 5070 Ti, 12 GB VRAM), with a
+  projected run time. The Claude API is an optional, paid comparison; its cost projection is clearly labelled.
 
 ### Rules for every stage
 - **Tests:** `npm test` passes against a real MongoDB in Docker, and CI is updated to match.
@@ -215,24 +215,45 @@ Everything that was pushed is safe on GitHub, even if the cloud session itself i
 4. **Laptop setup.**
    - Convert your MongoDB service to a replica set using the steps in `docs/stages/STAGE-2.md`.
    - Then run `git checkout main`, `git pull`, `npm install` and `npm test`.
-5. **Run the paid parts.** Once you have an API key, start a new session (Opus 5.5, high effort, Auto) with the
-   morning prompt below.
+5. **Run the real AI parts for free, on your laptop with Ollama.** See below.
 
-### Morning prompt (live checks, costs a little money)
+### Free local AI with Ollama (do the downloads in the daytime)
+Ollama runs open models on your own GPU, with no API key and no bill. Downloads are big (about 6 GB in total), so
+do them while your internet is good. After that, everything works offline.
 
-```text
-Read CLAUDE.md, docs/OVERNIGHT_PLAN.md and docs/OVERNIGHT_REPORT.md. ANTHROPIC_API_KEY is now set.
-
-1. Stage 3: run `npm run test:live` (the extraction smoke test on 3 conversations) and report the real
-   token usage and cost.
-2. Stage 6: run the 10-item LoCoMo pilot with the real model for every system in the harness. Report the
-   measured cost and the projected cost of the full run, then STOP and wait for my go-ahead.
-Commit the pilot outputs to results/ with command, commit, date and dataset, on the stage 6 branch, and update
-docs/stages/STAGE-6.md and the PR. Do not run anything beyond the pilot without my approval.
+```powershell
+ollama list                      # should show qwen2.5-coder:14b and deepseek-r1:14b
+ollama pull nomic-embed-text     # embedding model, about 0.3 GB
 ```
 
-After you approve the full run, the same session runs it. Then use the Stage 9 prompt in `docs/PROMPTS.md` for
-the write-up.
+Then in your project `.env`:
+```
+LLM_PROVIDER=ollama
+OLLAMA_MODEL=qwen2.5-coder:14b
+JUDGE_MODEL=deepseek-r1:14b
+OLLAMA_EMBED_MODEL=nomic-embed-text
+```
+`qwen2.5-coder:14b` does extraction, reconciliation and answers (it is good at clean JSON). `deepseek-r1:14b` is
+the evaluation judge: it is slower, but reasons carefully, and using a different model as judge is good practice.
+Full laptop setup: [`LOCAL_SETUP.md`](LOCAL_SETUP.md).
+
+### Morning prompt (run in Claude Code on your laptop, not in the cloud)
+The cloud session can't reach Ollama on your laptop, so this step runs locally. Use Sonnet 5.5 at high effort.
+
+```text
+Read CLAUDE.md, docs/OVERNIGHT_PLAN.md and docs/OVERNIGHT_REPORT.md. I'm on Windows (PowerShell) with Ollama
+running locally (qwen2.5-coder:14b, deepseek-r1:14b and nomic-embed-text pulled) and LLM_PROVIDER=ollama in .env.
+
+1. Check out the newest stage branch, then run npm install and npm test.
+2. Stage 3: run the live extraction smoke test with the ollama provider. Show what it extracted and how long it took.
+3. Stage 6: run the 10-item LoCoMo pilot with ollama for every system in the harness. Report the time taken and
+   the projected time for the full run, then STOP and wait for my go-ahead.
+Do not use any paid API. Save outputs to results/ with command, commit, date, dataset and model name,
+commit them on the stage 6 branch, and update docs/stages/STAGE-6.md.
+```
+
+After you approve, the full run can go overnight on your laptop: plug it in and keep it awake. It doesn't need
+internet. Then use the Stage 9 prompt in `docs/PROMPTS.md` for the write-up.
 
 ## How this helps you answer questions
 
