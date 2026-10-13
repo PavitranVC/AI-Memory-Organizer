@@ -41,6 +41,17 @@ describe('versioned prompts', () => {
     for (const task of Object.keys(ACTIVE)) expect(loadPrompt(task).system.length).toBeGreaterThan(2000);
   });
 
+  test('Windows (CRLF) line endings give the same prompt and the same hash as LF', () => {
+    const fs = require('fs');
+    const path = require('path');
+    const { parsePrompt } = require('../services/llm/prompts');
+    const lf = fs.readFileSync(path.join(__dirname, '..', 'prompts', 'judge.v1.md'), 'utf8');
+    const a = parsePrompt(lf, 'lf');
+    const b = parsePrompt(lf.replace(/\n/g, '\r\n'), 'crlf');
+    expect(b).toEqual(a);
+    expect(b.system).not.toMatch(/\r/);
+  });
+
   test('render fills placeholders and refuses a missing one', () => {
     expect(render('a {{x}} b', { x: 1 })).toBe('a 1 b');
     expect(() => render('a {{x}} {{y}}', { x: 1 })).toThrow(/"y" is missing/);

@@ -35,6 +35,7 @@ function systemRow(system, rows, extra = {}) {
     recall_at_k_mean: recall.length ? round(mean(recall), 4) : null,
     recall_n: recall.length,
     abstained: rows.filter((r) => r.insufficient).length,
+    errors: rows.filter((r) => r.error).length, // failed answer or judge calls, scored as wrong (eval/harness.js)
     latency_p50_ms: lat.p50,
     latency_p95_ms: lat.p95,
     retrieval_p50_ms: summary(rows.map((r) => r.retrieval_ms || 0)).p50,

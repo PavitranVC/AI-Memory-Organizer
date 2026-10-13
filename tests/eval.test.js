@@ -204,4 +204,35 @@ describe('with a database', () => {
     expect(builds.find((b) => b.store === 'overwrite').extract_calls).toBe(0);
     expect(await User.countDocuments()).toBe(2);
   });
+
+  test('a failed answer, judge or extraction call is recorded and scored as wrong, not fatal to the run', async () => {
+    const [sample] = miniLocomo();
+    const mock = new MockProvider();
+    let extractCalls = 0;
+    // Every full_context answer fails (like a local model cut off at its token cap), the judge fails on the
+    // first rag answer, and the first extraction fails
+    let ragJudged = 0;
+    llm.setProvider({
+      name: 'mock',
+      async generateJson(args) {
+        if (args.task === 'extract' && extractCalls++ === 0) throw new Error('simulated extraction failure');
+        if (args.task === 'eval_answer' && args.vars.items.length > 0 && args.userPrefix) throw new Error('simulated cut-off');
+        if (args.task === 'judge' && ragJudged++ === 0 && /\[D/.test(String(args.vars.candidate))) throw new Error('simulated judge failure');
+        return mock.generateJson(args);
+      },
+    });
+    try {
+      const { rows, builds } = await evaluateSample(sample, { questions: 0, k: 5, systems: ['full_context', 'rag_messages', 'ours'] });
+      const full = rows.filter((r) => r.system === 'full_context');
+      expect(full).toHaveLength(sample.qa.length);
+      expect(full.every((r) => r.error && r.error.startsWith('answer:') && r.score_f1 === 0 && r.judge_correct === 0)).toBe(true);
+      expect(rows.filter((r) => r.system === 'ours').length).toBe(sample.qa.length);
+      expect(builds.find((b) => b.store === 'bitemporal').failed_messages).toBe(1);
+      const summary = report.bySystem(rows, ['full_context', 'rag_messages', 'ours']);
+      expect(summary.find((r) => r.system === 'full_context').errors).toBe(sample.qa.length);
+      expect(summary.find((r) => r.system === 'ours').errors).toBe(0);
+    } finally {
+      llm.setProvider(null);
+    }
+  });
 });

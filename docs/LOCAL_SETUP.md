@@ -85,6 +85,11 @@ Check my local setup for this project and report a pass/fail table. Do not chang
 For anything that fails, give me the exact fix.
 ```
 
+## Line endings (Windows)
+The repository keeps LF line endings (`.gitattributes`). A checkout made before that file existed may still have
+CRLF files from `core.autocrlf=true`. The code copes with both, but to get clean LF files run this once, with no
+uncommitted changes (`git status` must be clean): `git rm --cached -r -q .` then `git reset --hard`.
+
 ## Study commands (Claude Code)
 Two custom slash commands in `.claude/commands/` help you prepare for the viva and keep the docs honest. Type them
 in Claude Code inside the project folder:

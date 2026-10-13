@@ -1,0 +1,5 @@
+# Keep LF line endings on every OS. Windows checkouts with core.autocrlf=true otherwise turn the prompt
+# files into CRLF, which breaks their parser and changes their hash (found on the laptop run, 2026-10-13).
+* text=auto eol=lf
+*.png binary
+*.svg text eol=lf

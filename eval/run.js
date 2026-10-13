@@ -123,7 +123,7 @@ async function main() {
   write('summary_by_type.csv', toCsv(report.byType(rows, systems)));
   const versus = report.versusOurs(rows);
   if (versus.length) write('bootstrap_vs_ours.csv', toCsv(versus));
-  const buildHeader = ['sample', 'store', 'messages_mined', 'decisions', 'memory_versions', 'memory_current', 'memory_bytes', 'extract_calls', 'reconcile_calls', 'build_input_tokens', 'build_output_tokens', 'build_cost_usd', 'build_seconds'];
+  const buildHeader = ['sample', 'store', 'messages_mined', 'failed_messages', 'decisions', 'memory_versions', 'memory_current', 'memory_bytes', 'extract_calls', 'reconcile_calls', 'build_input_tokens', 'build_output_tokens', 'build_cost_usd', 'build_seconds'];
   write('build.csv', toCsv(builds, buildHeader));
   const timing = report.timing(rows, builds);
   write('timing.json', `${JSON.stringify({ runId, models: llm.models, provider: llm.provider, ...timing }, null, 2)}\n`);
