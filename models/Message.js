@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { datasetField, sourceSchema } = require('./dataset');
 
 const messageSchema = new mongoose.Schema(
   {
@@ -10,6 +11,9 @@ const messageSchema = new mongoose.Schema(
     role: { type: String, enum: ['user', 'assistant'], required: [true, 'role is required'] },
     content: { type: String, required: [true, 'content is required'], trim: true, maxlength: 10000 },
     sentAt: { type: Date, default: Date.now },
+    // Stage 5: set only on messages loaded from a dataset (for LoCoMo: the dialog id, e.g. 'D1:3', and speaker)
+    dataset: datasetField,
+    source: { type: sourceSchema, default: undefined },
   },
   { versionKey: false }
 );

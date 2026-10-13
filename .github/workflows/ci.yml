@@ -54,3 +54,18 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ''
         run: npm run test:live
+      # Stage 5: the real dataset pipeline on the real file. LoCoMo is downloaded (and its SHA-256 checked),
+      # loaded twice (the second run must skip every sample), then 10k synthetic memories are generated and
+      # the query plans are checked again with the dataset users present
+      - name: Download LoCoMo
+        run: npm run data:download -- locomo
+      - name: Load LoCoMo (twice, to prove it is idempotent)
+        run: |
+          npm run data:load:locomo
+          npm run data:load:locomo | tail -1 | grep -q '"skipped":10'
+      - name: Generate 10k synthetic memories
+        run: npm run data:synthetic -- --memories 10000
+      - name: Dataset counts
+        run: npm run data:stats
+      - name: Explain (with dataset users present)
+        run: npm run explain

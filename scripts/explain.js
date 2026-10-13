@@ -17,6 +17,7 @@ const Memory = require('../models/Memory');
 const AuditLog = require('../models/AuditLog');
 const Job = require('../models/Job');
 const LlmCall = require('../models/LlmCall');
+const EvalItem = require('../models/EvalItem');
 const { CURRENT, temporalFilter } = require('../services/memoryService');
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/aimemory';
@@ -50,7 +51,7 @@ async function main() {
   console.log('INDEXES');
   // The Stage 3 collections stay empty until a message is posted, so make sure they (and their indexes) exist
   await Promise.all([Job.init(), LlmCall.init()]);
-  for (const Model of [User, Category, Conversation, Message, Memory, AuditLog, Job, LlmCall]) {
+  for (const Model of [User, Category, Conversation, Message, Memory, AuditLog, Job, LlmCall, EvalItem]) {
     const indexes = await Model.collection.indexes();
     const names = indexes.map((i) => i.name);
     const duplicates = names.filter((n, i) => names.indexOf(n) !== i);
@@ -61,8 +62,9 @@ async function main() {
     }
   }
 
-  // 2) Query plans, for a real user and one of their conversations
-  const user = await User.findOne().sort({ _id: 1 }).lean();
+  // 2) Query plans, for a real user and one of their conversations. Dataset users (Stage 5) are skipped:
+  // synthetic users have no conversations and LoCoMo users have no memories until extraction runs.
+  const user = await User.findOne({ dataset: null }).sort({ _id: 1 }).lean();
   if (!user) {
     console.log('\nNo data found. Run "npm run seed" first.');
     return mongoose.disconnect();

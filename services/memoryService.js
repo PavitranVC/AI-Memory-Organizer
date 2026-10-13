@@ -81,10 +81,16 @@ function parseConfidence(value) {
 }
 
 // MongoDB has no foreign keys. A memory may only point at a conversation that exists AND is the caller's own.
-async function assertOwnConversation(userId, conversationId) {
+// Returns the caller's own conversation (its id and dataset label), or a 400 if it is not theirs
+async function findOwnConversation(userId, conversationId) {
   const id = toObjectId(conversationId, 'conversationId');
-  if (!(await Conversation.exists({ _id: id, userId }))) throw badRequest(`Unknown conversationId: ${id}`);
-  return id;
+  const conversation = await Conversation.findOne({ _id: id, userId }).select('dataset').lean();
+  if (!conversation) throw badRequest(`Unknown conversationId: ${id}`);
+  return conversation;
+}
+
+async function assertOwnConversation(userId, conversationId) {
+  return (await findOwnConversation(userId, conversationId))._id;
 }
 
 // Provenance: every source must be a message in one of the caller's own conversations
@@ -124,9 +130,13 @@ async function createMemory(userId, body = {}, options = {}) {
   const { content, importance, status, tags } = body;
   const now = new Date();
   const categoryId = await resolveCategoryId(body);
+  const conversation = body.conversationId ? await findOwnConversation(userId, body.conversationId) : null;
   const doc = {
     userId,
-    conversationId: body.conversationId ? await assertOwnConversation(userId, body.conversationId) : undefined,
+    conversationId: conversation ? conversation._id : undefined,
+    // Stage 5: a memory extracted from benchmark (or synthetic) messages carries the same dataset label, so
+    // results never mix benchmark and real data. Clients cannot set it.
+    dataset: conversation && conversation.dataset ? conversation.dataset : undefined,
     categoryId,
     content,
     importance,
@@ -176,7 +186,7 @@ async function getMemory(userId, id) {
 
 // The fields a client may change. Anything else (userId, recordedAt, supersedes, ...) is ignored.
 const EDITABLE = ['content', 'importance', 'status', 'tags', 'categoryId', 'conversationId', 'confidence', 'sensitivity', 'sourceMessageIds', 'validFrom'];
-const COPIED = ['conversationId', 'categoryId', 'content', 'importance', 'status', 'tags', 'sourceMessageIds', 'confidence', 'sensitivity', 'lastAccessedAt', 'accessCount'];
+const COPIED = ['conversationId', 'dataset', 'categoryId', 'content', 'importance', 'status', 'tags', 'sourceMessageIds', 'confidence', 'sensitivity', 'lastAccessedAt', 'accessCount'];
 
 // An update never overwrites a version. It creates a new version and closes the old one, in one transaction:
 //  - SUPERSEDE (default): the fact changed in the world. The old version stays believed, but its valid time

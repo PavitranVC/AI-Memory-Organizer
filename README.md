@@ -101,6 +101,8 @@ with real data, because it deletes everything first.
 | `WORKER_IN_PROCESS` | `false` | `true` runs the worker inside `npm start` (one-window demo) |
 | `WORKER_POLL_MS`, `JOB_RETRY_DELAY_MS`, `JOB_LOCK_TIMEOUT_MS` | `2000`, `5000`, `300000` | Worker poll interval, first retry delay (doubles each attempt), and how long before a dead worker's job is taken back |
 | `MONGO_URI_LIVE` | `mongodb://127.0.0.1:27017/aimemory_live` | Database for `npm run test:live`. **It is dropped** |
+| `DATA_DIR` | `./data` | Where `npm run data:download` saves datasets (gitignored) |
+| `HF_TOKEN` | unset | Hugging Face read token, for gated datasets. Sent only to `huggingface.co` |
 
 ### npm scripts
 
@@ -114,6 +116,10 @@ with real data, because it deletes everything first.
 | `npm run worker` | Run the extraction worker (add `-- --drain` to process what is queued and exit) |
 | `npm run llm:costs` | Tokens, prompt-cache hit rate and cost per model, task and prompt version, from `llmcalls` (`-- --include-mock` to include mock rows) |
 | `npm run test:live` | Opt-in live smoke test with the real API (3 conversations). Prints a cost estimate first; skips if `ANTHROPIC_API_KEY` is not set. `-- --estimate` prints only the estimate |
+| `npm run data:download` | Download datasets into `data/` and check their SHA-256 (`-- locomo` is the default; `-- --from <file>` uses a file you downloaded) |
+| `npm run data:load:locomo` | Load LoCoMo as benchmark users, conversations, messages and `evalitems`. Skips loaded samples; `-- --reset` replaces them |
+| `npm run data:synthetic` | Generate synthetic memories for scale tests: `-- --memories 100000 [--users N] [--seed 42] [--reset]`, or `-- --remove` |
+| `npm run data:stats` | Count documents per dataset label and check the LoCoMo file; writes `results/stage5-dataset-stats.json` |
 | `npm run migrate` | Upgrade an older database to the current schema: runs the Stage 1 and Stage 2 migrations in order (see [Upgrading an old database](#upgrading-an-old-database)) |
 
 ## Using the API
@@ -312,6 +318,24 @@ npm run test:live -- --estimate
 npm run test:live
 ```
 
+## Datasets (Stage 5)
+
+Benchmark and synthetic data are loaded into the same collections as the app's own data, with two extra
+fields so they can never be mixed up: `dataset` (`real`, `benchmark` or `synthetic`) and `source` (the
+dataset's name and its original id). API-created data has no label. The benchmark's question-answer labels go to
+a separate `evalitems` collection, which the app never reads. Details, licences and counts:
+[docs/DATASETS.md](docs/DATASETS.md).
+
+```bash
+npm run data:download                       # LoCoMo -> data/locomo/locomo10.json (SHA-256 checked)
+npm run data:load:locomo                    # 10 users, 272 conversations, 5,882 messages, 1,986 evalitems
+npm run data:synthetic -- --memories 10000  # synthetic memories for index experiments only
+npm run data:stats                          # counts per label -> results/stage5-dataset-stats.json
+```
+
+Every loaded LoCoMo user can log in with `SEED_PASSWORD`, e.g. `locomo-conv-26@benchmark.invalid`.
+Run `npm run seed` first if you want the sample users too: **seeding empties the database**, datasets included.
+
 ## Data model
 
 ```mermaid
@@ -327,6 +351,8 @@ erDiagram
   MESSAGE ||--o| JOB : "queues extraction (Stage 3)"
   JOB ||--o{ LLM_CALL : "makes"
   USER ||--o{ LLM_CALL : "is billed in"
+  USER ||--o{ EVAL_ITEM : "benchmark questions about (Stage 5)"
+  MESSAGE }o--o{ EVAL_ITEM : "is evidence for (evidenceMessageIds)"
 
   USER {
     ObjectId _id PK
@@ -404,7 +430,7 @@ All checks are in `services/`, so they apply to every route.
 | A message needs one of **your** conversations | `404` otherwise |
 | Delete a category that a believed (not retracted) version uses | `409`, nothing is deleted |
 | Delete a conversation | Its messages are deleted. Its memory versions are kept, unlinked from it and from the deleted messages |
-| Delete a user | Their memory versions, audit entries, messages, conversations and the user are deleted |
+| Delete a user | Their memory versions, audit entries, jobs, LLM-call logs, benchmark questions (`evalitems`), messages, conversations and the user are deleted |
 
 Since Stage 2 every multi-document change (create/supersede/retract plus its audit entry, and the cascades above)
 runs in a **transaction**: either all of it is saved or none of it.
@@ -524,15 +550,19 @@ services/           Business logic: integrity checks, scoping, cascades, aggrega
 routes/             Thin HTTP layer over the services
 middleware/         JWT authentication, admin check, async error forwarding
 services/llm/       LLM providers (Anthropic, mock), versioned prompt loader, schemas, pricing, call logging
+services/datasets/  Stage 5: LoCoMo loader, synthetic scale generator, shared reset and seeded random helpers
 prompts/            Versioned LLM prompts (extract.v1.md, reconcile.v1.md)
 scripts/            explain.js (query plans), migrate.js (runs migrate-stage1.js, then migrate-stage2.js),
                     worker.js (extraction worker), live-smoke.js (npm run test:live), llm-costs.js
+scripts/datasets/   download.js, load-locomo.js, generate-synthetic.js, stats.js (the npm run data:* commands)
+data/               Downloaded datasets (gitignored, never committed)
+results/            Outputs of committed scripts, each with its command, commit, date and dataset
 seed.js             Sample data
 tests/              Jest + supertest tests
 docs/               Roadmap, prompt playbook, and per-stage notes (docs/stages/STAGE-N.md)
 ```
 
-## Known limitations (Stage 3)
+## Known limitations (Stage 5)
 
 - **Login only.** There is no password reset, email verification, refresh token or rate limiting on login.
   Do not expose it to the internet as it is.
@@ -549,5 +579,10 @@ docs/               Roadmap, prompt playbook, and per-stage notes (docs/stages/S
   no words with the new fact (and then ADD a near-duplicate).
 - **The mock LLM is a test double, not a model.** It recognises a few sentence patterns ("I live in", "I moved to",
   "I am allergic to", ...). Only the real model's output (`LLM_PROVIDER=anthropic`) says anything about quality.
+- **LoCoMo is a chat between two people**, not a person and an assistant. The loader stores the first speaker as
+  `user` and the second as `assistant`; the extractor only mines `user` messages, so facts said by the second
+  speaker are not extracted unless Stage 6 changes that. See [docs/DATASETS.md](docs/DATASETS.md).
+- **Only LoCoMo is loaded.** LongMemEval and WildChat are on Hugging Face, which is blocked in the cloud session;
+  there is no loader for them yet, and no PII scrubbing or annotation tool (see docs/DATASETS.md).
 - **One worker, one job at a time.** Two workers would be safe (claiming is atomic) but could reconcile two facts of
   the same user against each other at the same moment.

@@ -1,0 +1,10 @@
+# command: npm run data:synthetic -- --memories 10000 --seed 42   (database aimemory)
+#          MONGO_URI=mongodb://127.0.0.1:27017/aimemory_scale npm run data:synthetic -- --memories 100000 --seed 42 --reset
+# commit: 72f46b0
+# date: 2026-10-12T18:05:37Z
+# dataset: synthetic (generated, performance tests only, never accuracy)
+# machine: cloud container, MongoDB 7 in Docker (single-node replica set); times are for this machine only
+## 10k into aimemory
+{"dataset":"synthetic","seed":42,"users":10,"memories":10000,"versions":10000,"current":7725,"superseded":2020,"retracted":255,"categories":4,"removed":null,"seconds":0.7}
+## 100k into aimemory_scale
+{"dataset":"synthetic","seed":42,"users":100,"memories":100000,"versions":100000,"current":77635,"superseded":19982,"retracted":2383,"categories":4,"removed":null,"seconds":7.3}

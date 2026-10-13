@@ -13,7 +13,11 @@
     "test": "jest --runInBand",
     "worker": "node scripts/worker.js",
     "test:live": "node scripts/live-smoke.js",
-    "llm:costs": "node scripts/llm-costs.js"
+    "llm:costs": "node scripts/llm-costs.js",
+    "data:download": "node scripts/datasets/download.js",
+    "data:load:locomo": "node scripts/datasets/load-locomo.js",
+    "data:synthetic": "node scripts/datasets/generate-synthetic.js",
+    "data:stats": "node scripts/datasets/stats.js"
   },
   "engines": {
     "node": ">=20"
