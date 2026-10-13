@@ -40,18 +40,25 @@ git fetch origin                 # must work without asking for a password
 ```
 
 **4. Make MongoDB a replica set.** This is needed from Stage 2 onward; follow the exact steps in
-`docs/stages/STAGE-2.md` once it exists. Afterwards `mongosh --eval "rs.status().ok"` should print `1`.
+`docs/stages/STAGE-2.md`. Afterwards `mongosh --eval "rs.status().ok"` should print `1`.
 
 **5. Project `.env`** (the project folder, never committed):
 ```
 MONGO_URI=mongodb://127.0.0.1:27017/aimemory_stage1
 JWT_SECRET=<your long random value>
 LLM_PROVIDER=ollama
+EMBEDDING_PROVIDER=ollama
+OLLAMA_URL=http://localhost:11434
 OLLAMA_MODEL=qwen2.5-coder:14b
 JUDGE_MODEL=deepseek-r1:14b
 OLLAMA_EMBED_MODEL=nomic-embed-text
 ```
-If Stage 2 changes the connection string for the replica set, follow its notes.
+If Stage 2 changes the connection string for the replica set, follow its notes. `npm test` ignores these settings
+and always uses the mocks, so the tests pass whether Ollama is running or not. All Ollama settings (context
+window, timeout) are in `.env.example`; what each one does is explained in `docs/stages/STAGE-3B.md`.
+
+If you switch from the default `lexical` embedder to `EMBEDDING_PROVIDER=ollama` on a database that already has
+memories, re-embed them once: `npm run embed:backfill` (the vectors change from 256 to 768 numbers).
 
 **6. Start Claude Code in the project:**
 ```powershell
@@ -74,8 +81,31 @@ Check my local setup for this project and report a pass/fail table. Do not chang
    to qwen2.5-coder:14b through http://localhost:11434 and report the response time and whether it used the GPU
    (ollama ps)
 5. npm install and npm test (show only the final Tests: line)
+6. npm run test:live with LLM_PROVIDER=ollama: report the extracted memories, tokens and time (this is free)
 For anything that fails, give me the exact fix.
 ```
+
+## Study commands (Claude Code)
+Two custom slash commands in `.claude/commands/` help you prepare for the viva and keep the docs honest. Type them
+in Claude Code inside the project folder:
+
+| Command | What it does | Edits files? |
+|---|---|---|
+| `/viva <stage>` | Stage is `1`, `2`, `3`, `3b`, `4`, `5`, `6` or `7`. Reads `docs/stages/STAGE-<stage>.md` and the code it describes, asks the 10 examiner questions one at a time (waits for your answer, corrects it briefly), then 3 follow-up questions, and ends with a list of what to re-read | Never |
+| `/sync-docs` | Compares the code with `README.md` and every `docs/stages/STAGE-*.md`, lists what is outdated or wrong, fixes it on a new branch `claude/docs-sync-<date>`, runs `npm test`, pushes and opens a PR | Yes, on its own branch only, never `main` |
+
+Sonnet 5.5 at medium effort is enough for `/viva`; use high effort for `/sync-docs`. `/sync-docs` needs `gh`
+signed in (step 3) to open the pull request.
+
+## Ollama speed tips (12 GB VRAM)
+- A 14B model (about 9 GB) fits on the GPU with the small context window (`OLLAMA_NUM_CTX=8192`). The full-context
+  baseline needs the large one (`OLLAMA_NUM_CTX_LARGE=32768`), whose memory may push part of the model to the CPU:
+  those answers are much slower. `ollama ps` shows the GPU/CPU split.
+- Setting the Windows environment variables `OLLAMA_FLASH_ATTENTION=1` and `OLLAMA_KV_CACHE_TYPE=q8_0` (then
+  restart Ollama) roughly halves the memory of the context window. TODO: verify on your Ollama version.
+- The answer model and the judge are different models and both do not fit in 12 GB at once, so Ollama swaps them.
+  The pilot's `timing.json` measures what that costs; `npm run eval:cost -- --provider ollama --pilot ...` turns it
+  into hours for the full run.
 
 ## Long local runs (for example the full evaluation overnight)
 - **Power:** plug the laptop in. Under Settings → System → Power, set screen and sleep to "Never" while it runs.

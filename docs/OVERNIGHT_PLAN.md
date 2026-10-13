@@ -17,6 +17,11 @@ and merge them over the following days.
 **Nothing tonight costs API money.** Every LLM call goes through the mock, even if a key is set.
 Real AI runs happen later on your laptop with Ollama, which is free and works offline.
 
+> **What actually happened.** The overnight run used an earlier version of this plan, without the Ollama rows, so
+> Stages 2-7 were built with the mock (and a paid Anthropic provider that was never run). The free Ollama
+> providers were added afterwards as **Stage 3b** (`claude/stage-3b-ollama`, notes in
+> [`stages/STAGE-3B.md`](stages/STAGE-3B.md)). The morning steps below assume Stage 3b is merged into `main`.
+
 ```mermaid
 flowchart LR
   M[main<br/>Stage 0 + 1 merged] --> S2[Stage 2<br/>temporal schema]
@@ -207,10 +212,11 @@ Everything that was pushed is safe on GitHub, even if the cloud session itself i
    newest stage branch.
 2. **Check the PRs.** You should see one PR per stage, each with green checks. A red ✗ means CI failed; open that
    PR in the overnight session and ask it to fix CI.
-3. **Understand before merging.** For each stage, in order, read `docs/stages/STAGE-N.md`. Then ask Claude Code to
-   quiz you on it (Sonnet 5.5, medium):
-   `Quiz me on docs/stages/STAGE-N.md: ask the 10 examiner questions one at a time and correct my answers.`
-   Merge the PR when you can answer them. You don't have to do all stages in one morning: Stage 2 and 3 matter
+3. **Understand before merging.** For each stage, in order, read `docs/stages/STAGE-N.md`. Then run the study
+   command in Claude Code (Sonnet 5.5, medium): `/viva N` (for example `/viva 2` or `/viva 3b`). It asks the 10
+   examiner questions one at a time, corrects your answers, adds 3 follow-up questions and ends with what to
+   re-read. It never edits files. Merge the PR when you can answer them. If the notes and the code disagree, run
+   `/sync-docs`: it fixes the docs on a new branch and opens a PR. You don't have to do all stages in one morning: Stage 2 and 3 matter
    most, so start there.
 4. **Laptop setup.**
    - Convert your MongoDB service to a replica set using the steps in `docs/stages/STAGE-2.md`.
@@ -229,6 +235,7 @@ ollama pull nomic-embed-text     # embedding model, about 0.3 GB
 Then in your project `.env`:
 ```
 LLM_PROVIDER=ollama
+EMBEDDING_PROVIDER=ollama
 OLLAMA_MODEL=qwen2.5-coder:14b
 JUDGE_MODEL=deepseek-r1:14b
 OLLAMA_EMBED_MODEL=nomic-embed-text
@@ -239,17 +246,26 @@ Full laptop setup: [`LOCAL_SETUP.md`](LOCAL_SETUP.md).
 
 ### Morning prompt (run in Claude Code on your laptop, not in the cloud)
 The cloud session can't reach Ollama on your laptop, so this step runs locally. Use Sonnet 5.5 at high effort.
+**No paid API is used:** every model call goes to Ollama on your own GPU, and `ANTHROPIC_API_KEY` stays unset.
 
 ```text
-Read CLAUDE.md, docs/OVERNIGHT_PLAN.md and docs/OVERNIGHT_REPORT.md. I'm on Windows (PowerShell) with Ollama
-running locally (qwen2.5-coder:14b, deepseek-r1:14b and nomic-embed-text pulled) and LLM_PROVIDER=ollama in .env.
+Read CLAUDE.md, docs/OVERNIGHT_PLAN.md, docs/LOCAL_SETUP.md and docs/stages/STAGE-3B.md. I'm on Windows
+(PowerShell) with Ollama running locally (qwen2.5-coder:14b, deepseek-r1:14b and nomic-embed-text pulled) and
+LLM_PROVIDER=ollama, EMBEDDING_PROVIDER=ollama in .env. Do not use any paid API: never set LLM_PROVIDER=anthropic,
+EMBEDDING_PROVIDER=voyage or pass --paid.
 
-1. Check out the newest stage branch, then run npm install and npm test.
-2. Stage 3: run the live extraction smoke test with the ollama provider. Show what it extracted and how long it took.
-3. Stage 6: run the 10-item LoCoMo pilot with ollama for every system in the harness. Report the time taken and
-   the projected time for the full run, then STOP and wait for my go-ahead.
-Do not use any paid API. Save outputs to results/ with command, commit, date, dataset and model name,
-commit them on the stage 6 branch, and update docs/stages/STAGE-6.md.
+1. git checkout main, git pull, npm install, npm test (show only the final Tests: line).
+2. ollama list and ollama ps: confirm the three models and whether they run on the GPU.
+3. Stage 3: npm run test:live (it uses Ollama because of LLM_PROVIDER=ollama). Show what it extracted, the
+   tokens and the time it took (results/stage3-live-smoke-ollama-<date>.json).
+4. npm run data:download, then the Stage 6 pilot on Ollama for every system:
+   npm run eval -- --provider ollama --embeddings ollama --questions 10 --run-id stage6-pilot-ollama
+   Then the time projection: npm run eval:cost -- --provider ollama --pilot results/stage6-pilot-ollama
+   Report the measured seconds per item (timing.json) and the projected hours for the full run,
+   then STOP and wait for my go-ahead.
+Create a branch claude/stage-6-ollama-pilot from main for the outputs. Save them in results/ (each run already
+records the command, commit, date, dataset and model names), update docs/stages/STAGE-6.md and docs/RESULTS.md with
+the measured numbers only, commit and push the branch. Never push to main.
 ```
 
 After you approve, the full run can go overnight on your laptop: plug it in and keep it awake. It doesn't need

@@ -6,7 +6,13 @@ Built with **Node.js, Express and MongoDB (Mongoose)**.
 
 It started as a DBMS course project (CRUD, indexing, aggregation) and is being developed in stages
 towards a research project on AI memory as a database problem. See [`docs/ROADMAP.md`](docs/ROADMAP.md).
-This README describes the code as of **Stage 2: bi-temporal memory schema**.
+This README describes the code as of **Stage 7: privacy and governance**, plus **Stage 3b: free local AI with
+Ollama**, so the project never needs a paid API key. Laptop setup: [`docs/LOCAL_SETUP.md`](docs/LOCAL_SETUP.md).
+
+**Study commands (Claude Code).** In Claude Code, `/viva <stage>` (1, 2, 3, 3b, 4, 5, 6, 7) quizzes you on a
+stage's notes and code, one examiner question at a time, and never edits files. `/sync-docs` checks README.md and
+every `docs/stages/STAGE-*.md` against the code, fixes what is outdated on a new `claude/docs-sync-<date>` branch,
+runs `npm test` and opens a pull request (never on `main`). Both live in `.claude/commands/`.
 
 ## What it does
 
@@ -95,9 +101,15 @@ with real data, because it deletes everything first.
 | `BCRYPT_ROUNDS` | `10` | bcrypt cost factor |
 | `SEED_PASSWORD` | `DevPassword123` | Password of the seeded users |
 | `MIGRATE_DEFAULT_PASSWORD` | unset | Used by `npm run migrate` for old users without a password |
-| `LLM_PROVIDER` | `mock` | `mock` (deterministic, free, used by every test) or `anthropic` (Claude, costs money) |
+| `LLM_PROVIDER` | `mock` | `mock` (deterministic, free, used by every test), `ollama` (free local models, Stage 3b) or `anthropic` (Claude, costs money) |
 | `ANTHROPIC_API_KEY` | unset | Needed for `LLM_PROVIDER=anthropic` and `npm run test:live`. Put it in `.env`, never in code |
-| `EXTRACTION_MODEL`, `RECONCILE_MODEL`, `JUDGE_MODEL` | `claude-opus-5-5` | Model per task (the judge is for Stage 6) |
+| `EXTRACTION_MODEL`, `RECONCILE_MODEL` | `claude-opus-5-5` | Anthropic model per task |
+| `JUDGE_MODEL` | `claude-opus-5-5` (anthropic), `deepseek-r1:14b` (ollama) | The Stage 6 judge. With Ollama it is a different model from the one that answers |
+| `OLLAMA_URL` | `http://localhost:11434` | Ollama server (Stage 3b) |
+| `OLLAMA_MODEL` | `qwen2.5-coder:14b` | Ollama model for extract, reconcile and answers |
+| `OLLAMA_EMBED_MODEL` | `nomic-embed-text` | Ollama embedding model (`EMBEDDING_PROVIDER=ollama`); the vector size is read from the model |
+| `OLLAMA_NUM_CTX`, `OLLAMA_NUM_CTX_LARGE` | `8192`, `32768` | Ollama context window (prompt + answer): the small one when it fits, the large one for long prompts (the full-context baseline) |
+| `OLLAMA_TIMEOUT_MS` | `300000` | Per-call timeout; a timed-out call is retried once |
 | `LLM_EFFORT` | `medium` | Thinking depth: `low`, `medium`, `high`, `xhigh`, `max` |
 | `LLM_FALLBACKS` | `default` | `default`: a refused request is retried server-side on a fallback model; `off`: no fallback |
 | `EXTRACTION_ENABLED` | `true` | `false` stops queuing extraction jobs |
@@ -105,7 +117,7 @@ with real data, because it deletes everything first.
 | `WORKER_IN_PROCESS` | `false` | `true` runs the worker inside `npm start` (one-window demo) |
 | `WORKER_POLL_MS`, `JOB_RETRY_DELAY_MS`, `JOB_LOCK_TIMEOUT_MS` | `2000`, `5000`, `300000` | Worker poll interval, first retry delay (doubles each attempt), and how long before a dead worker's job is taken back |
 | `MONGO_URI_LIVE` | `mongodb://127.0.0.1:27017/aimemory_live` | Database for `npm run test:live`. **It is dropped** |
-| `EMBEDDING_PROVIDER` | `lexical` | `lexical` (offline hashed words + trigrams: a **lexical baseline, not a semantic model**), `mock` (test double, used by `npm test`) or `voyage` (semantic, paid) |
+| `EMBEDDING_PROVIDER` | `lexical` | `lexical` (offline hashed words + trigrams: a **lexical baseline, not a semantic model**), `mock` (test double, used by `npm test`), `ollama` (semantic, local and free) or `voyage` (semantic, paid) |
 | `VOYAGE_API_KEY`, `VOYAGE_MODEL`, `VOYAGE_DIMENSIONS` | unset, `voyage-3.5`, `1024` | Voyage AI embeddings (only with `EMBEDDING_PROVIDER=voyage`) |
 | `VECTOR_BACKEND` | `local` | `local`: brute-force cosine over the user's memories (any MongoDB). `atlas`: `$vectorSearch` (Atlas only) |
 | `ATLAS_VECTOR_INDEX` | `memory_vector_index` | Name of the Atlas vector index |
@@ -113,7 +125,7 @@ with real data, because it deletes everything first.
 | `RETRIEVAL_TOP_K`, `RETRIEVAL_CANDIDATES` | `5`, `50` | Memories sent to the answer model (max 20); size of each candidate list |
 | `RETRIEVAL_MIN_VECTOR` | the embedder's (lexical `0.3`) | Minimum cosine for a memory with no keyword match |
 | `RETRIEVAL_HALF_LIFE_DAYS` | `90` | Recency halves every N days |
-| `ANSWER_MODEL` | `claude-opus-5-5` | Model that answers `POST /api/ask` (with `LLM_PROVIDER=anthropic`) |
+| `ANSWER_MODEL` | `claude-opus-5-5` | Model that answers `POST /api/ask` (with `LLM_PROVIDER=anthropic`; Ollama uses `OLLAMA_MODEL`) |
 | `MONGO_URI_BENCH` | `mongodb://127.0.0.1:27017/aimemory_bench` | Database for `npm run bench:retrieval` and `npm run bench:indexes`. **It is dropped**; its name must contain `bench` |
 | `MONGO_URI_EVAL` | `mongodb://127.0.0.1:27017/aimemory_eval` | Database for `npm run eval` (Stage 6). **It is dropped** before each sample; its name must contain `eval` |
 | `DATA_DIR` | `./data` | Where `npm run data:download` saves datasets (gitignored) |
@@ -131,7 +143,7 @@ with real data, because it deletes everything first.
 | `npm run explain` | Print the indexes and the query plan of the main queries |
 | `npm run worker` | Run the extraction worker (add `-- --drain` to process what is queued and exit) |
 | `npm run llm:costs` | Tokens, prompt-cache hit rate and cost per model, task and prompt version, from `llmcalls` (`-- --include-mock` to include mock rows) |
-| `npm run test:live` | Opt-in live smoke test with the real API (3 conversations). Prints a cost estimate first; skips if `ANTHROPIC_API_KEY` is not set. `-- --estimate` prints only the estimate |
+| `npm run test:live` | Opt-in live smoke test with a real model (3 conversations). With `LLM_PROVIDER=ollama`: free, skips if Ollama is not reachable. Otherwise Anthropic: prints a cost estimate first and skips if `ANTHROPIC_API_KEY` is not set (`-- --estimate` prints only the estimate) |
 | `npm run data:download` | Download datasets into `data/` and check their SHA-256 (`-- locomo` is the default; `-- --from <file>` uses a file you downloaded) |
 | `npm run data:load:locomo` | Load LoCoMo as benchmark users, conversations, messages and `evalitems`. Skips loaded samples; `-- --reset` replaces them |
 | `npm run data:synthetic` | Generate synthetic memories for scale tests: `-- --memories 100000 [--users N] [--seed 42] [--reset]`, or `-- --remove` |
@@ -140,8 +152,8 @@ with real data, because it deletes everything first.
 | `npm run atlas:index` | Create the Atlas vector index from `atlas/vector-index.json` (Atlas only); `-- --print` just prints it |
 | `npm run bench:retrieval` | Retrieval latency p50/p95 at 1k and 10k **synthetic** memories; writes `results/stage4-retrieval-latency.csv` and `.txt` (`-- --sizes 1000,10000 --queries 200`) |
 | `npm run bench:indexes` | Stage 6 DBMS experiment: the main queries with and without indexes at 10k / 100k / 1M **synthetic** memories (`explain("executionStats")` + wall-clock); writes `results/stage6-index-bench*.csv`, `.txt` and SVG charts (`-- --sizes 10000 --repeats 10 --out /tmp/x`) |
-| `npm run eval` | Stage 6 evaluation on LoCoMo: six systems answer the same questions, scored by token F1 and an LLM judge; writes `results/<run-id>/`. Mock model by default; any paid provider needs `-- --paid` (see [Evaluation](#evaluation-stage-6)) |
-| `npm run eval:cost` | Cost projection for the paid evaluation (no API calls); writes `results/stage6-cost-projection.csv` and `.txt` |
+| `npm run eval` | Stage 6 evaluation on LoCoMo: six systems answer the same questions, scored by token F1 and an LLM judge; writes `results/<run-id>/`. Mock model by default; `-- --provider ollama` for the free local models; a paid provider needs `-- --paid` (see [Evaluation](#evaluation-stage-6)) |
+| `npm run eval:cost` | Cost projection for the evaluation (no API calls; `$0` with `-- --provider ollama`), plus a time projection from a pilot run with `-- --pilot results/<run-id>`; writes `results/stage6-cost-projection.csv`, `.txt` (and `-time.csv`) |
 | `npm run eval:judge-agreement -- results/<run-id>` | After you label `judge_validation.csv`: agreement and Cohen's kappa between you and the LLM judge |
 | `npm run erasure:verify` | Stage 7: proves nothing derived from erased data remains (anti-joins over every reference). `-- --user <id>`, `-- --messages <id>,<id>`, `-- --text "phrase"`. Exit code 1 if any check fails |
 | `npm run retention` | Stage 7: erase `special` memories older than `RETENTION_SPECIAL_DAYS` (`-- --days 365` overrides, `-- --dry-run` only counts). Schedule it daily (cron or Windows Task Scheduler) |
@@ -327,7 +339,20 @@ was decided and why.
 | Provider | How | Cost | Used by |
 |---|---|---|---|
 | Mock (default) | `LLM_PROVIDER=mock` | Free; token counts are estimates (`tokensEstimated: true`, cost 0) | All tests, CI, the demo |
-| Claude | `LLM_PROVIDER=anthropic` and `ANTHROPIC_API_KEY` in `.env` | Real; logged per call in `llmcalls` | Your laptop, `npm run test:live` |
+| Ollama (Stage 3b) | `LLM_PROVIDER=ollama`, Ollama running, models pulled | Free (cost 0); real token counts from Ollama, logged in `llmcalls` | Your laptop: the real runs |
+| Claude | `LLM_PROVIDER=anthropic` and `ANTHROPIC_API_KEY` in `.env` | Real; logged per call in `llmcalls` | Optional, paid |
+
+The Ollama provider (`services/llm/ollamaProvider.js`) calls `POST /api/chat` on `OLLAMA_URL`:
+- **Structured output**: the task's JSON schema is sent as `format`, so Ollama constrains the answer to it.
+- **Two models**: `OLLAMA_MODEL` (default `qwen2.5-coder:14b`) extracts, reconciles and answers; `JUDGE_MODEL`
+  (default `deepseek-r1:14b`) judges, so no model grades its own answers. A `<think>...</think>` block from a
+  reasoning model is removed before the JSON is parsed.
+- **Context window per call** (`num_ctx`): `OLLAMA_NUM_CTX` (8192) when the prompt fits, `OLLAMA_NUM_CTX_LARGE`
+  (32768) only for long prompts such as the full-context baseline; a prompt too long for both is refused rather
+  than silently cut by Ollama.
+- **One retry** on a timeout or an answer that is not valid JSON, then the usual `LlmError` (the job worker's own
+  retries still apply). Every call is logged in `llmcalls` with Ollama's token counts (`prompt_eval_count`,
+  `eval_count`), latency, model, `attempts` and cost 0.
 
 The Claude provider (`services/llm/anthropicProvider.js`, official `@anthropic-ai/sdk`) uses:
 - **Structured outputs** (`output_config.format` with a JSON schema), and the answer is validated again before use.
@@ -348,6 +373,8 @@ WORKER_IN_PROCESS=true npm start
 npm run worker
 # Cost report from llmcalls
 npm run llm:costs -- --include-mock
+# Free, with Ollama running (skips if it is not): the live smoke test on the local models
+LLM_PROVIDER=ollama npm run test:live
 # With a real key: estimate first, then the live smoke test (3 conversations, results in results/)
 npm run test:live -- --estimate
 npm run test:live
@@ -376,8 +403,12 @@ finds similar memories with the same retrieval (text + vector only, no access co
 **Embeddings.** Each memory version stores `embedding` (hidden from API responses) and `embeddingModel`. The
 default embedder, `lexical`, hashes words and character trigrams into 256 numbers: it is offline and free but it
 is a **lexical baseline, not a semantic model** ("flat" does not match "apartment"). For real semantic search set
+`EMBEDDING_PROVIDER=ollama` (free and local, `OLLAMA_EMBED_MODEL`, default `nomic-embed-text`, 768 numbers) or
 `EMBEDDING_PROVIDER=voyage` and `VOYAGE_API_KEY` (costs money), then run `npm run embed:backfill` to re-embed
-existing memories. The Voyage provider has not been run against the real API yet.
+existing memories. The vector size is part of `embeddingModel` (e.g. `ollama:nomic-embed-text:768`), and for
+Ollama it is read from the model, so a new model or a new size makes the backfill redo every vector (and on
+Atlas, run `npm run atlas:index` again for the new `numDimensions`). Neither provider has been run against a real
+server in the cloud session; their requests are tested against fakes.
 
 **Latency** of one `retrieve()` call (synthetic data, lexical embedder, local backend, all memories owned by one
 user, 200 queries, one run on the 4-CPU cloud container; `results/stage4-retrieval-latency.csv` and `.txt`):
@@ -646,7 +677,10 @@ referential integrity, login and token handling, user isolation (user A cannot s
 pagination, both aggregations (including the orphan-category fix), text search, index design with `explain()`,
 both migrations, Stage 4 embeddings, hybrid ranking, `asOf` filtering, local/Atlas parity and `/api/ask`
 (`tests/embeddings.test.js`, `tests/retrieval.test.js`, `tests/ask.test.js`), and (Stage 2, `tests/temporal.test.js`) supersede, correction, retraction, history, `asOf` vs
-`knownAt`, the audit log, concurrent updates, and transaction rollback when a step fails half-way.
+`knownAt`, the audit log, concurrent updates, and transaction rollback when a step fails half-way. Stage 3b's
+`tests/ollama.test.js` runs both Ollama providers against a fake Ollama HTTP server (JSON parsing, `<think>`
+stripping, retries, the model per task, `num_ctx`, embeddings and a vector-size change, `llmcalls` logging): CI never
+runs Ollama.
 
 GitHub Actions runs the same tests on every push and pull request (Node 20 and 22 on MongoDB 7, and Node 22 on
 MongoDB 8) against MongoDB started in Docker as a single-node replica set, then seeds a database, runs
@@ -661,8 +695,8 @@ models/             Mongoose schemas and indexes
 services/           Business logic: integrity checks, scoping, cascades, aggregations, pagination, auth
 routes/             Thin HTTP layer over the services
 middleware/         JWT authentication, admin check, async error forwarding
-services/llm/       LLM providers (Anthropic, mock), versioned prompt loader, schemas, pricing, call logging
-services/embeddings/ Stage 4: embedding providers (mock, lexical, voyage), backfill
+services/llm/       LLM providers (Anthropic, Ollama, mock), versioned prompt loader, schemas, pricing, call logging
+services/embeddings/ Stage 4: embedding providers (mock, lexical, ollama, voyage), backfill
 services/retrieval/  Stage 4: hybrid ranking, local and Atlas vector backends, retrieval settings
 services/askService.js  Stage 4: POST /api/ask (retrieve top-k, answer, check citations)
 atlas/              Atlas vector index definition (vector-index.json)
@@ -682,6 +716,8 @@ results/            Outputs of committed scripts, each with its command, commit,
 seed.js             Sample data
 tests/              Jest + supertest tests
 docs/               Roadmap, prompt playbook, per-stage notes (docs/stages/STAGE-N.md), PRIVACY.md (Stage 7)
+                    LOCAL_SETUP.md (laptop setup with Ollama)
+.claude/            Claude Code settings and the study commands (commands/viva.md, commands/sync-docs.md)
 ```
 
 ## Evaluation (Stage 6)
@@ -697,6 +733,10 @@ limitations: [docs/RESULTS.md](docs/RESULTS.md).
 npm run bench:indexes                         # index benchmark, 10k/100k/1M synthetic memories (~6 min here)
 LLM_PROVIDER=mock npm run eval -- --questions 10   # pipeline check on the mock: NOT a result
 npm run eval:cost                             # projected cost of the paid run (no API calls)
+# Free, on your laptop with Ollama (Stage 3b): pilot, time projection from the pilot, then the full run
+npm run eval -- --provider ollama --embeddings ollama --questions 10 --run-id stage6-pilot-ollama
+npm run eval:cost -- --provider ollama --pilot results/stage6-pilot-ollama   # hours for the full run
+npm run eval -- --provider ollama --embeddings ollama --samples all --questions 0 --run-id stage6-locomo-ollama
 # Paid (only after checking the projection): pilot first, then the full run
 LLM_PROVIDER=anthropic npm run eval -- --questions 10 --paid --run-id stage6-pilot
 LLM_PROVIDER=anthropic npm run eval -- --samples all --questions 0 --paid --run-id stage6-locomo-full
@@ -734,7 +774,7 @@ curl -s -X DELETE "http://localhost:5000/api/conversations/$CONV/messages/$MSG" 
 npm run erasure:verify -- --messages $MSG --text "penicillin"
 ```
 
-## Known limitations (up to Stage 7)
+## Known limitations (up to Stage 7 and 3b)
 
 - **Login only.** There is no password reset, email verification, refresh token or rate limiting on login.
   Do not expose it to the internet as it is.
@@ -762,7 +802,12 @@ npm run erasure:verify -- --messages $MSG --text "penicillin"
 - **Vectors are stored as arrays of doubles**: about 2.4 KB per memory version for the 256-number lexical vector,
   most of each document's size (measured in the benchmark). Every version keeps its own vector.
 - **The mock LLM is a test double, not a model.** It recognises a few sentence patterns ("I live in", "I moved to",
-  "I am allergic to", ...). Only the real model's output (`LLM_PROVIDER=anthropic`) says anything about quality.
+  "I am allergic to", ...). Only a real model's output (`LLM_PROVIDER=ollama` or `anthropic`) says anything about
+  quality.
+- **Ollama was not run in the cloud session** (its model registry is blocked there). The provider is tested
+  against a fake Ollama server only; the first real check is `LLM_PROVIDER=ollama npm run test:live` on your laptop.
+  14B local models are weaker than a frontier model, so results with them describe those models, not the method's
+  ceiling.
 - **LoCoMo is a chat between two people**, not a person and an assistant. The loader stores the first speaker as
   `user` and the second as `assistant`; the extractor only mines `user` messages, so facts said by the second
   speaker are not extracted by the app. The Stage 6 harness mines both speakers by adding a mirror user with the
