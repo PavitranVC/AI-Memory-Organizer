@@ -3,7 +3,7 @@
 Coordinator log for the unattended run described in `docs/OVERNIGHT_PLAN.md`. Each stage was built by its own
 subagent; this file records each subagent's summary, checked against the pushed branch.
 
-Next step: none. All six stages are built and pushed. Morning: follow "Morning checklist" below.
+Next step: merge Stage 3b ([#9](https://github.com/PavitranVC/AI-Memory-Organizer/pull/9), local AI with Ollama), then run the morning prompt in docs/OVERNIGHT_PLAN.md on the laptop (Ollama only, no paid API).
 
 ## Stages
 
@@ -15,6 +15,7 @@ Next step: none. All six stages are built and pushed. Morning: follow "Morning c
 | 4 | `claude/stage-4-hybrid-retrieval` | [#6](https://github.com/PavitranVC/AI-Memory-Organizer/pull/6) | done (4-lite) | 249 (40 new) | Voyage and Atlas never run (paid / no cluster). Weights untuned. |
 | 6 | `claude/stage-6-evaluation` | [#7](https://github.com/PavitranVC/AI-Memory-Organizer/pull/7) | done (6-prep) | 267 (16 new) | Paid LLM evaluation awaits your approval. |
 | 7 | `claude/stage-7-governance` | [#8](https://github.com/PavitranVC/AI-Memory-Organizer/pull/8) | done (7-lite) | 299 (32 new) | Legal mapping needs a human check. |
+| 3b | `claude/stage-3b-ollama` | [#9](https://github.com/PavitranVC/AI-Memory-Organizer/pull/9) | done (added after the overnight run) | 319 (20 new) | Ollama providers tested against a fake server only; first real run on the laptop. |
 
 ## Stage details
 
