@@ -25,6 +25,7 @@ the app runnable and the tests green.
 | 1. Database hardening | `claude/stage-1-db-hardening` | 0 |
 | 2. Bi-temporal memory schema | `claude/stage-2-temporal-schema` | 1 |
 | 3. LLM extraction + reconciliation | `claude/stage-3-llm-extraction` | 2 |
+| 3b. Local AI with Ollama + study commands | `claude/stage-3b-ollama` | 3 (built on `main` after 7) |
 | 4. Hybrid retrieval | `claude/stage-4-hybrid-retrieval` | 3 |
 | 5. Real datasets + loaders | `claude/stage-5-datasets` | 2 (can run alongside 3–4) |
 | 6. Evaluation harness + benchmarks | `claude/stage-6-evaluation` | 4, 5 |
@@ -89,6 +90,12 @@ Rules:
 - Adding a message to a conversation triggers extraction, asynchronously.
 - Prompts are versioned in `prompts/`, and every LLM call is logged
   (tokens, latency) for the cost analysis.
+
+### Stage 3b: Local AI with Ollama + study commands
+- An Ollama LLM provider (`LLM_PROVIDER=ollama`) and an Ollama embedding provider (`EMBEDDING_PROVIDER=ollama`),
+  behind the existing interfaces, so no real run needs a paid API key. A different model judges the evaluation.
+- The evaluation records seconds per item and projects the run time of the full benchmark from a pilot.
+- Claude Code study commands: `/viva <stage>` and `/sync-docs`. Notes: `docs/stages/STAGE-3B.md`.
 
 ### Stage 4: Hybrid retrieval
 - Embeddings stored on each memory, behind a pluggable embedding provider.
