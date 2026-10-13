@@ -1,6 +1,11 @@
-// COST PROJECTION (not a measurement) for the paid LoCoMo evaluation, made from the real data and prompts.
+// COST and TIME PROJECTION (not a measurement) for the LoCoMo evaluation, made from the real data and prompts.
 //   npm run eval:cost                          full LoCoMo (10 samples, every question) and the 10-question pilot
 //   npm run eval:cost -- --facts-per-message 1 --output-tokens 400 --k 10 --out results/stage6-cost-projection
+//   npm run eval:cost -- --provider ollama --pilot results/<pilot run-id>   (Stage 3b: local models)
+// --provider (default LLM_PROVIDER; the mock is projected as Anthropic): with ollama every cost is $0.
+// --pilot <run dir>: the TIME projection. It reads the seconds per item MEASURED by that pilot run
+// (timing.json, written by npm run eval) and multiplies them by the number of items in the full run. Without
+// it there is no time projection, because time cannot be guessed from the prompts.
 // Input tokens are ESTIMATED as characters / 4 of the exact prompt text each call would send (Anthropic's
 // tokenizer is not available offline). Output tokens and the number of facts per message cannot be known
 // before running, so they are ASSUMPTIONS given on the command line; the paid 10-question pilot measures them.
@@ -23,7 +28,8 @@ const RECENT = 6; // EXTRACTION_CONTEXT_MESSAGES default
 const MEMORY_CHARS = 260; // one memory line with dates and a source quote (format in eval/systems.js); an assumption
 const STORES = 2; // the bi-temporal store and the overwrite store reconcile separately (extraction is shared)
 
-function price(model, t) {
+function price(model, t, provider) {
+  if (provider === 'ollama') return 0; // local: no money, only time (see the time projection)
   const p = PRICES[model];
   if (!p) throw new Error(`No price for ${model} in services/llm/pricing.js`);
   return (t.input * p.input + t.cacheWrite * p.cacheWrite + t.cacheRead * p.cacheRead + t.output * p.output) / 1e6;
@@ -36,13 +42,18 @@ function main() {
   const k = Number(option(args, '--k', 10));
   const pilotQuestions = Number(option(args, '--pilot-questions', 10));
   const out = option(args, '--out', 'results/stage6-cost-projection');
-  const models = llmConfig({ ...process.env, LLM_PROVIDER: 'mock' }).models;
+  const asked = String(option(args, '--provider', process.env.LLM_PROVIDER || 'mock')).toLowerCase();
+  const provider = asked === 'mock' ? 'anthropic' : asked;
+  const models = llmConfig({ ...process.env, LLM_PROVIDER: provider }).models;
+  const pilotDir = option(args, '--pilot', null);
+  const pilot = pilotDir ? JSON.parse(fs.readFileSync(path.join(pilotDir, 'timing.json'), 'utf8')) : null;
   const P = Object.fromEntries(['extract', 'reconcile', 'eval_answer', 'judge'].map((t) => [t, loadPrompt(t)]));
   const sys = (t) => tok(P[t].system.length);
   const samples = JSON.parse(fs.readFileSync(DATA, 'utf8'));
 
   const rows = [];
-  const add = (scope, component, model, calls, t) => rows.push({ scope, component, model, calls, input_tokens: t.input, cache_write_tokens: t.cacheWrite, cache_read_tokens: t.cacheRead, output_tokens: t.output, cost_usd: Math.round(price(model, t) * 100) / 100 });
+  const add = (scope, component, model, calls, t) => rows.push({ scope, component, model, calls, input_tokens: t.input, cache_write_tokens: t.cacheWrite, cache_read_tokens: t.cacheRead, output_tokens: t.output, cost_usd: Math.round(price(model, t, provider) * 100) / 100 });
+  const times = [];
 
   for (const [scope, list, qPer] of [['pilot (1 sample, 10 questions)', samples.slice(0, 1), pilotQuestions], ['full LoCoMo (10 samples, all questions)', samples, 0]]) {
     const z = () => ({ input: 0, cacheWrite: 0, cacheRead: 0, output: 0 });
@@ -103,20 +114,30 @@ function main() {
     add(scope, 'judge (6 systems)', models.judge, 6 * nQ, jud);
     const total = rows.filter((r) => r.scope === scope).reduce((s, r) => s + r.cost_usd, 0);
     rows.push({ scope, component: 'TOTAL (projection)', model: '', calls: '', cost_usd: Math.round(total * 100) / 100 });
-    add(scope, 'for comparison only: full_context WITHOUT caching (not in the total)', models.answer, nQ, ans.full_context_no_cache);
+    if (provider !== 'ollama') add(scope, 'for comparison only: full_context WITHOUT caching (not in the total)', models.answer, nQ, ans.full_context_no_cache);
+    if (pilot) {
+      // Measured seconds per item x items in this scope
+      const addTime = (component, items, perItem) => perItem !== undefined && perItem !== null && times.push({ scope, component, items, seconds_per_item: perItem, seconds: Math.round(items * perItem) });
+      for (const [store, perMessage] of Object.entries(pilot.seconds_per_message)) addTime(`build ${store} store (per message)`, nMsg, perMessage);
+      for (const [system, perAnswer] of Object.entries(pilot.seconds_per_answer)) addTime(`answer: ${system} (per question)`, nQ, perAnswer);
+      addTime('judge (per answer)', nQ * Object.keys(pilot.seconds_per_answer).length, pilot.seconds_per_judge);
+      const seconds = times.filter((r) => r.scope === scope).reduce((s, r) => s + r.seconds, 0);
+      times.push({ scope, component: 'TOTAL (projection)', items: '', seconds_per_item: '', seconds, hours: Math.round((seconds / 3600) * 10) / 10 });
+    }
   }
 
   const header = ['scope', 'component', 'model', 'calls', 'input_tokens', 'cache_write_tokens', 'cache_read_tokens', 'output_tokens', 'cost_usd'];
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(`${out}.csv`, toCsv(rows, header));
+  if (pilot) fs.writeFileSync(`${out}-time.csv`, toCsv(times, ['scope', 'component', 'items', 'seconds_per_item', 'seconds', 'hours']));
   const lines = [
-    'Stage 6 COST PROJECTION for the paid LoCoMo evaluation. A projection, NOT a measured cost.',
+    `Stage 6 COST${pilot ? ' AND TIME' : ''} PROJECTION for the LoCoMo evaluation (${provider}). A projection, NOT a measured cost or time.`,
     `command: ${command('eval:cost', args)}`,
     `git commit: ${gitCommit()}`,
     `date: ${new Date().toISOString()}`,
     `dataset: BENCHMARK - LoCoMo (${DATA.replace(process.cwd() + path.sep, '')}), used only for its sizes`,
     `models (from the env, else the default): extract ${models.extract}, reconcile ${models.reconcile}, answer ${models.answer}, judge ${models.judge}`,
-    'prices: services/llm/pricing.js (USD per million tokens; cache write 1.25 x input, cache read listed rate)',
+    provider === 'ollama' ? 'prices: none, the models run locally through Ollama (cost 0; electricity is not counted)' : 'prices: services/llm/pricing.js (USD per million tokens; cache write 1.25 x input, cache read listed rate)',
     'input tokens: characters / 4 of the prompt text (an estimate; real tokenization differs)',
     `ASSUMPTIONS: ${factsPerMessage} facts per message reach reconcile; ${outTok} output tokens per call (thinking included);`,
     `  k = ${k}; a memory line is ~${MEMORY_CHARS} characters; the cache stays warm between calls (5-minute lifetime).`,
@@ -124,9 +145,19 @@ function main() {
     '',
     ...rows.filter((r) => String(r.component).startsWith('TOTAL')).map((r) => `${r.scope}: ${r.cost_usd} USD`),
     '',
+    ...(pilot
+      ? [
+          `TIME: seconds per item MEASURED by the pilot ${path.relative(process.cwd(), pilotDir)} (${pilot.provider}; models ${JSON.stringify(pilot.models)}), times the items`,
+          '  in each scope. Assumes the full run goes at the pilot\'s speed (same machine, same models; the full-context',
+          '  answers of longer conversations take longer than the pilot sample\'s). Details: the -time.csv file.',
+          ...(pilot.provider !== provider ? [`  WARNING: the pilot ran on "${pilot.provider}", not "${provider}": these times do not describe ${provider}.`] : []),
+          ...times.filter((r) => String(r.component).startsWith('TOTAL')).map((r) => `${r.scope}: ${r.seconds} s (${r.hours} h)`),
+          '',
+        ]
+      : ['TIME: not projected (add --pilot <run dir> after a pilot run; time cannot be estimated from the prompts).', '']),
   ];
   fs.writeFileSync(`${out}.txt`, lines.join('\n'));
-  console.log(lines.slice(-4).join('\n'));
+  console.log(lines.filter((l) => /: [\d.]+ (USD|s)/.test(l) || l.startsWith('TIME') || l.includes('WARNING')).join('\n'));
 }
 
 main();

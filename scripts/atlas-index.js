@@ -6,10 +6,10 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const definition = require('../atlas/vector-index.json');
-const { getEmbedder } = require('../services/embeddings');
+const { readyEmbedder } = require('../services/embeddings');
 
 async function main() {
-  const embedder = getEmbedder();
+  const embedder = await readyEmbedder(); // Ollama: the size comes from the model, so ask it first
   const fields = definition.definition.fields.map((f) => (f.type === 'vector' ? { ...f, numDimensions: embedder.dims } : f));
   const index = { name: definition.name, type: definition.type, definition: { fields } };
   console.log(`Embedder: ${embedder.id} (${embedder.dims} dimensions)`);

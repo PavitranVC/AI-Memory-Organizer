@@ -4,11 +4,13 @@ const { loadPrompt, render } = require('./prompts');
 const { costUsd } = require('./pricing');
 const { MockProvider } = require('./mockProvider');
 const { AnthropicProvider } = require('./anthropicProvider');
+const { OllamaProvider } = require('./ollamaProvider');
 const { LlmError, LlmRefusalError } = require('./errors');
 const { EXTRACT_SCHEMA, RECONCILE_SCHEMA, ANSWER_SCHEMA, JUDGE_SCHEMA } = require('./schemas');
 
 // Every LLM call in the project goes through callLlm(): it picks the provider from LLM_PROVIDER, fills the
 // versioned prompt, and logs the call (tokens, cache reads, latency, cost) to the llmcalls collection.
+// Under LLM_PROVIDER=ollama the "judge" model differs from the one that answers (see services/llm/config.js).
 const TASKS = {
   extract: { schema: EXTRACT_SCHEMA, maxTokens: 8000 },
   reconcile: { schema: RECONCILE_SCHEMA, maxTokens: 4000 },
@@ -26,7 +28,9 @@ let override = null; // a provider set by tests or scripts (setProvider), instea
 
 function getProvider(config = llmConfig()) {
   if (override) return override;
-  return config.provider === 'anthropic' ? new AnthropicProvider({ config }) : new MockProvider();
+  if (config.provider === 'anthropic') return new AnthropicProvider({ config });
+  if (config.provider === 'ollama') return new OllamaProvider({ config: config.ollama });
+  return new MockProvider();
 }
 
 function setProvider(provider) {
@@ -63,7 +67,8 @@ async function callLlmDetailed({ task, vars, extra = {}, userId = null, jobId = 
   const usage = (outcome && outcome.usage) || {};
   const servedModel = (outcome && outcome.servedModel) || null;
   const estimated = provider.name === 'mock';
-  const cost = estimated ? 0 : costUsd(servedModel || model, usage);
+  // The mock and local models cost nothing; a paid model without a known price is logged as null, not $0
+  const cost = estimated || provider.local ? 0 : costUsd(servedModel || model, usage);
   await LlmCall.create({
     userId,
     jobId,
@@ -79,6 +84,7 @@ async function callLlmDetailed({ task, vars, extra = {}, userId = null, jobId = 
     ...usage,
     tokensEstimated: estimated,
     latencyMs,
+    attempts: (outcome && outcome.attempts) || 1,
     costUsd: cost,
   });
 
