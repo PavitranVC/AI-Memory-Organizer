@@ -41,6 +41,16 @@ never needs Ollama. Part B adds two Claude Code study commands: `/viva <stage>` 
 | `docs/OVERNIGHT_PLAN.md` | (from the plan branch) the Ollama plan; the morning prompt now runs only on Ollama with exact commands, and the quiz step uses `/viva` |
 | `docs/stages/STAGE-3B.md` | These notes |
 
+**Fixes after the first laptop run** (branch `claude/stage-3b-fixes`):
+
+| File | Why |
+|---|---|
+| `.gitattributes` | New. `eol=lf`: on Windows with `core.autocrlf=true` the prompt files were checked out with CRLF and every LLM call failed with "missing front matter" |
+| `services/llm/prompts.js` | `parsePrompt()` normalises CRLF to LF first, so a prompt and its `promptHash` are the same on every machine |
+| `eval/harness.js`, `eval/report.js`, `eval/run.js` | A failed answer, judge or extraction call no longer ends the run: the row keeps an `error` and is scored as wrong; `errors` per system and `failed_messages` per store are reported |
+| `services/llm/ollamaProvider.js` | 3.3 instead of 4 characters per token when choosing `num_ctx` (4 under-counted qwen2.5 tokens) |
+| `tests/eval.test.js`, `tests/llm.test.js` | A run with failing calls; CRLF and LF prompts parse to the same text |
+
 ## 3. Concepts
 | Idea | Textbook name | One line |
 |---|---|---|
@@ -107,9 +117,10 @@ never needs Ollama. Part B adds two Claude Code study commands: `/viva <stage>` 
     are recorded in every `results/` run, and the paper must say which models were used.
 
 ## 5. Weak points
-- **Ollama was never run in the cloud session.** Its model registry is blocked there, so the providers are only
-  tested against a fake server. If asked: "the request and response formats follow Ollama's API documentation and
-  are covered by tests; the first real run is `npm run test:live` on my laptop, and its output is in `results/`".
+- **Ollama could not run in the cloud session** (its model registry is blocked there), so CI tests the providers
+  against a fake server only. The first real runs were on the laptop on 2026-10-13: the live smoke test passed and
+  a 10-question pilot ran (outputs to be committed in `results/`). That run found three problems, see "Fixes after
+  the first laptop run" below.
 - **The judge is not a fully independent family.** `deepseek-r1:14b` is DeepSeek's R1 distilled into a
   Qwen2.5-14B base, and `qwen2.5-coder:14b` is also Qwen2.5. They are different fine-tunes, not different
   families. Answer: "it removes the exact self-grading, and the judge is checked against my own labels with
@@ -118,9 +129,15 @@ never needs Ollama. Part B adds two Claude Code study commands: `/viva <stage>` 
   without thinking first. TODO: verify on the laptop how `deepseek-r1:14b` behaves with `format`.
 - **14B models are weaker** than Claude at extraction and reconciliation (more missed facts, wrong SUPERSEDE vs
   UPDATE). The results describe these models, not the best the method can do.
-- **The window size is an estimate** (4 characters per token plus a margin). An unusual text could need more
-  tokens than estimated; the large window (32768) has headroom over the longest LoCoMo conversation (~29k
-  estimated tokens).
+- **The window size is an estimate** (3.3 characters per token plus a margin). The first estimate (4) was too low
+  for qwen2.5's tokenizer on LoCoMo text, which could have let Ollama cut a prompt silently. With 3.3, the longest
+  LoCoMo conversations no longer fit in 32768 tokens, so their full-context answers fail and are counted as errors
+  (wrong). That is a real limit of a 32k-context model, not a bug; raising `OLLAMA_NUM_CTX_LARGE` beyond qwen2.5's
+  native 32k context is possible but untested.
+- **A failed call counts as a wrong answer.** If an answer or judge call fails after its retry, the row is kept
+  with an `error` and scored F1 0 / judge 0, and `summary_by_system.csv` reports `errors` per system. Dropping those
+  rows instead would flatter a system that fails often. A message whose extraction fails is skipped and counted
+  in `build.csv` (`failed_messages`).
 - **Time, not money.** The answer model and the judge do not fit in 12 GB together, so Ollama swaps them; the
   full-context answers may spill to the CPU. The time projection is a linear extrapolation from one pilot sample.
 - **Ollama reuses its prompt cache**, so `prompt_eval_count` can be lower than the prompt length on repeated
@@ -136,7 +153,7 @@ Needs MongoDB as a replica set (`STAGE-2.md`) and Ollama running with the three 
 ```powershell
 git checkout claude/stage-3b-ollama   # or main, once merged
 npm install
-npm test                               # 319 tests; mock only, Ollama not needed
+npm test                               # 321 tests; mock only, Ollama not needed
 ollama list                            # qwen2.5-coder:14b, deepseek-r1:14b, nomic-embed-text
 
 # The live smoke test on the local models (free). Prints the extracted memories, tokens and time.

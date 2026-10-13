@@ -60,8 +60,17 @@ async function buildStore(perspectives, versioning, extractionCache) {
   for (const p of perspectives) for (const m of p.messages) if (m.role === 'user') queue.push({ p, m });
   queue.sort((a, b) => a.m.sentAt - b.m.sentAt);
   const actions = {};
+  let failed = 0;
   for (const { p, m } of queue) {
-    const result = await processMessage({ userId: p.userId, messageId: m._id, conversationId: m.conversationId }, { versioning, extractionCache });
+    // A message whose LLM calls fail (after the provider's own retry) is counted and skipped, not fatal:
+    // the store is built without it, and failed_messages in build.csv says how many were lost
+    let result;
+    try {
+      result = await processMessage({ userId: p.userId, messageId: m._id, conversationId: m.conversationId }, { versioning, extractionCache });
+    } catch (err) {
+      failed += 1;
+      continue;
+    }
     for (const d of result.decisions) actions[d.action] = (actions[d.action] || 0) + 1;
   }
   const userIds = perspectives.map((p) => p.userId);
@@ -77,6 +86,7 @@ async function buildStore(perspectives, versioning, extractionCache) {
   return {
     store: versioning,
     messages_mined: queue.length,
+    failed_messages: failed,
     decisions: Object.entries(actions).map(([a, n]) => `${a}=${n}`).sort().join(' '),
     memory_versions: stats ? stats.versions : 0,
     memory_current: stats ? stats.current : 0,
@@ -99,17 +109,35 @@ async function clearStore(userIds) {
 async function answerAndScore({ system, item, context, asOf, retrievalMs }) {
   const gold = item.answer === null ? NO_INFO : item.answer;
   const contextText = context.items.map((i) => i.text).join('\n') || '(nothing retrieved)';
-  const answered = await callLlmDetailed({
-    task: 'eval_answer',
-    vars: { asOf: asOf.toISOString().slice(0, 10), contextKind: context.kind, context: contextText, question: item.question },
-    extra: { question: item.question, items: context.items },
-    cachePrefix: system.id === 'full_context',
-  });
-  const judged = await callLlmDetailed({
-    task: 'judge',
-    vars: { question: item.question, gold, candidate: answered.data.answer },
-    extra: { gold: item.answer, candidate: answered.data.answer },
-  });
+  // One failed call (e.g. a local model's answer cut off at its token cap) must not end a run of thousands of
+  // questions. The row is kept, marked with the error and scored as WRONG (F1 0, judge 0): dropping it would
+  // make a system that fails often look better than it is. summary_by_system.csv counts these rows (errors).
+  let error = null;
+  let answered;
+  try {
+    answered = await callLlmDetailed({
+      task: 'eval_answer',
+      vars: { asOf: asOf.toISOString().slice(0, 10), contextKind: context.kind, context: contextText, question: item.question },
+      extra: { question: item.question, items: context.items },
+      cachePrefix: system.id === 'full_context',
+    });
+  } catch (err) {
+    error = `answer: ${err.message}`;
+    answered = { data: { answer: '', citedMemories: [], insufficient: false }, usage: {}, latencyMs: null, costUsd: null, tokensEstimated: false, provider: null, model: null };
+  }
+  let judged = { data: { correct: false, reason: 'not judged: the answer call failed' }, latencyMs: null, costUsd: null, model: null };
+  if (!error) {
+    try {
+      judged = await callLlmDetailed({
+        task: 'judge',
+        vars: { question: item.question, gold, candidate: answered.data.answer },
+        extra: { gold: item.answer, candidate: answered.data.answer },
+      });
+    } catch (err) {
+      error = `judge: ${err.message}`;
+      judged = { data: { correct: false, reason: 'not judged: the judge call failed' }, latencyMs: null, costUsd: null, model: null };
+    }
+  }
   const covered = context.items.flatMap((i) => i.dia);
   const usage = answered.usage || {};
   return {
@@ -123,7 +151,7 @@ async function answerAndScore({ system, item, context, asOf, retrievalMs }) {
     answer: answered.data.answer,
     insufficient: answered.data.insufficient,
     cited: (answered.data.citedMemories || []).join(' '),
-    score_f1: Math.round(locomoScore(answered.data.answer, item) * 1e4) / 1e4,
+    score_f1: error && error.startsWith('answer') ? 0 : Math.round(locomoScore(answered.data.answer, item) * 1e4) / 1e4,
     judge_correct: judged.data.correct ? 1 : 0,
     judge_reason: judged.data.reason,
     recall_at_k: recallAtK(item.evidence, covered),
@@ -143,6 +171,7 @@ async function answerAndScore({ system, item, context, asOf, retrievalMs }) {
     provider: answered.provider,
     model: answered.model,
     judge_model: judged.model,
+    error,
   };
 }
 

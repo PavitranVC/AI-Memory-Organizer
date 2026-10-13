@@ -726,7 +726,8 @@ The harness in `eval/` compares six systems on LoCoMo questions: the whole conve
 over raw messages, an overwrite-style memory (no history), ours (bi-temporal memories with provenance), and two
 ablations of ours (without the temporal fields, without provenance). All use the same answer prompt
 (`prompts/eval-answer.v1.md`) and model; only the context differs. Answers are scored with LoCoMo-style token F1
-and an LLM judge (`prompts/judge.v1.md`), with bootstrap 95% confidence intervals. Results, method and
+and an LLM judge (`prompts/judge.v1.md`), with bootstrap 95% confidence intervals. A call that fails (after the provider's
+retry) does not stop the run: its row keeps an `error`, is scored as wrong, and is counted in the `errors` column. Results, method and
 limitations: [docs/RESULTS.md](docs/RESULTS.md).
 
 ```bash
@@ -804,10 +805,11 @@ npm run erasure:verify -- --messages $MSG --text "penicillin"
 - **The mock LLM is a test double, not a model.** It recognises a few sentence patterns ("I live in", "I moved to",
   "I am allergic to", ...). Only a real model's output (`LLM_PROVIDER=ollama` or `anthropic`) says anything about
   quality.
-- **Ollama was not run in the cloud session** (its model registry is blocked there). The provider is tested
-  against a fake Ollama server only; the first real check is `LLM_PROVIDER=ollama npm run test:live` on your laptop.
-  14B local models are weaker than a frontier model, so results with them describe those models, not the method's
-  ceiling.
+- **Ollama is tested in CI against a fake server only** (its model registry is blocked in the cloud session). The
+  real models were first run on the laptop on 2026-10-13 (live smoke test and a 10-question pilot). 14B local
+  models are weaker than a frontier model, so results with them describe those models, not the method's ceiling.
+- **Full context does not fit a 32k model for the longest LoCoMo conversations.** Those `full_context` answers are
+  refused rather than silently truncated, and are counted as errors (wrong) in `summary_by_system.csv`.
 - **LoCoMo is a chat between two people**, not a person and an assistant. The loader stores the first speaker as
   `user` and the second as `assistant`; the extractor only mines `user` messages, so facts said by the second
   speaker are not extracted by the app. The Stage 6 harness mines both speakers by adding a mirror user with the
