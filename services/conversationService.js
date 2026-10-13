@@ -5,6 +5,7 @@ const { badRequest, notFound } = require('./errors');
 const { toObjectId } = require('./ids');
 const { paginate, parseLimit, parseCursor } = require('./pagination');
 const { requireString } = require('./authService');
+const { withTransaction } = require('./transaction');
 
 // Loads a conversation only if it belongs to the user. Someone else's conversation is reported as
 // "not found", so ids of other users' data cannot be probed.
@@ -35,16 +36,21 @@ async function updateConversation(userId, id, { title } = {}) {
   return conversation.save();
 }
 
-// Deletes the conversation and its messages. Memories extracted from it belong to the user and
-// are kept, but lose the link to the conversation (erasing them by lineage is Stage 7).
-// Not transactional (a plain mongod has no transactions): the conversation is removed last, so a
-// failure half-way leaves it in place and the request can simply be repeated.
+// Deletes the conversation and its messages, in one transaction. Memories extracted from it belong to the
+// user and are kept (every version), but lose the link to the conversation and to the deleted source
+// messages, so no reference points at a missing document. Erasing them by lineage is Stage 7.
 async function deleteConversation(userId, id) {
   const conversation = await getOwnedConversation(userId, id);
-  const messages = await Message.deleteMany({ conversationId: conversation._id });
-  const memories = await Memory.updateMany({ userId, conversationId: conversation._id }, { $unset: { conversationId: 1 } });
-  await conversation.deleteOne();
-  return { conversation, deletedMessages: messages.deletedCount, unlinkedMemories: memories.modifiedCount };
+  return withTransaction(async (session) => {
+    const messageIds = (await Message.find({ conversationId: conversation._id }).select('_id').session(session).lean()).map((m) => m._id);
+    const messages = await Message.deleteMany({ conversationId: conversation._id }, { session });
+    const memories = await Memory.updateMany({ userId, conversationId: conversation._id }, { $unset: { conversationId: 1 } }, { session });
+    if (messageIds.length > 0) {
+      await Memory.updateMany({ userId, sourceMessageIds: { $in: messageIds } }, { $pull: { sourceMessageIds: { $in: messageIds } } }, { session });
+    }
+    await Conversation.deleteOne({ _id: conversation._id }, { session });
+    return { conversation, deletedMessages: messages.deletedCount, unlinkedMemories: memories.modifiedCount };
+  });
 }
 
 // Messages are read in chat order (sentAt, then _id for ties). The cursor is the _id of the last message

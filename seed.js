@@ -1,6 +1,8 @@
 /**
  * Seeder for the AI Memory Organizer database.
- * Clears every collection, then inserts 3 users, 4 categories, 5 conversations (19 messages) and 55 memories.
+ * Clears every collection, then inserts 3 users, 4 categories, 5 conversations (19 messages), 55 single-version
+ * memories and 3 version chains (6 versions: a city move, a changed goal and a corrected mistake), so there are
+ * 61 memory versions, 58 of them current, plus one audit log entry per create / supersede / correct.
  *
  * All seeded users log in with the same development password (SEED_PASSWORD, default "DevPassword123").
  * That is for local development only: never run this seed against a real database.
@@ -15,6 +17,7 @@ const Category = require('./models/Category');
 const Conversation = require('./models/Conversation');
 const Message = require('./models/Message');
 const Memory = require('./models/Memory');
+const AuditLog = require('./models/AuditLog');
 const { hashPassword } = require('./services/authService');
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/aimemory';
@@ -237,6 +240,84 @@ const memoriesByConversation = {
 };
 
 // ---------------------------------------------------------------------------
+// Version chains (Stage 2): facts that changed over time. Dates are fixed so the ?asOf= / ?knownAt= demos
+// always give the same answers. "source" is the index of the message (in that conversation) the newest
+// version came from. A "correction" fixes a mistake: the wrong version is retracted and the new one takes
+// over its valid time. Otherwise the new version supersedes the old one from its validFrom.
+// ---------------------------------------------------------------------------
+const versionChains = [
+  {
+    // Priya moved city: valid time of the Kochi version ends when the Bengaluru one starts
+    conversation: 'weekends', category: 'Personal', importance: 4, tags: ['home', 'city'],
+    versions: [
+      { content: 'User lives in Kochi with their parents.', validFrom: '2019-06-01', recordedAt: '2023-02-10' },
+      { content: 'User moved from Kochi to Bengaluru for a UX design job; their parents still live in Kochi.', validFrom: '2024-08-01', recordedAt: '2024-08-20', source: 2 },
+    ],
+  },
+  {
+    // Daniel changed his career goal
+    conversation: 'careerSwitch', category: 'Personal', importance: 5, tags: ['career', 'goals'],
+    versions: [
+      { content: "User's goal is to qualify as a CPA and stay in accounting.", validFrom: '2023-01-10', recordedAt: '2023-01-10' },
+      { content: 'User dropped the CPA plan and now wants to move from accounting into data analytics.', validFrom: '2025-04-01', recordedAt: '2025-04-03', source: 0 },
+    ],
+  },
+  {
+    // Aarav: the first version was simply wrong (a correction, not a change in his life)
+    conversation: 'reactPrep', category: 'Learning', importance: 5, tags: ['placements'],
+    versions: [
+      { content: "User's campus placements start in November.", validFrom: '2025-07-01', recordedAt: '2025-07-01' },
+      { content: "User's campus placements start in December.", recordedAt: '2025-07-03', correction: true, source: 0 },
+    ],
+  },
+];
+
+// Builds the version documents of every chain plus their audit entries, exactly as the API would have
+// written them at those dates (see memoryService.updateMemory).
+function buildVersionChains({ conversationsByKey, messagesByKey, categoryIds }) {
+  const memories = [];
+  const audit = [];
+  for (const chain of versionChains) {
+    const conversation = conversationsByKey[chain.conversation];
+    const userId = conversation.userId;
+    let previous = null;
+    for (const version of chain.versions) {
+      const recordedAt = new Date(version.recordedAt);
+      const doc = {
+        _id: new mongoose.Types.ObjectId(),
+        userId,
+        conversationId: conversation._id,
+        categoryId: categoryIds[chain.category],
+        content: version.content,
+        importance: chain.importance,
+        tags: chain.tags,
+        validFrom: version.correction ? previous.validFrom : new Date(version.validFrom),
+        validTo: null,
+        recordedAt,
+        retractedAt: null,
+        closedAt: null,
+        sourceMessageIds: version.source !== undefined ? [messagesByKey[chain.conversation][version.source]._id] : [],
+        sensitivity: chain.category === 'Health' ? 'special' : 'normal',
+        supersedes: previous ? previous._id : null,
+        supersededBy: null,
+      };
+      if (!previous) {
+        audit.push({ userId, memoryId: doc._id, action: 'create', actorId: userId, at: recordedAt, after: { ...doc } });
+      } else {
+        const before = { ...previous };
+        Object.assign(previous, version.correction
+          ? { retractedAt: recordedAt, supersededBy: doc._id }
+          : { validTo: doc.validFrom, closedAt: recordedAt, supersededBy: doc._id });
+        audit.push({ userId, memoryId: doc._id, action: version.correction ? 'correct' : 'supersede', actorId: userId, at: recordedAt, before, after: { ...doc } });
+      }
+      memories.push(doc);
+      previous = doc;
+    }
+  }
+  return { memories, audit };
+}
+
+// ---------------------------------------------------------------------------
 // Seeding
 // ---------------------------------------------------------------------------
 async function seed() {
@@ -244,7 +325,7 @@ async function seed() {
   console.log(`Connected to ${MONGO_URI}`);
 
   // Make sure the collections and schema indexes exist before inserting
-  await Promise.all([User.init(), Category.init(), Conversation.init(), Message.init(), Memory.init()]);
+  await Promise.all([User.init(), Category.init(), Conversation.init(), Message.init(), Memory.init(), AuditLog.init()]);
 
   // 1) Clear the database
   await Promise.all([
@@ -253,6 +334,7 @@ async function seed() {
     Conversation.deleteMany({}),
     Message.deleteMany({}),
     Memory.deleteMany({}),
+    AuditLog.deleteMany({}),
   ]);
   console.log('Cleared existing data');
 
@@ -271,7 +353,7 @@ async function seed() {
   );
   const conversationsByKey = Object.fromEntries(conversations.map((c, i) => [c.key, conversationDocs[i]]));
   const startedAt = Date.now() - 24 * 60 * 60 * 1000;
-  await Message.insertMany(
+  const messageDocs = await Message.insertMany(
     conversations.flatMap((c, i) =>
       c.messages.map((message, n) => ({
         ...message,
@@ -281,16 +363,33 @@ async function seed() {
     )
   );
 
-  // 5) Memories
+  // Messages per conversation, in chat order (insertMany keeps the input order)
+  const messagesByKey = {};
+  let offset = 0;
+  conversations.forEach((c) => {
+    messagesByKey[c.key] = messageDocs.slice(offset, offset + c.messages.length);
+    offset += c.messages.length;
+  });
+
+  // 5) Memories: single versions first, recorded now
   const memories = Object.entries(memoriesByConversation).flatMap(([conversationKey, list]) =>
     list.map(({ category, ...memory }) => ({
       ...memory,
       userId: conversationsByKey[conversationKey].userId,
       conversationId: conversationsByKey[conversationKey]._id,
       categoryId: categoryIds[category],
+      sensitivity: category === 'Health' ? 'special' : 'normal', // as the API would default it
     }))
   );
-  await Memory.insertMany(memories);
+  const created = await Memory.insertMany(memories);
+
+  // 6) Version chains, and one audit entry per create / supersede / correct
+  const chains = buildVersionChains({ conversationsByKey, messagesByKey, categoryIds });
+  await Memory.insertMany(chains.memories);
+  await AuditLog.insertMany([
+    ...created.map((m) => ({ userId: m.userId, memoryId: m._id, action: 'create', actorId: m.userId, at: m.recordedAt, after: m.toObject() })),
+    ...chains.audit,
+  ]);
 
   // Summary
   const counts = {
@@ -299,8 +398,9 @@ async function seed() {
     conversations: await Conversation.countDocuments(),
     messages: await Message.countDocuments(),
     memories: await Memory.countDocuments(),
+    currentMemories: await Memory.countDocuments({ validTo: null, retractedAt: null }),
+    auditEntries: await AuditLog.countDocuments(),
   };
-  counts.total = Object.values(counts).reduce((sum, n) => sum + n, 0);
   console.log('\nSeed complete:');
   console.table(counts);
 

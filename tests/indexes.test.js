@@ -1,4 +1,5 @@
 const { connect, disconnect, createUser, createCategory, models } = require('./helpers');
+const { CURRENT, temporalFilter } = require('../services/memoryService');
 
 beforeAll(connect);
 afterAll(disconnect);
@@ -22,10 +23,12 @@ describe('index design', () => {
     expect(indexes.map(keyOf).sort()).toEqual(
       [
         { _id: 1 },
-        { userId: 1, _id: -1 },
-        { userId: 1, status: 1, _id: -1 },
-        { userId: 1, categoryId: 1, _id: -1 },
-        { categoryId: 1 },
+        { userId: 1, validTo: 1, retractedAt: 1, _id: -1 },
+        { userId: 1, validTo: 1, retractedAt: 1, status: 1, _id: -1 },
+        { userId: 1, validTo: 1, retractedAt: 1, categoryId: 1, _id: -1 },
+        { userId: 1, _id: -1, validFrom: 1, recordedAt: 1 },
+        { categoryId: 1, retractedAt: 1 },
+        { supersedes: 1 },
         { userId: 1, _fts: 'text', _ftsx: 1 },
       ]
         .map((k) => JSON.stringify(k))
@@ -84,8 +87,8 @@ describe('queries use the indexes (explain)', () => {
 
   const explainFind = (query) => query.explain('executionStats');
 
-  test('listing a user\'s memories uses an index, reads only their documents and needs no SORT', async () => {
-    const e = await explainFind(models.Memory.find({ userId: user._id }).sort({ _id: -1 }).limit(21));
+  test('listing a user\'s current memories uses an index, reads only their documents and needs no SORT', async () => {
+    const e = await explainFind(models.Memory.find({ userId: user._id, ...CURRENT }).sort({ _id: -1 }).limit(21));
     const stages = stagesOf(e.queryPlanner.winningPlan);
     expect(usesIndex(stages)).toBe(true);
     expect(stages).not.toContain('COLLSCAN');
@@ -94,7 +97,7 @@ describe('queries use the indexes (explain)', () => {
   });
 
   test('filtering by status uses an index with no SORT', async () => {
-    const e = await explainFind(models.Memory.find({ userId: user._id, status: 'Active' }).sort({ _id: -1 }).limit(21));
+    const e = await explainFind(models.Memory.find({ userId: user._id, ...CURRENT, status: 'Active' }).sort({ _id: -1 }).limit(21));
     const stages = stagesOf(e.queryPlanner.winningPlan);
     expect(usesIndex(stages)).toBe(true);
     expect(stages).not.toContain('COLLSCAN');
@@ -102,7 +105,7 @@ describe('queries use the indexes (explain)', () => {
   });
 
   test('filtering by category uses an index with no SORT', async () => {
-    const e = await explainFind(models.Memory.find({ userId: user._id, categoryId: category._id }).sort({ _id: -1 }).limit(21));
+    const e = await explainFind(models.Memory.find({ userId: user._id, ...CURRENT, categoryId: category._id }).sort({ _id: -1 }).limit(21));
     const stages = stagesOf(e.queryPlanner.winningPlan);
     expect(usesIndex(stages)).toBe(true);
     expect(stages).not.toContain('COLLSCAN');
@@ -110,9 +113,22 @@ describe('queries use the indexes (explain)', () => {
   });
 
   test('the "is this category in use" check uses the categoryId index', async () => {
-    const e = await explainFind(models.Memory.find({ categoryId: category._id }).limit(1));
+    const e = await explainFind(models.Memory.find({ categoryId: category._id, retractedAt: null }).limit(1));
     expect(usesIndex(stagesOf(e.queryPlanner.winningPlan))).toBe(true);
     expect(stagesOf(e.queryPlanner.winningPlan)).not.toContain('COLLSCAN');
+  });
+
+  test('as-of and known-at queries use an index, need no SORT, and filter validFrom on the index keys', async () => {
+    for (const query of [{ asOf: '2000-01-01' }, { knownAt: '2000-01-01' }, { asOf: '2000-01-01', knownAt: new Date().toISOString() }]) {
+      const e = await explainFind(models.Memory.find({ userId: user._id, ...temporalFilter(query).filter }).sort({ _id: -1 }).limit(21));
+      const stages = stagesOf(e.queryPlanner.winningPlan);
+      expect(usesIndex(stages)).toBe(true);
+      expect(stages).not.toContain('COLLSCAN');
+      expect(stages).not.toContain('SORT');
+      // Every version started after 2000, so the index keys alone rule them all out: no document is fetched
+      expect(e.executionStats.nReturned).toBe(0);
+      expect(e.executionStats.totalDocsExamined).toBe(0);
+    }
   });
 
   test('conversations and messages lookups use their indexes', async () => {

@@ -24,10 +24,12 @@ app.get('/', (req, res) => {
       conversations: 'GET, POST /api/conversations | GET, PUT, DELETE /api/conversations/:id',
       messages: 'GET, POST /api/conversations/:id/messages',
       createMemory: 'POST   /api/memories',
-      listMemories: 'GET    /api/memories?status=&category=&minImportance=',
+      listMemories: 'GET    /api/memories?status=&category=&minImportance=&asOf=&knownAt=',
       getMemory: 'GET    /api/memories/:id',
-      updateMemory: 'PUT    /api/memories/:id',
-      deleteMemory: 'DELETE /api/memories/:id',
+      memoryHistory: 'GET    /api/memories/:id/history',
+      updateMemory: 'PUT    /api/memories/:id   (supersedes: creates a new version)',
+      deleteMemory: 'DELETE /api/memories/:id   (retracts: the version is kept in the history)',
+      auditLog: 'GET    /api/audit?memoryId=',
       countByCategory: 'GET    /api/memories/stats/by-category',
       activeVsArchived: 'GET    /api/memories/stats/status-ratio',
       textSearch: 'GET    /api/memories/search?q=',
@@ -40,6 +42,7 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/categories', require('./routes/categories'));
 app.use('/api/conversations', require('./routes/conversations'));
 app.use('/api/memories', require('./routes/memory'));
+app.use('/api/audit', require('./routes/audit'));
 
 // Unknown routes
 app.use((req, res) => {

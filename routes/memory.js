@@ -18,18 +18,25 @@ router.get('/search', asyncHandler(async (req, res) => res.json(await memoryServ
 router.post('/', asyncHandler(async (req, res) => res.status(201).json(await memoryService.createMemory(uid(req), req.body))));
 
 // READ ALL: ?status=&category=&categoryId=&minImportance=&limit=&cursor=   (newest first)
+// Current versions by default. Time travel: ?asOf=<ISO date> (valid time) and/or ?knownAt=<ISO date> (transaction time)
 router.get('/', asyncHandler(async (req, res) => res.json(await memoryService.listMemories(uid(req), req.query))));
+
+// The version chain of a memory (oldest first), from any of its versions
+router.get('/:id/history', asyncHandler(async (req, res) => res.json(await memoryService.getHistory(uid(req), req.params.id))));
 
 router.get('/:id', asyncHandler(async (req, res) => res.json(await memoryService.getMemory(uid(req), req.params.id))));
 
-// UPDATE: any of { content, category / categoryId, importance, status, tags, conversationId }
+// UPDATE = SUPERSEDE: creates a new version and closes this one; returns the new version.
+// Any of { content, category / categoryId, importance, status, tags, conversationId, confidence, sensitivity,
+// sourceMessageIds, validFrom (when the change happened, default now) }, or "correction": true to fix a mistake.
 router.put('/:id', asyncHandler(async (req, res) => res.json(await memoryService.updateMemory(uid(req), req.params.id, req.body))));
 
 router.delete(
   '/:id',
   asyncHandler(async (req, res) => {
+    // A retraction: the version is kept (with retractedAt) for the history and the audit trail
     const memory = await memoryService.deleteMemory(uid(req), req.params.id);
-    res.json({ message: 'Memory deleted successfully', deleted: memory });
+    res.json({ message: 'Memory deleted (retracted) successfully', deleted: memory });
   })
 );
 

@@ -17,17 +17,6 @@ jobs:
           - { node: 22, mongo: 7 }
           - { node: 22, mongo: 8 }
 
-    services:
-      mongo:
-        image: mongo:${{ matrix.mongo }}
-        ports:
-          - 27017:27017
-        options: >-
-          --health-cmd "mongosh --quiet --eval 'db.runCommand({ping:1}).ok'"
-          --health-interval 5s
-          --health-timeout 5s
-          --health-retries 12
-
     env:
       MONGO_URI: mongodb://127.0.0.1:27017/aimemory_ci
       MONGO_URI_TEST: mongodb://127.0.0.1:27017/aimemory_test
@@ -38,11 +27,22 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: npm
+      # Stage 2 writes run in transactions, which need a replica set. A service container cannot pass
+      # --replSet to mongod, so MongoDB is started here as a single-node replica set instead.
+      - name: Start MongoDB ${{ matrix.mongo }} as a single-node replica set
+        run: |
+          docker run -d --name mongo -p 27017:27017 mongo:${{ matrix.mongo }} --replSet rs0 --bind_ip_all
+          for i in $(seq 1 30); do docker exec mongo mongosh --quiet --eval 'db.runCommand({ping:1}).ok' && break; sleep 2; done
+          docker exec mongo mongosh --quiet --eval "rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'localhost:27017'}]})"
+          for i in $(seq 1 30); do [ "$(docker exec mongo mongosh --quiet --eval 'db.hello().isWritablePrimary')" = "true" ] && break; sleep 2; done
       - run: npm ci
       - name: Tests
         run: npm test
-      # Smoke test of the real scripts against a fresh database: seed, then check every main query uses an index
+      # Smoke test of the real scripts against a fresh database: seed, migrate (a no-op on Stage 2 data, which
+      # also proves it is safe to re-run), then check every main query uses an index
       - name: Seed
         run: npm run seed
+      - name: Migrate (must be a no-op on a seeded database)
+        run: npm run migrate
       - name: Explain (fails on duplicate indexes or collection scans)
         run: npm run explain

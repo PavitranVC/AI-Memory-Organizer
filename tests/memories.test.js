@@ -43,9 +43,11 @@ describe('memories CRUD', () => {
     expect(updated.body).toMatchObject({ content: 'Changed', importance: 1 });
     expect(updated.body.categoryId.name).toBe('Learning');
 
-    expect((await api(token).delete(`/api/memories/${created._id}`)).status).toBe(200);
-    expect((await api(token).get(`/api/memories/${created._id}`)).status).toBe(404);
-    expect((await api(token).delete(`/api/memories/${created._id}`)).status).toBe(404);
+    // The update created a new version; deleting it retracts it, and a retracted version reads as 404
+    expect(updated.body._id).not.toBe(created._id);
+    expect((await api(token).delete(`/api/memories/${updated.body._id}`)).status).toBe(200);
+    expect((await api(token).get(`/api/memories/${updated.body._id}`)).status).toBe(404);
+    expect((await api(token).delete(`/api/memories/${updated.body._id}`)).status).toBe(404);
   });
 
   test('status can be changed to a valid value on update; anything else is rejected (filters are case-insensitive, writes are exact)', async () => {
@@ -53,8 +55,9 @@ describe('memories CRUD', () => {
     const { body } = await api(token).post('/api/memories').send({ content: 'x', category: 'Health' });
     const res = await api(token).put(`/api/memories/${body._id}`).send({ status: 'Archived' });
     expect(res.body.status).toBe('Archived');
-    expect((await api(token).put(`/api/memories/${body._id}`).send({ status: 'archived' })).status).toBe(400);
-    expect((await api(token).put(`/api/memories/${body._id}`).send({ status: 'Deleted' })).status).toBe(400);
+    // Every update creates a new version, so later updates go to the new (current) version's id
+    expect((await api(token).put(`/api/memories/${res.body._id}`).send({ status: 'archived' })).status).toBe(400);
+    expect((await api(token).put(`/api/memories/${res.body._id}`).send({ status: 'Deleted' })).status).toBe(400);
   });
 
   test('the owner and creation time cannot be changed through update', async () => {
@@ -151,11 +154,11 @@ describe('referential integrity', () => {
 
     const linked = await api(token).put(`/api/memories/${body._id}`).send({ conversationId: conversation._id });
     expect(linked.status).toBe(200);
-    expect((await api(token).get(`/api/memories/${body._id}`)).body.conversationId).toMatchObject({ title: 'Chat' });
+    expect((await api(token).get(`/api/memories/${linked.body._id}`)).body.conversationId).toMatchObject({ title: 'Chat' });
 
-    expect((await api(token).put(`/api/memories/${body._id}`).send({ conversationId: OBJECT_ID_NOT_IN_DB })).status).toBe(400);
+    expect((await api(token).put(`/api/memories/${linked.body._id}`).send({ conversationId: OBJECT_ID_NOT_IN_DB })).status).toBe(400);
 
-    const unlinked = await api(token).put(`/api/memories/${body._id}`).send({ conversationId: null });
+    const unlinked = await api(token).put(`/api/memories/${linked.body._id}`).send({ conversationId: null });
     expect(unlinked.status).toBe(200);
     expect(unlinked.body.conversationId).toBeNull();
   });

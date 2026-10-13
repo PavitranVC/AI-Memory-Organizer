@@ -14,6 +14,8 @@ const Category = require('../models/Category');
 const Conversation = require('../models/Conversation');
 const Message = require('../models/Message');
 const Memory = require('../models/Memory');
+const AuditLog = require('../models/AuditLog');
+const { CURRENT, temporalFilter } = require('../services/memoryService');
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/aimemory';
 
@@ -44,7 +46,7 @@ async function main() {
 
   // 1) Index list per collection (the same index must never appear twice)
   console.log('INDEXES');
-  for (const Model of [User, Category, Conversation, Message, Memory]) {
+  for (const Model of [User, Category, Conversation, Message, Memory, AuditLog]) {
     const indexes = await Model.collection.indexes();
     const names = indexes.map((i) => i.name);
     const duplicates = names.filter((n, i) => names.indexOf(n) !== i);
@@ -63,15 +65,26 @@ async function main() {
   }
   const conversation = await Conversation.findOne({ userId: user._id }).lean();
   const memory = await Memory.findOne({ userId: user._id }).lean();
-  console.log(`\nQUERY PLANS (for ${user.email})`);
+  // A memory with a version chain, if the seed made one for this user
+  const versioned = (await Memory.findOne({ userId: user._id, supersedes: { $ne: null } }).lean()) || memory;
+  const at = versioned.validFrom.toISOString();
+  console.log(`\nQUERY PLANS (for ${user.email}; time-travel queries at ${at})`);
 
   const queries = [
-    ['memories: list newest first', () => Memory.find({ userId: user._id }).sort({ _id: -1 }).limit(21).explain('executionStats')],
-    ['memories: by status', () => Memory.find({ userId: user._id, status: 'Active' }).sort({ _id: -1 }).limit(21).explain('executionStats')],
-    ['memories: by category', () => Memory.find({ userId: user._id, categoryId: memory.categoryId }).sort({ _id: -1 }).limit(21).explain('executionStats')],
-    ['memories: text search', () => Memory.find({ userId: user._id, $text: { $search: 'learn' } }).explain('executionStats')],
-    ['memories: category in use? (delete check)', () => Memory.find({ categoryId: memory.categoryId }).limit(1).explain('executionStats')],
-    ['aggregation: $match userId (by-category / status-ratio)', () => Memory.aggregate([{ $match: { userId: user._id } }, { $group: { _id: '$categoryId', count: { $sum: 1 } } }]).explain('executionStats')],
+    // Current state: validTo = null and retractedAt = null are equality matches, served by the current-state indexes
+    ['memories: current, newest first', () => Memory.find({ userId: user._id, ...CURRENT }).sort({ _id: -1 }).limit(21).explain('executionStats')],
+    ['memories: current, by status', () => Memory.find({ userId: user._id, ...CURRENT, status: 'Active' }).sort({ _id: -1 }).limit(21).explain('executionStats')],
+    ['memories: current, by category', () => Memory.find({ userId: user._id, ...CURRENT, categoryId: memory.categoryId }).sort({ _id: -1 }).limit(21).explain('executionStats')],
+    // Time travel: valid time (asOf), transaction time (knownAt) and both, served by { userId, _id, validFrom, recordedAt }
+    ['memories: ?asOf= (valid time)', () => Memory.find({ userId: user._id, ...temporalFilter({ asOf: at }).filter }).sort({ _id: -1 }).limit(21).explain('executionStats')],
+    ['memories: ?knownAt= (transaction time)', () => Memory.find({ userId: user._id, ...temporalFilter({ knownAt: at }).filter }).sort({ _id: -1 }).limit(21).explain('executionStats')],
+    ['memories: ?asOf=&knownAt= (both)', () => Memory.find({ userId: user._id, ...temporalFilter({ asOf: at, knownAt: new Date().toISOString() }).filter }).sort({ _id: -1 }).limit(21).explain('executionStats')],
+    // Each $graphLookup hop of the history endpoint is a lookup by _id
+    ['memories: history hop (version by _id)', () => Memory.find({ _id: versioned._id, userId: user._id }).explain('executionStats')],
+    ['memories: text search (current)', () => Memory.find({ userId: user._id, ...CURRENT, $text: { $search: 'learn' } }).explain('executionStats')],
+    ['memories: category in use? (delete check)', () => Memory.find({ categoryId: memory.categoryId, retractedAt: null }).limit(1).explain('executionStats')],
+    ['aggregation: $match current (by-category / status-ratio)', () => Memory.aggregate([{ $match: { userId: user._id, ...CURRENT } }, { $group: { _id: '$categoryId', count: { $sum: 1 } } }]).explain('executionStats')],
+    ['auditlog: my entries, newest first', () => AuditLog.find({ userId: user._id }).sort({ _id: -1 }).limit(21).explain('executionStats')],
     ['conversations: list newest first', () => Conversation.find({ userId: user._id }).sort({ _id: -1 }).limit(21).explain('executionStats')],
     ['messages: one conversation in order', () => Message.find({ conversationId: conversation._id }).sort({ sentAt: 1, _id: 1 }).limit(21).explain('executionStats')],
     ['users: login by email', () => User.find({ email: user.email }).explain('executionStats')],

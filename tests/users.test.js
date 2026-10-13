@@ -86,7 +86,7 @@ describe('users (self only)', () => {
 
     const res = await api(token).delete('/api/users/me');
     expect(res.status).toBe(200);
-    expect(res.body.deleted).toEqual({ memories: 1, messages: 2, conversations: 1 });
+    expect(res.body.deleted).toEqual({ memories: 1, messages: 2, conversations: 1, auditEntries: 1 });
 
     expect(await models.User.countDocuments({ _id: user._id })).toBe(0);
     expect(await models.Conversation.countDocuments({ userId: user._id })).toBe(0);
