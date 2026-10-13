@@ -5,13 +5,14 @@ const Category = require('../models/Category');
 const memoryService = require('./memoryService');
 const consent = require('./consentService');
 const { callLlm } = require('./llm');
+const retrieval = require('./retrieval');
 const { validateExtraction, validateDecision } = require('./llm/schemas');
 
 // Stage 3 pipeline for one new user message (run by the job worker, never inside an API request):
 //   1. EXTRACT: the LLM turns the message (plus a short window of earlier messages, for context only) into
 //      candidate facts with category, importance, confidence, sensitivity and an optional validFrom.
-//   2. RECONCILE: for each candidate, find similar CURRENT memories with the text index and let the LLM
-//      decide ADD / UPDATE / SUPERSEDE / NOOP.
+//   2. RECONCILE: for each candidate, find similar CURRENT memories with hybrid retrieval (Stage 4: keyword +
+//      vector similarity) and let the LLM decide ADD / UPDATE / SUPERSEDE / NOOP.
 //   3. APPLY the decision through memoryService, so the Stage 2 versioning, transactions and audit log are
 //      reused unchanged. Provenance: every memory written points at the source message.
 
@@ -43,15 +44,19 @@ function formatRecent(messages) {
   return messages.map((m) => `[${m.role}] ${m.content.length > CONTEXT_CHARS ? `${m.content.slice(0, CONTEXT_CHARS)}...` : m.content}`).join('\n');
 }
 
-// Similar current memories of the same user: MongoDB text search on content and tags (the topic is stored
-// as a tag). Stage 4 replaces this with hybrid (vector + text) retrieval.
+// Similar current memories of the same user, found with the Stage 4 hybrid retrieval: keyword matches AND
+// vector similarity, so a candidate can be matched to a memory it shares no exact word with (with a semantic
+// embedder). Text + vector only: recency and importance say nothing about "is this the same fact?".
+// touch: false, because the extractor looking at a memory is not the user using it.
 async function findSimilar(userId, candidate) {
   const search = `${candidate.content} ${candidate.topic}`.trim();
-  return Memory.find({ userId, ...memoryService.CURRENT, $text: { $search: search } }, { score: { $meta: 'textScore' } })
-    .sort({ score: { $meta: 'textScore' } })
-    .limit(SIMILAR_LIMIT)
-    .populate({ path: 'categoryId', select: 'name' })
-    .lean();
+  const { results } = await retrieval.retrieve(userId, {
+    query: search.slice(0, 1000),
+    k: SIMILAR_LIMIT,
+    weights: { text: 0.5, vector: 0.5, recency: 0, importance: 0 },
+    touch: false,
+  });
+  return results.map((r) => r.memory);
 }
 
 // The valid-time start of an extracted fact: the date the user stated, else the moment they said it.

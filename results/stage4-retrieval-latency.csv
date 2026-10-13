@@ -1,0 +1,5 @@
+dataset,memories,users,current_memories,mode,backend,embedder,k,candidates,queries,p50_ms,p95_ms,mean_ms,vector_p50_ms,vector_p95_ms,text_p50_ms,text_p95_ms,embed_backfill_s,embedded,avg_doc_bytes,avg_embedding_bytes
+synthetic,1000,1,778,current,local,lexical-hash-v1-256,5,50,200,39.43,50.39,40.57,20.57,31.05,5.18,7.35,0.38,979,2858,2355
+synthetic,1000,1,778,asOf,local,lexical-hash-v1-256,5,50,200,33.53,45.48,32.55,16.36,26.25,4.5,6.51,0.38,979,2858,2355
+synthetic,10000,1,7728,current,local,lexical-hash-v1-256,5,50,200,259.45,322.24,265.39,246.73,298.61,11.38,23.98,2.95,9745,2859,2356
+synthetic,10000,1,7728,asOf,local,lexical-hash-v1-256,5,50,200,212.65,331.54,219.46,191.51,288.85,11.8,25.03,2.95,9745,2859,2356

@@ -7,3 +7,7 @@ process.env.LLM_PROVIDER = 'mock';
 delete process.env.ANTHROPIC_API_KEY;
 process.env.JOB_RETRY_DELAY_MS = '0'; // a failed job is due again at once, so tests can retry it immediately
 process.env.MONGO_URI_TEST = process.env.MONGO_URI_TEST || 'mongodb://127.0.0.1:27017/aimemory_test';
+// Stage 4: tests only ever use the deterministic mock embedder and the local (brute-force) vector backend
+process.env.EMBEDDING_PROVIDER = 'mock';
+process.env.VECTOR_BACKEND = 'local';
+delete process.env.VOYAGE_API_KEY;

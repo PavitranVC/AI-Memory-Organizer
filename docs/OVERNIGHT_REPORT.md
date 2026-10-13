@@ -3,7 +3,7 @@
 Coordinator log for the unattended run described in `docs/OVERNIGHT_PLAN.md`. Each stage was built by its own
 subagent; this file records each subagent's summary, checked against the pushed branch.
 
-Next step: Stage 4-lite (`claude/stage-4-hybrid-retrieval`, from the Stage 5 branch).
+Next step: Stage 6-prep (`claude/stage-6-evaluation`, from the Stage 4 branch).
 
 ## Stages
 
@@ -12,6 +12,7 @@ Next step: Stage 4-lite (`claude/stage-4-hybrid-retrieval`, from the Stage 5 bra
 | 2 | `claude/stage-2-temporal-schema` | [#3](https://github.com/PavitranVC/AI-Memory-Organizer/pull/3) | done | 153/153 (9 suites) | None. CI green (Node 20/22, MongoDB 7 and 8). |
 | 3 | `claude/stage-3-llm-extraction` | [#4](https://github.com/PavitranVC/AI-Memory-Organizer/pull/4) | done | 193 (153 + 40 new) | Live smoke test not run (no paid calls tonight). |
 | 5 | `claude/stage-5-datasets` | [#5](https://github.com/PavitranVC/AI-Memory-Organizer/pull/5) | done (5-lite) | 209 (16 new) | LongMemEval / WildChat not loaded (Hugging Face blocked). |
+| 4 | `claude/stage-4-hybrid-retrieval` | [#6](https://github.com/PavitranVC/AI-Memory-Organizer/pull/6) | done (4-lite) | 249 (40 new) | Voyage and Atlas never run (paid / no cluster). Weights untuned. |
 
 ## Stage details
 
@@ -53,6 +54,20 @@ Next step: Stage 4-lite (`claude/stage-4-hybrid-retrieval`, from the Stage 5 bra
 - Note for Stage 6: LoCoMo's second speaker is stored as `assistant`, and the extractor only reads `user`
   messages.
 
+### Stage 4-lite: Hybrid retrieval
+- Head `406e478`, verified on `origin`. Stacked on #5.
+- Embedding stored on each memory version; providers: mock, lexical (a lexical baseline, **not** a semantic
+  model) and Voyage. Local (brute-force cosine) and Atlas vector backends behind one interface; weights in
+  `.env`; only memories valid at `asOf` are returned.
+- `POST /api/ask` sends only the top-k memories to the model and checks the answer's citations;
+  `GET /api/memories/retrieve` shows the ranking without the model. Reconciliation now uses hybrid retrieval.
+- Benchmark (`synthetic`, one user, lexical embedder): p95 50.39 ms at 1k memories, 322.24 ms at 10k
+  (`results/stage4-retrieval-latency.csv`). The vector is about 82% of each memory document's size.
+- Not done: Voyage never called (request format `TODO: verify`); Atlas `$vectorSearch` never run, only checked
+  against a test emulator (null filters `TODO: verify`). Weights, 90-day half-life and lexical cut-off 0.3 are
+  untuned.
+- Known weakness: recency counts from `validFrom`, so a long-standing current fact ranks low (in the notes).
+
 ## Needs you
 - Stage 2: convert your laptop MongoDB service to a replica set (`docs/stages/STAGE-2.md`, section 6), then run
   `npm test` and `npm run migrate` locally.
@@ -61,3 +76,6 @@ Next step: Stage 4-lite (`claude/stage-4-hybrid-retrieval`, from the Stage 5 bra
 - Stage 5: accept LoCoMo's CC BY-NC 4.0 licence. To get LongMemEval / WildChat, allow Hugging Face in the
   environment's network settings or download them on your laptop.
 - Stage 5: verify the LoCoMo question-type names and the LongMemEval URL (marked `TODO: verify`).
+- Stage 4 (optional): real embeddings with `VOYAGE_API_KEY` + `EMBEDDING_PROVIDER=voyage` (allow
+  api.voyageai.com), then `npm run embed:backfill`; or an Atlas M0 cluster with `VECTOR_BACKEND=atlas` and
+  `npm run atlas:index` (steps in the README).

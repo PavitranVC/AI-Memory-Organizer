@@ -14,6 +14,7 @@ function llmConfig(env = process.env) {
     models: {
       extract: env.EXTRACTION_MODEL || DEFAULT_MODEL,
       reconcile: env.RECONCILE_MODEL || DEFAULT_MODEL,
+      answer: env.ANSWER_MODEL || DEFAULT_MODEL, // Stage 4: POST /api/ask
       judge: env.JUDGE_MODEL || DEFAULT_MODEL, // used by the Stage 6 evaluation
     },
     effort,

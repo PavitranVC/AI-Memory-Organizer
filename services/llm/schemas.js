@@ -42,6 +42,18 @@ const RECONCILE_SCHEMA = {
   additionalProperties: false,
 };
 
+// Stage 4: the answer to a question, citing the memories it used by their labels (m1, m2, ...)
+const ANSWER_SCHEMA = {
+  type: 'object',
+  properties: {
+    answer: { type: 'string' },
+    citedMemories: { type: 'array', items: { type: 'string' } },
+    insufficient: { type: 'boolean' },
+  },
+  required: ['answer', 'citedMemories', 'insufficient'],
+  additionalProperties: false,
+};
+
 const isText = (v) => typeof v === 'string' && v.trim() !== '';
 
 // Returns { candidates, rejected }: well-formed candidates (trimmed, clamped) and the reasons others were dropped
@@ -92,4 +104,15 @@ function validateDecision(data, allowedIds) {
   };
 }
 
-module.exports = { EXTRACT_SCHEMA, RECONCILE_SCHEMA, ACTIONS, validateExtraction, validateDecision };
+// Checks an answer against the labels the model was shown, so a citation can only ever point at a memory that
+// was actually retrieved for this user (an invented label is an error, not a silent wrong citation)
+function validateAnswer(data, allowedLabels) {
+  if (!data || !isText(data.answer)) throw new Error('answer output: "answer" must be a non-empty string');
+  if (!Array.isArray(data.citedMemories)) throw new Error('answer output: "citedMemories" must be an array');
+  const cited = [...new Set(data.citedMemories.map((label) => String(label).trim()))];
+  const unknown = cited.filter((label) => !allowedLabels.includes(label));
+  if (unknown.length > 0) throw new Error(`answer output: cited ${unknown.join(', ')}, which are not among the memories shown`);
+  return { answer: data.answer.trim().slice(0, 2000), citedMemories: cited, insufficient: data.insufficient === true };
+}
+
+module.exports = { EXTRACT_SCHEMA, RECONCILE_SCHEMA, ANSWER_SCHEMA, ACTIONS, validateExtraction, validateDecision, validateAnswer };

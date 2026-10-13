@@ -11,7 +11,7 @@ describe('config', () => {
   test('defaults: mock provider, claude-opus-5-5 for every task, medium effort, server-side fallback on', () => {
     const config = llmConfig({});
     expect(config.provider).toBe('mock');
-    expect(config.models).toEqual({ extract: DEFAULT_MODEL, reconcile: DEFAULT_MODEL, judge: DEFAULT_MODEL });
+    expect(config.models).toEqual({ extract: DEFAULT_MODEL, reconcile: DEFAULT_MODEL, answer: DEFAULT_MODEL, judge: DEFAULT_MODEL });
     expect(DEFAULT_MODEL).toBe('claude-opus-5-5');
     expect(config.effort).toBe('medium');
     expect(config.fallbacks).toBe('default');

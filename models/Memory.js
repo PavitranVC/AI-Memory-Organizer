@@ -58,8 +58,26 @@ const memorySchema = new mongoose.Schema(
     // --- Usage (bookkeeping, updated in place: reading a memory is not a change of belief) ---
     lastAccessedAt: { type: Date, default: null },
     accessCount: { type: Number, default: 0, min: 0 },
+
+    // --- Stage 4: embedding for vector search ---
+    // A vector of the version's text (content + tags) from services/embeddings. Derived data, like an index
+    // entry: written once with the version (or later by "npm run embed:backfill"), never edited by clients.
+    // select: false keeps hundreds of numbers out of every API response; retrieval asks for it explicitly.
+    embedding: { type: [Number], default: undefined, select: false },
+    // Which model and size made the vector (e.g. "lexical-hash-v1-256"). Vectors are only ever compared with
+    // vectors of the same model; null = not embedded yet.
+    embeddingModel: { type: String, default: null },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    // A freshly created document still holds its embedding; never send it to clients
+    toJSON: {
+      transform: (doc, ret) => {
+        delete ret.embedding;
+        return ret;
+      },
+    },
+  }
 );
 
 // ---------------------------------------------------------------------------

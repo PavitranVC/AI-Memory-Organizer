@@ -34,6 +34,8 @@ app.get('/', (req, res) => {
       countByCategory: 'GET    /api/memories/stats/by-category',
       activeVsArchived: 'GET    /api/memories/stats/status-ratio',
       textSearch: 'GET    /api/memories/search?q=',
+      retrieve: 'GET    /api/memories/retrieve?q=&asOf=&k=   (hybrid: text + vector + recency + importance)',
+      ask: 'POST   /api/ask   { question, asOf?, k? }   (answer with citations to the memories used)',
     },
   });
 });
@@ -45,6 +47,7 @@ app.use('/api/conversations', require('./routes/conversations'));
 app.use('/api/memories', require('./routes/memory'));
 app.use('/api/audit', require('./routes/audit'));
 app.use('/api/jobs', require('./routes/jobs'));
+app.use('/api/ask', require('./routes/ask'));
 
 // Unknown routes
 app.use((req, res) => {
