@@ -92,7 +92,7 @@ describe('extraction and reconciliation', () => {
     // No similar memory existed, so reconciliation needed no LLM call: one call (extract) in total
     const calls = await LlmCall.find().lean();
     expect(calls).toHaveLength(1);
-    expect(calls[0]).toMatchObject({ task: 'extract', provider: 'mock', model: 'claude-opus-5-5', promptId: 'extract.v1', status: 'ok', tokensEstimated: true, costUsd: 0 });
+    expect(calls[0]).toMatchObject({ task: 'extract', provider: 'mock', model: 'claude-opus-5-5', promptId: 'extract.v2', status: 'ok', tokensEstimated: true, costUsd: 0 });
     expect(String(calls[0].userId)).toBe(String(user._id));
     expect(calls[0].inputTokens).toBeGreaterThan(0);
 
@@ -247,7 +247,7 @@ describe('extraction and reconciliation', () => {
       await worker.drain();
 
       expect(seen).toHaveLength(1);
-      expect(seen[0]).toMatch(/NEW MESSAGE \(sent at \d{4}-\d{2}-\d{2}\):\nI live in Pune/);
+      expect(seen[0]).toMatch(/NEW MESSAGE \(sent on \d{4}-\d{2}-\d{2} \(\w+day\)\):\nI live in Pune/);
       expect(seen[0]).toMatch(/\[assistant\] second message\n\[assistant\] third message/);
       expect(seen[0]).not.toMatch(/too old|later message/);
     } finally {
@@ -345,5 +345,49 @@ describe('GET /api/jobs', () => {
     expect((await api(b.token).get(`/api/jobs/${message.extractionJobId}`)).status).toBe(404);
     expect((await api(a.token).get('/api/jobs?status=stuck')).status).toBe(400);
     expect((await api().get('/api/jobs')).status).toBe(401);
+  });
+});
+
+describe('extract.v2: dated events and the calendar (Stage 3b)', () => {
+  test('calendarFor lists the message day and the 7 days before it, each with its weekday', () => {
+    const lines = extraction.calendarFor(new Date('2025-06-10T18:30:00Z')).split('\n');
+    expect(lines).toHaveLength(8);
+    expect(lines[0]).toBe('2025-06-10 (Tuesday) today');
+    expect(lines[1]).toBe('2025-06-09 (Monday) yesterday');
+    expect(lines[4]).toBe('2025-06-06 (Friday)'); // "last Friday" is looked up, not computed
+    expect(lines[7]).toBe('2025-06-03 (Tuesday)');
+    // Month and year boundaries
+    expect(extraction.calendarFor(new Date('2024-03-01T00:00:00Z')).split('\n')[1]).toBe('2024-02-29 (Thursday) yesterday');
+    expect(extraction.calendarFor(new Date('2025-01-02T09:00:00Z')).split('\n')[3]).toBe('2024-12-30 (Monday)');
+  });
+
+  test('the extractor sends the calendar and the message day; an event keeps its date as validFrom', async () => {
+    const { user, token } = await createUser();
+    const { say } = await chat(token);
+    const seen = [];
+    llm.setProvider({
+      name: 'mock',
+      async generateJson(args) {
+        seen.push(args);
+        return {
+          data: { candidates: [{ content: 'Passed a driving test on 2025-06-09', topic: 'event driving test', category: 'Personal', importance: 3, confidence: 0.9, sensitivity: 'normal', validFrom: '2025-06-09' }] },
+          servedModel: args.model,
+          stopReason: 'end_turn',
+          usage: { inputTokens: 1, outputTokens: 1, cacheReadTokens: 0, cacheWriteTokens: 0 },
+        };
+      },
+    });
+    const message = await say('So proud, I passed my driving test yesterday!');
+    await Message.updateOne({ _id: message._id }, { $set: { sentAt: new Date('2025-06-10T12:00:00Z') } });
+    await worker.drain();
+
+    expect(seen[0].task).toBe('extract');
+    expect(seen[0].user).toMatch(/CALENDAR \(the message day and the 7 days before it\):\n2025-06-10 \(Tuesday\) today\n2025-06-09 \(Monday\) yesterday/);
+    expect(seen[0].user).toMatch(/NEW MESSAGE \(sent on 2025-06-10 \(Tuesday\)\)/);
+    expect(seen[0].system).toMatch(/Never compute a weekday yourself/);
+    const [memory] = await current(user._id);
+    expect(memory.content).toBe('Passed a driving test on 2025-06-09');
+    expect(memory.validFrom.toISOString().slice(0, 10)).toBe('2025-06-09');
+    expect(memory.tags).toEqual(['event driving test']);
   });
 });

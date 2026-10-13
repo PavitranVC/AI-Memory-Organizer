@@ -12,11 +12,11 @@
 //                       validFrom/validTo and no dates, so the answer model cannot tell old from current
 //   ours_no_provenance  ablation: as "ours", but without the source quote and dialog id
 //
-// LoCoMo is a chat between TWO people, while the extractor (prompts/extract.v1.md) mines facts about "the
-// user" of a user/assistant chat. The harness therefore builds two perspectives per sample: user A (speaker A
+// LoCoMo is a chat between TWO people, while the extractor (prompts/extract.v1.md, and extract.v2 since Stage 3b)
+// mines memories about "the user" who wrote the message. The harness therefore builds two perspectives per sample: user A (speaker A
 // is the 'user', as Stage 5 loads it) and a mirror user B (the same messages with the roles swapped). Every
 // message is mined exactly once, in the perspective of the person who said it, and each memory is labelled
-// with the person whose store it is in. This keeps extract.v1 unchanged.
+// with the person whose store it is in. This keeps the extractor itself unchanged.
 const { retrieve } = require('../services/retrieval');
 const { embedDocuments, embedQuery, cosine } = require('../services/embeddings');
 

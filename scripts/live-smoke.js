@@ -161,10 +161,12 @@ async function liveOllama() {
 }
 
 async function main() {
-  if ((process.env.LLM_PROVIDER || '').toLowerCase() === 'ollama') return liveOllama();
+  const onlyEstimate = process.argv.includes('--estimate');
+  // --estimate never runs anything, whatever LLM_PROVIDER says (it used to start the Ollama run)
+  if (!onlyEstimate && (process.env.LLM_PROVIDER || '').toLowerCase() === 'ollama') return liveOllama();
   const est = estimate(llmConfig({ ...process.env, LLM_PROVIDER: 'anthropic' }).models.extract);
   printEstimate(est);
-  if (process.argv.includes('--estimate')) return;
+  if (onlyEstimate) return;
   if (!process.env.ANTHROPIC_API_KEY) {
     console.log('\nANTHROPIC_API_KEY is not set: live smoke test SKIPPED (nothing was called).');
     return;

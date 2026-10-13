@@ -41,6 +41,21 @@ async function recentWindow(message) {
   return rows.reverse();
 }
 
+const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const ymd = (date) => date.toISOString().slice(0, 10);
+const dayLabel = (date) => `${ymd(date)} (${WEEKDAYS[date.getUTCDay()]})`;
+
+// extract.v2: the message day and the 7 days before it, each with its weekday, so the model looks up
+// "last Friday" instead of computing it (14B local models got that wrong). Dates are UTC days, like sentAt.
+function calendarFor(sentAt) {
+  const lines = [];
+  for (let back = 0; back <= 7; back += 1) {
+    const day = new Date(Date.UTC(sentAt.getUTCFullYear(), sentAt.getUTCMonth(), sentAt.getUTCDate() - back));
+    lines.push(`${dayLabel(day)}${back === 0 ? ' today' : back === 1 ? ' yesterday' : ''}`);
+  }
+  return lines.join('\n');
+}
+
 function formatRecent(messages) {
   if (messages.length === 0) return '(none)';
   return messages.map((m) => `[${m.role}] ${m.content.length > CONTEXT_CHARS ? `${m.content.slice(0, CONTEXT_CHARS)}...` : m.content}`).join('\n');
@@ -195,7 +210,9 @@ async function processMessage({ userId, messageId, conversationId, jobId = null 
       vars: {
         categories: categories.map((c) => c.name).join(', ') || '(none)',
         recent: formatRecent(recent),
-        sentAt: message.sentAt.toISOString().slice(0, 10),
+        sentAt: ymd(message.sentAt), // extract.v1
+        sentDay: dayLabel(message.sentAt), // extract.v2
+        calendar: calendarFor(message.sentAt), // extract.v2
         message: message.content,
       },
       extra: { message: message.content },
@@ -243,4 +260,4 @@ async function processMessage({ userId, messageId, conversationId, jobId = null 
   return { messageId: message._id, candidates: candidates.length, rejected, decisions };
 }
 
-module.exports = { processMessage, recentWindow, findSimilar };
+module.exports = { processMessage, recentWindow, findSimilar, calendarFor };
