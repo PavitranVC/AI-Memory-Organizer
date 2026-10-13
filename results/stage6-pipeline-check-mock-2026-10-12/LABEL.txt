@@ -1,0 +1,1 @@
+PIPELINE CHECK (mock model), NOT A RESULT. The mock answers and judges by word overlap; these numbers only show that the harness runs end to end.

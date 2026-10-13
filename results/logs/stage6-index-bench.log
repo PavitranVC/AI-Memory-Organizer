@@ -1,0 +1,75 @@
+
+> ai-memory-organizer@1.0.0 bench:indexes
+> node eval/bench-indexes.js
+
+10000 memories: generated in 0.3 s; running without indexes
+  no index | current, newest first: p50 2.09 ms, docs examined 289.2
+  no index | current, by status: p50 1.96 ms, docs examined 334.6
+  no index | current, by category: p50 3.18 ms, docs examined 1129
+  no index | asOf (valid time): p50 10.19 ms, docs examined 5603.2
+  no index | knownAt (transaction time): p50 10.53 ms, docs examined 5600
+  no index | asOf + knownAt (bi-temporal): p50 12.22 ms, docs examined 5603.2
+  no index | history hop (version by _id): p50 1.13 ms, docs examined 1
+  no index | all current rows of a user (vector scan): p50 8.5 ms, docs examined 10000
+  no index | category in use? (delete check): p50 1.38 ms, docs examined 8.2
+  no index | aggregate: count by category: p50 7.16 ms, docs examined 10000
+  indexed | current, newest first: p50 1.76 ms, docs examined 28
+  indexed | current, by status: p50 1.44 ms, docs examined 31.6
+  indexed | current, by category: p50 1.51 ms, docs examined 21
+  indexed | asOf (valid time): p50 2.4 ms, docs examined 21.8
+  indexed | knownAt (transaction time): p50 2.16 ms, docs examined 21
+  indexed | asOf + knownAt (bi-temporal): p50 2.41 ms, docs examined 21.8
+  indexed | history hop (version by _id): p50 1.17 ms, docs examined 1
+  indexed | all current rows of a user (vector scan): p50 3.66 ms, docs examined 0
+  indexed | keyword search, current: p50 2.12 ms, docs examined 134.4
+  indexed | category in use? (delete check): p50 1.09 ms, docs examined 1
+  indexed | aggregate: count by category: p50 2.66 ms, docs examined 762.2
+10000 memories done in 0.1 min
+100000 memories: generated in 2.4 s; running without indexes
+  no index | current, newest first: p50 6.73 ms, docs examined 2406.6
+  no index | current, by status: p50 7.6 ms, docs examined 2516.8
+  no index | current, by category: p50 22.96 ms, docs examined 11620.4
+  no index | asOf (valid time): p50 151.16 ms, docs examined 56060.8
+  no index | knownAt (transaction time): p50 118.46 ms, docs examined 56182.4
+  no index | asOf + knownAt (bi-temporal): p50 112.2 ms, docs examined 56060.8
+  no index | history hop (version by _id): p50 1.09 ms, docs examined 1
+  no index | all current rows of a user (vector scan): p50 54.17 ms, docs examined 100000
+  no index | category in use? (delete check): p50 1.14 ms, docs examined 14.4
+  no index | aggregate: count by category: p50 52.12 ms, docs examined 100000
+  indexed | current, newest first: p50 1.45 ms, docs examined 26.6
+  indexed | current, by status: p50 1.47 ms, docs examined 28
+  indexed | current, by category: p50 1.37 ms, docs examined 21
+  indexed | asOf (valid time): p50 2.46 ms, docs examined 21.8
+  indexed | knownAt (transaction time): p50 2.29 ms, docs examined 21.4
+  indexed | asOf + knownAt (bi-temporal): p50 2.1 ms, docs examined 21.8
+  indexed | history hop (version by _id): p50 1.09 ms, docs examined 1
+  indexed | all current rows of a user (vector scan): p50 3.22 ms, docs examined 0
+  indexed | keyword search, current: p50 2.32 ms, docs examined 131.2
+  indexed | category in use? (delete check): p50 1.01 ms, docs examined 1
+  indexed | aggregate: count by category: p50 3.22 ms, docs examined 765.8
+100000 memories done in 0.5 min
+1000000 memories: generated in 23.2 s; running without indexes
+  no index | current, newest first: p50 75.88 ms, docs examined 25830.6
+  no index | current, by status: p50 91.31 ms, docs examined 28078.2
+  no index | current, by category: p50 280.11 ms, docs examined 99857.2
+  no index | asOf (valid time): p50 1421.34 ms, docs examined 557619.6
+  no index | knownAt (transaction time): p50 1386.82 ms, docs examined 557630.8
+  no index | asOf + knownAt (bi-temporal): p50 1653.79 ms, docs examined 557619.6
+  no index | history hop (version by _id): p50 1.17 ms, docs examined 1
+  no index | all current rows of a user (vector scan): p50 517.7 ms, docs examined 1000000
+  no index | category in use? (delete check): p50 0.98 ms, docs examined 1.8
+  no index | aggregate: count by category: p50 523.68 ms, docs examined 1000000
+  indexed | current, newest first: p50 1.38 ms, docs examined 26
+  indexed | current, by status: p50 1.3 ms, docs examined 28
+  indexed | current, by category: p50 1.48 ms, docs examined 21
+  indexed | asOf (valid time): p50 2.05 ms, docs examined 22
+  indexed | knownAt (transaction time): p50 2.22 ms, docs examined 21.8
+  indexed | asOf + knownAt (bi-temporal): p50 2.21 ms, docs examined 22
+  indexed | history hop (version by _id): p50 0.9 ms, docs examined 1
+  indexed | all current rows of a user (vector scan): p50 3.23 ms, docs examined 0
+  indexed | keyword search, current: p50 2.02 ms, docs examined 118.8
+  indexed | category in use? (delete check): p50 0.99 ms, docs examined 1
+  indexed | aggregate: count by category: p50 2.86 ms, docs examined 779
+1000000 memories done in 4.9 min
+Wrote results/stage6-index-bench.csv, results/stage6-index-bench-build.csv and results/stage6-index-bench.txt
+Charts: results/stage6-index-bench-p50.svg, results/stage6-index-bench-docs.svg

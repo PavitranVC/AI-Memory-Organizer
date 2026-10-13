@@ -1,0 +1,23 @@
+
+> ai-memory-organizer@1.0.0 eval
+> node eval/run.js --questions 10
+
+conv-26: 419 messages, 10 questions
+  full_context: 10 questions answered
+  rag_messages: 10 questions answered
+  bitemporal store: 14 versions (13 current) in 3.9 s; ADD=13 UPDATE=1
+  ours: 10 questions answered
+  ours_no_temporal: 10 questions answered
+  ours_no_provenance: 10 questions answered
+  overwrite store: 13 versions (13 current) in 2.1 s; ADD=13 UPDATE=1
+  overwrite_memory: 10 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+PIPELINE CHECK (mock model), NOT A RESULT. The mock answers and judges by word overlap; these numbers only show that the harness runs end to end.
+  full_context: n=10 F1=0.0135 judge=0 recall@k=1
+  rag_messages: n=10 F1=0.0215 judge=0 recall@k=0.55
+  overwrite_memory: n=10 F1=0.1449 judge=0.1 recall@k=0
+  ours: n=10 F1=0.1449 judge=0.1 recall@k=0
+  ours_no_temporal: n=10 F1=0.145 judge=0.1 recall@k=0
+  ours_no_provenance: n=10 F1=0.14 judge=0.1 recall@k=0
+Wrote results/stage6-pipeline-check-mock-2026-10-12/

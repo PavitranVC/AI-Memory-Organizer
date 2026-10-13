@@ -1,0 +1,13 @@
+Stage 6 index benchmark: main memory queries with and without secondary indexes
+command: npm run bench:indexes
+git commit: d3ab95744d3f77c703d83ce3547425e196c0652e (the code that ran; results are committed in a later commit)
+date: 2026-10-12T22:39:01.920Z
+dataset: SYNTHETIC (services/datasets/synthetic.js, seed 42, 1 user per 1,000 memories). Performance numbers only, never accuracy.
+sizes asked: 10000, 100000, 1000000; time budget per size: 30 min
+per query: explain("executionStats") on 5 parameter sets (random user, category, time; seed 7), averaged;
+  then 30 timed runs after 3 warm-up runs (wall-clock in Node: query + network + decoding), nearest-rank percentiles
+"no" = only the _id index; "yes" = every index declared in models/Memory.js, built after loading.
+write cost: 10000 extra versions inserted in batches of 1,000 and then removed, without and with the indexes
+single run, warm cache (WiredTiger cache: 7899971584 bytes; compare data_bytes in the -build.csv); MongoDB in Docker on the same machine
+machine: 4 x Intel(R) Xeon(R) Processor @ 2.10GHz, 16 GB RAM, linux 6.18.44-fc-v114
+node: v22.22.0; mongodb: 7.0.43

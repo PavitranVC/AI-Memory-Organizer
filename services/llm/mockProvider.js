@@ -80,6 +80,53 @@ function answer(memories) {
   return { answer: `From your memories: ${top.content.replace(/[.!?]+$/, '')}.`, citedMemories: [top.label], insufficient: false };
 }
 
+// Stage 6 evaluation stand-ins. NOT a baseline and never a result: they only let the harness run end to end.
+// eval_answer: returns the context item that shares the most words with the question (or "No information
+// available." when none shares a content word). judge: "correct" when the token F1 with the gold answer is at
+// least 0.5 (the same overlap rule a lexical scorer would use), so its verdicts carry no information either.
+const STOP = new Set(['a', 'an', 'the', 'of', 'to', 'in', 'on', 'at', 'for', 'and', 'or', 'is', 'was', 'did', 'do', 'does', 'what', 'when', 'where', 'who', 'why', 'how', 'which', 'with', 'about', 'has', 'have', 'had', 'her', 'his', 'their', 'they', 'she', 'he', 'it', 'be', 'by', 'from', 'that', 'this', 'as', 'are', 'were', 'would', 'likely', 'kind', 'go']);
+const contentWords = (s) => words(s).filter((w) => !STOP.has(w));
+
+function evalAnswer(question, items) {
+  const q = new Set(contentWords(question));
+  let best = null;
+  let bestScore = 0;
+  for (const item of items) {
+    const score = new Set(contentWords(item.text).filter((w) => q.has(w))).size;
+    if (score > bestScore) [best, bestScore] = [item, score];
+  }
+  if (!best) return { answer: 'No information available.', citedMemories: [], insufficient: true };
+  return { answer: String(best.text).slice(0, 200), citedMemories: [best.label], insufficient: false };
+}
+
+function tokenF1(a, b) {
+  const x = words(a);
+  const y = words(b);
+  if (!x.length || !y.length) return 0;
+  const counts = new Map();
+  y.forEach((w) => counts.set(w, (counts.get(w) || 0) + 1));
+  let common = 0;
+  for (const w of x) {
+    if (counts.get(w) > 0) {
+      common += 1;
+      counts.set(w, counts.get(w) - 1);
+    }
+  }
+  if (!common) return 0;
+  const p = common / x.length;
+  const r = common / y.length;
+  return (2 * p * r) / (p + r);
+}
+
+function judge(gold, candidate) {
+  const noInfo = /no information available|not mentioned/i;
+  if (gold === null || gold === undefined || noInfo.test(gold)) {
+    return { correct: noInfo.test(candidate), reason: 'mock judge: abstention check' };
+  }
+  const f1 = tokenF1(candidate, gold);
+  return { correct: f1 >= 0.5, reason: `mock judge: token F1 ${f1.toFixed(2)}` };
+}
+
 const estimateTokens = (text) => Math.ceil(String(text).length / 4);
 
 class MockProvider {
@@ -87,7 +134,7 @@ class MockProvider {
     this.name = 'mock';
   }
 
-  async generateJson({ task, model, system, user, vars = {} }) {
+  async generateJson({ task, model, system, userPrefix = null, user, vars = {} }) {
     const text = String(vars.message || vars.question || (vars.candidate && vars.candidate.content) || '');
     if (text.includes('[mock:fail]')) throw new LlmError('mock: simulated temporary failure');
     if (text.includes('[mock:refuse]')) throw new LlmRefusalError('mock: simulated refusal');
@@ -96,6 +143,8 @@ class MockProvider {
     if (task === 'extract') data = extract(vars.message);
     else if (task === 'reconcile') data = reconcile(vars.candidate, vars.existing || []);
     else if (task === 'answer') data = answer(vars.memories || []);
+    else if (task === 'eval_answer') data = evalAnswer(vars.question, vars.items || []);
+    else if (task === 'judge') data = judge(vars.gold, vars.candidate);
     else throw new LlmError(`mock: unknown task ${task}`, { retryable: false });
 
     return {
@@ -103,9 +152,9 @@ class MockProvider {
       servedModel: model,
       stopReason: 'end_turn',
       // Estimated (characters / 4), not real token counts: llmcalls marks these rows tokensEstimated
-      usage: { inputTokens: estimateTokens(system) + estimateTokens(user), outputTokens: estimateTokens(JSON.stringify(data)), cacheReadTokens: 0, cacheWriteTokens: 0 },
+      usage: { inputTokens: estimateTokens(system) + estimateTokens(userPrefix || '') + estimateTokens(user), outputTokens: estimateTokens(JSON.stringify(data)), cacheReadTokens: 0, cacheWriteTokens: 0 },
     };
   }
 }
 
-module.exports = { MockProvider, extract, reconcile, answer, SINGLE_VALUED };
+module.exports = { MockProvider, extract, reconcile, answer, evalAnswer, judge, SINGLE_VALUED };

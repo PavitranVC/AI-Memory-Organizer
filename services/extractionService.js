@@ -7,6 +7,7 @@ const consent = require('./consentService');
 const { callLlm } = require('./llm');
 const retrieval = require('./retrieval');
 const { validateExtraction, validateDecision } = require('./llm/schemas');
+const embeddings = require('./embeddings');
 
 // Stage 3 pipeline for one new user message (run by the job worker, never inside an API request):
 //   1. EXTRACT: the LLM turns the message (plus a short window of earlier messages, for context only) into
@@ -89,6 +90,20 @@ async function decide(userId, candidate, similar, ctx) {
   return validateDecision(data, existing.map((e) => e.id));
 }
 
+// Stage 6 BASELINE ONLY ("overwrite-style memory", as most assistant memories work): an UPDATE or SUPERSEDE
+// rewrites the memory in place. No new version, no closed valid time, no audit entry, so the old value is
+// gone. The app itself never uses this; the evaluation compares it with the versioned pipeline above.
+async function overwriteInPlace(userId, target, decision, candidate, message, fields) {
+  const content = decision.content || candidate.content;
+  const tags = [...new Set([...(target.tags || []), ...(candidate.topic ? [candidate.topic] : [])])];
+  const sources = decision.action === 'UPDATE' ? [...new Set([...(target.sourceMessageIds || []).map(String), String(message._id)])].slice(-memoryService.MAX_SOURCES) : [String(message._id)];
+  const set = { content, tags, sourceMessageIds: sources, ...(await embeddings.embeddingFields({ content, tags })) };
+  // A changed fact starts when it was said; a correction keeps the old date (the same rule as the versioned pipeline)
+  if (decision.action === 'SUPERSEDE') Object.assign(set, { validFrom: factStart(candidate, message), importance: fields.importance, confidence: fields.confidence, sensitivity: fields.sensitivity, categoryId: fields.categoryId });
+  await Memory.updateOne({ _id: target._id, userId }, { $set: set });
+  return target._id;
+}
+
 async function apply(userId, candidate, decision, similar, ctx) {
   const { message, category } = ctx;
   const options = { actorId: null, via: 'extractor', reason: decision.reason };
@@ -102,6 +117,9 @@ async function apply(userId, candidate, decision, similar, ctx) {
     conversationId: String(message.conversationId),
   };
   const target = similar.find((m) => String(m._id) === decision.targetMemoryId);
+  if (ctx.versioning === 'overwrite' && (decision.action === 'UPDATE' || decision.action === 'SUPERSEDE')) {
+    return overwriteInPlace(userId, target, decision, candidate, message, fields);
+  }
 
   if (decision.action === 'ADD') {
     const created = await memoryService.createMemory(
@@ -137,7 +155,13 @@ async function apply(userId, candidate, decision, similar, ctx) {
 
 // Runs the pipeline for one message and returns a summary (stored on the job). Throws on LLM or database
 // errors so the worker can retry the job.
-async function processMessage({ userId, messageId, conversationId, jobId = null }) {
+// versioning: 'bitemporal' (the app, always) or 'overwrite' (the Stage 6 baseline, see overwriteInPlace).
+const VERSIONING = ['bitemporal', 'overwrite'];
+// extractionCache (Stage 6 only): a Map shared by several memory stores built from the same benchmark messages,
+// so every store receives the SAME extracted facts (one paid extraction call per message, not one per store)
+// and the stores differ only in how they reconcile and store them.
+async function processMessage({ userId, messageId, conversationId, jobId = null }, { versioning = 'bitemporal', extractionCache = null } = {}) {
+  if (!VERSIONING.includes(versioning)) throw new Error(`versioning must be one of: ${VERSIONING.join(', ')}`);
   const conversation = await Conversation.findOne({ _id: conversationId, userId }).select('_id').lean();
   const message = conversation ? await Message.findOne({ _id: messageId, conversationId }).lean() : null;
   if (!message) return { skipped: 'The message or its conversation no longer exists', decisions: [] };
@@ -145,18 +169,23 @@ async function processMessage({ userId, messageId, conversationId, jobId = null 
 
   const categories = await Category.find().select('name').sort({ name: 1 }).lean();
   const recent = await recentWindow(message);
-  const data = await callLlm({
-    task: 'extract',
-    vars: {
-      categories: categories.map((c) => c.name).join(', ') || '(none)',
-      recent: formatRecent(recent),
-      sentAt: message.sentAt.toISOString().slice(0, 10),
-      message: message.content,
-    },
-    extra: { message: message.content },
-    userId,
-    jobId,
-  });
+  const cacheKey = extractionCache && message.source && message.source.id ? `${message.source.id}|${message.sentAt.toISOString()}` : null;
+  let data = cacheKey ? extractionCache.get(cacheKey) : undefined;
+  if (data === undefined) {
+    data = await callLlm({
+      task: 'extract',
+      vars: {
+        categories: categories.map((c) => c.name).join(', ') || '(none)',
+        recent: formatRecent(recent),
+        sentAt: message.sentAt.toISOString().slice(0, 10),
+        message: message.content,
+      },
+      extra: { message: message.content },
+      userId,
+      jobId,
+    });
+    if (cacheKey) extractionCache.set(cacheKey, data);
+  }
   const { candidates, rejected } = validateExtraction(data);
 
   // A retried job must not apply the same fact twice: facts already stored from this message are skipped
@@ -181,7 +210,7 @@ async function processMessage({ userId, messageId, conversationId, jobId = null 
     }
     const similar = await findSimilar(userId, candidate);
     const decision = await decide(userId, candidate, similar, { jobId });
-    const memoryId = await apply(userId, candidate, decision, similar, { message, category });
+    const memoryId = await apply(userId, candidate, decision, similar, { message, category, versioning });
     if (decision.action !== 'NOOP') alreadyStored.add(lower(decision.content || candidate.content));
     decisions.push({ ...base, action: decision.action, memoryId, targetMemoryId: decision.targetMemoryId, reason: decision.reason });
   }

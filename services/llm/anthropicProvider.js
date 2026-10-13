@@ -22,13 +22,21 @@ class AnthropicProvider {
     }
   }
 
-  buildRequest({ model, system, user, schema, maxTokens }) {
+  // userPrefix (optional): stable text that starts the user turn (Stage 6: the conversation in the full-context
+  // baseline). It gets its own cache breakpoint, so repeated questions about one conversation read it from the
+  // cache; only the text after it (the question) is billed at the full input price.
+  buildRequest({ model, system, userPrefix = null, user, schema, maxTokens }) {
     const request = {
       model,
       max_tokens: maxTokens,
       // Stable text first and cached; the per-call text comes after it, in the user turn
       system: [{ type: 'text', text: system, cache_control: { type: 'ephemeral' } }],
-      messages: [{ role: 'user', content: user }],
+      messages: [
+        {
+          role: 'user',
+          content: userPrefix ? [{ type: 'text', text: userPrefix, cache_control: { type: 'ephemeral' } }, { type: 'text', text: user }] : user,
+        },
+      ],
       output_config: { effort: this.config.effort, format: { type: 'json_schema', schema } },
     };
     if (this.config.fallbacks) {
@@ -38,8 +46,8 @@ class AnthropicProvider {
     return request;
   }
 
-  async generateJson({ model, system, user, schema, maxTokens = 8000 }) {
-    const request = this.buildRequest({ model, system, user, schema, maxTokens });
+  async generateJson({ model, system, userPrefix = null, user, schema, maxTokens = 8000 }) {
+    const request = this.buildRequest({ model, system, userPrefix, user, schema, maxTokens });
     const api = this.config.fallbacks ? this.client.beta.messages : this.client.messages;
     let response;
     try {

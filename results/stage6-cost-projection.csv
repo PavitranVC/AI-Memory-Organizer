@@ -1,0 +1,17 @@
+scope,component,model,calls,input_tokens,cache_write_tokens,cache_read_tokens,output_tokens,cost_usd
+"pilot (1 sample, 10 questions)",extract (419 messages),claude-opus-5-5,419,131824,762,318516,125700,3.11
+"pilot (1 sample, 10 questions)",reconcile (0.5 facts/message x 2 stores),claude-opus-5-5,419,78772,581,242858,125700,2.88
+"pilot (1 sample, 10 questions)","answer: full_context, conversation cached",claude-opus-5-5,10,300,20281,182529,3000,0.2
+"pilot (1 sample, 10 questions)",answer: rag_messages,claude-opus-5-5,10,5020,525,4725,3000,0.08
+"pilot (1 sample, 10 questions)",answer: 4 memory systems,claude-opus-5-5,40,27200,0,21000,12000,0.35
+"pilot (1 sample, 10 questions)",judge (6 systems),claude-opus-5-5,60,4500,573,33807,18000,0.39
+"pilot (1 sample, 10 questions)",TOTAL (projection),,,,,,,7.01
+"pilot (1 sample, 10 questions)",for comparison only: full_context WITHOUT caching (not in the total),claude-opus-5-5,10,203110,0,0,3000,0.87
+"full LoCoMo (10 samples, all questions)",extract (5882 messages),claude-opus-5-5,5882,1653361,762,4481322,1764600,42.81
+"full LoCoMo (10 samples, all questions)",reconcile (0.5 facts/message x 2 stores),claude-opus-5-5,5882,1105816,581,3416861,1764600,40.4
+"full LoCoMo (10 samples, all questions)","answer: full_context, conversation cached",claude-opus-5-5,1986,59580,250181,50449807,595800,23.5
+"full LoCoMo (10 samples, all questions)",answer: rag_messages,claude-opus-5-5,1986,890128,525,1042125,595800,15.69
+"full LoCoMo (10 samples, all questions)",answer: 4 memory systems,claude-opus-5-5,7944,5401920,0,4170600,2383200,70.11
+"full LoCoMo (10 samples, all questions)",judge (6 systems),claude-opus-5-5,11916,893700,573,6827295,3574800,76.44
+"full LoCoMo (10 samples, all questions)",TOTAL (projection),,,,,,,268.95
+"full LoCoMo (10 samples, all questions)",for comparison only: full_context WITHOUT caching (not in the total),claude-opus-5-5,1986,50759568,0,0,595800,214.95

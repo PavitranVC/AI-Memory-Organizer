@@ -54,6 +54,14 @@ const ANSWER_SCHEMA = {
   additionalProperties: false,
 };
 
+// Stage 6: the LLM judge's verdict on one answer of the evaluation
+const JUDGE_SCHEMA = {
+  type: 'object',
+  properties: { correct: { type: 'boolean' }, reason: { type: 'string' } },
+  required: ['correct', 'reason'],
+  additionalProperties: false,
+};
+
 const isText = (v) => typeof v === 'string' && v.trim() !== '';
 
 // Returns { candidates, rejected }: well-formed candidates (trimmed, clamped) and the reasons others were dropped
@@ -115,4 +123,9 @@ function validateAnswer(data, allowedLabels) {
   return { answer: data.answer.trim().slice(0, 2000), citedMemories: cited, insufficient: data.insufficient === true };
 }
 
-module.exports = { EXTRACT_SCHEMA, RECONCILE_SCHEMA, ANSWER_SCHEMA, ACTIONS, validateExtraction, validateDecision, validateAnswer };
+function validateJudge(data) {
+  if (!data || typeof data.correct !== 'boolean') throw new Error('judge output: "correct" must be true or false');
+  return { correct: data.correct, reason: String(data.reason || '').slice(0, 300) };
+}
+
+module.exports = { EXTRACT_SCHEMA, RECONCILE_SCHEMA, ANSWER_SCHEMA, JUDGE_SCHEMA, ACTIONS, validateExtraction, validateDecision, validateAnswer, validateJudge };

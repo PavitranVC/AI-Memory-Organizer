@@ -20,7 +20,11 @@
     "data:stats": "node scripts/datasets/stats.js",
     "embed:backfill": "node scripts/embed-backfill.js",
     "atlas:index": "node scripts/atlas-index.js",
-    "bench:retrieval": "node scripts/bench-retrieval.js"
+    "bench:retrieval": "node scripts/bench-retrieval.js",
+    "bench:indexes": "node eval/bench-indexes.js",
+    "eval": "node eval/run.js",
+    "eval:cost": "node eval/project-cost.js",
+    "eval:judge-agreement": "node eval/judge-agreement.js"
   },
   "engines": {
     "node": ">=20"

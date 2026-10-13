@@ -4,7 +4,7 @@ const crypto = require('crypto');
 
 // The prompt version each task uses. Changing a prompt means adding a new file (extract.v2.md) and changing
 // this line, so every row in llmcalls says exactly which wording produced it.
-const ACTIVE = { extract: 'extract.v1', reconcile: 'reconcile.v1', answer: 'answer.v1' };
+const ACTIVE = { extract: 'extract.v1', reconcile: 'reconcile.v1', answer: 'answer.v1', eval_answer: 'eval-answer.v1', judge: 'judge.v1' };
 const DIR = path.join(__dirname, '..', '..', 'prompts');
 const cache = new Map();
 

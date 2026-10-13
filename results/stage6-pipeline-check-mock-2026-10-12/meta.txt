@@ -1,0 +1,7 @@
+label: PIPELINE CHECK (mock model), NOT A RESULT. The mock answers and judges by word overlap; these numbers only show that the harness runs end to end.
+command: npm run eval -- --questions 10
+git commit: e1e896b3db7023939dff396431b3d9fe93fac8ef (the code that ran; results are committed in a later commit)
+date: 2026-10-12T22:41:27.803Z
+dataset: BENCHMARK - LoCoMo (data/locomo/locomo10.json, samples conv-26; 10 questions per sample)
+llm provider: mock; embeddings: lexical; k = 10; seed = 1
+wall-clock: 7 s; machine: 4 x Intel(R) Xeon(R) Processor @ 2.10GHz, 16 GB RAM, linux 6.18.44-fc-v114; node v22.22.0; mongodb 7.0.43
