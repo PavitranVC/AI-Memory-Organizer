@@ -1,0 +1,10 @@
+# Stage 3 live smoke test: cost ESTIMATE (a projection, not a measurement; no API call was made)
+# command: npm run test:live -- --estimate
+# commit: 5fc675b
+# date: 2026-10-12T17:53:29Z
+# dataset: synthetic (scripts/fixtures/live-conversations.js, 3 hand-written conversations)
+Cost ESTIMATE for the live smoke test on claude-opus-5-5 (3 conversations, 6 user messages):
+  extract   6 calls, ~1029 cached system + ~445 input tokens each: expected $0.197, worst case $0.977
+  reconcile 12 calls, ~784 cached system + ~422 input tokens each: expected $0.218, worst case $0.986
+  TOTAL expected ~$0.41 (assumes 1500/800 output+thinking tokens per call), worst case $1.96 (every call hits max_tokens)
+  This is an estimate from character counts, not a measurement. The real figures are printed after the run.

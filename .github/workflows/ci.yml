@@ -46,3 +46,11 @@ jobs:
         run: npm run migrate
       - name: Explain (fails on duplicate indexes or collection scans)
         run: npm run explain
+      # Stage 3: the extraction worker starts and drains the queue with the mock LLM (the default provider)
+      - name: Worker (mock LLM)
+        run: npm run worker -- --drain
+      # The live smoke test must never call the API in CI: with no key it prints the cost estimate and skips
+      - name: Live smoke test (skipped without a key)
+        env:
+          ANTHROPIC_API_KEY: ''
+        run: npm run test:live

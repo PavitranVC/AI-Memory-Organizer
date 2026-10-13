@@ -15,6 +15,8 @@ const Conversation = require('../models/Conversation');
 const Message = require('../models/Message');
 const Memory = require('../models/Memory');
 const AuditLog = require('../models/AuditLog');
+const Job = require('../models/Job');
+const LlmCall = require('../models/LlmCall');
 const { CURRENT, temporalFilter } = require('../services/memoryService');
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/aimemory';
@@ -46,7 +48,9 @@ async function main() {
 
   // 1) Index list per collection (the same index must never appear twice)
   console.log('INDEXES');
-  for (const Model of [User, Category, Conversation, Message, Memory, AuditLog]) {
+  // The Stage 3 collections stay empty until a message is posted, so make sure they (and their indexes) exist
+  await Promise.all([Job.init(), LlmCall.init()]);
+  for (const Model of [User, Category, Conversation, Message, Memory, AuditLog, Job, LlmCall]) {
     const indexes = await Model.collection.indexes();
     const names = indexes.map((i) => i.name);
     const duplicates = names.filter((n, i) => names.indexOf(n) !== i);
@@ -87,6 +91,11 @@ async function main() {
     ['auditlog: my entries, newest first', () => AuditLog.find({ userId: user._id }).sort({ _id: -1 }).limit(21).explain('executionStats')],
     ['conversations: list newest first', () => Conversation.find({ userId: user._id }).sort({ _id: -1 }).limit(21).explain('executionStats')],
     ['messages: one conversation in order', () => Message.find({ conversationId: conversation._id }).sort({ sentAt: 1, _id: 1 }).limit(21).explain('executionStats')],
+    // Stage 3: the worker's claim query, the extractor's recent-window read, and the per-user logs
+    ['jobs: claim the oldest due job', () => Job.find({ status: 'pending', runAt: { $lte: new Date() } }).sort({ runAt: 1 }).limit(1).explain('executionStats')],
+    ['jobs: my jobs, newest first', () => Job.find({ userId: user._id }).sort({ _id: -1 }).limit(21).explain('executionStats')],
+    ['messages: recent window before a message', () => Message.find({ conversationId: conversation._id, sentAt: { $lt: new Date() } }).sort({ sentAt: -1, _id: -1 }).limit(6).explain('executionStats')],
+    ['llmcalls: my calls, newest first', () => LlmCall.find({ userId: user._id }).sort({ _id: -1 }).limit(21).explain('executionStats')],
     ['users: login by email', () => User.find({ email: user.email }).explain('executionStats')],
   ];
 

@@ -10,7 +10,10 @@
     "seed": "node seed.js",
     "migrate": "node scripts/migrate.js",
     "explain": "node scripts/explain.js",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "worker": "node scripts/worker.js",
+    "test:live": "node scripts/live-smoke.js",
+    "llm:costs": "node scripts/llm-costs.js"
   },
   "engines": {
     "node": ">=20"
@@ -23,6 +26,7 @@
   ],
   "license": "ISC",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",

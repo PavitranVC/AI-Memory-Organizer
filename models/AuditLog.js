@@ -18,6 +18,10 @@ const auditLogSchema = new mongoose.Schema(
     at: { type: Date, required: true, default: Date.now },
     before: { type: Object, default: null }, // snapshot of the old version (null on create)
     after: { type: Object, default: null }, // snapshot of the new or closed version
+    // Which path made the change: "api" (a client request) or "extractor" (the Stage 3 LLM pipeline).
+    // null on entries written before Stage 3.
+    via: { type: String, default: null },
+    reason: { type: String, default: null }, // why, when the extractor made the change (the reconciler's reason)
   },
   { versionKey: false, collection: 'auditlog' }
 );

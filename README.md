@@ -24,6 +24,10 @@ This README describes the code as of **Stage 2: bi-temporal memory schema**.
   database believed at any moment (`?knownAt=`). See [Bi-temporal memories](#bi-temporal-memories).
 - **Provenance and an audit log.** Each memory can cite the messages it came from (`sourceMessageIds`). Every
   create, supersede, correction and delete is written to an append-only `auditlog` collection.
+- **Automatic memory extraction with an LLM** (Stage 3). Posting a message queues a job; a worker asks the LLM
+  for durable facts about the user, compares each one with similar existing memories and decides ADD, UPDATE,
+  SUPERSEDE or NOOP, then writes it through the bi-temporal service. A deterministic mock LLM is the default, so
+  nothing costs money until you switch to Claude. See [LLM extraction pipeline](#llm-extraction-pipeline).
 
 ## Quick start
 
@@ -87,6 +91,16 @@ with real data, because it deletes everything first.
 | `BCRYPT_ROUNDS` | `10` | bcrypt cost factor |
 | `SEED_PASSWORD` | `DevPassword123` | Password of the seeded users |
 | `MIGRATE_DEFAULT_PASSWORD` | unset | Used by `npm run migrate` for old users without a password |
+| `LLM_PROVIDER` | `mock` | `mock` (deterministic, free, used by every test) or `anthropic` (Claude, costs money) |
+| `ANTHROPIC_API_KEY` | unset | Needed for `LLM_PROVIDER=anthropic` and `npm run test:live`. Put it in `.env`, never in code |
+| `EXTRACTION_MODEL`, `RECONCILE_MODEL`, `JUDGE_MODEL` | `claude-opus-5-5` | Model per task (the judge is for Stage 6) |
+| `LLM_EFFORT` | `medium` | Thinking depth: `low`, `medium`, `high`, `xhigh`, `max` |
+| `LLM_FALLBACKS` | `default` | `default`: a refused request is retried server-side on a fallback model; `off`: no fallback |
+| `EXTRACTION_ENABLED` | `true` | `false` stops queuing extraction jobs |
+| `EXTRACTION_CONTEXT_MESSAGES` | `6` | Earlier messages sent with the new one as context |
+| `WORKER_IN_PROCESS` | `false` | `true` runs the worker inside `npm start` (one-window demo) |
+| `WORKER_POLL_MS`, `JOB_RETRY_DELAY_MS`, `JOB_LOCK_TIMEOUT_MS` | `2000`, `5000`, `300000` | Worker poll interval, first retry delay (doubles each attempt), and how long before a dead worker's job is taken back |
+| `MONGO_URI_LIVE` | `mongodb://127.0.0.1:27017/aimemory_live` | Database for `npm run test:live`. **It is dropped** |
 
 ### npm scripts
 
@@ -97,6 +111,9 @@ with real data, because it deletes everything first.
 | `npm run seed` | Empty the database and load the sample data |
 | `npm test` | Run the test suite (needs MongoDB, see [Tests](#tests)) |
 | `npm run explain` | Print the indexes and the query plan of the main queries |
+| `npm run worker` | Run the extraction worker (add `-- --drain` to process what is queued and exit) |
+| `npm run llm:costs` | Tokens, prompt-cache hit rate and cost per model, task and prompt version, from `llmcalls` (`-- --include-mock` to include mock rows) |
+| `npm run test:live` | Opt-in live smoke test with the real API (3 conversations). Prints a cost estimate first; skips if `ANTHROPIC_API_KEY` is not set. `-- --estimate` prints only the estimate |
 | `npm run migrate` | Upgrade an older database to the current schema: runs the Stage 1 and Stage 2 migrations in order (see [Upgrading an old database](#upgrading-an-old-database)) |
 
 ## Using the API
@@ -121,16 +138,18 @@ curl -s "http://localhost:5000/api/memories?category=health&limit=2" -H "Authori
 | `POST /api/auth/login` | Body: `{ email, password }`. Returns `{ user, token }` |
 | `GET /api/users/me` | Your account (`me` or your own id; anyone else's id is `403`) |
 | `PUT /api/users/me` | Update `name`, `email`, `occupation`, or `password` (changing it also needs `currentPassword`) |
-| `DELETE /api/users/me` | Delete your account and, in one transaction, your conversations, messages, every memory version and your audit log entries |
+| `DELETE /api/users/me` | Delete your account and, in one transaction, your conversations, messages, every memory version, your audit log entries, extraction jobs and LLM call log |
 | `GET /api/categories`, `GET /api/categories/:id` | Read the shared categories (any user) |
 | `POST /api/categories`, `PUT /api/categories/:id`, `DELETE /api/categories/:id` | Change categories (**admin only**). Delete is `409` while any memory version that is not retracted (current or past) uses the category |
 | `GET /api/conversations` | Your conversations, newest first |
 | `POST /api/conversations` | Body: `{ title }` |
 | `GET /api/conversations/:id` | One conversation, with `messageCount` |
 | `PUT /api/conversations/:id` | Body: `{ title }` |
-| `DELETE /api/conversations/:id` | Delete it and its messages. Memories made from it are kept, with the links to the conversation and to the deleted messages removed |
+| `DELETE /api/conversations/:id` | Delete it, its messages and its extraction jobs. Memories made from it are kept, with the links to the conversation and to the deleted messages removed |
 | `GET /api/conversations/:id/messages` | Messages in chat order |
-| `POST /api/conversations/:id/messages` | Body: `{ role: "user" \| "assistant", content }` |
+| `POST /api/conversations/:id/messages` | Body: `{ role: "user" \| "assistant", content }`. A `user` message also queues an extraction job (returned as `extractionJobId`); the response does not wait for it |
+| `GET /api/jobs` | Your extraction jobs, newest first. Filter: `status` (`pending`, `running`, `done`, `failed`) |
+| `GET /api/jobs/:id` | One job, with the decision taken for each candidate fact (`result.decisions`) |
 | `POST /api/memories` | Body: `{ content, category` (name) `or categoryId, importance?, status?, tags?, conversationId?, validFrom?, confidence?, sensitivity?, sourceMessageIds? }`. Returns `201` with the first version |
 | `GET /api/memories` | Your **current** memories, newest first. Filters: `status`, `category`, `categoryId`, `minImportance`. Time travel: `asOf` (valid time) and/or `knownAt` (transaction time), ISO dates |
 | `GET /api/memories/:id` | One version (current or past; a retracted one is `404`). Counts as an access (`accessCount`, `lastAccessedAt`) |
@@ -221,6 +240,78 @@ why both are kept. The seed also has a changed goal (Daniel) and a corrected mis
 curl -s "http://localhost:5000/api/memories?asOf=2024-08-10&knownAt=2024-08-15&category=personal" -H "Authorization: Bearer $TOKEN"
 ```
 
+## LLM extraction pipeline
+
+Stage 3 turns chat messages into memories automatically. The API never waits for the LLM: posting a message saves
+it and queues a job **in the same transaction** (the *transactional outbox* pattern), and a separate worker runs
+the pipeline.
+
+```mermaid
+sequenceDiagram
+  participant C as Client
+  participant API as Express API
+  participant DB as MongoDB
+  participant W as Worker (npm run worker)
+  participant X as LLM (mock or Claude)
+  C->>API: POST /api/conversations/:id/messages
+  API->>DB: insert message + "extract" job (one transaction)
+  API-->>C: 201 Created (extractionJobId)
+  W->>DB: claim the oldest pending job (atomic findOneAndUpdate)
+  W->>DB: read the new message + the 6 messages before it
+  W->>X: extract candidate facts (prompts/extract.v1.md)
+  X-->>W: [{content, topic, category, importance, confidence, sensitivity, validFrom}]
+  loop each candidate
+    W->>DB: text search: similar CURRENT memories of this user
+    W->>X: decide (prompts/reconcile.v1.md), skipped when nothing is similar
+    X-->>W: ADD / UPDATE / SUPERSEDE / NOOP + reason
+    W->>DB: write through memoryService (new version + audit entry, via "extractor")
+  end
+  W->>DB: job done, decisions stored on the job; every LLM call logged in llmcalls
+```
+
+| Decision | Meaning | What is written (Stage 2 terms) |
+|---|---|---|
+| `ADD` | A new fact | A new memory (first version), `sourceMessageIds` = the message |
+| `UPDATE` | The same fact, more precise ("likes coffee" -> "likes black coffee") | A **correction**: new version, old one retracted, sources merged |
+| `SUPERSEDE` | The world changed ("lives in Pune" -> "lives in Mumbai") | A **supersede**: old version's valid time ends where the new fact starts |
+| `NOOP` | Already known | Nothing |
+
+Facts in a category that does not exist are skipped, and every fact passes a consent check first
+(`services/consentService.js`, which allows everything until Stage 7 adds the settings). A failed job is retried
+with exponential back-off (3 attempts); a refusal or a bad request is not retried. `GET /api/jobs/:id` shows what
+was decided and why.
+
+### Switching providers
+
+| Provider | How | Cost | Used by |
+|---|---|---|---|
+| Mock (default) | `LLM_PROVIDER=mock` | Free; token counts are estimates (`tokensEstimated: true`, cost 0) | All tests, CI, the demo |
+| Claude | `LLM_PROVIDER=anthropic` and `ANTHROPIC_API_KEY` in `.env` | Real; logged per call in `llmcalls` | Your laptop, `npm run test:live` |
+
+The Claude provider (`services/llm/anthropicProvider.js`, official `@anthropic-ai/sdk`) uses:
+- **Structured outputs** (`output_config.format` with a JSON schema), and the answer is validated again before use.
+- **Prompt caching.** Each prompt file has a stable `## System` part, sent first with `cache_control`, and a
+  `## User` part with everything that changes per call. After the first call the system part is read from the
+  cache; `llmcalls.cacheReadTokens` shows it.
+- **Refusal handling.** `stop_reason` is checked before the content. With `LLM_FALLBACKS=default` the API first
+  retries a refused request on a fallback model; a final refusal fails the job without retrying.
+- **A short context.** Only the new message and the `EXTRACTION_CONTEXT_MESSAGES` messages before it are sent.
+
+Prompts are versioned files in `prompts/`. To change one, add `extract.v2.md` and point `services/llm/prompts.js` at
+it; every `llmcalls` row records the prompt id and a hash of its text.
+
+```bash
+# Try it (mock LLM, free): start the API with the worker inside it, then post a message
+WORKER_IN_PROCESS=true npm start
+# ...or run the worker in its own terminal
+npm run worker
+# Cost report from llmcalls
+npm run llm:costs -- --include-mock
+# With a real key: estimate first, then the live smoke test (3 conversations, results in results/)
+npm run test:live -- --estimate
+npm run test:live
+```
+
 ## Data model
 
 ```mermaid
@@ -233,6 +324,9 @@ erDiagram
   MESSAGE }o--o{ MEMORY : "is source of (sourceMessageIds)"
   MEMORY |o--o| MEMORY : "supersedes / supersededBy"
   MEMORY ||--o{ AUDIT_LOG : "is logged in"
+  MESSAGE ||--o| JOB : "queues extraction (Stage 3)"
+  JOB ||--o{ LLM_CALL : "makes"
+  USER ||--o{ LLM_CALL : "is billed in"
 
   USER {
     ObjectId _id PK
@@ -331,6 +425,12 @@ and verified with `npm run explain`. Every list is paginated newest-first on `_i
 | memories | `{ userId, content: text, tags: text }` | Keyword search, kept inside one user's data | E: userId |
 | auditlog | `{ userId, _id: -1 }` | Your audit log, newest first | E: userId, S: _id |
 | auditlog | `{ userId, memoryId, _id: -1 }` | The log of one version | E: userId, memoryId, S: _id |
+| jobs | `{ status, runAt }` | The worker claims the oldest due job | E: status, S + R: runAt |
+| jobs | `{ status, lockedAt }` | Finding jobs whose worker died | E: status, R: lockedAt |
+| jobs | `{ userId, _id: -1 }` | `GET /api/jobs` | E: userId, S: _id |
+| jobs | `{ payload.conversationId }` | Deleting a conversation's jobs | E: payload.conversationId |
+| llmcalls | `{ userId, _id: -1 }` | A user's LLM calls (and deleting them with the account) | E: userId, S: _id |
+| llmcalls | `{ jobId }` | The calls made for one job | E: jobId |
 | conversations | `{ userId, _id: -1 }` | A user's conversations | E: userId, S: _id |
 | messages | `{ conversationId, sentAt }` | One conversation in chat order | E: conversationId, S: sentAt |
 | users | `{ email }` unique | Login, duplicate check | E: email |
@@ -423,13 +523,16 @@ models/             Mongoose schemas and indexes
 services/           Business logic: integrity checks, scoping, cascades, aggregations, pagination, auth
 routes/             Thin HTTP layer over the services
 middleware/         JWT authentication, admin check, async error forwarding
-scripts/            explain.js (query plans), migrate.js (runs migrate-stage1.js, then migrate-stage2.js)
+services/llm/       LLM providers (Anthropic, mock), versioned prompt loader, schemas, pricing, call logging
+prompts/            Versioned LLM prompts (extract.v1.md, reconcile.v1.md)
+scripts/            explain.js (query plans), migrate.js (runs migrate-stage1.js, then migrate-stage2.js),
+                    worker.js (extraction worker), live-smoke.js (npm run test:live), llm-costs.js
 seed.js             Sample data
 tests/              Jest + supertest tests
 docs/               Roadmap, prompt playbook, and per-stage notes (docs/stages/STAGE-N.md)
 ```
 
-## Known limitations (Stage 2)
+## Known limitations (Stage 3)
 
 - **Login only.** There is no password reset, email verification, refresh token or rate limiting on login.
   Do not expose it to the internet as it is.
@@ -442,3 +545,9 @@ docs/               Roadmap, prompt playbook, and per-stage notes (docs/stages/S
   keeps "current" a simple equality on `validTo = null`.
 - **Every update creates a version**, even a status change, so storage grows with the number of edits.
 - **Search matches words, not meaning** ("nut allergy" will not find "allergic to peanuts"). Semantic search is planned for Stage 4.
+  The extractor uses the same keyword search to find similar memories, so it can miss a related memory that shares
+  no words with the new fact (and then ADD a near-duplicate).
+- **The mock LLM is a test double, not a model.** It recognises a few sentence patterns ("I live in", "I moved to",
+  "I am allergic to", ...). Only the real model's output (`LLM_PROVIDER=anthropic`) says anything about quality.
+- **One worker, one job at a time.** Two workers would be safe (claiming is atomic) but could reconcile two facts of
+  the same user against each other at the same moment.

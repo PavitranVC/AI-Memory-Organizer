@@ -5,6 +5,8 @@ const Conversation = require('../models/Conversation');
 const Message = require('../models/Message');
 const Memory = require('../models/Memory');
 const AuditLog = require('../models/AuditLog');
+const Job = require('../models/Job');
+const LlmCall = require('../models/LlmCall');
 const { badRequest, forbidden, conflict, unauthorized } = require('./errors');
 const { toObjectId } = require('./ids');
 const { withTransaction } = require('./transaction');
@@ -59,6 +61,8 @@ async function deleteUser(user, id) {
 
     const memories = await Memory.deleteMany({ userId: user._id }, { session });
     const auditEntries = await AuditLog.deleteMany({ userId: user._id }, { session });
+    const jobs = await Job.deleteMany({ userId: user._id }, { session });
+    const llmCalls = await LlmCall.deleteMany({ userId: user._id }, { session });
     const messages = await Message.deleteMany({ conversationId: { $in: conversationIds } }, { session });
     const removedConversations = await Conversation.deleteMany({ userId: user._id }, { session });
     await User.deleteOne({ _id: user._id }, { session });
@@ -68,6 +72,8 @@ async function deleteUser(user, id) {
       messages: messages.deletedCount,
       conversations: removedConversations.deletedCount,
       auditEntries: auditEntries.deletedCount,
+      jobs: jobs.deletedCount,
+      llmCalls: llmCalls.deletedCount,
     };
   });
 }
