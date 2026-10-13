@@ -128,6 +128,9 @@ Prompt caching matters most for the full-context baseline: 23.50 USD with the co
 without. The pilot measures the real facts per message and output tokens; re-run `npm run eval:cost` with them
 (`-- --facts-per-message X --output-tokens Y`) before approving the full run.
 
+This projection was made with `extract.v1`. Since Stage 3b the active prompt is `extract.v2`, which is longer and
+is expected to extract more per message, so re-run `npm run eval:cost` before relying on these figures.
+
 ## Limitations of the evaluation design (say these before anyone asks)
 
 - **No real-model result yet.** Until the paid pilot runs, there is no evidence that ours is better or worse.

@@ -18,6 +18,7 @@ const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
 const { llmConfig } = require('../services/llm/config');
+const { ACTIVE } = require('../services/llm/prompts'); // the prompt versions this run used, from one place
 const { embeddingConfig } = require('../services/embeddings/config');
 const { readyEmbedder } = require('../services/embeddings');
 const { evaluateSample } = require('./harness');
@@ -100,7 +101,7 @@ async function main() {
 
   fs.mkdirSync(dir, { recursive: true });
   const write = (file, text) => fs.writeFileSync(path.join(dir, file), text);
-  const config = { runId, questionsPerSample: questions, samples: samples.map((s) => s.sample_id), k, seed, systems, llm: { provider: llm.provider, models: llm.models, effort: llm.provider === 'anthropic' ? llm.effort : null, ollama: llm.ollama || null, ollamaVersion: ollama }, embeddings: { provider: emb.provider, model: embedder.id }, prompts: { answer: 'eval-answer.v1', judge: 'judge.v1', extract: 'extract.v1', reconcile: 'reconcile.v1' } };
+  const config = { runId, questionsPerSample: questions, samples: samples.map((s) => s.sample_id), k, seed, systems, llm: { provider: llm.provider, models: llm.models, effort: llm.provider === 'anthropic' ? llm.effort : null, ollama: llm.ollama || null, ollamaVersion: ollama }, embeddings: { provider: emb.provider, model: embedder.id }, prompts: { answer: ACTIVE.eval_answer, judge: ACTIVE.judge, extract: ACTIVE.extract, reconcile: ACTIVE.reconcile } };
   write('LABEL.txt', `${label}\n`);
   write('config.json', `${JSON.stringify(config, null, 2)}\n`);
   write(

@@ -14,7 +14,9 @@ const { ollamaConfig } = require('./config');
 //  - One retry on a timeout or an answer that is not valid JSON, then the usual LlmError.
 
 // Output cap per task (num_predict). The judge gets more room because a reasoning model thinks first.
-const NUM_PREDICT = { extract: 2048, reconcile: 1024, answer: 1024, eval_answer: 1024, judge: 2048 };
+// eval_answer has 2048: on the laptop pilot the full-context answer was cut off at 1024 tokens (it can cite many
+// dialog ids), which turned a valid answer into an error.
+const NUM_PREDICT = { extract: 2048, reconcile: 1024, answer: 1024, eval_answer: 2048, judge: 2048 };
 // Rough size of the prompt in tokens, only to pick num_ctx. 4 characters per token UNDER-estimated LoCoMo text
 // by about 20% on the laptop pilot (qwen2.5's tokenizer, 2026-10-13), which could let Ollama cut a long prompt
 // silently; 3.3 errs on the safe side. The margin covers the chat template and the schema.

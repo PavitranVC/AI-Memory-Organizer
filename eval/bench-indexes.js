@@ -218,7 +218,7 @@ async function main() {
         `  then ${repeats} timed runs after ${WARMUP} warm-up runs (wall-clock in Node: query + network + decoding), nearest-rank percentiles`,
         '"no" = only the _id index; "yes" = every index declared in models/Memory.js, built after loading.',
         `write cost: ${WRITE_DOCS} extra versions inserted in batches of 1,000 and then removed, without and with the indexes`,
-        `single run, warm cache (WiredTiger cache: ${cacheBytes} bytes; compare data_bytes in the -build.csv); MongoDB in Docker on the same machine`,
+        `single run, warm cache (WiredTiger cache: ${cacheBytes} bytes; compare data_bytes in the -build.csv); MongoDB on the same machine as Node (Docker or a native install is not detected; see the version below)`,
         `machine: ${machine()}`,
         `node: ${process.version}; mongodb: ${mongoVersion}`,
         ...(notes.length ? ['', 'NOTES:', ...notes] : []),

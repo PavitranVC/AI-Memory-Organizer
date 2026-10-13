@@ -87,13 +87,15 @@ rights (consent, erasure, access) that the design now supports.
 - **Tests run on the mock LLM only**, which recognises a few sentence patterns. The erasure logic does not depend on the model, but the "ask"/"never" decisions were only exercised with mock extractions.
 
 ## 6. Demo on your laptop
+The outputs below are from the default mock LLM (`LLM_PROVIDER` unset or `mock`). With `LLM_PROVIDER=ollama` a real
+model decides, so the memories, decisions and timing differ, and each step takes longer.
 Needs MongoDB as a replica set (see `STAGE-2.md`). No API key needed. Run the API in one window and the commands in
 a second one.
 
 ```powershell
 git checkout claude/stage-7-governance   # or main, once merged
 npm install
-npm test                                  # 299 tests, mock only
+npm test                                  # all pass; 323 tests on main since Stage 3b (mock only, no key)
 npm run seed
 $env:WORKER_IN_PROCESS = 'true'; npm start   # window 1: API + extraction worker in one process
 ```

@@ -311,7 +311,7 @@ sequenceDiagram
   API-->>C: 201 Created (extractionJobId)
   W->>DB: claim the oldest pending job (atomic findOneAndUpdate)
   W->>DB: read the new message + the 6 messages before it
-  W->>X: extract candidate facts (prompts/extract.v1.md)
+  W->>X: extract candidate facts (prompts/extract.v2.md)
   X-->>W: [{content, topic, category, importance, confidence, sensitivity, validFrom}]
   loop each candidate
     W->>DB: text search: similar CURRENT memories of this user
@@ -362,6 +362,11 @@ The Claude provider (`services/llm/anthropicProvider.js`, official `@anthropic-a
 - **Refusal handling.** `stop_reason` is checked before the content. With `LLM_FALLBACKS=default` the API first
   retries a refused request on a fallback model; a final refusal fails the job without retrying.
 - **A short context.** Only the new message and the `EXTRACTION_CONTEXT_MESSAGES` messages before it are sent.
+
+**Extraction prompt `extract.v2` (Stage 3b, active).** Besides lasting facts it keeps dated events the user took
+part in (`validFrom` = the day it happened) and plans, and the user message carries a calendar of the message
+day and the 7 days before it, so the model looks up "last Friday" instead of computing it. `extract.v1` (facts
+only) stays in `prompts/` for reproducibility. See `docs/stages/STAGE-3B.md`.
 
 Prompts are versioned files in `prompts/`. To change one, add `extract.v2.md` and point `services/llm/prompts.js` at
 it; every `llmcalls` row records the prompt id and a hash of its text.
@@ -703,7 +708,8 @@ atlas/              Atlas vector index definition (vector-index.json)
 services/datasets/  Stage 5: LoCoMo loader, synthetic scale generator, shared reset and seeded random helpers
 services/erasureService.js, erasureVerifier.js, consentService.js, suggestionService.js, exportService.js,
 retentionService.js Stage 7: lineage erasure, its verification, consent, suggestions, export, retention
-prompts/            Versioned LLM prompts (extract.v1.md, reconcile.v1.md, answer.v1.md; Stage 6: eval-answer.v1.md, judge.v1.md)
+prompts/            Versioned LLM prompts (extract.v1.md, reconcile.v1.md, answer.v1.md; Stage 6: eval-answer.v1.md, judge.v1.md;
+                    Stage 3b: extract.v2.md, the active extraction prompt)
 eval/               Stage 6: evaluation harness (run.js, harness.js, systems.js, metrics.js, report.js, stats.js),
                     index benchmark (bench-indexes.js), cost projection, judge agreement, SVG charts from CSVs
 scripts/            explain.js (query plans), migrate.js (runs migrate-stage1.js, then migrate-stage2.js),

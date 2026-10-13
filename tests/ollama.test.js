@@ -4,6 +4,7 @@ const http = require('http');
 const { connect, disconnect, clear, createUser, createCategory, models } = require('./helpers');
 const { llmConfig, OLLAMA_DEFAULTS } = require('../services/llm/config');
 const { callLlmDetailed } = require('../services/llm');
+const { ACTIVE } = require('../services/llm/prompts');
 const { OllamaProvider, stripThinking, parseJson, contextSize, listOllamaModels, hasModel } = require('../services/llm/ollamaProvider');
 const { LlmError } = require('../services/llm/errors');
 const { JUDGE_SCHEMA, EXTRACT_SCHEMA } = require('../services/llm/schemas');
@@ -120,8 +121,8 @@ describe('chat provider (fake server)', () => {
 
   test('the full-context baseline gets the large window; the cached prefix is sent in the same user turn', async () => {
     replies = [chat('{"answer": "Pune", "citedMemories": [], "insufficient": false}')];
-    await provider().generateJson({ task: 'eval_answer', model: 'qwen2.5-coder:14b', system: 'S', userPrefix: 'x'.repeat(100000), user: 'Q?', schema: {}, maxTokens: 4000 });
-    expect(requests[0].body.options).toEqual({ num_ctx: 32768, num_predict: 1024, temperature: 0 });
+    await provider().generateJson({ task: 'eval_answer', model: 'qwen2.5-coder:14b', system: 'S', userPrefix: 'x'.repeat(90000), user: 'Q?', schema: {}, maxTokens: 4000 });
+    expect(requests[0].body.options).toEqual({ num_ctx: 32768, num_predict: 2048, temperature: 0 });
     expect(requests[0].body.messages[1].content.endsWith('\n\nQ?')).toBe(true);
   });
 
@@ -199,7 +200,7 @@ describe('through callLlm: per-task model and the llmcalls log', () => {
     replies = [
       ({ body }) => (body.model === 'deepseek-r1:14b' ? chat('<think>compare</think>{"correct": true, "reason": "same"}', { model: body.model })() : chat('{"candidates": []}')()),
     ];
-    const extracted = await callLlmDetailed({ task: 'extract', vars: { message: 'I moved to Pune', recent: '', sentAt: '2026-01-01', categories: 'Personal' }, userId: user._id });
+    const extracted = await callLlmDetailed({ task: 'extract', vars: { message: 'I moved to Pune', recent: '', sentAt: '2026-01-01', sentDay: '2026-01-01 (Thursday)', calendar: '2026-01-01 (Thursday) today', categories: 'Personal' }, userId: user._id });
     const judged = await callLlmDetailed({ task: 'judge', vars: { question: 'Where?', gold: 'Pune', candidate: 'Pune' }, userId: user._id });
     expect(extracted).toMatchObject({ provider: 'ollama', model: 'qwen2.5-coder:14b', costUsd: 0, tokensEstimated: false, data: { candidates: [] } });
     expect(judged).toMatchObject({ provider: 'ollama', model: 'deepseek-r1:14b', costUsd: 0, data: { correct: true } });
@@ -212,7 +213,7 @@ describe('through callLlm: per-task model and the llmcalls log', () => {
       ['judge', 'ollama', 'deepseek-r1:14b', 'deepseek-r1:14b', 'ok'],
     ]);
     for (const c of calls) {
-      expect(c).toMatchObject({ inputTokens: 120, outputTokens: 30, costUsd: 0, tokensEstimated: false, attempts: 1, promptId: `${c.task}.v1` });
+      expect(c).toMatchObject({ inputTokens: 120, outputTokens: 30, costUsd: 0, tokensEstimated: false, attempts: 1, promptId: ACTIVE[c.task] });
       expect(c.latencyMs).toBeGreaterThanOrEqual(0);
     }
   });

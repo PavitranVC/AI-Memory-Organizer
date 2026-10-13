@@ -123,7 +123,7 @@ Needs MongoDB running as a replica set (see `STAGE-2.md`) and internet access to
 ```powershell
 git checkout claude/stage-5-datasets   # or main, once merged
 npm install
-npm test                                # 209 tests, no API key, no download needed
+npm test                                # all pass; 323 tests on main since Stage 3b (mock only, no key)
 npm run seed                            # empties the database first
 npm run data:download                   # saves data\locomo\locomo10.json, "hash verified"
 npm run data:load:locomo                # 10 samples: 272 sessions, 5882 messages, 1986 questions

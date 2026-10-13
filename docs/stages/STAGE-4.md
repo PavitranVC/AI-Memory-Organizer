@@ -121,7 +121,7 @@ Needs MongoDB running as a replica set (see `STAGE-2.md`). No API key: the mock 
 ```powershell
 git checkout claude/stage-4-hybrid-retrieval   # or main, once merged
 npm install
-npm test                                # 249 tests, no API key needed
+npm test                                # all pass; 323 tests on main since Stage 3b (mock only, no key)
 npm run seed                            # also embeds every memory: "Embedding model: lexical-hash-v1-256"
 npm run embed:backfill                  # nothing left to do: "embedded":0
 npm run explain                         # retrieval queries use indexes, no collection scans
@@ -141,7 +141,8 @@ $now = Invoke-RestMethod -Method Post -Uri "$b/api/ask" -Headers $h -ContentType
 $now.answer; $now.citations | Format-Table label, content, validFrom, validTo
 $then = Invoke-RestMethod -Method Post -Uri "$b/api/ask" -Headers $h -ContentType 'application/json' -Body '{"question":"Where do I live?","asOf":"2023-06-01"}'
 $then.answer; $then.citations | Format-Table label, content, validFrom, validTo
-# A question nothing answers: no LLM call at all
+# A question nothing answers: no LLM call at all (with the default lexical embedder; with
+# EMBEDDING_PROVIDER=ollama a weak vector match can pass the uncalibrated 0.5 cut-off, so the model is called)
 (Invoke-RestMethod -Method Post -Uri "$b/api/ask" -Headers $h -ContentType 'application/json' -Body '{"question":"What am I allergic to?"}') | Format-List answer, insufficient, llmCalled
 ```
 In 2023 only the Kochi version can be retrieved; today the Kochi version is excluded and the Bengaluru one is in the
