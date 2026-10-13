@@ -2,11 +2,13 @@ const { embeddingConfig } = require('./config');
 const { MockEmbeddingProvider } = require('./mockProvider');
 const { LexicalEmbeddingProvider } = require('./lexicalProvider');
 const { VoyageEmbeddingProvider } = require('./voyageProvider');
+const { OllamaEmbeddingProvider } = require('./ollamaProvider');
 const { cosine } = require('./hashing');
 
 // Every embedding in the project goes through this module. A provider has { name, id, dims } and
 // embed(texts, { inputType }) -> one vector per text. "id" names the model AND its dimensions; it is stored
 // on each memory (embeddingModel), so vectors from different models are never compared with each other.
+// A provider may also have ready(): an async check that fixes dims and id from the model itself (Ollama).
 
 let override = null; // a provider set by tests or scripts (setEmbedder), instead of the one from the env
 
@@ -14,11 +16,18 @@ function getEmbedder(config = embeddingConfig()) {
   if (override) return override;
   if (config.provider === 'mock') return new MockEmbeddingProvider();
   if (config.provider === 'voyage') return new VoyageEmbeddingProvider(config.voyage);
+  if (config.provider === 'ollama') return new OllamaEmbeddingProvider(config.ollama);
   return new LexicalEmbeddingProvider();
 }
 
 function setEmbedder(provider) {
   override = provider;
+}
+
+// The provider once its vector size is known (needed before reading .dims or .id ahead of any embedding)
+async function readyEmbedder(provider = getEmbedder()) {
+  if (typeof provider.ready === 'function') await provider.ready();
+  return provider;
 }
 
 // The id of the configured model, or null if it cannot be built (e.g. voyage without a key)
@@ -68,4 +77,4 @@ async function embeddingFields(memory) {
   }
 }
 
-module.exports = { getEmbedder, setEmbedder, currentModelId, memoryText, embedDocuments, embedQuery, embeddingFields, cosine };
+module.exports = { getEmbedder, setEmbedder, readyEmbedder, currentModelId, memoryText, embedDocuments, embedQuery, embeddingFields, cosine };

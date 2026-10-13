@@ -1,6 +1,9 @@
-// Opt-in live smoke test of the Stage 3 pipeline with the REAL Anthropic API (costs money).
-//   npm run test:live                  runs only if ANTHROPIC_API_KEY is set; otherwise prints the estimate and skips
-//   npm run test:live -- --estimate    prints the cost estimate only (no API call, no database)
+// Opt-in live smoke test of the Stage 3 pipeline with a REAL model.
+//   LLM_PROVIDER=ollama: the free local models (Stage 3b). Skips cleanly if Ollama is not reachable.
+//   otherwise: the Anthropic API (costs money). Runs only if ANTHROPIC_API_KEY is set; otherwise it prints
+//   the cost estimate and skips.
+//   npm run test:live                  as above
+//   npm run test:live -- --estimate    prints the Anthropic cost estimate only (no API call, no database)
 // It uses its own database (MONGO_URI_LIVE, default .../aimemory_live), which it DROPS first.
 // Real token usage and cost are read back from the llmcalls collection and written to results/.
 require('dotenv').config();
@@ -12,6 +15,8 @@ const { loadPrompt } = require('../services/llm/prompts');
 const { PRICES } = require('../services/llm/pricing');
 const { TASKS } = require('../services/llm');
 const { llmConfig } = require('../services/llm/config');
+const { embeddingConfig } = require('../services/embeddings/config');
+const { listOllamaModels, hasModel } = require('../services/llm/ollamaProvider');
 
 // ---- Estimate (before any call) -------------------------------------------------------------------------
 // Token counts are ESTIMATED as characters / 4, times 1.35 because the Claude Opus 5.5 tokenizer can use up to
@@ -55,11 +60,11 @@ function printEstimate(est) {
 }
 
 // ---- Live run -------------------------------------------------------------------------------------------
-async function live() {
+async function live(provider) {
   const mongoose = require('mongoose');
   const uri = process.env.MONGO_URI_LIVE || 'mongodb://127.0.0.1:27017/aimemory_live';
   if (uri === process.env.MONGO_URI) throw new Error('MONGO_URI_LIVE must not be your main database: this test drops it');
-  process.env.LLM_PROVIDER = 'anthropic';
+  process.env.LLM_PROVIDER = provider;
   const models = ['User', 'Category', 'Conversation', 'Message', 'Memory', 'AuditLog', 'Job', 'LlmCall'].map((name) => require(`../models/${name}`));
   const [User, Category, , , Memory, , Job, LlmCall] = models;
   const conversationService = require('../services/conversationService');
@@ -102,12 +107,14 @@ async function live() {
     };
   }
   const summary = {
-    label: 'live smoke test (real API), 3 synthetic conversations',
+    label: `live smoke test (${provider === 'ollama' ? 'local Ollama models' : 'real API'}), 3 synthetic conversations`,
+    provider,
     dataset: fixtures.dataset,
     command: 'npm run test:live',
     commit: execSync('git rev-parse --short HEAD').toString().trim(),
     date: new Date().toISOString(),
     model: llmConfig().models,
+    embeddings: embeddingConfig().provider,
     wallClockSeconds: Number(seconds),
     jobs: { total: jobs.length, done: jobs.filter((j) => j.status === 'done').length, failed: jobs.filter((j) => j.status === 'failed').length },
     llmCalls: { total: calls.length, notOk: calls.filter((c) => c.status !== 'ok').length, byTask },
@@ -116,7 +123,7 @@ async function live() {
     decisions: jobs.flatMap((j) => (j.result && j.result.decisions) || []).map((d) => ({ action: d.action, topic: d.topic, reason: d.reason })),
   };
 
-  const out = path.join(__dirname, '..', 'results', `stage3-live-smoke-${summary.date.slice(0, 10)}.json`);
+  const out = path.join(__dirname, '..', 'results', `stage3-live-smoke-${provider === 'ollama' ? 'ollama-' : ''}${summary.date.slice(0, 10)}.json`);
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, `${JSON.stringify(summary, null, 2)}\n`);
   console.log(`\nMEASURED: ${calls.length} calls in ${seconds}s, total cost $${summary.totalCostUsd.toFixed(4)}`);
@@ -136,8 +143,26 @@ async function live() {
   console.log('LIVE SMOKE TEST PASSED');
 }
 
+// Ollama: skip if the server does not answer; fail with the fix if a model is missing
+async function liveOllama() {
+  const config = llmConfig();
+  const names = await listOllamaModels({ url: config.ollama.url });
+  if (!names) {
+    console.log(`Ollama is not reachable at ${config.ollama.url}: live smoke test SKIPPED (nothing was called).`);
+    return;
+  }
+  const wanted = [...new Set(Object.values(config.models))];
+  const emb = embeddingConfig();
+  if (emb.provider === 'ollama') wanted.push(emb.ollama.model);
+  const missing = wanted.filter((m) => !hasModel(names, m));
+  if (missing.length) throw new Error(`Ollama is running but these models are not pulled: ${missing.map((m) => `ollama pull ${m}`).join('; ')}`);
+  console.log(`Running against Ollama at ${config.ollama.url} (${wanted.join(', ')}); cost $0, this can take a few minutes...`);
+  await live('ollama');
+}
+
 async function main() {
-  const est = estimate(llmConfig().models.extract);
+  if ((process.env.LLM_PROVIDER || '').toLowerCase() === 'ollama') return liveOllama();
+  const est = estimate(llmConfig({ ...process.env, LLM_PROVIDER: 'anthropic' }).models.extract);
   printEstimate(est);
   if (process.argv.includes('--estimate')) return;
   if (!process.env.ANTHROPIC_API_KEY) {
@@ -145,7 +170,7 @@ async function main() {
     return;
   }
   console.log('\nRunning against the real API...');
-  await live();
+  await live('anthropic');
 }
 
 main().catch((err) => {

@@ -96,4 +96,25 @@ function judgeValidation(rows, n = 50, seed = 11) {
   };
 }
 
-module.exports = { bySystem, byType, versusOurs, judgeValidation, BASELINE };
+// Stage 3b: MEASURED seconds per item of a run, which eval/project-cost.js (--pilot) scales up to the full
+// LoCoMo run. With a local model, time (not money) is what limits a run. Per store: build seconds per mined
+// message. Per system: retrieval + answer seconds per question. Judge: seconds per judged answer.
+function timing(rows, builds) {
+  const perMessage = {};
+  for (const [store, list] of groupBy(builds.filter((b) => b.messages_mined > 0), (b) => b.store)) {
+    const mined = list.reduce((s, b) => s + b.messages_mined, 0);
+    perMessage[store] = round(list.reduce((s, b) => s + b.build_seconds, 0) / mined, 3);
+  }
+  const perAnswer = {};
+  for (const [system, list] of groupBy(rows, (r) => r.system)) perAnswer[system] = round(mean(list.map(total)) / 1000, 3);
+  return {
+    unit: 'seconds per item (measured)',
+    messages_mined_per_store: Object.fromEntries([...groupBy(builds.filter((b) => b.messages_mined > 0), (b) => b.store)].map(([k, l]) => [k, l.reduce((s, b) => s + b.messages_mined, 0)])),
+    questions_per_system: Object.fromEntries([...groupBy(rows, (r) => r.system)].map(([k, l]) => [k, l.length])),
+    seconds_per_message: perMessage,
+    seconds_per_answer: perAnswer,
+    seconds_per_judge: rows.length ? round(mean(rows.map((r) => r.judge_ms || 0)) / 1000, 3) : null,
+  };
+}
+
+module.exports = { bySystem, byType, versusOurs, judgeValidation, timing, BASELINE };
