@@ -2,6 +2,7 @@ const Memory = require('../models/Memory');
 const Message = require('../models/Message');
 const Conversation = require('../models/Conversation');
 const Category = require('../models/Category');
+const Suggestion = require('../models/Suggestion');
 const memoryService = require('./memoryService');
 const consent = require('./consentService');
 const { callLlm } = require('./llm');
@@ -153,6 +154,23 @@ async function apply(userId, candidate, decision, similar, ctx) {
   return null; // NOOP: nothing is written
 }
 
+// Stage 7: stores a candidate as a pending suggestion. An upsert on (user, message, content), so a retried
+// job does not suggest the same fact twice.
+async function suggest(userId, candidate, { message, category }) {
+  const sensitivity = memoryService.SPECIAL_CATEGORIES.includes(lower(category.name)) ? 'special' : candidate.sensitivity;
+  const key = { userId, messageId: message._id, content: candidate.content };
+  const fields = {
+    conversationId: message.conversationId,
+    categoryId: category._id,
+    topic: candidate.topic || null,
+    importance: candidate.importance,
+    confidence: candidate.confidence,
+    sensitivity,
+    validFrom: factStart(candidate, message),
+  };
+  return Suggestion.findOneAndUpdate(key, { $setOnInsert: { ...key, ...fields } }, { upsert: true, new: true, runValidators: true });
+}
+
 // Runs the pipeline for one message and returns a summary (stored on the job). Throws on LLM or database
 // errors so the worker can retry the job.
 // versioning: 'bitemporal' (the app, always) or 'overwrite' (the Stage 6 baseline, see overwriteInPlace).
@@ -200,8 +218,16 @@ async function processMessage({ userId, messageId, conversationId, jobId = null 
       decisions.push({ ...base, action: 'SKIP', reason: `Unknown category "${candidate.category}"` });
       continue;
     }
-    if (!(await consent.allowsCategory(userId, category.name))) {
+    // Stage 7: per-category consent. "never" drops the fact before any reconciliation call is paid for;
+    // "ask" keeps it as a suggestion the user accepts or rejects (it is not a memory until then).
+    const mode = await consent.modeFor(userId, category._id);
+    if (mode === 'never') {
       decisions.push({ ...base, action: 'SKIP', reason: 'The user has not consented to storing this category' });
+      continue;
+    }
+    if (mode === 'ask') {
+      const suggestion = await suggest(userId, candidate, { message, category });
+      decisions.push({ ...base, action: 'ASK', suggestionId: suggestion._id, reason: 'The user asked to confirm facts in this category first' });
       continue;
     }
     if (alreadyStored.has(lower(candidate.content))) {

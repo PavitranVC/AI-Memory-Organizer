@@ -3,7 +3,7 @@
 Coordinator log for the unattended run described in `docs/OVERNIGHT_PLAN.md`. Each stage was built by its own
 subagent; this file records each subagent's summary, checked against the pushed branch.
 
-Next step: Stage 7-lite (`claude/stage-7-governance`, from the Stage 6 branch).
+Next step: none. All six stages are built and pushed. Morning: follow "Morning checklist" below.
 
 ## Stages
 
@@ -14,6 +14,7 @@ Next step: Stage 7-lite (`claude/stage-7-governance`, from the Stage 6 branch).
 | 5 | `claude/stage-5-datasets` | [#5](https://github.com/PavitranVC/AI-Memory-Organizer/pull/5) | done (5-lite) | 209 (16 new) | LongMemEval / WildChat not loaded (Hugging Face blocked). |
 | 4 | `claude/stage-4-hybrid-retrieval` | [#6](https://github.com/PavitranVC/AI-Memory-Organizer/pull/6) | done (4-lite) | 249 (40 new) | Voyage and Atlas never run (paid / no cluster). Weights untuned. |
 | 6 | `claude/stage-6-evaluation` | [#7](https://github.com/PavitranVC/AI-Memory-Organizer/pull/7) | done (6-prep) | 267 (16 new) | Paid LLM evaluation awaits your approval. |
+| 7 | `claude/stage-7-governance` | [#8](https://github.com/PavitranVC/AI-Memory-Organizer/pull/8) | done (7-lite) | 299 (32 new) | Legal mapping needs a human check. |
 
 ## Stage details
 
@@ -90,6 +91,25 @@ Next step: Stage 7-lite (`claude/stage-7-governance`, from the Stage 6 branch).
 - Not done: paid evaluation (overnight rule), LongMemEval (Hugging Face blocked), extraction precision/recall
   (no human gold set). LoCoMo-style F1 does no stemming (`TODO: verify` against the authors' code).
 
+### Stage 7-lite: Privacy and governance
+- Head `e5f30ec`, verified on `origin`. Stacked on #7.
+- Consent per category (`store` / `ask` / `never`): `ask` keeps facts as suggestions to accept or reject;
+  `never` is refused by both the extractor and the API.
+- Lineage-based erasure: deleting a message (new `DELETE /api/conversations/:id/messages/:messageId`) or a
+  conversation erases every memory derived only from it, in one transaction, repairs the version chain and
+  blanks the erased content in the audit log.
+- `npm run erasure:verify` and `GET /api/me/erasure-check` check nothing derived from erased data remains;
+  `GET /api/me/export` returns all of a user's data.
+- `npm run retention` expires old special-category memories; off by default (`RETENTION_SPECIAL_DAYS` unset).
+- `docs/PRIVACY.md` maps features to the DPDP Act 2023 and GDPR, with `TODO: verify` items and a checklist.
+- Deliberate behaviour change: deleting a conversation now erases its derived memories instead of keeping them
+  unlinked; one Stage 2 test was updated to match.
+- Limits: new categories default to `store`, including Health (no explicit opt-in for special data); erasure
+  does not reach backups, the oplog or the LLM provider; a memory with other sources is flagged for review,
+  not re-extracted; accepting a suggestion doesn't check for similar memories.
+- Noted in the PR: running `npx jest` on two files at once failed once with "database is being dropped";
+  the full `npm test` always passed.
+
 ## Needs you
 - Stage 2: convert your laptop MongoDB service to a replica set (`docs/stages/STAGE-2.md`, section 6), then run
   `npm test` and `npm run migrate` locally.
@@ -104,3 +124,20 @@ Next step: Stage 7-lite (`claude/stage-7-governance`, from the Stage 6 branch).
 - Stage 6: review `results/stage6-cost-projection.txt`, then approve and run the paid pilot (command in the
   README "Evaluation" section, or the morning prompt in `docs/OVERNIGHT_PLAN.md`). Afterwards label
   `judge_validation.csv` yourself and run `npm run eval:judge-agreement`.
+- Stage 7: have someone check the `docs/PRIVACY.md` section numbers against the official texts (checklist
+  at the end of that file). Decide whether special categories such as Health should default to `ask`.
+
+## Morning checklist
+1. Read this report, then each PR's CI. #3–#7 were green when checked (Node 20/22, MongoDB 7/8); #8 was still
+   running when the run ended.
+2. For each stage in order (2, 3, 5, 4, 6, 7), read `docs/stages/STAGE-N.md`, get quizzed on it, then merge its
+   PR: #3, #4, #5, #6, #7, #8. Merge strictly in that order.
+3. Laptop: convert MongoDB to a replica set (`docs/stages/STAGE-2.md`, section 6), then `git checkout main`,
+   `git pull`, `npm install`, `npm test`, `npm run migrate`.
+4. Paid checks (new session, morning prompt in `docs/OVERNIGHT_PLAN.md`): `npm run test:live` (projected about
+   $0.41), then the 10-item LoCoMo pilot (projected about $7.01). Review the full-run projection ($268.95)
+   before approving it.
+5. Label `judge_validation.csv` yourself, then `npm run eval:judge-agreement`.
+6. Clear the `TODO: verify` items: LoCoMo question-type names and F1, the LongMemEval URL, Voyage/Atlas
+   details, the PRIVACY.md legal mapping.
+7. Optional: LongMemEval / WildChat (Hugging Face is blocked in the cloud), Voyage embeddings, Atlas.

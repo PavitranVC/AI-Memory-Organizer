@@ -8,6 +8,8 @@ const AuditLog = require('../models/AuditLog');
 const Job = require('../models/Job');
 const LlmCall = require('../models/LlmCall');
 const EvalItem = require('../models/EvalItem');
+const Consent = require('../models/Consent');
+const Suggestion = require('../models/Suggestion');
 const { badRequest, forbidden, conflict, unauthorized } = require('./errors');
 const { toObjectId } = require('./ids');
 const { withTransaction } = require('./transaction');
@@ -66,6 +68,9 @@ async function deleteUser(user, id) {
     const llmCalls = await LlmCall.deleteMany({ userId: user._id }, { session });
     // Stage 5: benchmark questions point at this user's messages, so they go too (no dangling references)
     const evalItems = await EvalItem.deleteMany({ userId: user._id }, { session });
+    // Stage 7: consent settings and pending suggestions
+    const consents = await Consent.deleteMany({ userId: user._id }, { session });
+    const suggestions = await Suggestion.deleteMany({ userId: user._id }, { session });
     const messages = await Message.deleteMany({ conversationId: { $in: conversationIds } }, { session });
     const removedConversations = await Conversation.deleteMany({ userId: user._id }, { session });
     await User.deleteOne({ _id: user._id }, { session });
@@ -78,6 +83,8 @@ async function deleteUser(user, id) {
       jobs: jobs.deletedCount,
       llmCalls: llmCalls.deletedCount,
       evalItems: evalItems.deletedCount,
+      consents: consents.deletedCount,
+      suggestions: suggestions.deletedCount,
     };
   });
 }

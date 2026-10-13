@@ -8,6 +8,8 @@ const { paginate, parseLimit, parseCursor } = require('./pagination');
 const { requireString } = require('./authService');
 const { withTransaction } = require('./transaction');
 const jobService = require('./jobService');
+const erasure = require('./erasureService');
+const Suggestion = require('../models/Suggestion');
 
 // Loads a conversation only if it belongs to the user. Someone else's conversation is reported as
 // "not found", so ids of other users' data cannot be probed.
@@ -38,22 +40,36 @@ async function updateConversation(userId, id, { title } = {}) {
   return conversation.save();
 }
 
-// Deletes the conversation and its messages, in one transaction. Memories extracted from it belong to the
-// user and are kept (every version), but lose the link to the conversation and to the deleted source
-// messages, so no reference points at a missing document. Erasing them by lineage is Stage 7.
+// Deletes the conversation and its messages, in one transaction, and ERASES everything derived from those
+// messages (Stage 7, lineage-based erasure; see erasureService): memory versions derived only from them are
+// hard-deleted, versions with other sources too are kept but flagged, suggestions and jobs go, and the audit
+// log keeps no content about what was erased. A memory linked to the conversation without any source message
+// (e.g. created by hand with a conversationId) was not derived from its text, so it is kept and only unlinked.
 async function deleteConversation(userId, id) {
   const conversation = await getOwnedConversation(userId, id);
   return withTransaction(async (session) => {
     const messageIds = (await Message.find({ conversationId: conversation._id }).select('_id').session(session).lean()).map((m) => m._id);
+    const erased = await erasure.eraseByMessages(userId, messageIds, session, { reason: 'conversation deleted' });
     const messages = await Message.deleteMany({ conversationId: conversation._id }, { session });
     const memories = await Memory.updateMany({ userId, conversationId: conversation._id }, { $unset: { conversationId: 1 } }, { session });
-    if (messageIds.length > 0) {
-      await Memory.updateMany({ userId, sourceMessageIds: { $in: messageIds } }, { $pull: { sourceMessageIds: { $in: messageIds } } }, { session });
-    }
     // Extraction jobs of this conversation have nothing left to read
     await Job.deleteMany({ userId, 'payload.conversationId': conversation._id }, { session });
+    await Suggestion.deleteMany({ userId, conversationId: conversation._id }, { session });
     await Conversation.deleteOne({ _id: conversation._id }, { session });
-    return { conversation, deletedMessages: messages.deletedCount, unlinkedMemories: memories.modifiedCount };
+    return { conversation, deletedMessages: messages.deletedCount, unlinkedMemories: memories.modifiedCount, erasure: erased };
+  });
+}
+
+// Stage 7: deletes ONE message and erases everything derived from it (the same lineage erasure as above)
+async function deleteMessage(userId, conversationId, messageId) {
+  const conversation = await getOwnedConversation(userId, conversationId);
+  const id = toObjectId(messageId, 'messageId');
+  return withTransaction(async (session) => {
+    const message = await Message.findOne({ _id: id, conversationId: conversation._id }).session(session).lean();
+    if (!message) throw notFound('Message not found');
+    const erased = await erasure.eraseByMessages(userId, [message._id], session, { reason: 'message deleted' });
+    await Message.deleteOne({ _id: message._id }, { session });
+    return { message, erasure: erased };
   });
 }
 
@@ -102,6 +118,7 @@ module.exports = {
   createConversation,
   updateConversation,
   deleteConversation,
+  deleteMessage,
   listMessages,
   createMessage,
 };

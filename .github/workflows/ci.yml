@@ -93,3 +93,9 @@ jobs:
         run: npm run eval -- --questions 5 --out /tmp/stage6-eval
       - name: Cost projection (no API calls)
         run: npm run eval:cost -- --out /tmp/stage6-cost-projection
+      # Stage 7: the erasure invariants hold on the whole CI database (seed + LoCoMo + synthetic), and the
+      # retention job can find expired special memories (dry run: it only counts)
+      - name: Erasure verification (every user)
+        run: npm run erasure:verify
+      - name: Retention (dry run)
+        run: npm run retention -- --days 365 --dry-run

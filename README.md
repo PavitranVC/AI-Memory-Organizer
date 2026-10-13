@@ -118,6 +118,7 @@ with real data, because it deletes everything first.
 | `MONGO_URI_EVAL` | `mongodb://127.0.0.1:27017/aimemory_eval` | Database for `npm run eval` (Stage 6). **It is dropped** before each sample; its name must contain `eval` |
 | `DATA_DIR` | `./data` | Where `npm run data:download` saves datasets (gitignored) |
 | `HF_TOKEN` | unset | Hugging Face read token, for gated datasets. Sent only to `huggingface.co` |
+| `RETENTION_SPECIAL_DAYS` | unset (off) | Stage 7: `npm run retention` erases `special`-sensitivity memory versions recorded more than this many days ago. Unset or `0` = no expiry |
 
 ### npm scripts
 
@@ -142,6 +143,8 @@ with real data, because it deletes everything first.
 | `npm run eval` | Stage 6 evaluation on LoCoMo: six systems answer the same questions, scored by token F1 and an LLM judge; writes `results/<run-id>/`. Mock model by default; any paid provider needs `-- --paid` (see [Evaluation](#evaluation-stage-6)) |
 | `npm run eval:cost` | Cost projection for the paid evaluation (no API calls); writes `results/stage6-cost-projection.csv` and `.txt` |
 | `npm run eval:judge-agreement -- results/<run-id>` | After you label `judge_validation.csv`: agreement and Cohen's kappa between you and the LLM judge |
+| `npm run erasure:verify` | Stage 7: proves nothing derived from erased data remains (anti-joins over every reference). `-- --user <id>`, `-- --messages <id>,<id>`, `-- --text "phrase"`. Exit code 1 if any check fails |
+| `npm run retention` | Stage 7: erase `special` memories older than `RETENTION_SPECIAL_DAYS` (`-- --days 365` overrides, `-- --dry-run` only counts). Schedule it daily (cron or Windows Task Scheduler) |
 | `npm run migrate` | Upgrade an older database to the current schema: runs the Stage 1 and Stage 2 migrations in order (see [Upgrading an old database](#upgrading-an-old-database)) |
 
 ## Using the API
@@ -166,20 +169,21 @@ curl -s "http://localhost:5000/api/memories?category=health&limit=2" -H "Authori
 | `POST /api/auth/login` | Body: `{ email, password }`. Returns `{ user, token }` |
 | `GET /api/users/me` | Your account (`me` or your own id; anyone else's id is `403`) |
 | `PUT /api/users/me` | Update `name`, `email`, `occupation`, or `password` (changing it also needs `currentPassword`) |
-| `DELETE /api/users/me` | Delete your account and, in one transaction, your conversations, messages, every memory version, your audit log entries, extraction jobs and LLM call log |
+| `DELETE /api/users/me` | Delete your account and, in one transaction, your conversations, messages, every memory version, your audit log entries, extraction jobs, LLM call log, consent settings and suggestions |
 | `GET /api/categories`, `GET /api/categories/:id` | Read the shared categories (any user) |
 | `POST /api/categories`, `PUT /api/categories/:id`, `DELETE /api/categories/:id` | Change categories (**admin only**). Delete is `409` while any memory version that is not retracted (current or past) uses the category |
 | `GET /api/conversations` | Your conversations, newest first |
 | `POST /api/conversations` | Body: `{ title }` |
 | `GET /api/conversations/:id` | One conversation, with `messageCount` |
 | `PUT /api/conversations/:id` | Body: `{ title }` |
-| `DELETE /api/conversations/:id` | Delete it, its messages and its extraction jobs. Memories made from it are kept, with the links to the conversation and to the deleted messages removed |
+| `DELETE /api/conversations/:id` | Delete it and its messages, and **erase everything derived from them** (Stage 7, see [Privacy and governance](#privacy-and-governance-stage-7)). The response has an `erasure` receipt (counts) |
 | `GET /api/conversations/:id/messages` | Messages in chat order |
 | `POST /api/conversations/:id/messages` | Body: `{ role: "user" \| "assistant", content }`. A `user` message also queues an extraction job (returned as `extractionJobId`); the response does not wait for it |
+| `DELETE /api/conversations/:id/messages/:messageId` | Delete one message and erase every memory version derived only from it (Stage 7); returns the `erasure` receipt |
 | `GET /api/jobs` | Your extraction jobs, newest first. Filter: `status` (`pending`, `running`, `done`, `failed`) |
 | `GET /api/jobs/:id` | One job, with the decision taken for each candidate fact (`result.decisions`) |
 | `POST /api/memories` | Body: `{ content, category` (name) `or categoryId, importance?, status?, tags?, conversationId?, validFrom?, confidence?, sensitivity?, sourceMessageIds? }`. Returns `201` with the first version |
-| `GET /api/memories` | Your **current** memories, newest first. Filters: `status`, `category`, `categoryId`, `minImportance`. Time travel: `asOf` (valid time) and/or `knownAt` (transaction time), ISO dates |
+| `GET /api/memories` | Your **current** memories, newest first. Filters: `status`, `category`, `categoryId`, `minImportance`, `needsReview=true` (versions an erasure flagged). Time travel: `asOf` (valid time) and/or `knownAt` (transaction time), ISO dates |
 | `GET /api/memories/:id` | One version (current or past; a retracted one is `404`). Counts as an access (`accessCount`, `lastAccessedAt`) |
 | `GET /api/memories/:id/history` | The whole version chain, oldest first, from any of its versions |
 | `PUT /api/memories/:id` | **Supersede**: creates a new version and closes this one; returns the new version. Any of `content`, `category`/`categoryId`, `importance`, `status`, `tags`, `conversationId` (`null` unlinks), `confidence`, `sensitivity`, `sourceMessageIds`, `validFrom` (when the change happened; default now). Send `"correction": true` to fix a mistake instead. Only the current version can be updated (`409` otherwise) |
@@ -190,6 +194,13 @@ curl -s "http://localhost:5000/api/memories?category=health&limit=2" -H "Authori
 | `GET /api/memories/search?q=` | Keyword search over the content and tags of current versions, ranked by relevance. Takes `limit` but no `cursor` |
 | `GET /api/memories/retrieve?q=&asOf=&k=` | Hybrid retrieval (Stage 4): the top `k` (default 5, max 20) memories valid at `asOf` (default now), each with its `score` and the four parts (`text`, `vector`, `recency`, `importance`). Counts as an access |
 | `POST /api/ask` | Body: `{ question, asOf?, k? }`. Retrieves the top-k memories valid at `asOf` and answers with the LLM. Returns `{ answer, insufficient, citedMemoryIds, citations, memories }`. With no relevant memory it answers "I don't have any memories..." without calling the LLM. `502` if the model fails or cites a memory it was not shown |
+
+| `GET /api/me/consent` | Stage 7: your consent mode (`store`, `ask`, `never`) for every category; `store` until you choose |
+| `PUT /api/me/consent/:category` | Body: `{ mode, eraseExisting? }`. `:category` is a name or id. `never` also erases what is stored in the category unless `eraseExisting: false` |
+| `GET /api/me/suggestions` | Facts the extractor found in `ask` categories, waiting for your decision (they are not memories) |
+| `POST /api/me/suggestions/:id/accept`, `DELETE /api/me/suggestions/:id` | Accept (becomes a memory, `201`) or reject (deleted) |
+| `GET /api/me/export` | Everything stored about you as one JSON file (`?embeddings=true` adds the vectors) |
+| `GET /api/me/erasure-check?text=` | The erasure verification for your own data |
 
 `GET /` returns this list as JSON.
 
@@ -429,6 +440,9 @@ erDiagram
   USER ||--o{ LLM_CALL : "is billed in"
   USER ||--o{ EVAL_ITEM : "benchmark questions about (Stage 5)"
   MESSAGE }o--o{ EVAL_ITEM : "is evidence for (evidenceMessageIds)"
+  USER ||--o{ CONSENT : "chooses (Stage 7)"
+  CATEGORY ||--o{ CONSENT : "store | ask | never"
+  MESSAGE ||--o{ SUGGESTION : "is source of (Stage 7)"
 
   USER {
     ObjectId _id PK
@@ -476,16 +490,31 @@ erDiagram
     ObjectId supersededBy FK "next version"
     date lastAccessedAt
     int accessCount
+    object erasureReview "Stage 7: flagged by an erasure"
+  }
+  CONSENT {
+    ObjectId _id PK
+    ObjectId userId FK
+    ObjectId categoryId FK
+    string mode "store | ask | never"
+  }
+  SUGGESTION {
+    ObjectId _id PK
+    ObjectId userId FK
+    ObjectId messageId FK "provenance"
+    ObjectId categoryId FK
+    string content
   }
   AUDIT_LOG {
     ObjectId _id PK
     ObjectId userId FK
     ObjectId memoryId FK
-    string action "create | supersede | correct | retract | migrate"
+    string action "create | supersede | correct | retract | migrate | erase | restore"
     ObjectId actorId FK
     date at
     object before "snapshot"
     object after "snapshot"
+    date tombstonedAt "Stage 7: content blanked by an erasure"
   }
 ```
 
@@ -537,6 +566,12 @@ and verified with `npm run explain`. Every list is paginated newest-first on `_i
 | messages | `{ conversationId, sentAt }` | One conversation in chat order | E: conversationId, S: sentAt |
 | users | `{ email }` unique | Login, duplicate check | E: email |
 | categories | `{ name }` unique, case-insensitive | Duplicate check, lookup by name | E: name |
+| memories | `{ userId, sourceMessageIds }` (multikey) | Stage 7 lineage: the versions derived from given messages (erasure) | E: userId, sourceMessageIds |
+| memories | `{ recordedAt }` partial on `sensitivity: "special"` (`retention_special`) | Stage 7 retention: special versions recorded before the cutoff, all users | R: recordedAt |
+| consents | `{ userId, categoryId }` unique | Stage 7: a user's mode for a category (checked for every candidate fact) | E: userId, categoryId |
+| consents, suggestions | `{ categoryId }` | Deleting a category removes its settings and suggestions | E: categoryId |
+| suggestions | `{ userId, _id: -1 }` | A user's pending suggestions | E: userId, S: _id |
+| suggestions | `{ userId, messageId, content }` unique | Erasure by message; a retried job cannot suggest a fact twice | E: userId, messageId |
 
 "Current" is written as the **equality** `validTo: null, retractedAt: null`, not as a range on dates, so it
 can sit in the equality part of an index. The time-travel index puts its ranges *after* the sort key: the scan
@@ -632,18 +667,21 @@ services/retrieval/  Stage 4: hybrid ranking, local and Atlas vector backends, r
 services/askService.js  Stage 4: POST /api/ask (retrieve top-k, answer, check citations)
 atlas/              Atlas vector index definition (vector-index.json)
 services/datasets/  Stage 5: LoCoMo loader, synthetic scale generator, shared reset and seeded random helpers
+services/erasureService.js, erasureVerifier.js, consentService.js, suggestionService.js, exportService.js,
+retentionService.js Stage 7: lineage erasure, its verification, consent, suggestions, export, retention
 prompts/            Versioned LLM prompts (extract.v1.md, reconcile.v1.md, answer.v1.md; Stage 6: eval-answer.v1.md, judge.v1.md)
 eval/               Stage 6: evaluation harness (run.js, harness.js, systems.js, metrics.js, report.js, stats.js),
                     index benchmark (bench-indexes.js), cost projection, judge agreement, SVG charts from CSVs
 scripts/            explain.js (query plans), migrate.js (runs migrate-stage1.js, then migrate-stage2.js),
                     worker.js (extraction worker), live-smoke.js (npm run test:live), llm-costs.js,
-                    embed-backfill.js, atlas-index.js, bench-retrieval.js (Stage 4)
+                    embed-backfill.js, atlas-index.js, bench-retrieval.js (Stage 4),
+                    verify-erasure.js, retention.js (Stage 7)
 scripts/datasets/   download.js, load-locomo.js, generate-synthetic.js, stats.js (the npm run data:* commands)
 data/               Downloaded datasets (gitignored, never committed)
 results/            Outputs of committed scripts, each with its command, commit, date and dataset
 seed.js             Sample data
 tests/              Jest + supertest tests
-docs/               Roadmap, prompt playbook, and per-stage notes (docs/stages/STAGE-N.md)
+docs/               Roadmap, prompt playbook, per-stage notes (docs/stages/STAGE-N.md), PRIVACY.md (Stage 7)
 ```
 
 ## Evaluation (Stage 6)
@@ -664,15 +702,53 @@ LLM_PROVIDER=anthropic npm run eval -- --questions 10 --paid --run-id stage6-pil
 LLM_PROVIDER=anthropic npm run eval -- --samples all --questions 0 --paid --run-id stage6-locomo-full
 ```
 
-## Known limitations (up to Stage 6)
+## Privacy and governance (Stage 7)
+
+Legal mapping (DPDP Act 2023 and GDPR) and its open `TODO: verify` items: [docs/PRIVACY.md](docs/PRIVACY.md).
+
+- **Consent per category** (`/api/me/consent`): `store` (default), `ask` (the extractor keeps facts as
+  suggestions you accept or reject) or `never` (the extractor drops them and the API refuses them with `409`).
+  Setting `never` erases what is already stored in that category unless you send `eraseExisting: false`.
+- **Lineage-based erasure.** Every memory version lists the messages it came from (`sourceMessageIds`). Deleting a
+  message or a conversation, in one transaction:
+  - hard-deletes every version derived **only** from the deleted messages (its embedding is in the same document);
+  - keeps a version that also has other sources, removes the deleted ids from it and flags it
+    (`erasureReview`, listed by `GET /api/memories?needsReview=true`), because its text may still hold something
+    from the erased message;
+  - repairs the version chain: the surviving versions are linked to each other, and if the erased version was the
+    current one, the version it closed becomes current again (as if the message had never been said);
+  - tombstones the audit log: entries about erased versions keep the action and time but no content, and an
+    `erase` entry is added;
+  - deletes the suggestions and extraction jobs of those messages.
+- **Verification.** `npm run erasure:verify` (or `GET /api/me/erasure-check`) checks with anti-joins that no
+  memory, audit snapshot, suggestion, job or benchmark label points at a missing message or version, and
+  optionally that given message ids or a phrase appear nowhere.
+- **Export.** `GET /api/me/export` returns every row about you from every collection as one JSON file.
+- **Retention.** `npm run retention` erases `special` memories older than `RETENTION_SPECIAL_DAYS`, through the same
+  erasure code. It is a scheduled job, not a TTL index: a TTL index deletes documents outside any transaction, so it
+  would leave broken version chains and the deleted text in the audit log.
+
+```bash
+# Delete one message and everything derived from it, then prove it
+curl -s -X DELETE "http://localhost:5000/api/conversations/$CONV/messages/$MSG" -H "Authorization: Bearer $TOKEN"
+npm run erasure:verify -- --messages $MSG --text "penicillin"
+```
+
+## Known limitations (up to Stage 7)
 
 - **Login only.** There is no password reset, email verification, refresh token or rate limiting on login.
   Do not expose it to the internet as it is.
 - **Categories are shared** by all users and only admins can change them. The first admin has to be set in the
   database (the seed makes Aarav one); nobody can become admin through the API.
-- **Deleting a conversation keeps its memories.** Removing everything derived from a conversation is planned for Stage 7.
-- **Nothing is ever physically deleted** except a whole account. A retracted memory stays in the database and the
-  audit log keeps snapshots of every version. Hard erasure of a single memory is planned for Stage 7.
+- **A retracted memory is not erased.** `DELETE /api/memories/:id` only retracts (the history keeps it). Hard
+  erasure is by lineage (deleting the source message or conversation), by withdrawing consent for the category,
+  by retention, or by deleting the account. A memory created by hand without `sourceMessageIds` has no lineage,
+  so deleting a conversation only unlinks it.
+- **Erasure flags, it does not re-derive.** A memory with several sources keeps its text when one source is erased
+  (it is flagged for review); re-running the extractor on the remaining sources is not implemented.
+- **Default consent is `store`** for every category, including Health. GDPR Art. 9 expects explicit opt-in for
+  special categories; see docs/PRIVACY.md.
+- **The legal mapping in docs/PRIVACY.md is not legal advice** and has `TODO: verify` items for a person to check.
 - **No future-dated facts.** `validFrom` cannot be in the future (for example "I move to Pune next month"); that
   keeps "current" a simple equality on `validTo = null`.
 - **Every update creates a version**, even a status change, so storage grows with the number of edits.

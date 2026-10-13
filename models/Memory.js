@@ -67,6 +67,12 @@ const memorySchema = new mongoose.Schema(
     // Which model and size made the vector (e.g. "lexical-hash-v1-256"). Vectors are only ever compared with
     // vectors of the same model; null = not embedded yet.
     embeddingModel: { type: String, default: null },
+
+    // --- Stage 7: lineage-based erasure ---
+    // Set when an erasure touched this version without deleting it: some (not all) of its source messages were
+    // erased, or a later version was erased and this one became current again. The content may still hold
+    // something learned from the erased message, so the user should review it. null = nothing to review.
+    erasureReview: { type: new mongoose.Schema({ at: Date, reason: String }, { _id: false }), default: null },
   },
   {
     timestamps: true,
@@ -104,6 +110,12 @@ memorySchema.index({ categoryId: 1, retractedAt: 1 });
 // A version can be superseded only once: two concurrent updates of the same version cannot both create a
 // successor (no forked chains). Partial, because most versions supersede nothing.
 memorySchema.index({ supersedes: 1 }, { unique: true, partialFilterExpression: { supersedes: { $type: 'objectId' } } });
+// Stage 7 lineage: "which versions were derived from these messages?" (erasure). sourceMessageIds is an array,
+// so this is a multikey index: one key per (userId, source message). E: userId, sourceMessageIds.
+memorySchema.index({ userId: 1, sourceMessageIds: 1 });
+// Stage 7 retention: "special" versions recorded before the cutoff, across all users. Partial, so the index
+// holds only special-sensitivity versions (a small fraction) and costs nothing for the rest. R: recordedAt.
+memorySchema.index({ recordedAt: 1 }, { name: 'retention_special', partialFilterExpression: { sensitivity: 'special' } });
 // Keyword search. A text index can only be combined with equality fields, so the userId prefix keeps a
 // search inside one user's data; every search query must therefore include userId.
 memorySchema.index({ userId: 1, content: 'text', tags: 'text' });

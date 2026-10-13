@@ -3,7 +3,6 @@ const { connect, disconnect, clear, api, createUser, createCategory, models } = 
 const worker = require('../services/worker');
 const jobService = require('../services/jobService');
 const extraction = require('../services/extractionService');
-const consent = require('../services/consentService');
 const llm = require('../services/llm');
 const { MockProvider } = require('../services/llm/mockProvider');
 
@@ -179,8 +178,8 @@ describe('extraction and reconciliation', () => {
 
   test('facts in a category that does not exist, or that the user has not consented to, are skipped', async () => {
     await models.Category.deleteOne({ name: 'Hobbies' });
-    jest.spyOn(consent, 'allowsCategory').mockImplementation(async (userId, name) => name !== 'Health');
     const { user, token } = await createUser();
+    await api(token).put('/api/me/consent/Health').send({ mode: 'never' }).expect(200);
     const { say } = await chat(token);
     await say('I love trekking. I am allergic to dust. I live in Kochi');
     await worker.drain();

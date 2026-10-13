@@ -24,7 +24,9 @@
     "bench:indexes": "node eval/bench-indexes.js",
     "eval": "node eval/run.js",
     "eval:cost": "node eval/project-cost.js",
-    "eval:judge-agreement": "node eval/judge-agreement.js"
+    "eval:judge-agreement": "node eval/judge-agreement.js",
+    "erasure:verify": "node scripts/verify-erasure.js",
+    "retention": "node scripts/retention.js"
   },
   "engines": {
     "node": ">=20"
