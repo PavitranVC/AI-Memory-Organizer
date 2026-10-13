@@ -51,9 +51,30 @@ never needs Ollama. Part B adds two Claude Code study commands: `/viva <stage>` 
 | `services/llm/ollamaProvider.js` | 3.3 instead of 4 characters per token when choosing `num_ctx` (4 under-counted qwen2.5 tokens) |
 | `tests/eval.test.js`, `tests/llm.test.js` | A run with failing calls; CRLF and LF prompts parse to the same text |
 
+**extract.v2: events as well as facts** (branch `claude/stage-3b-extract-v2`). The laptop diagnosis showed the local
+model answering `{"candidates": []}` for almost every LoCoMo message under `extract.v1`, which keeps only durable
+facts and says "most messages contain none". LoCoMo is a chat between friends, and most of its questions ask what
+happened and when. A draft that also allowed dated events was the only change that raised the yield, but it
+resolved "last Friday" to the wrong day. The decision (the student's): store events too, and give the model a
+calendar so it never computes a weekday.
+
+| File | Why |
+|---|---|
+| `prompts/extract.v2.md` | New, now active. Three kinds of memory: lasting facts, dated events the user took part in (`validFrom` = the day it happened, topic `event ...`), and plans (`Plans to ...`, topic `plan ...`, no date). The chat may be with another person. Rules for "today", "yesterday", "last Friday", "last week", "last month". Same JSON format as v1 |
+| `services/extractionService.js` | Sends `calendar` (the message day and the 7 days before it, each with its weekday, from `calendarFor()`) and `sentDay`; keeps `sentAt` for v1 |
+| `services/llm/prompts.js` | `ACTIVE.extract` is `extract.v2`; v1 stays in `prompts/` so older `llmcalls` rows and results still say exactly which wording produced them |
+| `eval/run.js` | `config.json` records the active prompt versions from `prompts.js` (it hard-coded `extract.v1`) |
+| `services/llm/ollamaProvider.js` | `eval_answer` may write 2048 tokens (1024 cut off full-context answers on the pilot) |
+| `eval/project-cost.js` | The pilot scope is labelled with the pilot's real question count |
+| `scripts/live-smoke.js`, `eval/bench-indexes.js` | `--estimate` never starts a run; the benchmark header no longer claims MongoDB runs in Docker |
+| `tests/extraction.test.js` | The calendar (weekdays, month and leap-year boundaries) and what the extractor sends |
+
 ## 3. Concepts
 | Idea | Textbook name | One line |
 |---|---|---|
+| Facts vs events in `extract.v2` | **Semantic vs episodic memory** | Semantic: what is true about the user ("has two children"); episodic: what happened and when ("passed a driving test on 2025-06-09") |
+| The calendar in the prompt | **Grounding / tool-free lookup** | Give the model the facts it is bad at computing (weekdays) instead of asking it to reason them out |
+| `extract.v1` kept beside `v2` | **Prompt versioning** | Every logged call names the prompt version, so results from v1 and v2 are never mixed up |
 | The same interface, different implementations | **Strategy pattern / dependency inversion** | `callLlm()` talks to "a provider"; mock, Anthropic and Ollama are swapped by one variable |
 | JSON schema sent as `format` | **Constrained (grammar-based) decoding** | The model can only produce tokens that keep the output valid against the schema |
 | `num_ctx` | **Context window** | How many tokens (prompt plus answer) the model can see; Ollama cuts silently what does not fit |
@@ -117,6 +138,12 @@ never needs Ollama. Part B adds two Claude Code study commands: `/viva <stage>` 
     are recorded in every `results/` run, and the paper must say which models were used.
 
 ## 5. Weak points
+- **Episodic memory is a design change.** Since `extract.v2` the store holds events and plans, not only lasting
+  facts. Results with v2 and v1 are different systems and must be reported separately. The v2 yield and its date
+  accuracy were checked only on a draft and 30 messages; the next laptop run measures them. TODO: verify with the
+  committed laptop results.
+- **Events never stop being true,** so they are only ever ADDed. Many small events make the store larger, and the
+  storage cost is part of what the evaluation measures.
 - **Ollama could not run in the cloud session** (its model registry is blocked there), so CI tests the providers
   against a fake server only. The first real runs were on the laptop on 2026-10-13: the live smoke test passed and
   a 10-question pilot ran (outputs to be committed in `results/`). That run found three problems, see "Fixes after
@@ -153,7 +180,7 @@ Needs MongoDB as a replica set (`STAGE-2.md`) and Ollama running with the three 
 ```powershell
 git checkout claude/stage-3b-ollama   # or main, once merged
 npm install
-npm test                               # 321 tests; mock only, Ollama not needed
+npm test                               # all pass; 323 tests on main since Stage 3b (mock only, no key)
 ollama list                            # qwen2.5-coder:14b, deepseek-r1:14b, nomic-embed-text
 
 # The live smoke test on the local models (free). Prints the extracted memories, tokens and time.

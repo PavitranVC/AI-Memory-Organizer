@@ -89,7 +89,7 @@ Needs MongoDB as a replica set (see `STAGE-2.md`) and the LoCoMo file (`npm run 
 ```powershell
 git checkout claude/stage-6-evaluation   # or main, once merged
 npm install
-npm test                                  # 267 tests, mock only
+npm test                                  # all pass; 323 tests on main since Stage 3b (mock only, no key)
 npm run data:download                     # if data\locomo\locomo10.json is missing
 
 # 1. Index benchmark, quick version (about a minute); the full one is "npm run bench:indexes" (~6 min)

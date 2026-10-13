@@ -40,13 +40,15 @@ function main() {
   const factsPerMessage = Number(option(args, '--facts-per-message', 0.5));
   const outTok = Number(option(args, '--output-tokens', 300)); // per call, thinking included; an assumption
   const k = Number(option(args, '--k', 10));
-  const pilotQuestions = Number(option(args, '--pilot-questions', 10));
   const out = option(args, '--out', 'results/stage6-cost-projection');
   const asked = String(option(args, '--provider', process.env.LLM_PROVIDER || 'mock')).toLowerCase();
   const provider = asked === 'mock' ? 'anthropic' : asked;
   const models = llmConfig({ ...process.env, LLM_PROVIDER: provider }).models;
   const pilotDir = option(args, '--pilot', null);
   const pilot = pilotDir ? JSON.parse(fs.readFileSync(path.join(pilotDir, 'timing.json'), 'utf8')) : null;
+  // The pilot scope has as many questions as the pilot run really had (a 2-question run was labelled "10")
+  const measured = pilot && pilot.questions_per_system ? Math.max(...Object.values(pilot.questions_per_system)) : null;
+  const pilotQuestions = Number(option(args, '--pilot-questions', measured || 10));
   const P = Object.fromEntries(['extract', 'reconcile', 'eval_answer', 'judge'].map((t) => [t, loadPrompt(t)]));
   const sys = (t) => tok(P[t].system.length);
   const samples = JSON.parse(fs.readFileSync(DATA, 'utf8'));
@@ -55,7 +57,7 @@ function main() {
   const add = (scope, component, model, calls, t) => rows.push({ scope, component, model, calls, input_tokens: t.input, cache_write_tokens: t.cacheWrite, cache_read_tokens: t.cacheRead, output_tokens: t.output, cost_usd: Math.round(price(model, t, provider) * 100) / 100 });
   const times = [];
 
-  for (const [scope, list, qPer] of [['pilot (1 sample, 10 questions)', samples.slice(0, 1), pilotQuestions], ['full LoCoMo (10 samples, all questions)', samples, 0]]) {
+  for (const [scope, list, qPer] of [[`pilot (1 sample, ${pilotQuestions} questions)`, samples.slice(0, 1), pilotQuestions], ['full LoCoMo (10 samples, all questions)', samples, 0]]) {
     const z = () => ({ input: 0, cacheWrite: 0, cacheRead: 0, output: 0 });
     const ext = z();
     const rec = z();

@@ -115,9 +115,12 @@ SUPERSEDE decision is what fills the version chains that the thesis evaluates.
     words, not meaning, so "nut allergy" will not find "allergic to peanuts". Stage 4 adds vector search for that.
 
 ## 5. Weak points
-- **No live run yet.** All 193 tests use the mock. The Claude provider is only tested against a fake SDK client
-  (request shape, refusal, errors). Answer: "The live smoke test is ready (`npm run test:live`); its estimate is in
-  `results/stage3-live-cost-estimate.txt` and the real numbers will come from that run."
+- **No live run with Claude.** The tests use the mock, and the Claude provider is only tested against a fake SDK
+  client (request shape, refusal, errors). The pipeline has since run on real local models (Stage 3b,
+  `LLM_PROVIDER=ollama npm run test:live`); see `STAGE-3B.md`. The Claude estimate is in
+  `results/stage3-live-cost-estimate.txt`.
+- **Since Stage 3b the active extraction prompt is `extract.v2`** (dated events and plans as well as lasting facts).
+  Everything in this note about `extract.v1` describes Stage 3 as built.
 - **The cost estimate is a projection.** Token counts are characters/4 x 1.35, and thinking tokens are assumed
   (1,500 per extraction, 800 per reconciliation). The live run replaces it with measured figures.
 - **Keyword similarity.** Related facts with no shared words are missed, which can create near-duplicates. Fixed by
@@ -137,12 +140,14 @@ SUPERSEDE decision is what fills the version chains that the thesis evaluates.
   in `(sentAt, _id)` order uses a small in-memory sort (visible in `npm run explain`).
 
 ## 6. Demo on your laptop
+The outputs below are from the default mock LLM (`LLM_PROVIDER` unset or `mock`). With `LLM_PROVIDER=ollama` a real
+model decides, so the memories, decisions and timing differ, and each step takes longer.
 Needs MongoDB running as a replica set (see `STAGE-2.md`).
 
 ```powershell
 git checkout claude/stage-3-llm-extraction   # or main, once merged
 npm install
-npm test                  # 193 tests, mock LLM only, no key needed
+npm test                  # all pass; 323 tests on main since Stage 3b (mock only, no key)
 npm run seed
 npm run explain           # includes "jobs: claim the oldest due job" -> IXSCAN(status_1_runAt_1)
 $env:WORKER_IN_PROCESS = 'true'; npm start   # API + worker in one window (mock LLM)
