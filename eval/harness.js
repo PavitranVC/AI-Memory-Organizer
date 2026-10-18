@@ -175,75 +175,189 @@ async function answerAndScore({ system, item, context, asOf, retrievalMs }) {
   };
 }
 
+// The four groups of systems that share one build, in the order they run. A memory store is built once per
+// group, so every system of a group answers from the SAME store.
+const GROUPS = ['full_context', 'rag_messages', 'bitemporal', 'overwrite'];
+const groupOf = (system) => system.store || system.id;
+const BUILD_OF_GROUP = { rag_messages: 'rag message vectors', bitemporal: 'bitemporal', overwrite: 'overwrite' };
+
 // Runs every requested system on the chosen questions of one LoCoMo sample.
 // Returns { rows, builds } (rows: one per system x question; builds: one per memory store + raw storage).
-async function evaluateSample(sample, { questions = 10, k = 10, systems = S.SYSTEM_IDS, seed = 1, log = () => {} } = {}) {
+//
+// Stage 6b: with a `ledger` (eval/checkpoint.js) every finished row and build is written down at once, and a
+// sample that was interrupted continues from the ledger instead of starting again:
+//   - a finished (system, question) is never asked again;
+//   - a memory store that is still in MongoDB, and was recorded as fully built, is reused;
+//   - a store group that is only PARTLY answered but whose store is gone is thrown away and redone, so that all
+//     systems of a group always answer from one single build.
+// `resetDb` (required with a ledger) empties the disposable database when the sample must start from nothing.
+// Without a ledger the database must be empty and the behaviour is exactly the Stage 6 one.
+async function evaluateSample(sample, { questions = 10, k = 10, systems = S.SYSTEM_IDS, seed = 1, log = () => {}, ledger = null, resetDb = null } = {}) {
   const chosen = systems.map((id) => {
     const s = S.SYSTEMS.find((x) => x.id === id);
     if (!s) throw new Error(`Unknown system "${id}" (known: ${S.SYSTEM_IDS.join(', ')})`);
     return s;
   });
-  await ensureCategories();
+  if (ledger && !resetDb) throw new Error('evaluateSample needs resetDb when it is given a ledger');
+  const sid = sample.sample_id;
   const built = buildSample(sample);
   const { speaker_a: speakerA, speaker_b: speakerB } = sample.conversation;
   const mirrored = mirror(built, speakerB);
-  for (const part of [built, mirrored]) {
-    await User.create(part.user);
-    await Conversation.insertMany(part.conversations);
-    await Message.insertMany(part.messages);
-  }
-  const perspectives = [
-    { userId: built.user._id, person: speakerA, messages: built.messages },
-    { userId: mirrored.user._id, person: speakerB, messages: mirrored.messages },
-  ];
   const messages = [...built.messages].sort((a, b) => a.sentAt - b.sentAt);
-  const sources = new Map([...built.messages, ...mirrored.messages].map((m) => [String(m._id), m]));
+  // Evidence is translated through these ids, which exist in memory only (the database may hold an earlier copy)
+  const freshSources = new Map([...built.messages, ...mirrored.messages].map((m) => [String(m._id), m]));
   // The question date: the day after the last session (LoCoMo questions are asked after the conversation)
   const asOf = new Date(messages[messages.length - 1].sentAt.getTime() + 86400000);
   // Evidence as dialog ids, keeping only the ids that match a loaded turn (Stage 5 lists the others apart)
   const items = pickQuestions(sample.qa, questions, seed).map((i) => {
     const item = built.evalItems[i];
-    return { ...item, index: i, sampleId: sample.sample_id, evidence: item.evidenceMessageIds.map((id) => sources.get(String(id)).source.id) };
+    return { ...item, index: i, sampleId: sid, evidence: item.evidenceMessageIds.map((id) => freshSources.get(String(id)).source.id) };
   });
-  log(`${sample.sample_id}: ${messages.length} messages, ${items.length} questions`);
 
-  const rows = [];
-  const builds = [];
-  const [msgStats] = await Message.aggregate([{ $match: { conversationId: { $in: built.conversations.map((c) => c._id) } } }, { $group: { _id: null, bytes: { $sum: { $bsonSize: '$$ROOT' } } } }]);
-  builds.push({ sample: sample.sample_id, store: 'raw messages', messages_mined: 0, memory_bytes: msgStats.bytes });
-
-  const run = async (system, contextFor) => {
-    for (const item of items) {
-      const start = process.hrtime.bigint();
-      const context = await contextFor(item.question);
-      rows.push(await answerAndScore({ system, item, context, asOf, retrievalMs: ms(start) }));
-    }
-    log(`  ${system.id}: ${items.length} questions answered`);
+  const rowMap = ledger ? ledger.rowsFor(sid) : new Map();
+  const buildMap = new Map();
+  const getBuild = (store) => (ledger ? ledger.buildOf(sid, store) : buildMap.get(store)) || null;
+  const putBuild = (build) => {
+    if (ledger) ledger.addBuild(sid, build);
+    else buildMap.set(build.store, build);
+  };
+  const keyOf = (system, item) => `${system.id}|${item.index}`;
+  const answeredIn = (group) => chosen.filter((s) => groupOf(s) === group).reduce((n, s) => n + items.filter((item) => rowMap.has(keyOf(s, item))).length, 0);
+  const groupDone = (group) => {
+    const members = chosen.filter((s) => groupOf(s) === group);
+    if (members.length === 0) return true;
+    if (BUILD_OF_GROUP[group] && !getBuild(BUILD_OF_GROUP[group])) return false;
+    return answeredIn(group) === members.length * items.length;
+  };
+  const record = (row) => {
+    if (ledger) ledger.addRow(row);
+    else rowMap.set(`${row.system}|${row.qa_index}`, row);
   };
 
-  for (const system of chosen.filter((s) => s.id === 'full_context')) {
+  // The database: reuse this sample's users when they are still there, else start from an empty database
+  const needDb = !ledger || !groupDone('bitemporal') || !groupDone('overwrite') || !getBuild('raw messages');
+  let perspectives = null;
+  let sources = freshSources;
+  if (needDb) {
+    const prior = ledger ? ledger.dataOf(sid) : null;
+    const attached = prior ? await reattach(prior, built, mirrored, { speakerA, speakerB }) : null;
+    if (attached) {
+      perspectives = attached.perspectives;
+      sources = attached.sources;
+      await ensureCategories();
+      log(`${sid}: continuing with the sample already in MongoDB`);
+    } else {
+      // resetDb drops the categories too, so they are created after it
+      if (ledger) await resetDb();
+      await ensureCategories();
+      for (const part of [built, mirrored]) {
+        await User.create(part.user);
+        await Conversation.insertMany(part.conversations);
+        await Message.insertMany(part.messages);
+      }
+      perspectives = [
+        { userId: built.user._id, person: speakerA, messages: built.messages },
+        { userId: mirrored.user._id, person: speakerB, messages: mirrored.messages },
+      ];
+      if (ledger) ledger.setData(sid, perspectives.map((p) => String(p.userId)));
+    }
+    if (!getBuild('raw messages')) {
+      const [msgStats] = await Message.aggregate([{ $match: { conversationId: { $in: [...new Set(perspectives[0].messages.map((m) => String(m.conversationId)))].map((id) => new mongoose.Types.ObjectId(id)) } } }, { $group: { _id: null, bytes: { $sum: { $bsonSize: '$$ROOT' } } } }]);
+      putBuild({ sample: sid, store: 'raw messages', messages_mined: 0, memory_bytes: msgStats.bytes });
+    }
+  }
+  const reused = rowMap.size;
+  log(`${sid}: ${messages.length} messages, ${items.length} questions${reused ? `, ${reused} answers already in the checkpoint` : ''}`);
+
+  const run = async (system, contextFor) => {
+    let asked = 0;
+    for (const item of items) {
+      if (rowMap.has(keyOf(system, item))) continue;
+      const start = process.hrtime.bigint();
+      const context = await contextFor(item.question);
+      record(await answerAndScore({ system, item, context, asOf, retrievalMs: ms(start) }));
+      asked += 1;
+    }
+    log(`  ${system.id}: ${items.length} questions answered${asked < items.length ? ` (${items.length - asked} from the checkpoint)` : ''}`);
+  };
+
+  for (const system of chosen.filter((s) => groupOf(s) === 'full_context')) {
     const context = S.fullContext(messages);
     await run(system, async () => context);
   }
-  for (const system of chosen.filter((s) => s.id === 'rag_messages')) {
-    const index = await S.buildMessageIndex(messages);
-    // Vectors stored as BSON doubles: the storage RAG adds on top of the raw messages
-    const vectorBytes = index.reduce((s, e) => s + e.vector.length * 8, 0);
-    builds.push({ sample: sample.sample_id, store: 'rag message vectors', messages_mined: 0, memory_bytes: vectorBytes });
-    await run(system, (q) => S.ragContext(index, q, k));
-  }
+  if (!groupDone('rag_messages')) {
+    for (const system of chosen.filter((s) => groupOf(s) === 'rag_messages')) {
+      const index = await S.buildMessageIndex(messages);
+      if (!getBuild('rag message vectors')) {
+        // Vectors stored as BSON doubles: the storage RAG adds on top of the raw messages
+        const vectorBytes = index.reduce((n, e) => n + e.vector.length * 8, 0);
+        putBuild({ sample: sid, store: 'rag message vectors', messages_mined: 0, memory_bytes: vectorBytes });
+      }
+      await run(system, (q) => S.ragContext(index, q, k));
+    }
+  } else if (chosen.some((s) => groupOf(s) === 'rag_messages')) log('  rag_messages: all answers from the checkpoint');
 
-  const extractionCache = new Map(); // both stores receive the SAME extracted facts
+  let extractionCache = ledger ? ledger.cacheFor(sid) : new Map(); // both stores receive the SAME extracted facts
+  const userIds = perspectives ? perspectives.map((p) => p.userId) : [];
   for (const store of ['bitemporal', 'overwrite']) {
     const users = chosen.filter((s) => s.store === store);
     if (users.length === 0) continue;
-    await clearStore(perspectives.map((p) => p.userId));
-    const b = await buildStore(perspectives, store, extractionCache);
-    builds.push({ sample: sample.sample_id, ...b });
-    log(`  ${store} store: ${b.memory_versions} versions (${b.memory_current} current) in ${b.build_seconds} s; ${b.decisions}`);
+    if (groupDone(store)) {
+      log(`  ${store} store: all answers from the checkpoint`);
+      continue;
+    }
+    // Reuse the store only if the ledger says it was fully built AND MongoDB still holds exactly that many versions
+    const last = ledger ? ledger.lastStore(sid) : null;
+    const reusable = !!(last && last.store === store && last.built && (await Memory.countDocuments({ userId: { $in: userIds } })) === last.versions && getBuild(store));
+    if (!reusable) {
+      if (ledger && (answeredIn(store) > 0 || getBuild(store))) {
+        // A store that is gone cannot answer the rest of its group; the rows of the old build are redone, so the
+        // whole group answers from one build
+        ledger.discard(sid, { systems: users.map((s) => s.id), builds: [store] });
+        log(`  ${store}: the earlier store is not in MongoDB any more, so this group is answered again from a new build`);
+      }
+      // A bitemporal store starts a new extraction cache; the overwrite store must keep the bitemporal one
+      if (ledger && store === 'bitemporal') {
+        ledger.resetCache(sid);
+        extractionCache = ledger.cacheFor(sid);
+      }
+      await clearStore(userIds);
+      if (ledger) ledger.storeStart(sid, store);
+      const b = await buildStore(perspectives, store, extractionCache);
+      putBuild({ sample: sid, ...b });
+      if (ledger) ledger.storeBuilt(sid, store, b.memory_versions);
+      log(`  ${store} store: ${b.memory_versions} versions (${b.memory_current} current) in ${b.build_seconds} s; ${b.decisions}`);
+    } else log(`  ${store} store: reusing the store built before the interruption`);
     for (const system of users) await run(system, (q) => S.memoryContext(system, perspectives, sources, q, k, asOf));
   }
+
+  // The rows and builds in the order an uninterrupted run produces them
+  const rows = [];
+  for (const group of GROUPS) {
+    for (const system of chosen.filter((s) => groupOf(s) === group)) for (const item of items) rows.push(rowMap.get(keyOf(system, item)));
+  }
+  const builds = ['raw messages', 'rag message vectors', 'bitemporal', 'overwrite'].map(getBuild).filter(Boolean);
+  if (ledger) ledger.markDone(sid);
   return { rows, builds };
+}
+
+// Finds the sample's users, conversations and messages from an earlier process in MongoDB. Returns the
+// perspectives and the message lookup, or null when the database does not hold exactly that sample (then the
+// caller starts from an empty database).
+async function reattach(prior, built, mirrored, { speakerA, speakerB }) {
+  const ids = prior.userIds.map((id) => new mongoose.Types.ObjectId(id));
+  if (ids.length !== 2 || (await User.countDocuments({ _id: { $in: ids } })) !== 2) return null;
+  const conversations = await Conversation.find({ userId: { $in: ids } }).select('_id userId').lean();
+  if (conversations.length !== built.conversations.length + mirrored.conversations.length) return null;
+  const stored = await Message.find({ conversationId: { $in: conversations.map((c) => c._id) } }).lean();
+  if (stored.length !== built.messages.length + mirrored.messages.length) return null;
+  const owner = new Map(conversations.map((c) => [String(c._id), String(c.userId)]));
+  const perspectives = [speakerA, speakerB].map((person, i) => ({
+    userId: ids[i],
+    person,
+    messages: stored.filter((m) => owner.get(String(m.conversationId)) === String(ids[i])),
+  }));
+  return { perspectives, sources: new Map(stored.map((m) => [String(m._id), m])) };
 }
 
 module.exports = { evaluateSample, pickQuestions, mirror, NO_INFO };

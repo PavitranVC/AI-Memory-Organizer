@@ -3,7 +3,7 @@
 Coordinator log for the unattended run described in `docs/OVERNIGHT_PLAN.md`. Each stage was built by its own
 subagent; this file records each subagent's summary, checked against the pushed branch.
 
-Next step: merge Stage 3b ([#9](https://github.com/PavitranVC/AI-Memory-Organizer/pull/9), local AI with Ollama), then run the morning prompt in docs/OVERNIGHT_PLAN.md on the laptop (Ollama only, no paid API).
+Next step: merge the Stage 6b checkpoint/resume change (branch `claude/gifted-shannon-k7roei`) on the laptop with `git merge`, then start the Ollama evaluation one sample per run (loop in `docs/stages/STAGE-6B.md`, section 6). The earlier 90-hour run has no checkpointing and should be stopped first.
 
 ## Stages
 
