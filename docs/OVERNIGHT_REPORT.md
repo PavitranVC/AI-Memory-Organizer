@@ -1,8 +1,8 @@
 # Overnight Report — 2026-10-18
 
-Branch: `claude/stage-6-ollama-pilot`
+Branch: `claude/stage-6-ollama-full` (pilot committed on `claude/stage-6-ollama-pilot`)
 
-## Next step: D (start full LoCoMo run in background)
+## Next step: Monitoring Step D full run (or write-up once complete)
 
 ---
 
@@ -96,10 +96,15 @@ Measured from `results/stage6-pilot-ollama/timing.json`:
 
 ---
 
-## D. Full run — Starting
+## D. Full run — IN PROGRESS (running in background)
+
+Command: `npm run eval -- --provider ollama --embeddings ollama --samples all --questions 0 --run-id stage6-locomo-ollama`
+Log: `results/logs/stage6-full-ollama.log`
+Status: Running. Began sample 1 (`conv-26: 419 messages, 199 questions`).
+Projected duration: ~90.4 hours across all 10 samples and questions.
 
 ---
 
 ## Needs you
-(nothing blocked; gate check passed, proceeding with Step D)
+(nothing blocked; Step D is running in background)
 
