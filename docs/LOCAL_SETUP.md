@@ -90,6 +90,10 @@ The repository keeps LF line endings (`.gitattributes`). A checkout made before 
 CRLF files from `core.autocrlf=true`. The code copes with both, but to get clean LF files run this once, with no
 uncommitted changes (`git status` must be clean): `git rm --cached -r -q .` then `git reset --hard`.
 
+## Viva demo
+When the setup above works, rehearse and present with **[DEMO.md](DEMO.md)**: a single PowerShell guide (checklist, API, supersede,
+`/api/ask`, privacy, where the results are, fallbacks and a 2-minute script).
+
 ## Study commands (Claude Code)
 Two custom slash commands in `.claude/commands/` help you prepare for the viva and keep the docs honest. Type them
 in Claude Code inside the project folder:
