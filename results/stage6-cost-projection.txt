@@ -1,14 +1,20 @@
-Stage 6 COST PROJECTION for the paid LoCoMo evaluation. A projection, NOT a measured cost.
-command: npm run eval:cost
-git commit: e1e896b3db7023939dff396431b3d9fe93fac8ef
-date: 2026-10-12T22:41:35.667Z
-dataset: BENCHMARK - LoCoMo (data/locomo/locomo10.json), used only for its sizes
-models (from the env, else the default): extract claude-opus-5-5, reconcile claude-opus-5-5, answer claude-opus-5-5, judge claude-opus-5-5
-prices: services/llm/pricing.js (USD per million tokens; cache write 1.25 x input, cache read listed rate)
+Stage 6 COST AND TIME PROJECTION for the LoCoMo evaluation (ollama). A projection, NOT a measured cost or time.
+command: npm run eval:cost -- --provider ollama --pilot results/stage6-pilot-ollama
+git commit: 3baf73804d3b244f4017482ba4a29de3876711d0 + uncommitted changes
+date: 2026-10-18T02:31:10.644Z
+dataset: BENCHMARK - LoCoMo (data\locomo\locomo10.json), used only for its sizes
+models (from the env, else the default): extract qwen2.5-coder:14b, reconcile qwen2.5-coder:14b, answer qwen2.5-coder:14b, judge deepseek-r1:14b
+prices: none, the models run locally through Ollama (cost 0; electricity is not counted)
 input tokens: characters / 4 of the prompt text (an estimate; real tokenization differs)
 ASSUMPTIONS: 0.5 facts per message reach reconcile; 300 output tokens per call (thinking included);
   k = 10; a memory line is ~260 characters; the cache stays warm between calls (5-minute lifetime).
   The pilot measures real facts/message and output tokens: re-run this script with them before the full run.
 
-pilot (1 sample, 10 questions): 7.01 USD
-full LoCoMo (10 samples, all questions): 268.95 USD
+pilot (1 sample, 10 questions): 0 USD
+full LoCoMo (10 samples, all questions): 0 USD
+
+TIME: seconds per item MEASURED by the pilot results\stage6-pilot-ollama (ollama; models {"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"}), times the items
+  in each scope. Assumes the full run goes at the pilot's speed (same machine, same models; the full-context
+  answers of longer conversations take longer than the pilot sample's). Details: the -time.csv file.
+pilot (1 sample, 10 questions): 3180 s (0.9 h)
+full LoCoMo (10 samples, all questions): 325283 s (90.4 h)

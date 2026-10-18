@@ -1,0 +1,21 @@
+scope,component,items,seconds_per_item,seconds,hours
+"pilot (1 sample, 10 questions)",build bitemporal store (per message),419,2.727,1143,
+"pilot (1 sample, 10 questions)",build overwrite store (per message),419,1.235,517,
+"pilot (1 sample, 10 questions)",answer: full_context (per question),10,42.324,423,
+"pilot (1 sample, 10 questions)",answer: rag_messages (per question),10,8.336,83,
+"pilot (1 sample, 10 questions)",answer: ours (per question),10,7.998,80,
+"pilot (1 sample, 10 questions)",answer: ours_no_temporal (per question),10,8.448,84,
+"pilot (1 sample, 10 questions)",answer: ours_no_provenance (per question),10,8.177,82,
+"pilot (1 sample, 10 questions)",answer: overwrite_memory (per question),10,7.117,71,
+"pilot (1 sample, 10 questions)",judge (per answer),60,11.609,697,
+"pilot (1 sample, 10 questions)",TOTAL (projection),,,3180,0.9
+"full LoCoMo (10 samples, all questions)",build bitemporal store (per message),5882,2.727,16040,
+"full LoCoMo (10 samples, all questions)",build overwrite store (per message),5882,1.235,7264,
+"full LoCoMo (10 samples, all questions)",answer: full_context (per question),1986,42.324,84055,
+"full LoCoMo (10 samples, all questions)",answer: rag_messages (per question),1986,8.336,16555,
+"full LoCoMo (10 samples, all questions)",answer: ours (per question),1986,7.998,15884,
+"full LoCoMo (10 samples, all questions)",answer: ours_no_temporal (per question),1986,8.448,16778,
+"full LoCoMo (10 samples, all questions)",answer: ours_no_provenance (per question),1986,8.177,16240,
+"full LoCoMo (10 samples, all questions)",answer: overwrite_memory (per question),1986,7.117,14134,
+"full LoCoMo (10 samples, all questions)",judge (per answer),11916,11.609,138333,
+"full LoCoMo (10 samples, all questions)",TOTAL (projection),,,325283,90.4

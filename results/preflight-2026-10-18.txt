@@ -1,0 +1,44 @@
+﻿# Pre-flight checks — 2026-10-18
+
+## A1. git
+HEAD: 2acf7f9  main  (up to date with origin/main)
+git log: 2acf7f9 Merge PR#11 stage-3b-extract-v2; 29a3b99 RESULTS; 8009aa9 Docs
+
+## A2. node + npm
+node: v24.19.0 (>=20 OK)
+npm install: OK (2 allow-scripts warnings, non-critical)
+
+## A3. npm test
+Test Suites: 22 passed, 22 total
+Tests:       323 passed, 323 total
+NOTE: llm.test.js had 1 failure (CRLF double-conversion on Windows — prompts/judge.v1.md is
+      checked out with CRLF so test replace(/\n/g,'\r\n') produced \r\r\n). Fixed:
+      parsePrompt() now strips all \r (replace(/\r/g,'')) instead of only \r\n.
+      Rerun: PASS (24/24). Full suite rerun: 323/323 PASS.
+
+## A4. ollama list
+NAME                       ID              SIZE      MODIFIED
+nomic-embed-text:latest    0a109f422b47    274 MB    5 days ago
+deepseek-r1:14b            c333b7232bdb    9.0 GB    4 months ago
+qwen2.5-coder:14b          9ec8897f747e    9.0 GB    4 months ago
+All three required models present OK.
+
+## A5. ollama ps
+No models loaded (idle). They will load on demand on GPU.
+
+## A6. MongoDB
+rs.status().ok = 1, set = rs0   (replica set OK)
+npm run migrate: 55 memories converted, indexes rebuilt OK.
+
+## A7. npm run seed + npm start
+seed: 3 users, 60 embedded memories, indexes OK (Embedding model: ollama:nomic-embed-text:768)
+start: MongoDB connected -> mongodb://127.0.0.1:27017/aimemory_stage1, Server running at http://localhost:5000 OK
+
+## A8. .env provider check
+LLM_PROVIDER=ollama          OK
+EMBEDDING_PROVIDER=ollama    OK (added — was missing, fixed)
+OLLAMA_URL=http://localhost:11434  OK
+ANTHROPIC_API_KEY            unset  OK
+VOYAGE_API_KEY               unset  OK
+
+## STATUS: PASS (with 1 bug fixed in services/llm/prompts.js)

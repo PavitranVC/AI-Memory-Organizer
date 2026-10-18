@@ -1,0 +1,121 @@
+{
+  "label": "live smoke test (local Ollama models), 3 synthetic conversations",
+  "provider": "ollama",
+  "dataset": "synthetic",
+  "command": "npm run test:live",
+  "commit": "9274441",
+  "date": "2026-10-18T01:24:27.147Z",
+  "model": {
+    "extract": "qwen2.5-coder:14b",
+    "reconcile": "qwen2.5-coder:14b",
+    "answer": "qwen2.5-coder:14b",
+    "judge": "deepseek-r1:14b"
+  },
+  "embeddings": "ollama",
+  "wallClockSeconds": 38,
+  "jobs": {
+    "total": 6,
+    "done": 6,
+    "failed": 0
+  },
+  "llmCalls": {
+    "total": 10,
+    "notOk": 0,
+    "byTask": {
+      "extract": {
+        "calls": 6,
+        "inputTokens": 9239,
+        "outputTokens": 544,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "costUsd": 0,
+        "p50LatencyMs": 4768
+      },
+      "reconcile": {
+        "calls": 4,
+        "inputTokens": 2768,
+        "outputTokens": 244,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "costUsd": 0,
+        "p50LatencyMs": 2632
+      }
+    }
+  },
+  "totalCostUsd": 0,
+  "memories": [
+    {
+      "content": "Lives in Pune",
+      "current": false,
+      "validFrom": "2020-01-01T00:00:00.000Z",
+      "sensitivity": "normal"
+    },
+    {
+      "content": "Works as a data analyst at Infosys",
+      "current": true,
+      "validFrom": "2020-01-01T00:00:00.000Z",
+      "sensitivity": "normal"
+    },
+    {
+      "content": "Moved to Mumbai in March 2025",
+      "current": true,
+      "validFrom": "2025-03-01T00:00:00.000Z",
+      "sensitivity": "normal"
+    },
+    {
+      "content": "Starts a master's in Berlin next year",
+      "current": true,
+      "validFrom": "2026-10-18T01:24:10.348Z",
+      "sensitivity": "normal"
+    },
+    {
+      "content": "Learning German",
+      "current": true,
+      "validFrom": "2026-10-18T01:24:10.348Z",
+      "sensitivity": "normal"
+    },
+    {
+      "content": "Loves trekking on weekends",
+      "current": true,
+      "validFrom": "2026-10-18T01:24:17.610Z",
+      "sensitivity": "normal"
+    }
+  ],
+  "decisions": [
+    {
+      "action": "ADD",
+      "topic": "home city",
+      "reason": "No similar memory exists."
+    },
+    {
+      "action": "ADD",
+      "topic": "employer",
+      "reason": "No similar memory exists."
+    },
+    {
+      "action": "SUPERSEDE",
+      "topic": "home city",
+      "reason": "The user has moved to a new city."
+    },
+    {
+      "action": "ADD",
+      "topic": "event master's start",
+      "reason": "No similar memory exists."
+    },
+    {
+      "action": "ADD",
+      "topic": "hobby language",
+      "reason": "The candidate is a new fact about a hobby language, not related to the existing memory about starting a master's program."
+    },
+    {
+      "action": "NOOP",
+      "topic": "plan master's",
+      "reason": "The existing memory already states the same fact."
+    },
+    {
+      "action": "ADD",
+      "topic": "hobby",
+      "reason": "The candidate is a new hobby fact not covered by existing memories."
+    }
+  ]
+}
