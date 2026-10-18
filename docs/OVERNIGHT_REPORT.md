@@ -2,7 +2,7 @@
 
 Branch: `claude/stage-6-ollama-run`
 
-Next step: merge the Stage 6b checkpoint/resume change (branch `claude/gifted-shannon-k7roei`) on the laptop with `git merge`, then start the Ollama evaluation one sample per run (loop in `docs/stages/STAGE-6B.md`, section 6). The earlier 90-hour run has no checkpointing and should be stopped first. (Earlier pilot next step: D - start full LoCoMo run in background).
+## Next step: Check passed, waiting for me to start the full run
 
 ---
 

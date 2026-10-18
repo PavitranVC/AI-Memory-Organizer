@@ -1,0 +1,60 @@
+# Pre-flight Run Checks — 2026-10-18
+
+Branch: claude/stage-6-ollama-run
+
+## 1. Old evaluation process check
+Get-CimInstance Win32_Process -Filter "Name='node.exe'"
+Result: No process running eval/run.js or npm run eval. Clean.
+
+## 2. Git branch & merges
+- Created claude/stage-6-ollama-run from main (2acf7f9).
+- Merged origin/claude/gifted-shannon-k7roei (checkpoint/resume layer, Stage 6b).
+- Merged origin/claude/stage-6-ollama-pilot (pilot results, CRLF fix in prompts.js).
+- Merge conflict in docs/OVERNIGHT_REPORT.md resolved keeping both sides; 0 code conflicts.
+
+## 3. Test suite
+Command: npm test
+Result:
+  Test Suites: 23 passed, 23 total
+  Tests:       340 passed, 340 total
+  Snapshots:   0 total
+  Time:        49.794 s
+
+## 4. Services & Environment
+- ollama list:
+    nomic-embed-text:latest (274 MB)
+    deepseek-r1:14b (9.0 GB)
+    qwen2.5-coder:14b (9.0 GB)
+- ollama ps: Idle (no models loaded in memory)
+- nvidia-smi:
+    NVIDIA GeForce RTX 5070 Ti Laptop GPU, 645 MiB / 12227 MiB, 46 C
+- MongoDB replica set:
+    rs.status().ok = 1, set = rs0
+- .env configuration:
+    LLM_PROVIDER=ollama (OK)
+    EMBEDDING_PROVIDER=ollama (OK)
+    OLLAMA_MODEL=qwen2.5-coder:14b (OK)
+    JUDGE_MODEL=deepseek-r1:14b (OK)
+    OLLAMA_EMBED_MODEL=nomic-embed-text (OK)
+    MONGO_URI_EVAL contains "eval" (OK)
+    ANTHROPIC_API_KEY: unset (OK)
+    VOYAGE_API_KEY: unset (OK)
+    GEMINI_API_KEY: unset (OK)
+    Defined variable names: MONGO_URI, MONGO_URI_TEST, PORT, JWT_SECRET, JWT_EXPIRES_IN, BCRYPT_ROUNDS, SEED_PASSWORD, LLM_PROVIDER, EMBEDDING_PROVIDER, OLLAMA_URL, OLLAMA_MODEL, JUDGE_MODEL, OLLAMA_EMBED_MODEL, MONGO_URI_EVAL
+
+## 5. Mock Stop & Resume Rehearsal
+- Run: npm run eval -- --questions 8 --systems full_context,rag_messages,ours,overwrite_memory --run-id rehearsal-resume
+- Stopped after initial output (1.5s).
+- --resume-check output:
+    16 of 32 answers in checkpoint (50%), conv-26: full_context 8/8, rag_messages 8/8, ours 0/8, overwrite_memory 0/8.
+- Resumed without --resume-check:
+    Reused 16 answers from checkpoint, built bitemporal and overwrite stores, answered remaining 16 questions, finished successfully.
+- meta.txt verification:
+    "checkpoint: results\rehearsal-resume\checkpoint.jsonl; started again after an interruption 1 time(s)" (OK)
+- Cleaned up results/rehearsal-resume. Env restored to ollama.
+
+## 6. Dataset & Disk Space
+- data/locomo/locomo10.json: exists (2,805,274 bytes, sha256 verified)
+- Disk space (Drive C:): 109.84 GB free
+
+## STATUS: ALL CHECKS PASS
