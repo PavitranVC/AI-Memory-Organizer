@@ -2,7 +2,7 @@
 
 Branch: `claude/stage-6-ollama-full` (pilot committed on `claude/stage-6-ollama-pilot`)
 
-## Next step: Monitoring Step D full run (or write-up once complete)
+## Next step: Full run STOPPED by me on purpose. Waiting for the resume-support change (checkpointing) before running again.
 
 ---
 
@@ -96,15 +96,14 @@ Measured from `results/stage6-pilot-ollama/timing.json`:
 
 ---
 
-## D. Full run — IN PROGRESS (running in background)
+## D. Full run — STOPPED
 
 Command: `npm run eval -- --provider ollama --embeddings ollama --samples all --questions 0 --run-id stage6-locomo-ollama`
 Log: `results/logs/stage6-full-ollama.log`
-Status: Running. Began sample 1 (`conv-26: 419 messages, 199 questions`).
-Projected duration: ~90.4 hours across all 10 samples and questions.
+Status: stopped manually after 4 hours 12 minutes at conv-26: 419 messages, 199 questions (in progress on full_context). Reason: the pilot projection was about 90 hours and the harness writes no results until every sample finishes, so a crash or interruption would lose everything. No results from this run are used. The pilot results from stage6-pilot-ollama are unaffected.
 
 ---
 
 ## Needs you
-(nothing blocked; Step D is running in background)
+(Full run stopped; waiting for checkpointing / resume support before running again)
 
