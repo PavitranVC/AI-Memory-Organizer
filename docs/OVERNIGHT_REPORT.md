@@ -2,7 +2,7 @@
 
 Branch: `claude/stage-6-ollama-run`
 
-## Next step: Check passed, waiting for me to start the full run
+## Next step: Full evaluation actively running in separate PowerShell window (started sample conv-26).
 
 ---
 
