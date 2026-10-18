@@ -41,6 +41,8 @@ runs `npm test` and opens a pull request (never on `main`). Both live in `.claud
 
 ## Quick start
 
+> Presenting on Windows (PowerShell)? Follow **[docs/DEMO.md](docs/DEMO.md)**: one guide for the viva demo, with exact commands.
+
 You need **Node.js 20+** and **MongoDB 7 running as a replica set** (a single node is enough). Changes to memories
 run in transactions, and MongoDB only has transactions on a replica set. Atlas clusters already are one.
 
