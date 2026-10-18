@@ -1,0 +1,44 @@
+{
+  "runId": "stage6-pilot-ollama",
+  "questionsPerSample": 10,
+  "samples": [
+    "conv-26"
+  ],
+  "k": 10,
+  "seed": 1,
+  "systems": [
+    "full_context",
+    "rag_messages",
+    "overwrite_memory",
+    "ours",
+    "ours_no_temporal",
+    "ours_no_provenance"
+  ],
+  "llm": {
+    "provider": "ollama",
+    "models": {
+      "extract": "qwen2.5-coder:14b",
+      "reconcile": "qwen2.5-coder:14b",
+      "answer": "qwen2.5-coder:14b",
+      "judge": "deepseek-r1:14b"
+    },
+    "effort": null,
+    "ollama": {
+      "url": "http://localhost:11434",
+      "numCtx": 8192,
+      "numCtxLarge": 32768,
+      "timeoutMs": 300000
+    },
+    "ollamaVersion": "0.32.13"
+  },
+  "embeddings": {
+    "provider": "ollama",
+    "model": "ollama:nomic-embed-text:768"
+  },
+  "prompts": {
+    "answer": "eval-answer.v1",
+    "judge": "judge.v1",
+    "extract": "extract.v2",
+    "reconcile": "reconcile.v1"
+  }
+}
