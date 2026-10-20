@@ -1,0 +1,5 @@
+sample,store,messages_mined,failed_messages,decisions,memory_versions,memory_current,memory_bytes,extract_calls,reconcile_calls,build_input_tokens,build_output_tokens,build_cost_usd,build_seconds
+conv-47,raw messages,0,,,,,215304,,,,,,
+conv-47,rag message vectors,0,,,,,4233216,,,,,,
+conv-47,bitemporal,689,1,ADD=182 NOOP=49 SUPERSEDE=9 UPDATE=61,252,182,2640738,689,295,1481074,46392,0,1393.2
+conv-47,overwrite,689,2,ADD=177 NOOP=47 SUPERSEDE=9 UPDATE=66,177,177,1853423,0,295,305260,18943,0,557.1
