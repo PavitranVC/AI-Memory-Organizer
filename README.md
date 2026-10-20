@@ -6,7 +6,7 @@ Built with **Node.js, Express and MongoDB (Mongoose)**.
 
 It started as a DBMS course project (CRUD, indexing, aggregation) and is being developed in stages
 towards a research project on AI memory as a database problem. See [`docs/ROADMAP.md`](docs/ROADMAP.md).
-This README describes the code as of **Stage 7: privacy and governance**, plus **Stage 3b: free local AI with
+This README describes the code as of **Stage 7: privacy and governance**, plus the **Stage 5b LongMemEval loader**, plus **Stage 3b: free local AI with
 Ollama**, so the project never needs a paid API key. Laptop setup: [`docs/LOCAL_SETUP.md`](docs/LOCAL_SETUP.md).
 
 **Study commands (Claude Code).** In Claude Code, `/viva <stage>` (1, 2, 3, 3b, 4, 5, 6, 7) quizzes you on a
@@ -148,6 +148,8 @@ with real data, because it deletes everything first.
 | `npm run test:live` | Opt-in live smoke test with a real model (3 conversations). With `LLM_PROVIDER=ollama`: free, skips if Ollama is not reachable. Otherwise Anthropic: prints a cost estimate first and skips if `ANTHROPIC_API_KEY` is not set (`-- --estimate` prints only the estimate) |
 | `npm run data:download` | Download datasets into `data/` and check their SHA-256 (`-- locomo` is the default; `-- --from <file>` uses a file you downloaded) |
 | `npm run data:load:locomo` | Load LoCoMo as benchmark users, conversations, messages and `evalitems`. Skips loaded samples; `-- --reset` replaces them |
+| `npm run data:load:longmemeval` | Load LongMemEval (Stage 5b) the same way, one user per question. `-- --types a,b --per-type N --seed S` or `-- --ids x,y` loads a repeatable pilot; `-- --reset` replaces. Needs `npm run data:download -- longmemeval` first (277 MB, not gated) |
+| `npm run data:stats:longmemeval` | Counts of the LongMemEval file (no database needed) -> `results/stage5b-longmemeval-stats-*.json` |
 | `npm run data:synthetic` | Generate synthetic memories for scale tests: `-- --memories 100000 [--users N] [--seed 42] [--reset]`, or `-- --remove` |
 | `npm run data:stats` | Count documents per dataset label and check the LoCoMo file; writes `results/stage5-dataset-stats.json` |
 | `npm run embed:backfill` | Embed every memory version that has no vector from the current model (`-- --dataset synthetic`, `-- --batch 50`). Safe to re-run |
@@ -456,6 +458,9 @@ npm run data:download                       # LoCoMo -> data/locomo/locomo10.jso
 npm run data:load:locomo                    # 10 users, 272 conversations, 5,882 messages, 1,986 evalitems
 npm run data:synthetic -- --memories 10000  # synthetic memories for index experiments only
 npm run data:stats                          # counts per label -> results/stage5-dataset-stats.json
+# Stage 5b, LongMemEval (277 MB from Hugging Face, no token needed):
+npm run data:download -- longmemeval
+npm run data:load:longmemeval -- --types knowledge-update,temporal-reasoning --per-type 5   # a pilot; omit the flags for all 500 questions
 ```
 
 Every loaded LoCoMo user can log in with `SEED_PASSWORD`, e.g. `locomo-conv-26@benchmark.invalid`.
@@ -824,7 +829,8 @@ npm run erasure:verify -- --messages $MSG --text "penicillin"
   roles swapped (see [docs/RESULTS.md](docs/RESULTS.md)).
 - **No real evaluation result yet.** The Stage 6 harness has only run on the mock model (a pipeline check). The paid
   LoCoMo run needs your approval; its projected cost is in `results/stage6-cost-projection.txt`.
-- **Only LoCoMo is loaded.** LongMemEval and WildChat are on Hugging Face, which is blocked in the cloud session;
-  there is no loader for them yet, and no PII scrubbing or annotation tool (see docs/DATASETS.md).
+- **LongMemEval has a loader but no accuracy result.** Stage 5b loads it (one user per question, 500 questions), but
+  the Stage 6 harness is written for LoCoMo and has not been run on it. WildChat has no loader, no PII scrubbing and
+  no annotation tool (see docs/DATASETS.md).
 - **One worker, one job at a time.** Two workers would be safe (claiming is atomic) but could reconcile two facts of
   the same user against each other at the same moment.

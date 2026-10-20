@@ -6,7 +6,7 @@ const EvalItem = require('../../models/EvalItem');
 const { withTransaction } = require('../transaction');
 const { removeUsers, createRng } = require('./common');
 
-// LongMemEval (Wu et al., 2024): about 500 hand-written questions, each asked about its OWN chat history between
+// LongMemEval (believed to be Wu et al., 2024; TODO: verify the citation): about 500 hand-written questions, each asked about its OWN chat history between
 // a user and an assistant. Mapping into our schema (see docs/DATASETS.md):
 //   one question           -> one User         (dataset 'benchmark', source { name: 'longmemeval', id: question_id })
 //   one haystack session   -> one Conversation (source.id = its session id, source.session = chronological number)

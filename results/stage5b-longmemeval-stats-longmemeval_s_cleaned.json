@@ -1,7 +1,7 @@
 {
   "command": "npm run data:stats:longmemeval",
-  "commit": "68eab12",
-  "date": "2026-10-20T08:17:33.024Z",
+  "commit": "b5bbea8",
+  "date": "2026-10-20T08:18:46.166Z",
   "dataset": "LongMemEval (benchmark), file counts only",
   "file": {
     "file": "data/longmemeval/longmemeval_s_cleaned.json",
