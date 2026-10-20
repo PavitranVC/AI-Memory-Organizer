@@ -20,8 +20,13 @@ const evalItemSchema = new mongoose.Schema(
     // null for adversarial questions, whose correct behaviour is to say the conversation does not answer it.
     answer: { type: String, default: null },
     adversarialAnswer: { type: String, default: null }, // LoCoMo category 5: the tempting WRONG answer
-    category: { type: Number, required: true }, // the benchmark's own label, unchanged
+    category: { type: Number, required: true }, // the benchmark's own label, unchanged (LongMemEval has none: ours, see docs/DATASETS.md)
     questionType: { type: String, required: true }, // our readable name for the category (see docs/DATASETS.md)
+    // Stage 5b (LongMemEval): the date the question is asked (a memory system must answer as of this date), and
+    // whether the question has no answer in the history (the benchmark marks those with an "_abs" id suffix).
+    // LoCoMo items leave both unset.
+    questionDate: { type: Date },
+    abstention: { type: Boolean },
     // Evidence: the benchmark's dialog ids as written, the ones we could match to a loaded message, and the
     // rest. Needed for retrieval recall@k in Stage 6.
     evidence: { type: [String], default: [] },
