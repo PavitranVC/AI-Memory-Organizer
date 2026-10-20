@@ -51,7 +51,8 @@ function fileStats(file) {
     emptyTurnsSkippedByLoader: turns.filter((t) => !String(t.content || '').trim()).length,
     turnsOverMessageLimit: turns.filter((t) => String(t.content).length > MAX_CONTENT).length,
     userTurnsOverMessageLimit: turns.filter((t) => t.role === 'user' && String(t.content).length > MAX_CONTENT).length,
-    longestTurnChars: Math.max(...turns.map((t) => String(t.content).length)),
+    // reduce, not Math.max(...list): spreading 247k numbers overflows the call stack
+    longestTurnChars: turns.reduce((max, t) => Math.max(max, String(t.content).length), 0),
     questionsWithSessionsOutOfDateOrder: outOfOrder.length,
     questionsWithRepeatedSessionId: items.filter((q) => new Set(q.haystack_session_ids).size !== q.haystack_session_ids.length).length,
     questionsWithMismatchedHaystackLengths: items.filter((q) => q.haystack_sessions.length !== q.haystack_dates.length || q.haystack_sessions.length !== q.haystack_session_ids.length).length,

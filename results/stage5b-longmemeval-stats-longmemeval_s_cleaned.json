@@ -1,0 +1,74 @@
+{
+  "command": "npm run data:stats:longmemeval",
+  "commit": "68eab12",
+  "date": "2026-10-20T08:17:33.024Z",
+  "dataset": "LongMemEval (benchmark), file counts only",
+  "file": {
+    "file": "data/longmemeval/longmemeval_s_cleaned.json",
+    "bytes": 277383467,
+    "sha256": "d6f21ea9d60a0d56f34a05b609c79c88a451d2ae03597821ea3d5a9678c3a442",
+    "questions": 500,
+    "uniqueQuestionIdsIgnoringCase": 500,
+    "questionsWithUnknownType": 0,
+    "byType": {
+      "single-session-user": {
+        "category": 1,
+        "questions": 70,
+        "abstention": 6,
+        "withoutEvidenceTurns": 6
+      },
+      "single-session-assistant": {
+        "category": 2,
+        "questions": 56,
+        "abstention": 0,
+        "withoutEvidenceTurns": 0
+      },
+      "single-session-preference": {
+        "category": 3,
+        "questions": 30,
+        "abstention": 0,
+        "withoutEvidenceTurns": 0
+      },
+      "multi-session": {
+        "category": 4,
+        "questions": 133,
+        "abstention": 12,
+        "withoutEvidenceTurns": 8
+      },
+      "knowledge-update": {
+        "category": 5,
+        "questions": 78,
+        "abstention": 6,
+        "withoutEvidenceTurns": 6
+      },
+      "temporal-reasoning": {
+        "category": 6,
+        "questions": 133,
+        "abstention": 6,
+        "withoutEvidenceTurns": 1
+      }
+    },
+    "abstention": 30,
+    "sessionsPerQuestion": {
+      "min": 38,
+      "mean": 47.7,
+      "max": 62
+    },
+    "turnsPerQuestion": {
+      "min": 396,
+      "mean": 493.5,
+      "max": 616
+    },
+    "turns": 246750,
+    "userTurns": 122416,
+    "assistantTurns": 124334,
+    "turnsWithEvidenceFlag": 896,
+    "emptyTurnsSkippedByLoader": 12,
+    "turnsOverMessageLimit": 117,
+    "userTurnsOverMessageLimit": 117,
+    "longestTurnChars": 76560,
+    "questionsWithSessionsOutOfDateOrder": 211,
+    "questionsWithRepeatedSessionId": 13,
+    "questionsWithMismatchedHaystackLengths": 0
+  }
+}
