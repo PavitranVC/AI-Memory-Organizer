@@ -28,6 +28,7 @@ the app runnable and the tests green.
 | 3b. Local AI with Ollama + study commands | `claude/stage-3b-ollama` | 3 (built on `main` after 7) |
 | 4. Hybrid retrieval | `claude/stage-4-hybrid-retrieval` | 3 |
 | 5. Real datasets + loaders | `claude/stage-5-datasets` | 2 (can run alongside 3–4) |
+| 5b. LongMemEval download + loader | `claude/stage-5b-longmemeval` | 5 (built on `main`) |
 | 6. Evaluation harness + benchmarks | `claude/stage-6-evaluation` | 4, 5 |
 | 7. Privacy and governance | `claude/stage-7-governance` | 2 |
 | 8. Demo UI (optional) | `claude/stage-8-ui` | 4 |
@@ -118,6 +119,11 @@ Rules:
   original dataset.
 - Scale generator for the index experiments (10k / 100k / 1M memories),
   clearly labelled **synthetic** and used only for performance numbers.
+
+### Stage 5b: LongMemEval
+- A pinned, hash-checked download of the cleaned LongMemEval files, a loader (one user per question, sessions sorted
+  by date, evidence turns kept as message ids) and a repeatable pilot selection (`--types`, `--per-type`, `--seed`).
+- Loading only: running LongMemEval through the Stage 6 harness is a separate step. Notes: `docs/stages/STAGE-5B.md`.
 
 ### Stage 6: Evaluation
 - Systems compared:

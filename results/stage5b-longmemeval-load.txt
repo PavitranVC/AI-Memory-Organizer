@@ -1,0 +1,11 @@
+command: npm run data:load:longmemeval   (into an empty scratch database aimemory_stage5b_check, MongoDB 7.0 replica set in Docker)
+commit: b5bbea8
+date: 2026-10-20T08:18:48Z
+dataset: BENCHMARK - LongMemEval, data/longmemeval/longmemeval_s_cleaned.json (sha256 d6f21ea9d60a..., Hugging Face xiaowu0162/longmemeval-cleaned @ 98d7416)
+machine: cloud container, 4 vCPU
+
+--- summary line and wall-clock (per-question lines left out) ---
+/home/user/AI-Memory-Organizer/data/longmemeval/longmemeval_s_cleaned.json: 500 questions in the file, 500 selected
+{"questions":500,"loaded":500,"skipped":0,"replaced":0,"users":500,"conversations":23867,"messages":246738,"evalItems":500,"truncatedTurns":117}
+wall-clock seconds: 43
+database size after the load: data 286 MB, indexes 10 MB

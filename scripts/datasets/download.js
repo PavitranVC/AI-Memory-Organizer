@@ -1,6 +1,6 @@
 // Downloads the datasets into data/ (gitignored: the files are large and are not ours to redistribute).
 //   npm run data:download                      LoCoMo (the default)
-//   npm run data:download -- locomo longmemeval  several
+//   npm run data:download -- locomo longmemeval  several (longmemeval is 277 MB; longmemeval-oracle is 15 MB)
 //   npm run data:download -- locomo --from C:\Downloads\locomo10.json   use a file you downloaded yourself
 // A blocked host is reported by name and the other datasets still download. Every file is checked against
 // the SHA-256 recorded below, so a changed upstream file is noticed instead of silently changing results.
@@ -22,11 +22,30 @@ const DATASETS = {
       },
     ],
   },
-  // NOT RUN: huggingface.co is blocked in the cloud session, so this URL has never been fetched here.
-  // TODO: verify the repository and file name on Hugging Face before relying on it.
+  // LongMemEval (Wu et al., 2024), the "cleaned" release that replaces the original on Hugging Face (MIT licence
+  // tag, not gated, so no HF_TOKEN is needed). Pinned to a commit of the dataset repository, so a later upstream
+  // edit cannot change a run silently. 'longmemeval' is the main setting (500 questions, about 48 sessions of
+  // history each, 277 MB); 'longmemeval-oracle' has only the evidence sessions (15 MB), for a quick look.
+  // The 2.7 GB "m" file is not offered: the loader cannot parse it. Measured 2026-10-20.
   longmemeval: {
     label: 'benchmark',
-    files: [{ url: 'https://huggingface.co/datasets/xiaowu0162/longmemeval/resolve/main/longmemeval_s', out: 'longmemeval/longmemeval_s.json', sha256: null }],
+    files: [
+      {
+        url: 'https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned/resolve/98d7416c24c778c2fee6e6f3006e7a073259d48f/longmemeval_s_cleaned.json',
+        out: 'longmemeval/longmemeval_s_cleaned.json',
+        sha256: 'd6f21ea9d60a0d56f34a05b609c79c88a451d2ae03597821ea3d5a9678c3a442', // 277,383,467 bytes
+      },
+    ],
+  },
+  'longmemeval-oracle': {
+    label: 'benchmark',
+    files: [
+      {
+        url: 'https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned/resolve/98d7416c24c778c2fee6e6f3006e7a073259d48f/longmemeval_oracle.json',
+        out: 'longmemeval/longmemeval_oracle.json',
+        sha256: '821a2034d219ab45846873dd14c14f12cfe7776e73527a483f9dac095d38620c', // 15,388,478 bytes
+      },
+    ],
   },
   // Not implemented: WildChat is gated (accept the terms on Hugging Face, HF_TOKEN), ships as Parquet and
   // needs PII scrubbing before anything is stored. See docs/DATASETS.md.
