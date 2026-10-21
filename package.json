@@ -27,6 +27,7 @@
     "eval": "node eval/run.js",
     "eval:cost": "node eval/project-cost.js",
     "eval:judge-agreement": "node eval/judge-agreement.js",
+    "eval:pool": "node eval/pool.js",
     "erasure:verify": "node scripts/verify-erasure.js",
     "retention": "node scripts/retention.js"
   },
