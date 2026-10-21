@@ -1,7 +1,7 @@
 Sample API outputs on the seeded sample database (application data, no dataset label)
 command: npm run seed && npm run report:api
-commit: 5694827 (the code that ran; the results are committed in a later commit)
-date: 2026-10-21T15:36:41.248Z
+commit: e5171f8 (the code that ran; the results are committed in a later commit)
+date: 2026-10-21T15:37:02.354Z
 database: aimemory_report
 
 POST /api/auth/login  { "email": "priya.nair@example.com", "password": "<seed password>" }
@@ -35,9 +35,9 @@ GET /api/memories?limit=2&category=Personal
         "content": "User's parents live in Kochi, and the user wants a reminder to call them every Sunday evening.",
         "importance": 4,
         "status": "Active",
-        "validFrom": "2026-10-21T15:36:40.269Z",
+        "validFrom": "2026-10-21T15:37:01.364Z",
         "validTo": null,
-        "recordedAt": "2026-10-21T15:36:40.269Z"
+        "recordedAt": "2026-10-21T15:37:01.364Z"
       }
     ]
   }
@@ -173,7 +173,7 @@ GET /api/audit?limit=3   (newest entries of the append-only log)
       },
       {
         "action": "create",
-        "at": "2026-10-21T15:36:40.269Z",
+        "at": "2026-10-21T15:37:01.365Z",
         "via": null
       }
     ]
