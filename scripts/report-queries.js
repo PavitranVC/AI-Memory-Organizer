@@ -33,9 +33,10 @@ async function main() {
   if (!aarav || !priya) throw new Error('The seeded users were not found. Run "npm run seed" first.');
   const categories = await Category.find().lean();
   const personal = categories.find((c) => c.name === 'Personal');
+  const health = categories.find((c) => c.name === 'Health');
 
   // ObjectIds are printed as names, so the output reads the same on every seeded database
-  const names = new Map([[String(aarav._id), '<Aarav _id>'], [String(priya._id), '<Priya _id>'], [String(personal._id), '<Personal _id>']]);
+  const names = new Map([[String(aarav._id), '<Aarav _id>'], [String(priya._id), '<Priya _id>'], [String(personal._id), '<Personal _id>'], [String(health._id), '<Health _id>']]);
   const show = (value) => JSON.stringify(value, (key, v) => (typeof v === 'string' && names.has(v) ? names.get(v) : v));
 
   const asOf = (when) => temporalFilter({ asOf: when }).filter;
@@ -156,9 +157,9 @@ async function main() {
     {
       id: 'X2', kind: 'Set operation ($unionWith)', title: "Contents of Aarav's Health memories followed by Priya's Health memories (two result sets joined, three shown)", on: 'memories',
       aggregate: [
-        { $match: { ...currentOf(aarav), categoryId: categories.find((c) => c.name === 'Health')._id } },
+        { $match: { ...currentOf(aarav), categoryId: health._id } },
         { $project: { _id: 0, owner: { $literal: 'Aarav' }, content: 1 } },
-        { $unionWith: { coll: 'memories', pipeline: [{ $match: { ...currentOf(priya), categoryId: categories.find((c) => c.name === 'Health')._id } }, { $project: { _id: 0, owner: { $literal: 'Priya' }, content: 1 } }] } },
+        { $unionWith: { coll: 'memories', pipeline: [{ $match: { ...currentOf(priya), categoryId: health._id } }, { $project: { _id: 0, owner: { $literal: 'Priya' }, content: 1 } }] } },
         { $limit: 3 },
       ],
     },
