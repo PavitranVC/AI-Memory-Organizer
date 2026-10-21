@@ -1,0 +1,271 @@
+Sample API outputs on the seeded sample database (application data, no dataset label)
+command: npm run seed && npm run report:api
+commit: 5694827 (the code that ran; the results are committed in a later commit)
+date: 2026-10-21T15:36:41.248Z
+database: aimemory_report
+
+POST /api/auth/login  { "email": "priya.nair@example.com", "password": "<seed password>" }
+-> 200
+  {
+    "user": {
+      "name": "Priya Nair",
+      "email": "priya.nair@example.com",
+      "occupation": "UX designer",
+      "role": "user"
+    },
+    "token": "<JWT, valid for 7 days>"
+  }
+
+GET /api/memories?limit=2&category=Personal
+-> 200
+  {
+    "count": 2,
+    "limit": 2,
+    "nextCursor": "<cursor for the next page>",
+    "memories": [
+      {
+        "content": "User moved from Kochi to Bengaluru for a UX design job; their parents still live in Kochi.",
+        "importance": 4,
+        "status": "Active",
+        "validFrom": "2024-08-01T00:00:00.000Z",
+        "validTo": null,
+        "recordedAt": "2024-08-20T00:00:00.000Z"
+      },
+      {
+        "content": "User's parents live in Kochi, and the user wants a reminder to call them every Sunday evening.",
+        "importance": 4,
+        "status": "Active",
+        "validFrom": "2026-10-21T15:36:40.269Z",
+        "validTo": null,
+        "recordedAt": "2026-10-21T15:36:40.269Z"
+      }
+    ]
+  }
+
+GET /api/memories?category=Personal&asOf=2023-06-01   (valid time: what was true on that day)
+-> 200
+  {
+    "count": 1,
+    "asOf": "2023-06-01T00:00:00.000Z",
+    "memories": [
+      {
+        "content": "User lives in Kochi with their parents.",
+        "importance": 4,
+        "status": "Active",
+        "validFrom": "2019-06-01T00:00:00.000Z",
+        "validTo": "2024-08-01T00:00:00.000Z",
+        "recordedAt": "2023-02-10T00:00:00.000Z"
+      }
+    ]
+  }
+
+GET /api/memories?category=Personal&asOf=2024-08-10&knownAt=2024-08-15   (both axes: true on the 10th, as known on the 15th)
+-> 200
+  {
+    "count": 1,
+    "asOf": "2024-08-10T00:00:00.000Z",
+    "knownAt": "2024-08-15T00:00:00.000Z",
+    "memories": [
+      {
+        "content": "User lives in Kochi with their parents.",
+        "importance": 4,
+        "status": "Active",
+        "validFrom": "2019-06-01T00:00:00.000Z",
+        "validTo": "2024-08-01T00:00:00.000Z",
+        "recordedAt": "2023-02-10T00:00:00.000Z"
+      }
+    ]
+  }
+
+GET /api/memories/<id>/history   (the version chain, oldest first)
+-> 200
+  {
+    "versions": [
+      {
+        "content": "User lives in Kochi with their parents.",
+        "importance": 4,
+        "status": "Active",
+        "validFrom": "2019-06-01T00:00:00.000Z",
+        "validTo": "2024-08-01T00:00:00.000Z",
+        "recordedAt": "2023-02-10T00:00:00.000Z"
+      },
+      {
+        "content": "User moved from Kochi to Bengaluru for a UX design job; their parents still live in Kochi.",
+        "importance": 4,
+        "status": "Active",
+        "validFrom": "2024-08-01T00:00:00.000Z",
+        "validTo": null,
+        "recordedAt": "2024-08-20T00:00:00.000Z"
+      }
+    ]
+  }
+
+GET /api/memories/stats/by-category
+-> 200
+  [
+    {
+      "category": "Health",
+      "count": 6,
+      "activeCount": 4,
+      "avgImportance": 3.67
+    },
+    {
+      "category": "Personal",
+      "count": 5,
+      "activeCount": 5,
+      "avgImportance": 4
+    },
+    {
+      "category": "Hobbies",
+      "count": 4,
+      "activeCount": 3,
+      "avgImportance": 2.5
+    },
+    {
+      "category": "Learning",
+      "count": 4,
+      "activeCount": 3,
+      "avgImportance": 2.75
+    }
+  ]
+
+GET /api/memories/stats/status-ratio
+-> 200
+  {
+    "total": 19,
+    "active": 15,
+    "archived": 4,
+    "activePercent": 78.9,
+    "archivedPercent": 21.1,
+    "ratio": "15:4"
+  }
+
+GET /api/memories/search?q=kochi&limit=3
+-> 200
+  {
+    "count": 2,
+    "results": [
+      {
+        "content": "User moved from Kochi to Bengaluru for a UX design job; their parents still live in Kochi.",
+        "score": 0.8863636363636365
+      },
+      {
+        "content": "User's parents live in Kochi, and the user wants a reminder to call them every Sunday evening.",
+        "score": 0.5454545454545454
+      }
+    ]
+  }
+
+GET /api/audit?limit=3   (newest entries of the append-only log)
+-> 200
+  {
+    "count": 3,
+    "entries": [
+      {
+        "action": "supersede",
+        "at": "2024-08-20T00:00:00.000Z",
+        "via": null
+      },
+      {
+        "action": "create",
+        "at": "2023-02-10T00:00:00.000Z",
+        "via": null
+      },
+      {
+        "action": "create",
+        "at": "2026-10-21T15:36:40.269Z",
+        "via": null
+      }
+    ]
+  }
+
+DELETE /api/conversations/<id>   (the conversation "Getting my weekends back")
+-> 200
+  {
+    "message": "Conversation deleted successfully",
+    "erasure": {
+      "erasedVersions": 1,
+      "restoredVersions": 1,
+      "flaggedVersions": 0,
+      "tombstonedAuditEntries": 1,
+      "deletedSuggestions": 0,
+      "deletedJobs": 0
+    }
+  }
+
+Counts for Priya before and after that deletion
+  {
+    "before": {
+      "conversations": 2,
+      "messages": 3,
+      "memoryVersions": 20,
+      "auditEntries": 20
+    },
+    "after": {
+      "conversations": 1,
+      "messagesOfThatConversation": 0,
+      "memoryVersions": 19,
+      "currentMemories": 19,
+      "auditEntries": 22
+    }
+  }
+
+GET /api/me/erasure-check   (looks for anything left that was derived from erased data)
+-> 200
+  {
+    "ok": true,
+    "checks": [
+      {
+        "check": "memories.sourceMessageIds -> existing messages",
+        "ok": true,
+        "violations": 0
+      },
+      {
+        "check": "memories.conversationId -> existing conversations",
+        "ok": true,
+        "violations": 0
+      },
+      {
+        "check": "memories.supersedes -> existing versions",
+        "ok": true,
+        "violations": 0
+      },
+      {
+        "check": "memories.supersededBy -> existing versions",
+        "ok": true,
+        "violations": 0
+      },
+      {
+        "check": "auditlog entries with content -> existing versions (memoryId)",
+        "ok": true,
+        "violations": 0
+      },
+      {
+        "check": "auditlog snapshots -> existing versions (before._id)",
+        "ok": true,
+        "violations": 0
+      },
+      {
+        "check": "auditlog snapshots -> existing versions (after._id)",
+        "ok": true,
+        "violations": 0
+      },
+      {
+        "check": "suggestions.messageId -> existing messages",
+        "ok": true,
+        "violations": 0
+      },
+      {
+        "check": "jobs.payload.messageId -> existing messages",
+        "ok": true,
+        "violations": 0
+      },
+      {
+        "check": "evalitems.evidenceMessageIds -> existing messages",
+        "ok": true,
+        "violations": 0
+      }
+    ]
+  }
+
+The database now has this conversation erased. Run "npm run seed" to restore the sample data.
