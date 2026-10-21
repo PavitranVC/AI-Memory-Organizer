@@ -753,6 +753,23 @@ LLM_PROVIDER=anthropic npm run eval -- --questions 10 --paid --run-id stage6-pil
 LLM_PROVIDER=anthropic npm run eval -- --samples all --questions 0 --paid --run-id stage6-locomo-full
 ```
 
+### Stopping and continuing an evaluation (Stage 6b)
+
+A run writes every finished answer to `results/<run-id>/checkpoint.jsonl` at once. If it is stopped (sleep, power
+cut, restart, Ctrl+C), run the **same command again**: finished answers are not asked again, a memory store that is
+still in MongoDB is reused, and the final files are the same as from an uninterrupted run. Notes:
+[docs/stages/STAGE-6B.md](docs/stages/STAGE-6B.md).
+
+```bash
+npm run eval -- <same options> --run-id stage6-locomo-ollama --resume-check   # what is done; runs nothing
+npm run eval -- <same options> --run-id stage6-locomo-ollama                  # continues where it stopped
+npm run eval -- <same options> --run-id stage6-locomo-ollama --restart        # start again; the old file is kept as .bak
+```
+
+It refuses to continue a checkpoint made with another model, prompt version, `k`, seed, system list or question
+count (it names the difference). The full run is best done one sample per run, so a finished sample is saved and
+pushed on its own (PowerShell loop in the Stage 6b notes). `meta.txt` says how many times a run was continued.
+
 ## Privacy and governance (Stage 7)
 
 Legal mapping (DPDP Act 2023 and GDPR) and its open `TODO: verify` items: [docs/PRIVACY.md](docs/PRIVACY.md).

@@ -13,7 +13,8 @@ const cache = new Map();
 function parsePrompt(raw, file) {
   // Windows checkouts with core.autocrlf=true turn \n into \r\n. The sections below are found by \n, and the
   // hash must not depend on the machine, so line endings are normalised first.
-  const text = raw.replace(/\r\n/g, '\n');
+  // Strip all \r characters (handles \r\n, bare \r, and \r\r\n from double-conversion on CRLF files).
+  const text = raw.replace(/\r/g, '');
   const front = /^---\n([\s\S]*?)\n---\n/.exec(text);
   if (!front) throw new Error(`${file}: missing front matter`);
   const meta = Object.fromEntries(

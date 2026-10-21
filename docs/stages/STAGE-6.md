@@ -111,3 +111,8 @@ npm run eval:cost
 To show that a paid run cannot start by accident: `$env:LLM_PROVIDER = 'anthropic'; npm run eval` stops with
 "this run would call a paid API. Add --paid if you mean it." (set it back with `$env:LLM_PROVIDER = 'mock'`).
 Delete the demo outputs afterwards (`Remove-Item -Recurse results\demo-*`) so they are not committed.
+
+## Stage 6b: checkpoint and resume
+The harness originally wrote its results only when every sample had finished. Stage 6b adds a checkpoint ledger so an
+interrupted run continues from where it stopped: see [`STAGE-6B.md`](STAGE-6B.md) and the README section
+"Stopping and continuing an evaluation".

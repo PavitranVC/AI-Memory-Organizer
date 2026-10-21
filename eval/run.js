@@ -4,7 +4,7 @@
 //   npm run eval -- --samples all --questions 0 --paid   the full run with the real model (costs money)
 // Options: --samples conv-26,conv-30 | all (default: the first sample)   --questions N per sample (0 = all)
 //          --k 10 (context items for RAG and memory systems)   --systems full_context,ours,...   --seed 1
-//          --run-id <name>   --out results   --judge-sample 50
+//          --run-id <name>   --out results   --judge-sample 50   --resume-check   --restart
 //          --provider mock|anthropic|ollama   --model <name> (extract, reconcile, answer)   --judge-model <name>
 //          --embeddings lexical|ollama|voyage (each one overrides the matching variable in .env)
 // Safety: the model comes from LLM_PROVIDER (services/llm). Anthropic or a paid embedding provider needs
@@ -12,7 +12,10 @@
 // Writes results/<run-id>/: LABEL.txt, meta.txt, config.json, raw.jsonl, answers.csv, summary_by_system.csv,
 // summary_by_type.csv, bootstrap_vs_ours.csv, build.csv, timing.json, judge_validation.csv (+ _key.csv) and
 // the charts.
-// Uses its own database (MONGO_URI_EVAL, the name must contain "eval"), which it DROPS before each sample.
+// Uses its own database (MONGO_URI_EVAL, the name must contain "eval"), which it DROPS when a sample starts new.
+// Stage 6b: every finished answer is written at once to results/<run-id>/checkpoint.jsonl. Running the SAME
+// command again continues an interrupted run (same results files as an uninterrupted run); --resume-check shows
+// what is done without running anything; --restart sets the old checkpoint aside and starts from nothing.
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
@@ -21,7 +24,8 @@ const { llmConfig } = require('../services/llm/config');
 const { ACTIVE } = require('../services/llm/prompts'); // the prompt versions this run used, from one place
 const { embeddingConfig } = require('../services/embeddings/config');
 const { readyEmbedder } = require('../services/embeddings');
-const { evaluateSample } = require('./harness');
+const { evaluateSample, pickQuestions } = require('./harness');
+const { Ledger } = require('./checkpoint');
 const { SYSTEM_IDS } = require('./systems');
 const report = require('./report');
 const { gitCommit, machine, command, option, assertDisposable, toCsv } = require('./meta');
@@ -54,6 +58,33 @@ async function ollamaVersion(url) {
   }
 }
 
+// --resume-check: what the checkpoint of this run holds, without running anything
+function printResumeCheck(dir, samples, { questions, seed, systems }) {
+  const state = Ledger.inspect(dir);
+  if (!state.header) {
+    console.log(`${dir}: no checkpoint yet (a run with this --run-id starts from the beginning)`);
+    return;
+  }
+  const same = state.header.fingerprint;
+  console.log(`${dir}/checkpoint.jsonl: started ${state.header.at}, continued ${state.resumes.length} time(s), ${state.complete ? 'COMPLETE' : 'not complete'}${state.badLines ? `, ${state.badLines} damaged line(s) skipped` : ''}`);
+  let done = 0;
+  let total = 0;
+  for (const sample of samples) {
+    const n = pickQuestions(sample.qa, questions, seed).length;
+    const entry = state.samples.get(sample.sample_id);
+    const perSystem = systems.map((id) => {
+      const have = entry ? [...entry.rows.keys()].filter((key) => key.startsWith(`${id}|`)).length : 0;
+      done += have;
+      total += n;
+      return `${id} ${have}/${n}`;
+    });
+    const stores = entry ? [...entry.builds.keys()].filter((b) => b !== 'raw messages').join(', ') || 'none' : 'none';
+    console.log(`  ${sample.sample_id}${entry && entry.done ? ' (finished)' : ''}: ${perSystem.join(', ')}; builds recorded: ${stores}`);
+  }
+  console.log(`  ${done} of ${total} answers are in the checkpoint (${total ? Math.round((100 * done) / total) : 0}%). Same command again continues from here.`);
+  if (same && same.questionsPerSample !== questions) console.log(`  WARNING: the checkpoint was made with --questions ${same.questionsPerSample}, not ${questions}; a run would refuse to continue it`);
+}
+
 async function main() {
   const commit = gitCommit();
   const args = process.argv.slice(2);
@@ -83,15 +114,39 @@ async function main() {
     ? 'PIPELINE CHECK (mock model), NOT A RESULT. The mock answers and judges by word overlap; these numbers only show that the harness runs end to end.'
     : `LoCoMo QA evaluation with ${llm.models.answer} (answers) and ${llm.models.judge} (judge)${llm.provider === 'ollama' ? ', local models through Ollama' : ''}. Judge not yet validated against human labels.`;
 
+  // What makes two runs the same experiment. A checkpoint is only continued when all of this matches.
+  const fingerprint = {
+    samples: samples.map((x) => x.sample_id),
+    questionsPerSample: questions,
+    k,
+    seed,
+    systems,
+    provider: llm.provider,
+    models: llm.models,
+    ollama: llm.ollama ? { numCtx: llm.ollama.numCtx, numCtxLarge: llm.ollama.numCtxLarge } : null,
+    embeddings: { provider: emb.provider, model: embedder.id },
+    prompts: { answer: ACTIVE.eval_answer, judge: ACTIVE.judge, extract: ACTIVE.extract, reconcile: ACTIVE.reconcile },
+  };
+
+  if (args.includes('--resume-check')) {
+    printResumeCheck(dir, samples, { questions, seed, systems });
+    return;
+  }
+
   assertDisposable(MONGO_URI, 'eval');
   await mongoose.connect(MONGO_URI);
+  const ledger = Ledger.open(dir, fingerprint, { restart: args.includes('--restart'), commit });
+  if (ledger.resumed) console.log(`Continuing ${dir}/checkpoint.jsonl (${ledger.state.samples.size} sample(s) in the checkpoint, started ${ledger.history().startedAt})`);
+  // The disposable database is emptied only when a sample has to start from nothing
+  const resetDb = async () => {
+    await mongoose.connection.dropDatabase();
+    await mongoose.connection.syncIndexes();
+  };
   const rows = [];
   const builds = [];
   const started = Date.now();
   for (const sample of samples) {
-    await mongoose.connection.dropDatabase();
-    await mongoose.connection.syncIndexes();
-    const out = await evaluateSample(sample, { questions, k, systems, seed, log: (line) => console.log(line) });
+    const out = await evaluateSample(sample, { questions, k, systems, seed, log: (line) => console.log(line), ledger, resetDb });
     rows.push(...out.rows);
     builds.push(...out.builds);
   }
@@ -114,7 +169,8 @@ async function main() {
       `dataset: BENCHMARK - LoCoMo (${DATA.replace(process.cwd() + path.sep, '')}, samples ${config.samples.join(', ')}; ${questions || 'all'} questions per sample)`,
       `llm provider: ${llm.provider}; embeddings: ${embedder.id}; k = ${k}; seed = ${seed}`,
       `models: extract ${llm.models.extract}, reconcile ${llm.models.reconcile}, answer ${llm.models.answer}, judge ${llm.models.judge}${ollama ? `; ollama ${ollama}` : ''}`,
-      `wall-clock: ${Math.round((Date.now() - started) / 1000)} s; machine: ${machine()}; node ${process.version}; mongodb ${meta}`,
+      `checkpoint: ${path.join(dir, 'checkpoint.jsonl')}; started again after an interruption ${ledger.history().resumes.length} time(s)${ledger.history().resumes.map((r) => `, at ${r.at} (${r.commit})`).join('')}`,
+      `wall-clock of the last process: ${Math.round((Date.now() - started) / 1000)} s; machine: ${machine()}; node ${process.version}; mongodb ${meta}`,
       '',
     ].join('\n')
   );
@@ -132,6 +188,7 @@ async function main() {
   write('judge_validation.csv', toCsv(jv.toLabel));
   write('judge_validation_key.csv', toCsv(jv.key));
   require('./charts').evalCharts(dir);
+  ledger.complete();
 
   console.log(`\n${label}`);
   for (const r of report.bySystem(rows, systems)) console.log(`  ${r.system}: n=${r.n} F1=${r.score_f1_mean} judge=${r.judge_accuracy} recall@k=${r.recall_at_k_mean}`);

@@ -1,0 +1,7 @@
+system,n,score_f1_mean,score_f1_ci_low,score_f1_ci_high,judge_accuracy,judge_ci_low,judge_ci_high,recall_at_k_mean,recall_n,abstained,errors,latency_p50_ms,latency_p95_ms,retrieval_p50_ms,mean_context_tokens_est,mean_input_tokens,mean_output_tokens,mean_cache_read_tokens,tokens_estimated,answer_cost_per_question_usd
+full_context,190,0,0,0,0,0,0,1,190,0,190,0,0.01,0,26853,0,0,0,no,
+rag_messages,190,0.5218,0.462,0.5832,0.4947,0.4211,0.5684,0.7145,190,49,1,8201.24,13019.18,643.04,444,1082,33,0,no,
+overwrite_memory,190,0.4445,0.3856,0.5024,0.4158,0.3474,0.4842,0.4447,190,83,1,8673.66,13306.06,708.79,939,1711,38,0,no,
+ours,190,0.4092,0.3471,0.4686,0.3947,0.3263,0.4632,0.4377,190,89,1,8692.38,13504.77,716.1,937,1702,38,0,no,
+ours_no_temporal,190,0.4326,0.3694,0.4911,0.4211,0.3526,0.4895,0.5167,190,92,1,8792.62,13612.21,786.02,847,1424,38,0,no,
+ours_no_provenance,190,0.3449,0.2825,0.4047,0.3368,0.2684,0.4053,0.4377,190,115,0,8503.88,13245.6,799.07,252,909,37,0,no,0

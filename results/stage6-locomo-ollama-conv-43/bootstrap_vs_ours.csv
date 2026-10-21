@@ -1,0 +1,11 @@
+comparison,metric,n,diff,ci_low,ci_high,resamples,interval_excludes_0
+ours - full_context,judge_correct,242,0.4463,0.3843,0.5124,2000,yes
+ours - full_context,score_f1,242,0.4431,0.3874,0.4989,2000,yes
+ours - rag_messages,judge_correct,242,-0.0826,-0.1488,-0.0165,2000,yes
+ours - rag_messages,score_f1,242,-0.0651,-0.1252,-0.0064,2000,yes
+ours - ours_no_temporal,judge_correct,242,-0.0041,-0.0455,0.0331,2000,no
+ours - ours_no_temporal,score_f1,242,-0.0033,-0.0298,0.0237,2000,no
+ours - ours_no_provenance,judge_correct,242,0.0165,-0.0124,0.0496,2000,no
+ours - ours_no_provenance,score_f1,242,0.0321,0.0017,0.0644,2000,yes
+ours - overwrite_memory,judge_correct,242,-0.0124,-0.0455,0.0165,2000,no
+ours - overwrite_memory,score_f1,242,-0.0052,-0.0292,0.0185,2000,no

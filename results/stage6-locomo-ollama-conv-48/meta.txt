@@ -1,0 +1,9 @@
+label: LoCoMo QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+command: npm run eval -- --provider ollama --embeddings ollama --samples conv-48 --questions 0 --run-id stage6-locomo-ollama-conv-48
+git commit: 56f6fd47b6c7026b6e01f16b5adb92c516e6be40 (the code that ran; results are committed in a later commit)
+date: 2026-10-20T17:00:07.081Z
+dataset: BENCHMARK - LoCoMo (data\locomo\locomo10.json, samples conv-48; all questions per sample)
+llm provider: ollama; embeddings: ollama:nomic-embed-text:768; k = 10; seed = 1
+models: extract qwen2.5-coder:14b, reconcile qwen2.5-coder:14b, answer qwen2.5-coder:14b, judge deepseek-r1:14b; ollama 0.32.13
+checkpoint: results\stage6-locomo-ollama-conv-48\checkpoint.jsonl; started again after an interruption 0 time(s)
+wall-clock of the last process: 27241 s; machine: 24 x Intel(R) Core(TM) Ultra 9 275HX, 31 GB RAM, win32 10.0.26300; node v24.19.0; mongodb 8.3.11

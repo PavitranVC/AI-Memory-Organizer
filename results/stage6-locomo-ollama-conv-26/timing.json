@@ -1,0 +1,36 @@
+{
+  "runId": "stage6-locomo-ollama-conv-26",
+  "models": {
+    "extract": "qwen2.5-coder:14b",
+    "reconcile": "qwen2.5-coder:14b",
+    "answer": "qwen2.5-coder:14b",
+    "judge": "deepseek-r1:14b"
+  },
+  "provider": "ollama",
+  "unit": "seconds per item (measured)",
+  "messages_mined_per_store": {
+    "bitemporal": 419,
+    "overwrite": 419
+  },
+  "questions_per_system": {
+    "full_context": 199,
+    "rag_messages": 199,
+    "ours": 199,
+    "ours_no_temporal": 199,
+    "ours_no_provenance": 199,
+    "overwrite_memory": 199
+  },
+  "seconds_per_message": {
+    "bitemporal": 2.725,
+    "overwrite": 1.202
+  },
+  "seconds_per_answer": {
+    "full_context": 62.801,
+    "rag_messages": 8.676,
+    "ours": 8.498,
+    "ours_no_temporal": 7.849,
+    "ours_no_provenance": 7.487,
+    "overwrite_memory": 8.135
+  },
+  "seconds_per_judge": 10.352
+}
