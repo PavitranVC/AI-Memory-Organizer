@@ -1,0 +1,22 @@
+{
+  "batchId": "stage6c-lme-pilot",
+  "branch": "claude/stage-6c-longmemeval-eval",
+  "commit": "d43a0f700b1927088995234ace3d597ce0398390 + uncommitted changes",
+  "total": 1,
+  "ids": [
+    "69fee5aa"
+  ],
+  "systems": [
+    "rag_messages",
+    "overwrite_memory",
+    "ours",
+    "ours_no_temporal",
+    "ours_no_provenance"
+  ],
+  "maxItemChars": 1400,
+  "state": "not started",
+  "reason": [
+    "no uncommitted changes to tracked files: 3 changed file(s): commit or stash them first"
+  ],
+  "updatedAt": "2026-10-21T23:28:20.985Z"
+}

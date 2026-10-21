@@ -6,6 +6,7 @@
 //          --k 10 (context items for RAG and memory systems)   --systems full_context,ours,...   --seed 1
 //          --run-id <name>   --out results   --judge-sample 50   --resume-check   --restart
 //          --provider mock|anthropic|ollama   --model <name> (extract, reconcile, answer)   --judge-model <name>
+//          --max-item-chars N (cap on one message shown to the model; default 1400 for LongMemEval, none for LoCoMo)
 //          --embeddings lexical|ollama|voyage (each one overrides the matching variable in .env)
 // Safety: the model comes from LLM_PROVIDER (services/llm). Anthropic or a paid embedding provider needs
 // --paid, so no run can spend money by accident. Ollama is free (local) and needs no flag.
@@ -32,7 +33,7 @@ const { evaluateSample, pickQuestions } = require('./harness');
 const { fullContextFit } = require('./preflight');
 const { selectQuestions } = require('../services/datasets/longmemeval');
 const { Ledger } = require('./checkpoint');
-const { SYSTEM_IDS } = require('./systems');
+const { SYSTEM_IDS, setItemCharCap } = require('./systems');
 const report = require('./report');
 const { gitCommit, machine, command, option, assertDisposable, toCsv } = require('./meta');
 
@@ -112,6 +113,10 @@ async function main() {
   if (!['locomo', 'longmemeval'].includes(dataset)) throw new Error(`--dataset must be locomo or longmemeval, not "${dataset}"`);
   const lme = dataset === 'longmemeval';
   if (lme) questions = 1; // one question per LongMemEval sample
+  // A LongMemEval turn can be 10,000 characters: without a cap, ten retrieved turns overflow the small context window
+  // (and a window that is too large spills the model onto the CPU). The cap applies to every system alike.
+  const maxItemChars = Number(option(args, '--max-item-chars', lme ? 1400 : 0));
+  setItemCharCap(maxItemChars);
   // A LongMemEval history is far longer than the context window, so the full-context baseline would only produce errors
   const systems = String(option(args, '--systems', (lme ? SYSTEM_IDS.filter((id) => id !== 'full_context') : SYSTEM_IDS).join(','))).split(',');
   const judgeSample = Number(option(args, '--judge-sample', 50));
@@ -145,7 +150,7 @@ async function main() {
 
   // What makes two runs the same experiment. A checkpoint is only continued when all of this matches.
   const fingerprint = {
-    ...(lme ? { dataset } : {}), // LoCoMo fingerprints stay as they were, so earlier checkpoints still continue
+    ...(lme ? { dataset, maxItemChars } : {}), // LoCoMo fingerprints stay as they were, so earlier checkpoints still continue
     samples: samples.map((x) => x.sample_id),
     questionsPerSample: lme ? 1 : questions,
     k,
@@ -197,6 +202,7 @@ async function main() {
       `git commit: ${commit} (the code that ran; results are committed in a later commit)`,
       `date: ${date}`,
       `dataset: BENCHMARK - ${lme ? 'LongMemEval' : 'LoCoMo'} (${dataFile.replace(process.cwd() + path.sep, '')}, ${lme ? `${config.samples.length} questions: ${config.samples.join(', ')}` : `samples ${config.samples.join(', ')}; ${questions || 'all'} questions per sample`})`,
+      `max characters per retrieved message: ${maxItemChars || 'no cap'}`,
       `llm provider: ${llm.provider}; embeddings: ${embedder.id}; k = ${k}; seed = ${seed}`,
       `models: extract ${llm.models.extract}, reconcile ${llm.models.reconcile}, answer ${llm.models.answer}, judge ${llm.models.judge}${ollama ? `; ollama ${ollama}` : ''}`,
       `checkpoint: ${path.join(dir, 'checkpoint.jsonl')}; started again after an interruption ${ledger.history().resumes.length} time(s)${ledger.history().resumes.map((r) => `, at ${r.at} (${r.commit})`).join('')}`,
