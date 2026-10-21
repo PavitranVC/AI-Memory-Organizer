@@ -159,6 +159,8 @@ with real data, because it deletes everything first.
 | `npm run eval` | Stage 6 evaluation on LoCoMo: six systems answer the same questions, scored by token F1 and an LLM judge; writes `results/<run-id>/`. Mock model by default; `-- --provider ollama` for the free local models; a paid provider needs `-- --paid` (see [Evaluation](#evaluation-stage-6)) |
 | `npm run eval:cost` | Cost projection for the evaluation (no API calls; `$0` with `-- --provider ollama`), plus a time projection from a pilot run with `-- --pilot results/<run-id>`; writes `results/stage6-cost-projection.csv`, `.txt` (and `-time.csv`) |
 | `npm run eval:judge-agreement -- results/<run-id>` | After you label `judge_validation.csv`: agreement and Cohen's kappa between you and the LLM judge |
+| `npm run eval:launch -- --batch-id <name> --types ... --per-type N` / `npm run eval:status` | Start a LongMemEval batch in the background after checking every condition (backup to git after each question) / show how far it is |
+| `npm run eval:judge-sample` | One blind 50-row sheet for the judge check, drawn from all LoCoMo samples |
 | `npm run eval:preflight -- [--dataset longmemeval --types ... --per-type N]` | Before a run: which samples fit the model's context window, the projected duration, and the GPU share of the loaded model. Sends nothing to a model |
 | `npm run erasure:verify` | Stage 7: proves nothing derived from erased data remains (anti-joins over every reference). `-- --user <id>`, `-- --messages <id>,<id>`, `-- --text "phrase"`. Exit code 1 if any check fails |
 | `npm run retention` | Stage 7: erase `special` memories older than `RETENTION_SPECIAL_DAYS` (`-- --days 365` overrides, `-- --dry-run` only counts). Schedule it daily (cron or Windows Task Scheduler) |
@@ -781,7 +783,7 @@ The same systems can be evaluated on LongMemEval questions (each with its own ch
 npm run eval:preflight -- --dataset longmemeval --types knowledge-update,temporal-reasoning --per-type 12
 npm run eval -- --dataset longmemeval --provider ollama --embeddings ollama --types knowledge-update,temporal-reasoning --per-type 12 --run-id stage6c-lme-pilot
 ```
-Options: `--dataset longmemeval`, `--file`, `--types`, `--per-type`, `--ids`. Notes: `docs/stages/STAGE-6C.md`.
+Options: `--dataset longmemeval`, `--file`, `--types`, `--per-type`, `--ids`, `--max-item-chars` (default 1400). For a long run use the safe launcher, which checks the conditions, backs up to git after every question and starts in the background: `npm run eval:launch -- --batch-id stage6c-lme-pilot ...`, then `npm run eval:status` ([docs/LAUNCH_LME_PILOT.md](docs/LAUNCH_LME_PILOT.md)). Notes: `docs/stages/STAGE-6C.md`.
 
 ## Privacy and governance (Stage 7)
 

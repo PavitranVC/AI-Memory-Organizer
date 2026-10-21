@@ -23,7 +23,10 @@ baseline failed on 1,546 of 1,986 questions (1,486 of them because the prompt wa
 | `eval/metrics.js` | `longmemevalScore`: token F1, except an abstention question is right only if the answer says the information is unavailable. LoCoMo's per-category rules (multi-hop, open-domain, adversarial) do not apply to LongMemEval's categories |
 | `eval/run.js` | `--dataset longmemeval` with `--file`, `--types`, `--per-type`, `--ids`. `full_context` is left out by default there (a history is about 150k estimated tokens). Warns when a requested system cannot fit. LoCoMo checkpoint fingerprints are unchanged, so an old LoCoMo checkpoint still continues |
 | `eval/preflight.js` | `npm run eval:preflight`: per sample, estimated full-context tokens against the window, a projected duration from the LoCoMo pilot's measured per-item times, and the GPU share of the loaded model from Ollama's `/api/ps` |
-| `tests/eval-longmemeval.test.js` | 6 tests on the hand-written LongMemEval-format fixture: scoring, one perspective, question date, evidence ids, preflight, end-to-end with the mock, abstention |
+| `eval/gate.js`, `eval/run-batch.js`, `eval/launch.js`, `eval/status.js` | The safe way to run a long job: conditions checked first, one question per run folder, a commit and push after every question, a halt after repeated failures, a refusal to start twice, a detached start (`npm run eval:launch`) and a progress report (`npm run eval:status`). See `docs/LAUNCH_LME_PILOT.md` |
+| `eval/systems.js`, `eval/run.js` | `--max-item-chars` (default 1400 for LongMemEval): one retrieved message is cut to that length for every system, so the worst-case answer prompt stays inside the small window |
+| `eval/judge-sample.js` | `npm run eval:judge-sample`: one blind labelling sheet of 50 rows drawn from all ten LoCoMo samples (5 each, failed calls excluded), instead of 50 rows from a single sample |
+| `tests/eval-longmemeval.test.js` | 8 tests on the hand-written LongMemEval-format fixture: scoring, one perspective, question date, evidence ids, preflight, end-to-end with the mock, abstention |
 | `results/stage6c-lme-pilot-preflight.txt` | Output of the preflight for the planned pilot (24 questions), with command, commit and date |
 | `README.md`, `docs/ROADMAP.md`, `package.json` | The command, the options and the stage row |
 
@@ -61,6 +64,7 @@ baseline failed on 1,546 of 1,986 questions (1,486 of them because the prompt wa
 10. **Why a pilot and not all 500 questions?** 500 questions at that rate is about 140 hours on this laptop, and the deadline is days away.
 
 ## 5. Weak points
+- **Message cap.** Each retrieved message is cut to 1,400 characters for every system, so a long message whose answer lies later is not visible to plain retrieval. *Answer:* "It is the price of guaranteeing no prompt overflows the context window; it applies to every system alike, and it is recorded in each run."
 - **The pilot is small** (24 questions, 12 per type), so intervals will be wide. *Answer:* "It is labelled a pilot; it
   tests whether the knowledge-update effect exists, not how large it is."
 - **No full-context baseline.** *Answer:* "It cannot run on these histories with local models; the LoCoMo run showed the
@@ -79,7 +83,7 @@ LongMemEval file (`npm run data:download -- longmemeval`, 277 MB).
 ```powershell
 git checkout claude/stage-6c-longmemeval-eval
 npm install
-npm test                                  # 362 tests pass (mock model only)
+npm test                                  # all pass (mock model only)
 
 # 1. what would fit, and how long it would take (sends nothing to a model)
 npm run eval:preflight -- --dataset longmemeval --types knowledge-update,temporal-reasoning --per-type 12
@@ -87,7 +91,7 @@ npm run eval:preflight -- --dataset longmemeval --types knowledge-update,tempora
 # 2. two questions with the mock model: checks the whole pipeline, takes seconds, NOT a result
 npm run eval -- --dataset longmemeval --provider mock --embeddings lexical --types knowledge-update,temporal-reasoning --per-type 1 --run-id lme-mock-check
 
-# 3. the pilot on the local models (resumable: run the same command again after an interruption)
-npm run eval -- --dataset longmemeval --provider ollama --embeddings ollama --types knowledge-update,temporal-reasoning --per-type 12 --run-id stage6c-lme-pilot
-npm run eval -- --dataset longmemeval --provider ollama --embeddings ollama --types knowledge-update,temporal-reasoning --per-type 12 --run-id stage6c-lme-pilot --resume-check
+# 3. the pilot on the local models: checks everything, starts in the background, backs up after every question
+npm run eval:launch -- --batch-id stage6c-lme-pilot --types knowledge-update,temporal-reasoning --per-type 12
+npm run eval:status
 ```
