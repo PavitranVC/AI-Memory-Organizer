@@ -1,0 +1,6 @@
+Judge validation sheet for the LoCoMo run (dataset: benchmark, LoCoMo). Rows are a seeded random draw, not chosen by hand.
+command: npm run eval:judge-sample
+commit: 329d5aeab553b31e80aa943c49cdf5f6671c9519 (the code that ran)
+date: 2026-10-21T23:29:37.767Z
+rows: 50 (5 from each of 10 samples; answers whose call failed are excluded); seed 11
+Fill human_correct with 1 (the candidate is correct) or 0 (wrong), following prompts/judge.v1.md. Do not open judge_validation_key.csv first.
