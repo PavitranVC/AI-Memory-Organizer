@@ -159,6 +159,7 @@ with real data, because it deletes everything first.
 | `npm run eval` | Stage 6 evaluation on LoCoMo: six systems answer the same questions, scored by token F1 and an LLM judge; writes `results/<run-id>/`. Mock model by default; `-- --provider ollama` for the free local models; a paid provider needs `-- --paid` (see [Evaluation](#evaluation-stage-6)) |
 | `npm run eval:cost` | Cost projection for the evaluation (no API calls; `$0` with `-- --provider ollama`), plus a time projection from a pilot run with `-- --pilot results/<run-id>`; writes `results/stage6-cost-projection.csv`, `.txt` (and `-time.csv`) |
 | `npm run eval:judge-agreement -- results/<run-id>` | After you label `judge_validation.csv`: agreement and Cohen's kappa between you and the LLM judge |
+| `npm run eval:preflight -- [--dataset longmemeval --types ... --per-type N]` | Before a run: which samples fit the model's context window, the projected duration, and the GPU share of the loaded model. Sends nothing to a model |
 | `npm run erasure:verify` | Stage 7: proves nothing derived from erased data remains (anti-joins over every reference). `-- --user <id>`, `-- --messages <id>,<id>`, `-- --text "phrase"`. Exit code 1 if any check fails |
 | `npm run retention` | Stage 7: erase `special` memories older than `RETENTION_SPECIAL_DAYS` (`-- --days 365` overrides, `-- --dry-run` only counts). Schedule it daily (cron or Windows Task Scheduler) |
 | `npm run migrate` | Upgrade an older database to the current schema: runs the Stage 1 and Stage 2 migrations in order (see [Upgrading an old database](#upgrading-an-old-database)) |
@@ -772,6 +773,15 @@ npm run eval -- <same options> --run-id stage6-locomo-ollama --restart        # 
 It refuses to continue a checkpoint made with another model, prompt version, `k`, seed, system list or question
 count (it names the difference). The full run is best done one sample per run, so a finished sample is saved and
 pushed on its own (PowerShell loop in the Stage 6b notes). `meta.txt` says how many times a run was continued.
+
+### LongMemEval (Stage 6c)
+The same systems can be evaluated on LongMemEval questions (each with its own chat history). Download the file first
+(`npm run data:download -- longmemeval`). `full_context` is left out by default there (a history is about 150k tokens).
+```
+npm run eval:preflight -- --dataset longmemeval --types knowledge-update,temporal-reasoning --per-type 12
+npm run eval -- --dataset longmemeval --provider ollama --embeddings ollama --types knowledge-update,temporal-reasoning --per-type 12 --run-id stage6c-lme-pilot
+```
+Options: `--dataset longmemeval`, `--file`, `--types`, `--per-type`, `--ids`. Notes: `docs/stages/STAGE-6C.md`.
 
 ## Privacy and governance (Stage 7)
 

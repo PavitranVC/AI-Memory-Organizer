@@ -29,6 +29,7 @@ the app runnable and the tests green.
 | 4. Hybrid retrieval | `claude/stage-4-hybrid-retrieval` | 3 |
 | 5. Real datasets + loaders | `claude/stage-5-datasets` | 2 (can run alongside 3–4) |
 | 5b. LongMemEval download + loader | `claude/stage-5b-longmemeval` | 5 (built on `main`) |
+| 6c. LongMemEval evaluation (harness + preflight) | `claude/stage-6c-longmemeval-eval` | 6 (run branch) + 5b |
 | 6. Evaluation harness + benchmarks | `claude/stage-6-evaluation` | 4, 5 |
 | 7. Privacy and governance | `claude/stage-7-governance` | 2 |
 | 8. Demo UI (optional) | `claude/stage-8-ui` | 4 |

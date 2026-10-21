@@ -1,0 +1,29 @@
+npm run eval:preflight -- --dataset longmemeval --types knowledge-update,temporal-reasoning --per-type 12; commit 44d4a49128803f49fdd0a80f15117b0fe1b3ca51; 2026-10-21T23:24:08.353Z
+dataset longmemeval (benchmark), 24 sample(s); context windows 8192 (small) and 32768 (large)
+  gpt4_e061b84f: 467 messages, about 149896 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  gpt4_af6db32f: 476 messages, about 157764 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  gpt4_a2d1d1f6: 476 messages, about 156739 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  gpt4_b0863698: 457 messages, about 157872 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  gpt4_2312f94c: 467 messages, about 151314 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  08f4fc43: 480 messages, about 157390 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  gpt4_6ed717ea: 489 messages, about 157711 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  a3838d2b: 484 messages, about 151767 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  cc6d1ec1: 457 messages, about 150099 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  gpt4_cd90e484: 508 messages, about 155866 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  gpt4_4cd9eba1: 500 messages, about 158477 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  gpt4_2f584639: 472 messages, about 151602 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  a1eacc2a: 474 messages, about 157620 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  4d6b87c8: 516 messages, about 153252 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  45dc21b6: 485 messages, about 150163 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  e493bb7c: 506 messages, about 158110 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  c4ea545c: 490 messages, about 156667 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  1cea1afa: 485 messages, about 155901 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  affe2881: 481 messages, about 153396 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  e66b632c: 506 messages, about 156333 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  69fee5aa: 483 messages, about 153166 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  7401057b: 446 messages, about 148168 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  a2f3aa27: 448 messages, about 153986 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+  f685340e_abs: 456 messages, about 156970 tokens -> full_context DOES NOT FIT, every full_context answer would fail
+24 of 24 sample(s) cannot run the full_context system with this window.
+Projected time for rag_messages, overwrite_memory, ours, ours_no_temporal, ours_no_provenance: about 6.9 hours (0.29 h per sample), from the LoCoMo pilot's measured per-item times; NOT measured on this dataset.
+Leave full_context out (--systems), or raise OLLAMA_NUM_CTX_LARGE if the model and the GPU memory allow it.
