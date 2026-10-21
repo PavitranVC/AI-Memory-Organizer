@@ -1,7 +1,7 @@
 Report queries on the seeded sample database (application data, no dataset label)
 command: npm run seed && npm run report:queries
-commit: 211750b
-date: 2026-10-21T15:32:45.377Z
+commit: 618e536 (the code that ran; the results are committed in a later commit)
+date: 2026-10-21T15:33:10.874Z
 database: aimemory_report; MongoDB 7.0.45
 documents: users 3, categories 4, conversations 5, messages 19, memories 61 (58 current), auditlog 61
 
