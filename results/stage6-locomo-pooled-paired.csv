@@ -1,0 +1,61 @@
+comparison,scope,metric,shared_questions,diff,ci_low,ci_high,interval_excludes_zero,samples_where_ours_higher,samples_where_ours_lower,samples_compared
+ours minus full_context,all types,judge accuracy,440,-0.0091,-0.0682,0.05,no,1,2,3
+ours minus full_context,all types,token F1,440,0.0063,-0.041,0.0546,no,1,2,3
+ours minus full_context,adversarial,judge accuracy,100,0.51,0.41,0.62,yes,3,0,3
+ours minus full_context,adversarial,token F1,100,0.51,0.41,0.62,yes,3,0,3
+ours minus full_context,multi-hop,judge accuracy,67,-0.0597,-0.1791,0.0746,no,0,1,3
+ours minus full_context,multi-hop,token F1,67,-0.0875,-0.18,0.0088,no,1,2,3
+ours minus full_context,open-domain,judge accuracy,24,-0.125,-0.2917,0.0417,no,0,1,2
+ours minus full_context,open-domain,token F1,24,-0.0792,-0.2411,0.0807,no,1,1,2
+ours minus full_context,single-hop,judge accuracy,154,-0.3571,-0.4481,-0.2662,yes,0,3,3
+ours minus full_context,single-hop,token F1,154,-0.2123,-0.2808,-0.1437,yes,0,3,3
+ours minus full_context,temporal,judge accuracy,95,0.0737,-0.0526,0.2,no,2,1,3
+ours minus full_context,temporal,token F1,95,-0.0816,-0.1447,-0.0148,yes,0,3,3
+ours minus rag_messages,all types,judge accuracy,1965,-0.0677,-0.0906,-0.0438,yes,2,8,10
+ours minus rag_messages,all types,token F1,1965,-0.0677,-0.0875,-0.0483,yes,0,10,10
+ours minus rag_messages,adversarial,judge accuracy,446,0.0852,0.0381,0.13,yes,7,1,10
+ours minus rag_messages,adversarial,token F1,446,0.0897,0.0448,0.1368,yes,7,1,10
+ours minus rag_messages,multi-hop,judge accuracy,280,-0.025,-0.0786,0.0286,no,3,6,10
+ours minus rag_messages,multi-hop,token F1,280,-0.0236,-0.0655,0.0186,no,6,4,10
+ours minus rag_messages,open-domain,judge accuracy,95,-0.0842,-0.1579,-0.0105,yes,1,5,9
+ours minus rag_messages,open-domain,token F1,95,-0.0894,-0.144,-0.0374,yes,1,6,9
+ours minus rag_messages,single-hop,judge accuracy,824,-0.2148,-0.2536,-0.176,yes,0,10,10
+ours minus rag_messages,single-hop,token F1,824,-0.1714,-0.2034,-0.1386,yes,0,10,10
+ours minus rag_messages,temporal,judge accuracy,320,0.0656,-0.0031,0.1344,no,6,3,10
+ours minus rag_messages,temporal,token F1,320,-0.0522,-0.0914,-0.015,yes,2,8,10
+ours minus overwrite_memory,all types,judge accuracy,1963,-0.0082,-0.0204,0.0036,no,1,8,10
+ours minus overwrite_memory,all types,token F1,1963,-0.0097,-0.0197,0.0003,no,3,7,10
+ours minus overwrite_memory,adversarial,judge accuracy,446,-0.0067,-0.0336,0.0179,no,3,4,10
+ours minus overwrite_memory,adversarial,token F1,446,-0.0067,-0.0336,0.0179,no,3,4,10
+ours minus overwrite_memory,multi-hop,judge accuracy,281,-0.0142,-0.0427,0.0142,no,3,3,10
+ours minus overwrite_memory,multi-hop,token F1,281,-0.0025,-0.0247,0.0191,no,6,4,10
+ours minus overwrite_memory,open-domain,judge accuracy,96,-0.0625,-0.125,-0.0104,yes,0,5,9
+ours minus overwrite_memory,open-domain,token F1,96,-0.0547,-0.1087,-0.0026,yes,2,5,9
+ours minus overwrite_memory,single-hop,judge accuracy,819,-0.0012,-0.0208,0.0195,no,4,4,10
+ours minus overwrite_memory,single-hop,token F1,819,-0.0058,-0.021,0.0092,no,5,5,10
+ours minus overwrite_memory,temporal,judge accuracy,321,-0.0062,-0.0343,0.0218,no,2,4,10
+ours minus overwrite_memory,temporal,token F1,321,-0.0165,-0.0367,0.0018,no,2,7,10
+ours minus ours_no_temporal,all types,judge accuracy,1961,-0.0148,-0.028,-0.0025,yes,2,8,10
+ours minus ours_no_temporal,all types,token F1,1961,-0.011,-0.0212,-0.0011,yes,2,8,10
+ours minus ours_no_temporal,adversarial,judge accuracy,445,-0.0382,-0.0652,-0.0135,yes,0,9,10
+ours minus ours_no_temporal,adversarial,token F1,445,-0.0337,-0.0607,-0.009,yes,1,8,10
+ours minus ours_no_temporal,multi-hop,judge accuracy,277,-0.0108,-0.0433,0.0217,no,2,4,10
+ours minus ours_no_temporal,multi-hop,token F1,277,-0.0015,-0.0239,0.0216,no,6,4,10
+ours minus ours_no_temporal,open-domain,judge accuracy,96,-0.0625,-0.1146,-0.0208,yes,0,6,9
+ours minus ours_no_temporal,open-domain,token F1,96,-0.0475,-0.0902,-0.0109,yes,1,7,9
+ours minus ours_no_temporal,single-hop,judge accuracy,822,-0.0146,-0.0328,0.0049,no,3,5,10
+ours minus ours_no_temporal,single-hop,token F1,822,-0.0065,-0.0201,0.0079,no,4,6,10
+ours minus ours_no_temporal,temporal,judge accuracy,321,0.028,-0.0062,0.0592,no,6,2,10
+ours minus ours_no_temporal,temporal,token F1,321,0.0119,-0.009,0.0306,no,6,4,10
+ours minus ours_no_provenance,all types,judge accuracy,1975,0.0446,0.0304,0.0597,yes,10,0,10
+ours minus ours_no_provenance,all types,token F1,1975,0.0449,0.0326,0.0577,yes,10,0,10
+ours minus ours_no_provenance,adversarial,judge accuracy,446,-0.0942,-0.1211,-0.0673,yes,0,10,10
+ours minus ours_no_provenance,adversarial,token F1,446,-0.0942,-0.1211,-0.0673,yes,0,10,10
+ours minus ours_no_provenance,multi-hop,judge accuracy,280,0.0107,-0.0214,0.0429,no,6,2,10
+ours minus ours_no_provenance,multi-hop,token F1,280,0.0569,0.0314,0.0832,yes,10,0,10
+ours minus ours_no_provenance,open-domain,judge accuracy,96,0.0104,-0.0208,0.0417,no,2,1,9
+ours minus ours_no_provenance,open-domain,token F1,96,0.0042,-0.0271,0.0344,no,3,1,9
+ours minus ours_no_provenance,single-hop,judge accuracy,832,0.1334,0.1082,0.1599,yes,10,0,10
+ours minus ours_no_provenance,single-hop,token F1,832,0.1258,0.105,0.1471,yes,10,0,10
+ours minus ours_no_provenance,temporal,judge accuracy,321,0.0467,0.0218,0.0717,yes,5,0,10
+ours minus ours_no_provenance,temporal,token F1,321,0.0304,0.0125,0.049,yes,7,3,10
