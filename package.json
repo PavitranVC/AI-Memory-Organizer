@@ -28,6 +28,7 @@
     "eval:cost": "node eval/project-cost.js",
     "eval:judge-agreement": "node eval/judge-agreement.js",
     "eval:preflight": "node eval/preflight.js",
+    "eval:judge-sample": "node eval/judge-sample.js",
     "eval:batch": "node eval/run-batch.js",
     "eval:status": "node eval/status.js",
     "erasure:verify": "node scripts/verify-erasure.js",
