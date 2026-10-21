@@ -143,6 +143,7 @@ with real data, because it deletes everything first.
 | `npm run seed` | Empty the database and load the sample data |
 | `npm test` | Run the test suite (needs MongoDB, see [Tests](#tests)) |
 | `npm run explain` | Print the indexes and the query plan of the main queries |
+| `npm run report:queries` | Run the project report's representative queries (selection, joins, grouping, subqueries, set operations, recursion) on a seeded database and write `results/stage9-report-queries.txt` |
 | `npm run worker` | Run the extraction worker (add `-- --drain` to process what is queued and exit) |
 | `npm run llm:costs` | Tokens, prompt-cache hit rate and cost per model, task and prompt version, from `llmcalls` (`-- --include-mock` to include mock rows) |
 | `npm run test:live` | Opt-in live smoke test with a real model (3 conversations). With `LLM_PROVIDER=ollama`: free, skips if Ollama is not reachable. Otherwise Anthropic: prints a cost estimate first and skips if `ANTHROPIC_API_KEY` is not set (`-- --estimate` prints only the estimate) |

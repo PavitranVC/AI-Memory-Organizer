@@ -1,0 +1,101 @@
+Query plans of the main queries on the seeded sample database (application data, no dataset label)
+command: npm run seed && npm run explain
+commit: 211750b
+date: 2026-10-21T15:32:54Z
+MongoDB: 7.0.45
+
+Connected to mongodb://127.0.0.1:27018/aimemory_report?directConnection=true
+INDEXES
+  users: _id_, email_1, source.name_1_source.id_1
+  categories: _id_, name_unique_ci
+  conversations: _id_, userId_1__id_-1
+  messages: _id_, conversationId_1_sentAt_1
+  memories: _id_, userId_1_validTo_1_retractedAt_1__id_-1, userId_1_validTo_1_retractedAt_1_status_1__id_-1, userId_1_validTo_1_retractedAt_1_categoryId_1__id_-1, userId_1__id_-1_validFrom_1_recordedAt_1, categoryId_1_retractedAt_1, supersedes_1, userId_1_sourceMessageIds_1, retention_special, userId_1_content_text_tags_text
+  auditlog: _id_, userId_1__id_-1, userId_1_memoryId_1__id_-1
+  jobs: _id_, status_1_runAt_1, status_1_lockedAt_1, userId_1__id_-1, payload.conversationId_1
+  llmcalls: _id_, userId_1__id_-1, jobId_1
+  evalitems: _id_, source.name_1_source.id_1_source.index_1, userId_1_category_1
+  consents: _id_, userId_1_categoryId_1, categoryId_1
+  suggestions: _id_, userId_1__id_-1, userId_1_messageId_1_content_1, categoryId_1
+QUERY PLANS (for aarav.mehta@example.com; time-travel queries at 2025-07-01T00:00:00.000Z)
+  memories: current, newest first
+    plan:     LIMIT -> PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1__id_-1_validFrom_1_recordedAt_1)
+    returned: 21, keys examined: 22, docs examined: 22, 1 ms
+  memories: current, by status
+    plan:     LIMIT -> PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1__id_-1_validFrom_1_recordedAt_1)
+    returned: 17, keys examined: 22, docs examined: 22, 0 ms
+  memories: current, by category
+    plan:     LIMIT -> PROJECTION_SIMPLE -> FETCH -> SORT_MERGE -> IXSCAN(userId_1_validTo_1_retractedAt_1_categoryId_1__id_-1) -> IXSCAN(userId_1_validTo_1_retractedAt_1_categoryId_1__id_-1) -> IXSCAN(userId_1_validTo_1_retractedAt_1_categoryId_1__id_-1) -> IXSCAN(userId_1_validTo_1_retractedAt_1_categoryId_1__id_-1)
+    returned: 8, keys examined: 8, docs examined: 8, 1 ms
+  memories: ?asOf= (valid time)
+    plan:     LIMIT -> PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1__id_-1_validFrom_1_recordedAt_1)
+    returned: 1, keys examined: 23, docs examined: 2, 3 ms
+  memories: ?knownAt= (transaction time)
+    plan:     LIMIT -> PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1__id_-1_validFrom_1_recordedAt_1)
+    returned: 1, keys examined: 23, docs examined: 1, 2 ms
+  memories: ?asOf=&knownAt= (both)
+    plan:     LIMIT -> PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1__id_-1_validFrom_1_recordedAt_1)
+    returned: 1, keys examined: 23, docs examined: 2, 2 ms
+  memories: history hop (version by _id)
+    plan:     PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1__id_-1_validFrom_1_recordedAt_1)
+    returned: 1, keys examined: 1, docs examined: 1, 0 ms
+  memories: text search (current)
+    plan:     PROJECTION_SIMPLE -> FETCH -> TEXT_MATCH(userId_1_content_text_tags_text) -> FETCH -> IXSCAN(userId_1_content_text_tags_text)
+    returned: 3, keys examined: 3, docs examined: 6, 0 ms
+  retrieval: vector candidates, current (local backend)
+    plan:     PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1_validTo_1_retractedAt_1__id_-1)
+    returned: 21, keys examined: 22, docs examined: 21, 0 ms
+  retrieval: vector candidates, ?asOf= (local backend)
+    plan:     PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1__id_-1_validFrom_1_recordedAt_1)
+    returned: 1, keys examined: 23, docs examined: 2, 1 ms
+  retrieval: keyword candidates, ?asOf=
+    plan:     PROJECTION_SIMPLE -> FETCH -> TEXT_MATCH(userId_1_content_text_tags_text) -> FETCH -> IXSCAN(userId_1_content_text_tags_text)
+    returned: 0, keys examined: 0, docs examined: 0, 0 ms
+  memories: category in use? (delete check)
+    plan:     LIMIT -> PROJECTION_SIMPLE -> FETCH -> IXSCAN(categoryId_1_retractedAt_1)
+    returned: 1, keys examined: 1, docs examined: 1, 0 ms
+  aggregation: $match current (by-category / status-ratio)
+    plan:     PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1_validTo_1_retractedAt_1__id_-1)
+    returned: 21, keys examined: 22, docs examined: 21, 0 ms
+  auditlog: my entries, newest first
+    plan:     LIMIT -> FETCH -> IXSCAN(userId_1__id_-1)
+    returned: 21, keys examined: 21, docs examined: 21, 0 ms
+  conversations: list newest first
+    plan:     LIMIT -> FETCH -> IXSCAN(userId_1__id_-1)
+    returned: 2, keys examined: 2, docs examined: 2, 0 ms
+  messages: one conversation in order
+    plan:     SORT -> FETCH -> IXSCAN(conversationId_1_sentAt_1)
+    returned: 4, keys examined: 4, docs examined: 4, 0 ms
+    note: in-memory SORT stage (the index does not provide the order)
+  jobs: claim the oldest due job
+    plan:     LIMIT -> FETCH -> IXSCAN(status_1_runAt_1)
+    returned: 0, keys examined: 0, docs examined: 0, 0 ms
+  jobs: my jobs, newest first
+    plan:     LIMIT -> FETCH -> IXSCAN(userId_1__id_-1)
+    returned: 0, keys examined: 0, docs examined: 0, 0 ms
+  messages: recent window before a message
+    plan:     SORT -> FETCH -> IXSCAN(conversationId_1_sentAt_1)
+    returned: 4, keys examined: 4, docs examined: 4, 0 ms
+    note: in-memory SORT stage (the index does not provide the order)
+  llmcalls: my calls, newest first
+    plan:     LIMIT -> FETCH -> IXSCAN(userId_1__id_-1)
+    returned: 0, keys examined: 0, docs examined: 0, 0 ms
+  users: login by email
+    plan:     PROJECTION_SIMPLE -> FETCH -> IXSCAN(email_1)
+    returned: 1, keys examined: 1, docs examined: 1, 0 ms
+  memories: lineage (versions derived from a message)
+    plan:     PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1_sourceMessageIds_1)
+    returned: 0, keys examined: 0, docs examined: 0, 0 ms
+  memories: retention (expired special versions, all users)
+    plan:     PROJECTION_SIMPLE -> FETCH -> IXSCAN(retention_special)
+    returned: 13, keys examined: 13, docs examined: 13, 0 ms
+  consents: my mode for a category
+    plan:     FETCH -> IXSCAN(userId_1_categoryId_1)
+    returned: 0, keys examined: 0, docs examined: 0, 0 ms
+  suggestions: mine, newest first
+    plan:     LIMIT -> FETCH -> IXSCAN(userId_1__id_-1)
+    returned: 0, keys examined: 0, docs examined: 0, 0 ms
+  suggestions: by source message (erasure)
+    plan:     FETCH -> IXSCAN(userId_1_messageId_1_content_1)
+    returned: 0, keys examined: 0, docs examined: 0, 0 ms
+OK: no duplicate indexes and no collection scans.

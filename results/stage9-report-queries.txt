@@ -1,0 +1,132 @@
+Report queries on the seeded sample database (application data, no dataset label)
+command: npm run seed && npm run report:queries
+commit: 211750b
+date: 2026-10-21T15:32:45.377Z
+database: aimemory_report; MongoDB 7.0.45
+documents: users 3, categories 4, conversations 5, messages 19, memories 61 (58 current), auditlog 61
+
+[S1] Selection: Priya's current memories, newest first
+  db.memories.find({"userId":"<Priya _id>","validTo":null,"retractedAt":null}, {"_id":0,"content":1,"importance":1,"status":1}).sort({"_id":-1}).limit(3)
+  matching documents: 19; shown: 3
+    {"content":"User moved from Kochi to Bengaluru for a UX design job; their parents still live in Kochi.","importance":4,"status":"Active"}
+    {"content":"User is working through the Google UX Design Certificate and has finished four of the seven courses.","importance":3,"status":"Archived"}
+    {"content":"User is reading 'Atomic Habits' and wants to use habit stacking to build a calmer morning routine.","importance":2,"status":"Active"}
+
+[S2] Selection: Aarav's Active memories of importance 4 or more, most important first
+  db.memories.find({"userId":"<Aarav _id>","validTo":null,"retractedAt":null,"status":"Active","importance":{"$gte":4}}, {"_id":0,"content":1,"importance":1,"status":1}).sort({"importance":-1,"_id":-1}).limit(5)
+  matching documents: 9; shown: 5
+    {"content":"User's campus placements start in December.","importance":5,"status":"Active"}
+    {"content":"User is travelling to Berlin next summer for their cousin's wedding and plans to stay two extra weeks to explore Europe.","importance":5,"status":"Active"}
+    {"content":"User is allergic to peanuts and must check ingredients carefully when eating out, especially while travelling.","importance":5,"status":"Active"}
+    {"content":"User wants to learn German before their trip to Berlin next summer and is aiming for A2 level.","importance":5,"status":"Active"}
+    {"content":"User has campus placements starting in December and wants to solve 250 LeetCode problems before then.","importance":5,"status":"Active"}
+
+[S3] Selection (valid time): Priya's Personal memories as of 2023-06-01
+  db.memories.find({"userId":"<Priya _id>","categoryId":"<Personal _id>","validFrom":{"$lte":"2023-06-01T00:00:00.000Z"},"retractedAt":null,"$or":[{"validTo":null},{"validTo":{"$gt":"2023-06-01T00:00:00.000Z"}}]}, {"_id":0,"content":1,"validFrom":1,"validTo":1})
+  matching documents: 1; shown: 1
+    {"content":"User lives in Kochi with their parents.","validFrom":"2019-06-01T00:00:00.000Z","validTo":"2024-08-01T00:00:00.000Z"}
+
+[S4] Selection (valid time): Priya's Personal memories as of 2024-08-10
+  db.memories.find({"userId":"<Priya _id>","categoryId":"<Personal _id>","validFrom":{"$lte":"2024-08-10T00:00:00.000Z"},"retractedAt":null,"$or":[{"validTo":null},{"validTo":{"$gt":"2024-08-10T00:00:00.000Z"}}]}, {"_id":0,"content":1,"validFrom":1,"validTo":1})
+  matching documents: 1; shown: 1
+    {"content":"User moved from Kochi to Bengaluru for a UX design job; their parents still live in Kochi.","validFrom":"2024-08-01T00:00:00.000Z","validTo":null}
+
+[S5] Selection (both axes): The same date, as the database knew it on 2024-08-15 (the move had not been recorded yet)
+  db.memories.find({"userId":"<Priya _id>","categoryId":"<Personal _id>","validFrom":{"$lte":"2024-08-10T00:00:00.000Z"},"recordedAt":{"$lte":"2024-08-15T00:00:00.000Z"},"$and":[{"$or":[{"retractedAt":null},{"retractedAt":{"$gt":"2024-08-15T00:00:00.000Z"}}]},{"$or":[{"validTo":null},{"validTo":{"$gt":"2024-08-10T00:00:00.000Z"}},{"closedAt":{"$gt":"2024-08-15T00:00:00.000Z"}}]}]}, {"_id":0,"content":1,"validFrom":1,"validTo":1,"recordedAt":1})
+  matching documents: 1; shown: 1
+    {"content":"User lives in Kochi with their parents.","validFrom":"2019-06-01T00:00:00.000Z","validTo":"2024-08-01T00:00:00.000Z","recordedAt":"2023-02-10T00:00:00.000Z"}
+
+[S6] Selection (text index): Aarav's current memories that match the keyword "react", best match first
+  db.memories.find({"userId":"<Aarav _id>","validTo":null,"retractedAt":null,"$text":{"$search":"react"}}, {"_id":0,"content":1,"score":{"$meta":"textScore"}}).sort({"score":{"$meta":"textScore"}}).limit(5)
+  matching documents: 1; shown: 1
+    {"content":"User is struggling with React hooks, especially useEffect dependency arrays that trigger infinite re-renders.","score":1.6416666666666666}
+
+[J1] Join and aggregation: Priya's current memories per category, with the category name
+  db.memories.aggregate([{"$match":{"userId":"<Priya _id>","validTo":null,"retractedAt":null}},{"$group":{"_id":"$categoryId","memories":{"$sum":1},"avgImportance":{"$avg":"$importance"}}},{"$lookup":{"from":"categories","localField":"_id","foreignField":"_id","as":"category"}},{"$unwind":"$category"},{"$project":{"_id":0,"category":"$category.name","memories":1,"avgImportance":{"$round":["$avgImportance",2]}}},{"$sort":{"memories":-1,"category":1}}])
+  result rows: 4
+    {"memories":6,"category":"Health","avgImportance":3.67}
+    {"memories":5,"category":"Personal","avgImportance":4}
+    {"memories":4,"category":"Hobbies","avgImportance":2.5}
+    {"memories":4,"category":"Learning","avgImportance":2.75}
+
+[J2] Join (two lookups): Aarav's three newest memories with the owner's name and the category name
+  db.memories.aggregate([{"$match":{"userId":"<Aarav _id>","validTo":null,"retractedAt":null}},{"$sort":{"_id":-1}},{"$limit":3},{"$lookup":{"from":"users","localField":"userId","foreignField":"_id","as":"owner"}},{"$lookup":{"from":"categories","localField":"categoryId","foreignField":"_id","as":"category"}},{"$project":{"_id":0,"owner":{"$first":"$owner.name"},"category":{"$first":"$category.name"},"content":1}}])
+  result rows: 3
+    {"content":"User's campus placements start in December.","owner":"Aarav Mehta","category":"Learning"}
+    {"content":"User is a die-hard Bayern Munich fan and hopes to catch a match at the Allianz Arena during the trip.","owner":"Aarav Mehta","category":"Hobbies"}
+    {"content":"User enjoys street photography on their phone and wants to shoot Berlin's murals at the East Side Gallery.","owner":"Aarav Mehta","category":"Hobbies"}
+
+[J3] Join: Current memories with the title of the conversation they came from (three shown)
+  db.memories.aggregate([{"$match":{"validTo":null,"retractedAt":null,"userId":"<Priya _id>"}},{"$lookup":{"from":"conversations","localField":"conversationId","foreignField":"_id","as":"conversation"}},{"$project":{"_id":0,"conversation":{"$first":"$conversation.title"},"content":1}},{"$limit":3}])
+  result rows: 3
+    {"content":"User moved from Kochi to Bengaluru for a UX design job; their parents still live in Kochi.","conversation":"Getting my weekends back"}
+    {"content":"User is working through the Google UX Design Certificate and has finished four of the seven courses.","conversation":"Getting my weekends back"}
+    {"content":"User is reading 'Atomic Habits' and wants to use habit stacking to build a calmer morning routine.","conversation":"Getting my weekends back"}
+
+[G1] Grouping: Aarav's Active versus Archived memories (the status-ratio report)
+  db.memories.aggregate([{"$match":{"userId":"<Aarav _id>","validTo":null,"retractedAt":null}},{"$group":{"_id":null,"total":{"$sum":1},"active":{"$sum":{"$cond":[{"$eq":["$status","Active"]},1,0]}},"archived":{"$sum":{"$cond":[{"$eq":["$status","Archived"]},1,0]}}}},{"$project":{"_id":0,"total":1,"active":1,"archived":1,"activePercent":{"$round":[{"$multiply":[{"$divide":["$active","$total"]},100]},1]}}}])
+  result rows: 1
+    {"total":21,"active":17,"archived":4,"activePercent":81}
+
+[G2] Grouping (two keys): Number of current memories and average importance for each user and category
+  db.memories.aggregate([{"$match":{"validTo":null,"retractedAt":null}},{"$group":{"_id":{"userId":"$userId","categoryId":"$categoryId"},"memories":{"$sum":1},"avgImportance":{"$avg":"$importance"}}},{"$lookup":{"from":"users","localField":"_id.userId","foreignField":"_id","as":"u"}},{"$lookup":{"from":"categories","localField":"_id.categoryId","foreignField":"_id","as":"c"}},{"$project":{"_id":0,"user":{"$first":"$u.name"},"category":{"$first":"$c.name"},"memories":1,"avgImportance":{"$round":["$avgImportance",2]}}},{"$sort":{"user":1,"category":1}}])
+  result rows: 12
+    {"memories":3,"user":"Aarav Mehta","category":"Health","avgImportance":3.33}
+    {"memories":4,"user":"Aarav Mehta","category":"Hobbies","avgImportance":2.25}
+    {"memories":8,"user":"Aarav Mehta","category":"Learning","avgImportance":4.12}
+    {"memories":6,"user":"Aarav Mehta","category":"Personal","avgImportance":3.5}
+    {"memories":4,"user":"Daniel Fernandes","category":"Health","avgImportance":3.5}
+    {"memories":4,"user":"Daniel Fernandes","category":"Hobbies","avgImportance":2.25}
+    {"memories":5,"user":"Daniel Fernandes","category":"Learning","avgImportance":3.6}
+    {"memories":5,"user":"Daniel Fernandes","category":"Personal","avgImportance":4}
+    {"memories":6,"user":"Priya Nair","category":"Health","avgImportance":3.67}
+    {"memories":4,"user":"Priya Nair","category":"Hobbies","avgImportance":2.5}
+    {"memories":4,"user":"Priya Nair","category":"Learning","avgImportance":2.75}
+    {"memories":5,"user":"Priya Nair","category":"Personal","avgImportance":4}
+
+[G3] Grouping across collections: Messages per conversation, with the first and last message time
+  db.messages.aggregate([{"$group":{"_id":"$conversationId","messages":{"$sum":1},"first":{"$min":"$sentAt"},"last":{"$max":"$sentAt"}}},{"$lookup":{"from":"conversations","localField":"_id","foreignField":"_id","as":"c"}},{"$project":{"_id":0,"conversation":{"$first":"$c.title"},"messages":1}},{"$sort":{"messages":-1,"conversation":1}}])
+  result rows: 5
+    {"messages":4,"conversation":"Half-marathon training plan"}
+    {"messages":4,"conversation":"Moving from accounting to data analytics"}
+    {"messages":4,"conversation":"Planning the Berlin trip"}
+    {"messages":4,"conversation":"React bugs and placement prep"}
+    {"messages":3,"conversation":"Getting my weekends back"}
+
+[U1] Correlated subquery: For each category, how many current memories are more important than the average of that category
+  db.memories.aggregate([{"$match":{"validTo":null,"retractedAt":null}},{"$group":{"_id":"$categoryId","avgImportance":{"$avg":"$importance"}}},{"$lookup":{"from":"memories","let":{"category":"$_id","avg":"$avgImportance"},"pipeline":[{"$match":{"$expr":{"$and":[{"$eq":["$categoryId","$$category"]},{"$eq":["$validTo",null]},{"$eq":["$retractedAt",null]},{"$gt":["$importance","$$avg"]}]}}},{"$count":"n"}],"as":"above"}},{"$lookup":{"from":"categories","localField":"_id","foreignField":"_id","as":"c"}},{"$project":{"_id":0,"category":{"$first":"$c.name"},"avgImportance":{"$round":["$avgImportance",2]},"above":{"$ifNull":[{"$first":"$above.n"},0]}}},{"$sort":{"category":1}}])
+  result rows: 4
+    {"category":"Health","avgImportance":3.54,"above":6}
+    {"category":"Hobbies","avgImportance":2.33,"above":6}
+    {"category":"Learning","avgImportance":3.65,"above":8}
+    {"category":"Personal","avgImportance":3.81,"above":11}
+
+[U2] Subquery on an aggregate: Conversations that produced more current memories than the average conversation
+  db.memories.aggregate([{"$match":{"validTo":null,"retractedAt":null}},{"$group":{"_id":"$conversationId","n":{"$sum":1}}},{"$setWindowFields":{"output":{"avgN":{"$avg":"$n","window":{"documents":["unbounded","unbounded"]}}}}},{"$match":{"$expr":{"$gt":["$n","$avgN"]}}},{"$lookup":{"from":"conversations","localField":"_id","foreignField":"_id","as":"c"}},{"$project":{"_id":0,"conversation":{"$first":"$c.title"},"memories":"$n","average":{"$round":["$avgN",2]}}},{"$sort":{"memories":-1,"conversation":1}}])
+  result rows: 2
+    {"conversation":"Moving from accounting to data analytics","memories":18,"average":11.6}
+    {"conversation":"React bugs and placement prep","memories":12,"average":11.6}
+
+[X1] Set operations: Tags of Aarav and Priya: how many in the union, in both, and only Aarav's
+  db.memories.aggregate([{"$match":{"validTo":null,"retractedAt":null,"userId":{"$in":["<Aarav _id>","<Priya _id>"]}}},{"$unwind":"$tags"},{"$group":{"_id":"$userId","tags":{"$addToSet":"$tags"}}},{"$group":{"_id":null,"sets":{"$push":{"user":"$_id","tags":"$tags"}}}},{"$project":{"_id":0,"a":{"$first":{"$map":{"input":{"$filter":{"input":"$sets","cond":{"$eq":["$$this.user","<Aarav _id>"]}}},"in":"$$this.tags"}}},"p":{"$first":{"$map":{"input":{"$filter":{"input":"$sets","cond":{"$eq":["$$this.user","<Priya _id>"]}}},"in":"$$this.tags"}}}}},{"$project":{"aaravTags":{"$size":"$a"},"priyaTags":{"$size":"$p"},"union":{"$size":{"$setUnion":["$a","$p"]}},"inBoth":{"$size":{"$setIntersection":["$a","$p"]}},"onlyAarav":{"$size":{"$setDifference":["$a","$p"]}}}}])
+  result rows: 1
+    {"aaravTags":32,"priyaTags":32,"union":59,"inBoth":5,"onlyAarav":27}
+
+[X2] Set operation ($unionWith): Contents of Aarav's Health memories followed by Priya's Health memories (two result sets joined, three shown)
+  db.memories.aggregate([{"$match":{"userId":"<Aarav _id>","validTo":null,"retractedAt":null,"categoryId":"6ad8daf483110b509326f01f"}},{"$project":{"_id":0,"owner":{"$literal":"Aarav"},"content":1}},{"$unionWith":{"coll":"memories","pipeline":[{"$match":{"userId":"<Priya _id>","validTo":null,"retractedAt":null,"categoryId":"6ad8daf483110b509326f01f"}},{"$project":{"_id":0,"owner":{"$literal":"Priya"},"content":1}}]}},{"$limit":3}])
+  result rows: 3
+    {"content":"User gets motion sickness on long bus rides and prefers trains for intercity travel.","owner":"Aarav"}
+    {"content":"User is allergic to peanuts and must check ingredients carefully when eating out, especially while travelling.","owner":"Aarav"}
+    {"content":"User has been sleeping only about five hours a night during placement prep and often feels drained in morning classes.","owner":"Aarav"}
+
+[R1] Recursive lookup ($graphLookup): The version chain behind Priya's current Personal memory about where she lives
+  db.memories.aggregate([{"$match":{"userId":"<Priya _id>","categoryId":"<Personal _id>","validTo":null,"retractedAt":null,"supersedes":{"$ne":null}}},{"$limit":1},{"$graphLookup":{"from":"memories","startWith":"$supersedes","connectFromField":"supersedes","connectToField":"_id","as":"earlier","maxDepth":10}},{"$project":{"_id":0,"current":"$content","earlierVersions":{"$map":{"input":"$earlier","as":"v","in":{"content":"$$v.content","validTo":"$$v.validTo"}}}}}])
+  result rows: 1
+    {"current":"User moved from Kochi to Bengaluru for a UX design job; their parents still live in Kochi.","earlierVersions":[{"content":"User lives in Kochi with their parents.","validTo":"2024-08-01T00:00:00.000Z"}]}
+
+[A1] Grouping: Audit log entries by action
+  db.auditlog.aggregate([{"$group":{"_id":"$action","entries":{"$sum":1}}},{"$project":{"_id":0,"action":"$_id","entries":1}},{"$sort":{"entries":-1,"action":1}}])
+  result rows: 3
+    {"entries":58,"action":"create"}
+    {"entries":2,"action":"supersede"}
+    {"entries":1,"action":"correct"}

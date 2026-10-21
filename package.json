@@ -10,6 +10,7 @@
     "seed": "node seed.js",
     "migrate": "node scripts/migrate.js",
     "explain": "node scripts/explain.js",
+    "report:queries": "node scripts/report-queries.js",
     "test": "jest --runInBand",
     "worker": "node scripts/worker.js",
     "test:live": "node scripts/live-smoke.js",
