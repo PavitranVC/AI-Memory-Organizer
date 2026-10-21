@@ -1,7 +1,7 @@
 Query plans of the main queries on the seeded sample database (application data, no dataset label)
 command: npm run seed && npm run explain
-commit: 618e536 (the code that ran; the results are committed in a later commit)
-date: 2026-10-21T15:33:11Z
+commit: 674ed74 (the code that ran; the results are committed in a later commit)
+date: 2026-10-21T15:42:13Z
 MongoDB: 7.0.45
 
 Connected to mongodb://127.0.0.1:27018/aimemory_report?directConnection=true
@@ -32,19 +32,19 @@ QUERY PLANS (for aarav.mehta@example.com; time-travel queries at 2025-07-01T00:0
     returned: 1, keys examined: 23, docs examined: 2, 3 ms
   memories: ?knownAt= (transaction time)
     plan:     LIMIT -> PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1__id_-1_validFrom_1_recordedAt_1)
-    returned: 1, keys examined: 23, docs examined: 1, 2 ms
+    returned: 1, keys examined: 23, docs examined: 1, 5 ms
   memories: ?asOf=&knownAt= (both)
     plan:     LIMIT -> PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1__id_-1_validFrom_1_recordedAt_1)
-    returned: 1, keys examined: 23, docs examined: 2, 2 ms
+    returned: 1, keys examined: 23, docs examined: 2, 3 ms
   memories: history hop (version by _id)
     plan:     PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1__id_-1_validFrom_1_recordedAt_1)
-    returned: 1, keys examined: 1, docs examined: 1, 0 ms
+    returned: 1, keys examined: 1, docs examined: 1, 1 ms
   memories: text search (current)
     plan:     PROJECTION_SIMPLE -> FETCH -> TEXT_MATCH(userId_1_content_text_tags_text) -> FETCH -> IXSCAN(userId_1_content_text_tags_text)
     returned: 3, keys examined: 3, docs examined: 6, 0 ms
   retrieval: vector candidates, current (local backend)
     plan:     PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1_validTo_1_retractedAt_1__id_-1)
-    returned: 21, keys examined: 22, docs examined: 21, 0 ms
+    returned: 21, keys examined: 22, docs examined: 21, 5 ms
   retrieval: vector candidates, ?asOf= (local backend)
     plan:     PROJECTION_SIMPLE -> FETCH -> IXSCAN(userId_1__id_-1_validFrom_1_recordedAt_1)
     returned: 1, keys examined: 23, docs examined: 2, 2 ms
@@ -94,7 +94,7 @@ QUERY PLANS (for aarav.mehta@example.com; time-travel queries at 2025-07-01T00:0
     returned: 0, keys examined: 0, docs examined: 0, 0 ms
   suggestions: mine, newest first
     plan:     LIMIT -> FETCH -> IXSCAN(userId_1__id_-1)
-    returned: 0, keys examined: 0, docs examined: 0, 1 ms
+    returned: 0, keys examined: 0, docs examined: 0, 0 ms
   suggestions: by source message (erasure)
     plan:     FETCH -> IXSCAN(userId_1_messageId_1_content_1)
     returned: 0, keys examined: 0, docs examined: 0, 0 ms

@@ -1,7 +1,7 @@
 Report queries on the seeded sample database (application data, no dataset label)
 command: npm run seed && npm run report:queries
-commit: 618e536 (the code that ran; the results are committed in a later commit)
-date: 2026-10-21T15:33:10.874Z
+commit: 674ed74 (the code that ran; the results are committed in a later commit)
+date: 2026-10-21T15:42:12.953Z
 database: aimemory_report; MongoDB 7.0.45
 documents: users 3, categories 4, conversations 5, messages 19, memories 61 (58 current), auditlog 61
 
@@ -113,7 +113,7 @@ documents: users 3, categories 4, conversations 5, messages 19, memories 61 (58 
     {"aaravTags":32,"priyaTags":32,"union":59,"inBoth":5,"onlyAarav":27}
 
 [X2] Set operation ($unionWith): Contents of Aarav's Health memories followed by Priya's Health memories (two result sets joined, three shown)
-  db.memories.aggregate([{"$match":{"userId":"<Aarav _id>","validTo":null,"retractedAt":null,"categoryId":"6ad8daf483110b509326f01f"}},{"$project":{"_id":0,"owner":{"$literal":"Aarav"},"content":1}},{"$unionWith":{"coll":"memories","pipeline":[{"$match":{"userId":"<Priya _id>","validTo":null,"retractedAt":null,"categoryId":"6ad8daf483110b509326f01f"}},{"$project":{"_id":0,"owner":{"$literal":"Priya"},"content":1}}]}},{"$limit":3}])
+  db.memories.aggregate([{"$match":{"userId":"<Aarav _id>","validTo":null,"retractedAt":null,"categoryId":"<Health _id>"}},{"$project":{"_id":0,"owner":{"$literal":"Aarav"},"content":1}},{"$unionWith":{"coll":"memories","pipeline":[{"$match":{"userId":"<Priya _id>","validTo":null,"retractedAt":null,"categoryId":"<Health _id>"}},{"$project":{"_id":0,"owner":{"$literal":"Priya"},"content":1}}]}},{"$limit":3}])
   result rows: 3
     {"content":"User gets motion sickness on long bus rides and prefers trains for intercity travel.","owner":"Aarav"}
     {"content":"User is allergic to peanuts and must check ingredients carefully when eating out, especially while travelling.","owner":"Aarav"}
