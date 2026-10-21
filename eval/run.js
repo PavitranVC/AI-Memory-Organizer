@@ -1,4 +1,4 @@
-// Stage 6 evaluation run on LoCoMo (dataset label: benchmark).
+// Stage 6 evaluation run on LoCoMo or LongMemEval (dataset label: benchmark).
 //   npm run eval -- --questions 10                       pipeline check: 1 sample, 10 questions, mock model
 //   npm run eval -- --provider ollama --questions 10     pilot on the free local models (Stage 3b)
 //   npm run eval -- --samples all --questions 0 --paid   the full run with the real model (costs money)
@@ -13,6 +13,10 @@
 // summary_by_type.csv, bootstrap_vs_ours.csv, build.csv, timing.json, judge_validation.csv (+ _key.csv) and
 // the charts.
 // Uses its own database (MONGO_URI_EVAL, the name must contain "eval"), which it DROPS when a sample starts new.
+// Stage 6c: --dataset longmemeval runs the same systems on LongMemEval questions (one question = one sample, with its
+// own chat history): --file longmemeval_s_cleaned.json --types knowledge-update,temporal-reasoning --per-type 12
+// --ids <question ids>. full_context is left out by default there (a history is far longer than the window);
+// --systems can put it back. npm run eval:preflight shows which samples fit the window before anything runs.
 // Stage 6b: every finished answer is written at once to results/<run-id>/checkpoint.jsonl. Running the SAME
 // command again continues an interrupted run (same results files as an uninterrupted run); --resume-check shows
 // what is done without running anything; --restart sets the old checkpoint aside and starts from nothing.
@@ -25,13 +29,16 @@ const { ACTIVE } = require('../services/llm/prompts'); // the prompt versions th
 const { embeddingConfig } = require('../services/embeddings/config');
 const { readyEmbedder } = require('../services/embeddings');
 const { evaluateSample, pickQuestions } = require('./harness');
+const { fullContextFit } = require('./preflight');
+const { selectQuestions } = require('../services/datasets/longmemeval');
 const { Ledger } = require('./checkpoint');
 const { SYSTEM_IDS } = require('./systems');
 const report = require('./report');
 const { gitCommit, machine, command, option, assertDisposable, toCsv } = require('./meta');
 
 const MONGO_URI = process.env.MONGO_URI_EVAL || 'mongodb://127.0.0.1:27017/aimemory_eval';
-const DATA = path.join(process.env.DATA_DIR || path.join(__dirname, '..', 'data'), 'locomo', 'locomo10.json');
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, '..', 'data');
+const DATA = path.join(DATA_DIR, 'locomo', 'locomo10.json');
 
 // Command-line choices are written into process.env, because services/llm reads its settings on every call
 function applyOptions(args) {
@@ -98,26 +105,49 @@ async function main() {
   const mock = llm.provider === 'mock';
   const embedder = await readyEmbedder();
   const ollama = llm.provider === 'ollama' || emb.provider === 'ollama' ? await ollamaVersion((llm.ollama || emb.ollama).url.replace(/\/+$/, '')) : null;
-  const questions = Number(option(args, '--questions', 10));
+  let questions = Number(option(args, '--questions', 10));
   const k = Number(option(args, '--k', 10));
   const seed = Number(option(args, '--seed', 1));
-  const systems = String(option(args, '--systems', SYSTEM_IDS.join(','))).split(',');
+  const dataset = option(args, '--dataset', 'locomo');
+  if (!['locomo', 'longmemeval'].includes(dataset)) throw new Error(`--dataset must be locomo or longmemeval, not "${dataset}"`);
+  const lme = dataset === 'longmemeval';
+  if (lme) questions = 1; // one question per LongMemEval sample
+  // A LongMemEval history is far longer than the context window, so the full-context baseline would only produce errors
+  const systems = String(option(args, '--systems', (lme ? SYSTEM_IDS.filter((id) => id !== 'full_context') : SYSTEM_IDS).join(','))).split(',');
   const judgeSample = Number(option(args, '--judge-sample', 50));
-  if (!fs.existsSync(DATA)) throw new Error(`${DATA} not found: run "npm run data:download" first`);
-  const all = JSON.parse(fs.readFileSync(DATA, 'utf8'));
-  const wanted = String(option(args, '--samples', all[0].sample_id));
-  const samples = wanted === 'all' ? all : wanted.split(',').map((id) => all.find((s) => s.sample_id === id) || (() => { throw new Error(`No LoCoMo sample "${id}"`); })());
+  let samples;
+  let dataFile = DATA;
+  if (lme) {
+    dataFile = path.join(DATA_DIR, 'longmemeval', option(args, '--file', 'longmemeval_s_cleaned.json'));
+    if (!fs.existsSync(dataFile)) throw new Error(`${dataFile} not found: run "npm run data:download -- longmemeval" first`);
+    const list = (name) => (option(args, name) ? String(option(args, name)).split(',') : undefined);
+    const chosen = selectQuestions(JSON.parse(fs.readFileSync(dataFile, 'utf8')), { types: list('--types'), ids: list('--ids'), perType: option(args, '--per-type') ? Number(option(args, '--per-type')) : undefined, seed });
+    if (!chosen.length) throw new Error('No LongMemEval question matches --types / --per-type / --ids');
+    // One question per sample; qa only carries what the resume check needs (how many questions)
+    samples = chosen.map((item) => ({ sample_id: item.question_id, qa: [{ category: 0 }], item }));
+  } else {
+    if (!fs.existsSync(DATA)) throw new Error(`${DATA} not found: run "npm run data:download" first`);
+    const all = JSON.parse(fs.readFileSync(DATA, 'utf8'));
+    const wanted = String(option(args, '--samples', all[0].sample_id));
+    samples = wanted === 'all' ? all : wanted.split(',').map((id) => all.find((s) => s.sample_id === id) || (() => { throw new Error(`No LoCoMo sample "${id}"`); })());
+  }
+  if (systems.includes('full_context') && (llm.ollama || {}).numCtxLarge) {
+    const { prepareLocomo, prepareLongMemEval } = require('./harness');
+    const unfit = samples.filter((x) => !fullContextFit((lme ? prepareLongMemEval(x) : prepareLocomo(x, { questions: 1, seed: 1 })).messages, llm.ollama).fits).length;
+    if (unfit) console.warn(`WARNING: ${unfit} of ${samples.length} sample(s) are longer than OLLAMA_NUM_CTX_LARGE=${llm.ollama.numCtxLarge}; full_context will fail on them (npm run eval:preflight lists them).`);
+  }
   const date = new Date().toISOString();
-  const runId = option(args, '--run-id', `stage6-${mock ? 'pipeline-check-mock' : `locomo-${llm.provider}`}-${date.slice(0, 10)}`);
+  const runId = option(args, '--run-id', `stage6-${mock ? 'pipeline-check-mock' : `${dataset}-${llm.provider}`}-${date.slice(0, 10)}`);
   const dir = path.join(option(args, '--out', 'results'), runId);
   const label = mock
     ? 'PIPELINE CHECK (mock model), NOT A RESULT. The mock answers and judges by word overlap; these numbers only show that the harness runs end to end.'
-    : `LoCoMo QA evaluation with ${llm.models.answer} (answers) and ${llm.models.judge} (judge)${llm.provider === 'ollama' ? ', local models through Ollama' : ''}. Judge not yet validated against human labels.`;
+    : `${lme ? 'LongMemEval' : 'LoCoMo'} QA evaluation with ${llm.models.answer} (answers) and ${llm.models.judge} (judge)${llm.provider === 'ollama' ? ', local models through Ollama' : ''}. Judge not yet validated against human labels.`;
 
   // What makes two runs the same experiment. A checkpoint is only continued when all of this matches.
   const fingerprint = {
+    ...(lme ? { dataset } : {}), // LoCoMo fingerprints stay as they were, so earlier checkpoints still continue
     samples: samples.map((x) => x.sample_id),
-    questionsPerSample: questions,
+    questionsPerSample: lme ? 1 : questions,
     k,
     seed,
     systems,
@@ -146,7 +176,7 @@ async function main() {
   const builds = [];
   const started = Date.now();
   for (const sample of samples) {
-    const out = await evaluateSample(sample, { questions, k, systems, seed, log: (line) => console.log(line), ledger, resetDb });
+    const out = await evaluateSample(sample, { questions, k, systems, seed, log: (line) => console.log(line), ledger, resetDb, dataset });
     rows.push(...out.rows);
     builds.push(...out.builds);
   }
@@ -166,7 +196,7 @@ async function main() {
       `command: ${command('eval', args)}`,
       `git commit: ${commit} (the code that ran; results are committed in a later commit)`,
       `date: ${date}`,
-      `dataset: BENCHMARK - LoCoMo (${DATA.replace(process.cwd() + path.sep, '')}, samples ${config.samples.join(', ')}; ${questions || 'all'} questions per sample)`,
+      `dataset: BENCHMARK - ${lme ? 'LongMemEval' : 'LoCoMo'} (${dataFile.replace(process.cwd() + path.sep, '')}, ${lme ? `${config.samples.length} questions: ${config.samples.join(', ')}` : `samples ${config.samples.join(', ')}; ${questions || 'all'} questions per sample`})`,
       `llm provider: ${llm.provider}; embeddings: ${embedder.id}; k = ${k}; seed = ${seed}`,
       `models: extract ${llm.models.extract}, reconcile ${llm.models.reconcile}, answer ${llm.models.answer}, judge ${llm.models.judge}${ollama ? `; ollama ${ollama}` : ''}`,
       `checkpoint: ${path.join(dir, 'checkpoint.jsonl')}; started again after an interruption ${ledger.history().resumes.length} time(s)${ledger.history().resumes.map((r) => `, at ${r.at} (${r.commit})`).join('')}`,
