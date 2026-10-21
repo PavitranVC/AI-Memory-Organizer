@@ -78,8 +78,9 @@ function main() {
   // Paired comparison with the baseline on questions where BOTH answered (a failed call has no answer to compare)
   const ok = new Map(systems.map((s) => [s, new Map(rows.filter((r) => r.system === s && !r.error).map((r) => [r.key, r]))]));
   for (const s of systems.filter((x) => x !== BASELINE)) {
-    const shared = [...ok.get(BASELINE).keys()].filter((k) => ok.get(s).has(k));
-    for (const [metric, field] of [['judge accuracy', 'judge'], ['token F1', 'f1']]) {
+    const sharedAll = [...ok.get(BASELINE).keys()].filter((k) => ok.get(s).has(k));
+    const scopes = [['all types', sharedAll], ...[...new Set(rows.map((r) => r.type))].sort().map((t) => [t, sharedAll.filter((k) => ok.get(BASELINE).get(k).type === t)])];
+    for (const [scope, shared] of scopes) for (const [metric, field] of [['judge accuracy', 'judge'], ['token F1', 'f1']]) {
       const a = shared.map((k) => ok.get(BASELINE).get(k)[field]);
       const b = shared.map((k) => ok.get(s).get(k)[field]);
       const ci = pairedBootstrap(a, b);
@@ -93,7 +94,7 @@ function main() {
         else if (diff < 0) losses += 1;
       }
       out.paired.push({
-        comparison: `${BASELINE} minus ${s}`, metric, shared_questions: ci.n,
+        comparison: `${BASELINE} minus ${s}`, scope, metric, shared_questions: ci.n,
         diff: round(ci.diff, 4), ci_low: round(ci.low, 4), ci_high: round(ci.high, 4),
         interval_excludes_zero: ci.low > 0 || ci.high < 0 ? 'yes' : 'no',
         samples_where_ours_higher: wins, samples_where_ours_lower: losses, samples_compared: bySample.size,
@@ -124,7 +125,7 @@ function main() {
     table(out.valid),
     '',
     `PAIRED: ${BASELINE} minus another system, on questions both answered (95% paired bootstrap interval of the difference)`,
-    ...out.paired.map((r) => `${r.comparison.padEnd(34)} ${r.metric.padEnd(15)} n=${String(r.shared_questions).padStart(4)}  diff ${r.diff >= 0 ? '+' : ''}${pct(r.diff)} [${pct(r.ci_low)}, ${pct(r.ci_high)}]  excludes 0: ${r.interval_excludes_zero}  ours higher in ${r.samples_where_ours_higher} / lower in ${r.samples_where_ours_lower} of ${r.samples_compared} samples`),
+    ...out.paired.map((r) => `${r.comparison.padEnd(34)} ${r.scope.padEnd(11)} ${r.metric.padEnd(15)} n=${String(r.shared_questions).padStart(4)}  diff ${r.diff >= 0 ? '+' : ''}${pct(r.diff)} [${pct(r.ci_low)}, ${pct(r.ci_high)}]  excludes 0: ${r.interval_excludes_zero}  ours higher in ${r.samples_where_ours_higher} / lower in ${r.samples_where_ours_lower} of ${r.samples_compared} samples`),
     '',
     'BY QUESTION TYPE (all questions)',
     ...out.byType.map((r) => `${r.type.padEnd(14)} ${r.system.padEnd(20)} n=${String(r.n).padStart(4)} failed=${String(r.errors).padStart(3)}  F1 ${pct(r.f1)} [${pct(r.f1_low)}, ${pct(r.f1_high)}]  judge ${pct(r.judge)} [${pct(r.judge_low)}, ${pct(r.judge_high)}]  recall@k ${pct(r.recall_at_k)}`),
