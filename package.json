@@ -30,6 +30,7 @@
     "eval:preflight": "node eval/preflight.js",
     "eval:batch": "node eval/run-batch.js",
     "eval:status": "node eval/status.js",
+    "eval:launch": "node eval/launch.js",
     "erasure:verify": "node scripts/verify-erasure.js",
     "retention": "node scripts/retention.js"
   },

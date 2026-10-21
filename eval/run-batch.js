@@ -42,6 +42,25 @@ async function backup(runDir, statusFile, message, { push }) {
   const commit = git('commit', '-m', message, '--', runDir, statusFile);
   if (commit.status !== 0 && !/nothing to commit|no changes added/.test(`${commit.stdout}${commit.stderr}`)) return `commit failed: ${(commit.stderr || commit.stdout).trim().slice(0, 120)}`;
   if (!push) return 'committed (push disabled)';
+  // Two batches would share the one evaluation database and wreck each other: refuse to start a second
+  const previous = path.join(ROOT, statusFile);
+  if (fs.existsSync(previous)) {
+    const old = JSON.parse(fs.readFileSync(previous, 'utf8'));
+    let running = false;
+    if (old.state === 'running' && old.pid && old.pid !== process.pid) {
+      try {
+        process.kill(old.pid, 0);
+        running = true;
+      } catch (err) {
+        running = err.code === 'EPERM';
+      }
+    }
+    if (running && !checkOnly) {
+      console.error(`NOT STARTED: batch ${batchId} is already running (pid ${old.pid}). Use "npm run eval:status".`);
+      process.exit(1);
+    }
+  }
+
   const branch = git('rev-parse', '--abbrev-ref', 'HEAD').stdout.trim();
   for (let attempt = 0, wait = 2000; attempt < 4; attempt += 1, wait *= 2) {
     const pushed = git('push', '-u', 'origin', branch);
