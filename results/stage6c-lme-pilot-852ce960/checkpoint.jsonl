@@ -1,0 +1,215 @@
+{"type":"run","at":"2026-10-22T15:47:32.299Z","commit":"3f20d8191d659c6276c54d2436f3b5480e4cdf7c + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["852ce960"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"852ce960","userIds":["6ada301427e98e4b7d09cb63"]}
+{"type":"build","sample":"852ce960","build":{"sample":"852ce960","store":"raw messages","messages_mined":0,"memory_bytes":505456}}
+{"type":"build","sample":"852ce960","build":{"sample":"852ce960","store":"rag message vectors","messages_mined":0,"memory_bytes":2433024}}
+{"type":"row","row":{"sample":"852ce960","qa_index":0,"category":5,"question_type":"knowledge-update","system":"rag_messages","question":"What was the amount I was pre-approved for when I got my mortgage from Wells Fargo?","gold":"$400,000","answer":"$400,000","insufficient":false,"cited":"answer_3a6f1e82_2:0","score_f1":1,"judge_correct":1,"judge_reason":"Same amount as the gold answer.","recall_at_k":1,"context_items":10,"context_dia":"answer_3a6f1e82_1:1 answer_3a6f1e82_1:2 answer_3a6f1e82_1:3 answer_3a6f1e82_1:6 answer_3a6f1e82_1:7 answer_3a6f1e82_1:8 answer_3a6f1e82_1:9 answer_3a6f1e82_1:11 answer_3a6f1e82_2:0 answer_3a6f1e82_2:3","context_tokens_est":2520,"retrieval_ms":34.64,"answer_ms":9180,"judge_ms":9480,"input_tokens":3587,"output_tokens":43,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"852ce960"}
+{"type":"store_start","sample":"852ce960","store":"bitemporal"}
+{"type":"cache","sample":"852ce960","key":"ultrachat_218093:0|2023-07-12T10:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_218093:2|2023-07-12T10:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_218093:4|2023-07-12T10:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_218093:6|2023-07-12T10:14:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_218093:8|2023-07-12T10:14:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_218093:10|2023-07-12T10:14:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"d36d11b9_2:0|2023-08-02T05:58:00.000Z","data":{"candidates":[{"content":"Established a bedtime routine","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":"2023-08-02"},{"content":"Struggles with waking up at desired time","topic":"health","category":"Health","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":"2023-08-02"},{"content":"Reads a book for at least 20 minutes before lights out","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":"2023-08-02"}]}}
+{"type":"cache","sample":"852ce960","key":"d36d11b9_2:2|2023-08-02T05:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"d36d11b9_2:4|2023-08-02T05:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"d36d11b9_2:6|2023-08-02T05:58:06.000Z","data":{"candidates":[{"content":"Plans to incorporate stretching or meditation into the morning routine","topic":"plan morning routine","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to look into getting a smart alarm","topic":"plan smart alarm","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Reads a book for at least 20 minutes before lights out","topic":"hobby reading","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"852ce960","key":"d36d11b9_2:8|2023-08-02T05:58:08.000Z","data":{"candidates":[{"content":"Plans to start with some light stretching exercises, maybe some yoga poses or some simple neck and shoulder rolls","topic":"plan stretching","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to try some guided meditation apps, like Headspace or Calm, to help reduce stress and anxiety","topic":"plan meditation apps","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to set aside some time in the morning to plan out the day, maybe make a to-do list or set some goals","topic":"plan morning planning","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"852ce960","key":"d36d11b9_2:10|2023-08-02T05:58:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"answer_3a6f1e82_1:0|2023-08-11T00:01:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"answer_3a6f1e82_1:2|2023-08-11T00:01:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"answer_3a6f1e82_1:4|2023-08-11T00:01:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"answer_3a6f1e82_1:6|2023-08-11T00:01:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"answer_3a6f1e82_1:8|2023-08-11T00:01:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"answer_3a6f1e82_1:10|2023-08-11T00:01:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"b89a3ec3:0|2023-08-12T04:01:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"b89a3ec3:2|2023-08-12T04:01:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"b89a3ec3:4|2023-08-12T04:01:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"b89a3ec3:6|2023-08-12T04:01:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"b89a3ec3:8|2023-08-12T04:01:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"b89a3ec3:10|2023-08-12T04:01:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"0840765f_2:0|2023-08-17T02:26:00.000Z","data":{"candidates":[{"content":"Plans to participate in another charity cycling event","topic":"plan charity cycling event","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Participated in a charity cycling event 'Ride for a Reason' on 2023-03-25","topic":"event charity cycling event","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-25"}]}}
+{"type":"cache","sample":"852ce960","key":"0840765f_2:2|2023-08-17T02:26:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"0840765f_2:4|2023-08-17T02:26:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"0840765f_2:6|2023-08-17T02:26:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"0840765f_2:8|2023-08-17T02:26:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"0840765f_2:10|2023-08-17T02:26:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_327379:0|2023-08-18T13:53:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_327379:2|2023-08-18T13:53:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_327379:4|2023-08-18T13:53:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_327379:6|2023-08-18T13:53:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"114c1fb7_4:0|2023-08-26T11:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"114c1fb7_4:2|2023-08-26T11:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"114c1fb7_4:4|2023-08-26T11:43:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"114c1fb7_4:6|2023-08-26T11:43:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"114c1fb7_4:8|2023-08-26T11:43:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"114c1fb7_4:10|2023-08-26T11:43:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_390626:0|2023-08-29T00:11:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_390626:2|2023-08-29T00:11:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_390626:4|2023-08-29T00:11:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_390626:6|2023-08-29T00:11:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_390626:8|2023-08-29T00:11:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_390626:10|2023-08-29T00:11:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_390626:12|2023-08-29T00:11:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_FYhsZ0Q_0:0|2023-08-30T05:56:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"b0fd1357:0|2023-09-01T03:36:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"b0fd1357:2|2023-09-01T03:36:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"b0fd1357:4|2023-09-01T03:36:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"b0fd1357:6|2023-09-01T03:36:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"b0fd1357:8|2023-09-01T03:36:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"b0fd1357:10|2023-09-01T03:36:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_uiECyCD_66:0|2023-09-01T12:57:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_uiECyCD_66:2|2023-09-01T12:57:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_uiECyCD_66:4|2023-09-01T12:57:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_uiECyCD_66:6|2023-09-01T12:57:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_uiECyCD_66:8|2023-09-01T12:57:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"e8bfacec_1:0|2023-09-05T02:26:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"e8bfacec_1:2|2023-09-05T02:26:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"e8bfacec_1:4|2023-09-05T02:26:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"e8bfacec_1:6|2023-09-05T02:26:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"e8bfacec_1:8|2023-09-05T02:26:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"e8bfacec_1:10|2023-09-05T02:26:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_eN4o9Zr_0:0|2023-09-05T13:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_eN4o9Zr_0:2|2023-09-05T13:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_eN4o9Zr_0:4|2023-09-05T13:32:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_eN4o9Zr_0:6|2023-09-05T13:32:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_eN4o9Zr_0:8|2023-09-05T13:32:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_eN4o9Zr_0:10|2023-09-05T13:32:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_eN4o9Zr_0:12|2023-09-05T13:32:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"c578da1f_1:0|2023-09-09T03:57:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"c578da1f_1:2|2023-09-09T03:57:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"c578da1f_1:4|2023-09-09T03:57:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"c578da1f_1:6|2023-09-09T03:57:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"c578da1f_1:8|2023-09-09T03:57:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"c578da1f_1:10|2023-09-09T03:57:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_241587:0|2023-09-09T07:00:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_241587:2|2023-09-09T07:00:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_241587:4|2023-09-09T07:00:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_241587:6|2023-09-09T07:00:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_241587:8|2023-09-09T07:00:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_513982:0|2023-09-15T18:16:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_513982:2|2023-09-15T18:16:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_513982:4|2023-09-15T18:16:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_513982:6|2023-09-15T18:16:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_513982:8|2023-09-15T18:16:08.000Z","data":{"candidates":[{"content":"Plans to indulge in spa treatments","topic":"plan spa treatments","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to catch a movie or two","topic":"plan movie","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_513982:10|2023-09-15T18:16:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_513982:12|2023-09-15T18:16:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_475483:0|2023-09-18T15:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_475483:2|2023-09-18T15:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_475483:4|2023-09-18T15:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_475483:6|2023-09-18T15:58:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"a76e7e3c_1:0|2023-09-18T18:36:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"a76e7e3c_1:2|2023-09-18T18:36:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"a76e7e3c_1:4|2023-09-18T18:36:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"a76e7e3c_1:6|2023-09-18T18:36:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"a76e7e3c_1:8|2023-09-18T18:36:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"a76e7e3c_1:10|2023-09-18T18:36:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_4L5LmyO_0:0|2023-10-16T01:36:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"cae09ac0_1:0|2023-10-17T19:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"cae09ac0_1:2|2023-10-17T19:18:02.000Z","data":{"candidates":[{"content":"Made a batch of homemade granola today","topic":"hobby cooking","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-17"},{"content":"Thinking of trying out some breakfast burritos with scrambled eggs and avocado","topic":"hobby cooking","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"852ce960","key":"cae09ac0_1:4|2023-10-17T19:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"cae09ac0_1:6|2023-10-17T19:18:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"cae09ac0_1:8|2023-10-17T19:18:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"cae09ac0_1:10|2023-10-17T19:18:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"1e32d50a:0|2023-10-26T05:39:00.000Z","data":{"candidates":[{"content":"Plans a camping trip to Yosemite National Park in November","topic":"plan camping trip","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"852ce960","key":"1e32d50a:2|2023-10-26T05:39:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"1e32d50a:4|2023-10-26T05:39:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"1e32d50a:6|2023-10-26T05:39:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"1e32d50a:8|2023-10-26T05:39:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"1e32d50a:10|2023-10-26T05:39:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_174714:0|2023-10-26T20:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_174714:2|2023-10-26T20:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_174714:4|2023-10-26T20:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"bdfcb4d3:0|2023-10-27T18:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"bdfcb4d3:2|2023-10-27T18:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"bdfcb4d3:4|2023-10-27T18:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"bdfcb4d3:6|2023-10-27T18:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"bdfcb4d3:8|2023-10-27T18:02:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"bdfcb4d3:10|2023-10-27T18:02:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_hChsWOp_128:0|2023-10-29T21:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_hChsWOp_128:2|2023-10-29T21:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_hChsWOp_128:4|2023-10-29T21:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_hChsWOp_128:6|2023-10-29T21:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_hChsWOp_128:8|2023-10-29T21:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_hChsWOp_128:10|2023-10-29T21:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_hChsWOp_128:12|2023-10-29T21:04:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_211551:0|2023-10-31T09:09:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_211551:2|2023-10-31T09:09:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_211551:4|2023-10-31T09:09:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_Rmlombn_5:1|2023-11-01T08:51:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_Rmlombn_5:3|2023-11-01T08:51:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_Rmlombn_5:5|2023-11-01T08:51:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"a110c4dc_1:0|2023-11-11T18:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"a110c4dc_1:2|2023-11-11T18:58:02.000Z","data":{"candidates":[{"content":"Uses a Dell XPS laptop","topic":"employer","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Battery life of the laptop has been getting worse over time","topic":"event laptop battery","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Uses the laptop mostly for web browsing, watching videos, and working on documents","topic":"hobby","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"852ce960","key":"a110c4dc_1:4|2023-11-11T18:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"a110c4dc_1:6|2023-11-11T18:58:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"a110c4dc_1:8|2023-11-11T18:58:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"a110c4dc_1:10|2023-11-11T18:58:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"f55fee5b_2:0|2023-11-15T12:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"f55fee5b_2:2|2023-11-15T12:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"f55fee5b_2:4|2023-11-15T12:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"f55fee5b_2:6|2023-11-15T12:14:06.000Z","data":{"candidates":[{"content":"Removed social media apps from phone's home screen","topic":"productivity","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-11-15"},{"content":"Scheduled social media checks","topic":"productivity","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-11-15"},{"content":"Plans to delete Facebook and Instagram apps from phone","topic":"plan social media","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"852ce960","key":"f55fee5b_2:8|2023-11-15T12:14:08.000Z","data":{"candidates":[{"content":"Deleted Facebook and Instagram apps from phone","topic":"plan social media","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Plans to unfollow or mute some Twitter accounts","topic":"plan social media","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"852ce960","key":"f55fee5b_2:10|2023-11-15T12:14:10.000Z","data":{"candidates":[{"content":"Started identifying accounts that don't add value to the feed and unfollowing them on 2023-11-15","topic":"event unfollowing accounts","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-15"},{"content":"Started using Twitter's built-in features like Mute and Not Interested to silence noisy or irrelevant accounts on 2023-11-15","topic":"event using Twitter features","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-15"},{"content":"Started categorizing accounts into lists to better organize the feed and focus on important content on 2023-11-15","topic":"event categorizing accounts","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-15"}]}}
+{"type":"cache","sample":"852ce960","key":"bfe8bb0e:0|2023-11-20T07:10:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"bfe8bb0e:2|2023-11-20T07:10:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"bfe8bb0e:4|2023-11-20T07:10:04.000Z","data":{"candidates":[{"content":"Plans to add a day trip to Nara to Japan itinerary","topic":"plan nara trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Booked Japan trip with Happy Trails Travel Agency in October 2023","topic":"event japan trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-10-01"}]}}
+{"type":"cache","sample":"852ce960","key":"bfe8bb0e:6|2023-11-20T07:10:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"bfe8bb0e:8|2023-11-20T07:10:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"bfe8bb0e:10|2023-11-20T07:10:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"aaf22693:0|2023-11-23T19:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"aaf22693:2|2023-11-23T19:03:02.000Z","data":{"candidates":[{"content":"Walked along the Lake Michigan shoreline with sister in April","topic":"event lake michigan walk","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-04-01"}]}}
+{"type":"cache","sample":"852ce960","key":"aaf22693:4|2023-11-23T19:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"aaf22693:6|2023-11-23T19:03:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"aaf22693:8|2023-11-23T19:03:08.000Z","data":{"candidates":[{"content":"Plans to spend 5 days in Paris","topic":"plan Paris trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"852ce960","key":"aaf22693:10|2023-11-23T19:03:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_444553:0|2023-11-24T08:17:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_444553:2|2023-11-24T08:17:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_444553:4|2023-11-24T08:17:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_444553:6|2023-11-24T08:17:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_444553:8|2023-11-24T08:17:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_444553:10|2023-11-24T08:17:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_260641:0|2023-11-25T00:56:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_260641:2|2023-11-25T00:56:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_260641:4|2023-11-25T00:56:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_8p1Wa3W_0:0|2023-11-26T20:57:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"010a28ab_3:0|2023-11-29T08:11:00.000Z","data":{"candidates":[{"content":"Plans to go on a road trip","topic":"plan road trip","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":null},{"content":"Had the car serviced at the dealership on 2023-10-15","topic":"event car service","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-15"},{"content":"Spent $350 on brake pads replacement","topic":"event brake pads replacement","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-15"}]}}
+{"type":"cache","sample":"852ce960","key":"010a28ab_3:2|2023-11-29T08:11:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"010a28ab_3:4|2023-11-29T08:11:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"010a28ab_3:6|2023-11-29T08:11:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"010a28ab_3:8|2023-11-29T08:11:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"010a28ab_3:10|2023-11-29T08:11:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"e184e4c3_2:0|2023-11-29T12:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"e184e4c3_2:2|2023-11-29T12:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"e184e4c3_2:4|2023-11-29T12:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"e184e4c3_2:6|2023-11-29T12:14:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"e184e4c3_2:8|2023-11-29T12:14:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"e184e4c3_2:10|2023-11-29T12:14:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"answer_3a6f1e82_2:0|2023-11-30T00:36:00.000Z","data":{"candidates":[{"content":"Plans to move into a new home","topic":"plan home move","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Got pre-approved for $400,000 from Wells Fargo","topic":"event home pre-approval","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"852ce960","key":"answer_3a6f1e82_2:2|2023-11-30T00:36:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"answer_3a6f1e82_2:4|2023-11-30T00:36:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"answer_3a6f1e82_2:6|2023-11-30T00:36:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"answer_3a6f1e82_2:8|2023-11-30T00:36:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"answer_3a6f1e82_2:10|2023-11-30T00:36:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_224140:0|2023-12-11T18:45:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_224140:2|2023-12-11T18:45:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_224140:4|2023-12-11T18:45:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_224140:6|2023-12-11T18:45:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_224140:8|2023-12-11T18:45:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_224140:10|2023-12-11T18:45:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"ultrachat_224140:12|2023-12-11T18:45:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_Hr4ZH5Y_0:0|2023-12-14T21:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_Hr4ZH5Y_0:2|2023-12-14T21:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"852ce960","key":"sharegpt_Hr4ZH5Y_0:4|2023-12-14T21:43:04.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"852ce960","build":{"sample":"852ce960","store":"bitemporal","messages_mined":197,"failed_messages":0,"decisions":"ADD=29 NOOP=2 SUPERSEDE=1 UPDATE=4","memory_versions":34,"memory_current":29,"memory_bytes":356360,"extract_calls":197,"reconcile_calls":34,"build_input_tokens":432783,"build_output_tokens":6027,"build_cost_usd":0,"build_seconds":228.9}}
+{"type":"store_built","sample":"852ce960","store":"bitemporal","versions":34}
+{"type":"row","row":{"sample":"852ce960","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours","question":"What was the amount I was pre-approved for when I got my mortgage from Wells Fargo?","gold":"$400,000","answer":"$400,000","insufficient":false,"cited":"m1","score_f1":1,"judge_correct":1,"judge_reason":"Same amount as the gold answer.","recall_at_k":0.5,"context_items":1,"context_dia":"answer_3a6f1e82_2:0","context_tokens_est":114,"retrieval_ms":36.43,"answer_ms":1111,"judge_ms":14682,"input_tokens":693,"output_tokens":30,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"852ce960","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_temporal","question":"What was the amount I was pre-approved for when I got my mortgage from Wells Fargo?","gold":"$400,000","answer":"$400,000","insufficient":false,"cited":"m1","score_f1":1,"judge_correct":1,"judge_reason":"Same amount as the gold answer.","recall_at_k":0.5,"context_items":1,"context_dia":"answer_3a6f1e82_2:0","context_tokens_est":103,"retrieval_ms":674.26,"answer_ms":7537,"judge_ms":9699,"input_tokens":664,"output_tokens":30,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"852ce960","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_provenance","question":"What was the amount I was pre-approved for when I got my mortgage from Wells Fargo?","gold":"$400,000","answer":"$400,000","insufficient":false,"cited":"m1","score_f1":1,"judge_correct":1,"judge_reason":"Same amount as the gold answer.","recall_at_k":0.5,"context_items":1,"context_dia":"answer_3a6f1e82_2:0","context_tokens_est":26,"retrieval_ms":737.28,"answer_ms":7399,"judge_ms":10487,"input_tokens":589,"output_tokens":30,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"852ce960","store":"overwrite"}
+{"type":"build","sample":"852ce960","build":{"sample":"852ce960","store":"overwrite","messages_mined":197,"failed_messages":0,"decisions":"ADD=29 NOOP=2 SUPERSEDE=1 UPDATE=4","memory_versions":29,"memory_current":29,"memory_bytes":303817,"extract_calls":0,"reconcile_calls":34,"build_input_tokens":32738,"build_output_tokens":2085,"build_cost_usd":0,"build_seconds":66.8}}
+{"type":"store_built","sample":"852ce960","store":"overwrite","versions":29}
+{"type":"row","row":{"sample":"852ce960","qa_index":0,"category":5,"question_type":"knowledge-update","system":"overwrite_memory","question":"What was the amount I was pre-approved for when I got my mortgage from Wells Fargo?","gold":"$400,000","answer":"$400,000","insufficient":false,"cited":"m1","score_f1":1,"judge_correct":1,"judge_reason":"Same amount as the gold answer.","recall_at_k":0.5,"context_items":1,"context_dia":"answer_3a6f1e82_2:0","context_tokens_est":114,"retrieval_ms":44.54,"answer_ms":1241,"judge_ms":14615,"input_tokens":693,"output_tokens":30,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"852ce960"}
+{"type":"complete","at":"2026-10-22T15:53:58.435Z"}
