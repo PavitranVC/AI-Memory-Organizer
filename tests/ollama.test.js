@@ -5,7 +5,7 @@ const { connect, disconnect, clear, createUser, createCategory, models } = requi
 const { llmConfig, OLLAMA_DEFAULTS } = require('../services/llm/config');
 const { callLlmDetailed } = require('../services/llm');
 const { ACTIVE } = require('../services/llm/prompts');
-const { OllamaProvider, stripThinking, parseJson, contextSize, listOllamaModels, hasModel } = require('../services/llm/ollamaProvider');
+const { OllamaProvider, ollamaPost, stripThinking, parseJson, contextSize, listOllamaModels, hasModel } = require('../services/llm/ollamaProvider');
 const { LlmError } = require('../services/llm/errors');
 const { JUDGE_SCHEMA, EXTRACT_SCHEMA } = require('../services/llm/schemas');
 const embeddings = require('../services/embeddings');
@@ -165,6 +165,15 @@ describe('chat provider (fake server)', () => {
     const err = await provider().generateJson(judgeArgs).catch((e) => e);
     expect(err).toMatchObject({ retryable: false, message: expect.stringMatching(/ollama pull deepseek-r1:14b/) });
     expect(requests).toHaveLength(1);
+  });
+
+  test("the HTTP client's own 300 s limit is reported as a slow answer, not as an unreachable server", async () => {
+    const slow = Object.assign(new TypeError('fetch failed'), { cause: Object.assign(new Error('Headers Timeout Error'), { code: 'UND_ERR_HEADERS_TIMEOUT' }) });
+    const err = await ollamaPost({ url: 'http://x', path: '/api/chat', payload: {}, timeoutMs: 600000, fetchImpl: async () => { throw slow; } }).catch((e) => e);
+    expect(err).toMatchObject({ timeout: true, message: expect.stringMatching(/own 300 s limit \(UND_ERR_HEADERS_TIMEOUT\)/) });
+    const down = Object.assign(new TypeError('fetch failed'), { cause: Object.assign(new Error('refused'), { code: 'ECONNREFUSED' }) });
+    const unreachable = await ollamaPost({ url: 'http://x', path: '/api/chat', payload: {}, timeoutMs: 1000, fetchImpl: async () => { throw down; } }).catch((e) => e);
+    expect(unreachable).toMatchObject({ unreachable: true, message: expect.stringMatching(/Cannot reach Ollama.*ECONNREFUSED/) });
   });
 
   test('Ollama not running: a retryable LlmError; a prompt too long for any window: refused before any call', async () => {

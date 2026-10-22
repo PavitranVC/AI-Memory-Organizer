@@ -7,7 +7,7 @@ const { spawnSync } = require('child_process');
 const { option } = require('./meta');
 
 const ROOT = path.join(__dirname, '..');
-const git = (...args) => spawnSync('git', args, { cwd: ROOT, encoding: 'utf8' }).stdout.trim();
+const git = (...args) => spawnSync('git', args, { cwd: ROOT, encoding: 'utf8', windowsHide: true }).stdout.trim();
 const alive = (pid) => {
   try {
     process.kill(pid, 0);

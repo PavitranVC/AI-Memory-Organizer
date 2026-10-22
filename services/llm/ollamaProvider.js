@@ -46,7 +46,14 @@ async function ollamaPost({ url, path, payload, timeoutMs, fetchImpl = globalThi
   } catch (err) {
     if (err.status) throw err;
     if (err.name === 'AbortError') throw Object.assign(new Error(`Ollama did not answer within ${timeoutMs} ms`), { timeout: true });
-    throw Object.assign(new Error(`Cannot reach Ollama at ${url}: ${err.message} (is Ollama running?)`), { unreachable: true });
+    // Node's built-in fetch gives up by itself after 300 s without response headers (undici's headersTimeout), whatever
+    // timeoutMs says, and reports only "fetch failed". That is a slow answer, not an unreachable server: the first
+    // retry of the LoCoMo full-context timeouts was mislabelled this way (55 of 60 took about 5 minutes each).
+    const code = err.cause && err.cause.code;
+    if (code === 'UND_ERR_HEADERS_TIMEOUT' || code === 'UND_ERR_BODY_TIMEOUT') {
+      throw Object.assign(new Error(`Ollama did not answer within the HTTP client's own 300 s limit (${code}); the configured timeout was ${timeoutMs} ms`), { timeout: true });
+    }
+    throw Object.assign(new Error(`Cannot reach Ollama at ${url}: ${err.message}${code ? ` (${code})` : ''} (is Ollama running?)`), { unreachable: true });
   } finally {
     clearTimeout(timer);
   }

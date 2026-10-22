@@ -1,0 +1,6 @@
+retry of the timed-out full_context answers of the finished LoCoMo runs (dataset: benchmark, LoCoMo). The original run folders are unchanged.
+command: npm run eval:retry -- --provider ollama --backup
+git commit: 99d29ff92f8dd3616eac41a87899e9b59fb5dff7 + uncommitted changes (the code that ran; results are committed in a later commit)
+date: 2026-10-22T13:29:16.863Z
+questions asked again: 60; answered now: 5; failed again: 55
+models: answer qwen2.5-coder:14b, judge deepseek-r1:14b; timeout per answer 600000 ms; context window 32768
