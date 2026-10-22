@@ -482,3 +482,487 @@ LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (
 Wrote results\stage6c-lme-pilot-f685340e_abs/
 [2026-10-22T07:49:34.103Z] f685340e_abs: done; committed and pushed
 [2026-10-22T07:49:34.104Z] batch stage6c-lme-pilot: done (24/24)
+[2026-10-22T14:19:35.099Z] batch stage6c-lme-pilot started: 48 questions, pid 8664
+[2026-10-22T14:19:35.101Z] b46e15ed: attempt 1
+b46e15ed: 478 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 21 versions (20 current) in 196.7 s; ADD=20 UPDATE=1
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 19 versions (19 current) in 36.9 s; ADD=19 NOOP=1 UPDATE=1
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=0 judge=0 recall@k=0.6
+  overwrite_memory: n=1 F1=0 judge=0 recall@k=0.4
+  ours: n=1 F1=0 judge=0 recall@k=0.4
+  ours_no_temporal: n=1 F1=0 judge=0 recall@k=0.4
+  ours_no_provenance: n=1 F1=0 judge=0 recall@k=0.4
+  time per item (s): judge 12.373; build per message {"bitemporal":0.826,"overwrite":0.155}
+Wrote results\stage6c-lme-pilot-b46e15ed/
+[2026-10-22T14:25:08.289Z] b46e15ed: done; commit failed: error: pathspec 'results\stage6c-lme-pilot-b46e15ed' did not match any file(s) known to git
+[2026-10-22T14:25:08.291Z] af082822: attempt 1
+af082822: 495 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 38 versions (32 current) in 273.4 s; ADD=32 NOOP=3 UPDATE=6
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 31 versions (31 current) in 77.5 s; ADD=31 NOOP=3 SUPERSEDE=1 UPDATE=6
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=0 judge=0 recall@k=1
+  overwrite_memory: n=1 F1=0 judge=0 recall@k=0
+  ours: n=1 F1=0 judge=0 recall@k=0
+  ours_no_temporal: n=1 F1=0 judge=0 recall@k=0
+  ours_no_provenance: n=1 F1=0 judge=0 recall@k=0
+  time per item (s): judge 12.088; build per message {"bitemporal":1.111,"overwrite":0.315}
+Wrote results\stage6c-lme-pilot-af082822/
+[2026-10-22T14:32:34.505Z] af082822: done; committed and pushed
+[2026-10-22T14:32:34.511Z] b46e15ee: attempt 1
+b46e15ee: 457 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 31 versions (23 current) in 242.7 s; ADD=23 NOOP=2 UPDATE=8
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 23 versions (23 current) in 65.7 s; ADD=23 NOOP=2 SUPERSEDE=1 UPDATE=7
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=0.75 judge=1 recall@k=1
+  overwrite_memory: n=1 F1=0.75 judge=1 recall@k=1
+  ours: n=1 F1=0.75 judge=1 recall@k=1
+  ours_no_temporal: n=1 F1=0.75 judge=1 recall@k=1
+  ours_no_provenance: n=1 F1=0.75 judge=1 recall@k=1
+  time per item (s): judge 15.815; build per message {"bitemporal":1.064,"overwrite":0.288}
+Wrote results\stage6c-lme-pilot-b46e15ee/
+[2026-10-22T14:40:31.085Z] b46e15ee: done; committed and pushed
+[2026-10-22T14:40:31.086Z] gpt4_1e4a8aec: attempt 1
+gpt4_1e4a8aec: 498 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 53 versions (45 current) in 351 s; ADD=45 NOOP=9 SUPERSEDE=1 UPDATE=7
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 50 versions (50 current) in 111.9 s; ADD=50 NOOP=5 SUPERSEDE=1 UPDATE=6
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=0 judge=0 recall@k=0
+  overwrite_memory: n=1 F1=0.8 judge=1 recall@k=1
+  ours: n=1 F1=0.8 judge=1 recall@k=1
+  ours_no_temporal: n=1 F1=0.8 judge=1 recall@k=1
+  ours_no_provenance: n=1 F1=0.8 judge=1 recall@k=1
+  time per item (s): judge 13.91; build per message {"bitemporal":1.427,"overwrite":0.455}
+Wrote results\stage6c-lme-pilot-gpt4_1e4a8aec/
+[2026-10-22T14:50:02.702Z] gpt4_1e4a8aec: done; committed and pushed
+[2026-10-22T14:50:02.703Z] gpt4_e414231f: attempt 1
+gpt4_e414231f: 490 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 39 versions (30 current) in 274.4 s; ADD=30 NOOP=3 SUPERSEDE=1 UPDATE=8
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 31 versions (31 current) in 83.2 s; ADD=31 NOOP=4 SUPERSEDE=1 UPDATE=6
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=0.5 judge=0 recall@k=1
+  overwrite_memory: n=1 F1=0.5 judge=0 recall@k=1
+  ours: n=1 F1=0.5 judge=0 recall@k=1
+  ours_no_temporal: n=1 F1=0.5 judge=0 recall@k=1
+  ours_no_provenance: n=1 F1=0.5 judge=0 recall@k=1
+  time per item (s): judge 13.541; build per message {"bitemporal":1.129,"overwrite":0.342}
+Wrote results\stage6c-lme-pilot-gpt4_e414231f/
+[2026-10-22T14:57:55.774Z] gpt4_e414231f: done; committed and pushed
+[2026-10-22T14:57:55.775Z] gpt4_4929293b: attempt 1
+gpt4_4929293b: 469 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 48 versions (46 current) in 322.5 s; ADD=46 NOOP=10 UPDATE=2
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 44 versions (44 current) in 101.9 s; ADD=44 NOOP=11 UPDATE=3
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=0 judge=0 recall@k=0
+  overwrite_memory: n=1 F1=0.2222 judge=0 recall@k=0
+  ours: n=1 F1=0.2222 judge=0 recall@k=0
+  ours_no_temporal: n=1 F1=0.2222 judge=0 recall@k=0
+  ours_no_provenance: n=1 F1=0.25 judge=0 recall@k=0
+  time per item (s): judge 13.246; build per message {"bitemporal":1.384,"overwrite":0.437}
+Wrote results\stage6c-lme-pilot-gpt4_4929293b/
+[2026-10-22T15:06:49.836Z] gpt4_4929293b: done; committed and pushed
+[2026-10-22T15:06:49.837Z] 6e984302: attempt 1
+6e984302: 460 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 30 versions (27 current) in 241.8 s; ADD=26 NOOP=1 UPDATE=3
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 27 versions (27 current) in 65.5 s; ADD=26 NOOP=1 UPDATE=3
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=0 judge=0 recall@k=0
+  overwrite_memory: n=1 F1=0 judge=0 recall@k=0
+  ours: n=1 F1=0 judge=0 recall@k=0
+  ours_no_temporal: n=1 F1=0 judge=0 recall@k=0
+  ours_no_provenance: n=1 F1=0 judge=0 recall@k=0
+  time per item (s): judge 11.905; build per message {"bitemporal":1.051,"overwrite":0.285}
+Wrote results\stage6c-lme-pilot-6e984302/
+[2026-10-22T15:13:37.542Z] 6e984302: done; committed and pushed
+[2026-10-22T15:13:37.548Z] gpt4_483dd43c: attempt 1
+gpt4_483dd43c: 532 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 7 versions (7 current) in 162 s; ADD=7 NOOP=1
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 7 versions (7 current) in 17.8 s; ADD=7 NOOP=1
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=0 judge=0 recall@k=1
+  overwrite_memory: n=1 F1=0 judge=0 recall@k=0
+  ours: n=1 F1=0 judge=0 recall@k=0
+  ours_no_temporal: n=1 F1=0 judge=0 recall@k=0
+  ours_no_provenance: n=1 F1=0 judge=0 recall@k=0
+  time per item (s): judge 13.373; build per message {"bitemporal":0.611,"overwrite":0.067}
+Wrote results\stage6c-lme-pilot-gpt4_483dd43c/
+[2026-10-22T15:18:20.113Z] gpt4_483dd43c: done; committed and pushed
+[2026-10-22T15:18:20.115Z] gpt4_8c8961ae: attempt 1
+gpt4_8c8961ae: 485 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 27 versions (24 current) in 242.3 s; ADD=24 NOOP=5 UPDATE=3
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 24 versions (24 current) in 65.4 s; ADD=24 NOOP=4 UPDATE=4
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=0 judge=0 recall@k=0.5
+  overwrite_memory: n=1 F1=0 judge=0 recall@k=0.5
+  ours: n=1 F1=0 judge=0 recall@k=0.5
+  ours_no_temporal: n=1 F1=0 judge=0 recall@k=0.5
+  ours_no_provenance: n=1 F1=0 judge=0 recall@k=0.5
+  time per item (s): judge 14.115; build per message {"bitemporal":1.005,"overwrite":0.271}
+Wrote results\stage6c-lme-pilot-gpt4_8c8961ae/
+[2026-10-22T15:25:25.395Z] gpt4_8c8961ae: done; committed and pushed
+[2026-10-22T15:25:25.400Z] gpt4_c27434e8: attempt 1
+gpt4_c27434e8: 500 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 37 versions (28 current) in 274.5 s; ADD=28 NOOP=4 UPDATE=9
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 30 versions (30 current) in 77.3 s; ADD=30 NOOP=2 UPDATE=9
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=0.2857 judge=0 recall@k=1
+  overwrite_memory: n=1 F1=0.2857 judge=0 recall@k=0.5
+  ours: n=1 F1=0.2857 judge=0 recall@k=0.5
+  ours_no_temporal: n=1 F1=0.2857 judge=0 recall@k=0.5
+  ours_no_provenance: n=1 F1=0.2857 judge=0 recall@k=0.5
+  time per item (s): judge 13.677; build per message {"bitemporal":1.102,"overwrite":0.31}
+Wrote results\stage6c-lme-pilot-gpt4_c27434e8/
+[2026-10-22T15:33:07.971Z] gpt4_c27434e8: done; commit failed: error: pathspec 'results\stage6c-lme-pilot-gpt4_c27434e8' did not match any file(s) known to git
+[2026-10-22T15:33:07.972Z] 982b5123_abs: attempt 1
+982b5123_abs: 505 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 24 versions (19 current) in 217.8 s; ADD=19 NOOP=1 UPDATE=5
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 19 versions (19 current) in 48.3 s; ADD=19 NOOP=1 UPDATE=5
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=1 judge=1 recall@k=1
+  overwrite_memory: n=1 F1=1 judge=1 recall@k=0
+  ours: n=1 F1=1 judge=1 recall@k=0
+  ours_no_temporal: n=1 F1=1 judge=1 recall@k=0
+  ours_no_provenance: n=1 F1=1 judge=1 recall@k=0
+  time per item (s): judge 12.81; build per message {"bitemporal":0.871,"overwrite":0.193}
+Wrote results\stage6c-lme-pilot-982b5123_abs/
+[2026-10-22T15:39:14.011Z] 982b5123_abs: done; committed and pushed
+[2026-10-22T15:39:14.012Z] c8090214_abs: attempt 1
+c8090214_abs: 506 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 38 versions (31 current) in 301.1 s; ADD=31 NOOP=9 SKIP=1 UPDATE=7
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 32 versions (32 current) in 89.4 s; ADD=32 NOOP=8 SKIP=1 UPDATE=7
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=1 judge=1 recall@k=0
+  overwrite_memory: n=1 F1=0 judge=0 recall@k=0.5
+  ours: n=1 F1=0 judge=0 recall@k=0.5
+  ours_no_temporal: n=1 F1=0 judge=0 recall@k=0.5
+  ours_no_provenance: n=1 F1=1 judge=1 recall@k=0.5
+  time per item (s): judge 13.609; build per message {"bitemporal":1.19,"overwrite":0.353}
+Wrote results\stage6c-lme-pilot-c8090214_abs/
+[2026-10-22T15:47:30.067Z] c8090214_abs: done; committed and pushed
+[2026-10-22T15:47:30.068Z] 852ce960: attempt 1
+852ce960: 396 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 34 versions (29 current) in 228.9 s; ADD=29 NOOP=2 SUPERSEDE=1 UPDATE=4
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 29 versions (29 current) in 66.8 s; ADD=29 NOOP=2 SUPERSEDE=1 UPDATE=4
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=1 judge=1 recall@k=1
+  overwrite_memory: n=1 F1=1 judge=1 recall@k=0.5
+  ours: n=1 F1=1 judge=1 recall@k=0.5
+  ours_no_temporal: n=1 F1=1 judge=1 recall@k=0.5
+  ours_no_provenance: n=1 F1=1 judge=1 recall@k=0.5
+  time per item (s): judge 11.793; build per message {"bitemporal":1.162,"overwrite":0.339}
+Wrote results\stage6c-lme-pilot-852ce960/
+[2026-10-22T15:54:01.827Z] 852ce960: done; committed and pushed
+[2026-10-22T15:54:01.828Z] 89941a93: attempt 1
+89941a93: 528 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 39 versions (31 current) in 280.7 s; ADD=31 NOOP=2 SUPERSEDE=1 UPDATE=7
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 31 versions (31 current) in 85.8 s; ADD=31 NOOP=2 SUPERSEDE=1 UPDATE=7
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=0 judge=1 recall@k=1
+  overwrite_memory: n=1 F1=0 judge=1 recall@k=0.5
+  ours: n=1 F1=0 judge=1 recall@k=0.5
+  ours_no_temporal: n=1 F1=0 judge=1 recall@k=0.5
+  ours_no_provenance: n=1 F1=0 judge=1 recall@k=0.5
+  time per item (s): judge 12.441; build per message {"bitemporal":1.067,"overwrite":0.326}
+Wrote results\stage6c-lme-pilot-89941a93/
+[2026-10-22T16:01:47.390Z] 89941a93: done; commit failed: error: pathspec 'results\stage6c-lme-pilot-89941a93' did not match any file(s) known to git
+[2026-10-22T16:01:47.393Z] 031748ae: attempt 1
+031748ae: 494 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 32 versions (28 current) in 253.1 s; ADD=28 NOOP=3 UPDATE=4
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 29 versions (29 current) in 67.1 s; ADD=29 NOOP=2 UPDATE=4
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=0.1818 judge=0 recall@k=1
+  overwrite_memory: n=1 F1=0 judge=0 recall@k=0.5
+  ours: n=1 F1=0 judge=0 recall@k=0.5
+  ours_no_temporal: n=1 F1=0 judge=0 recall@k=0.5
+  ours_no_provenance: n=1 F1=0.0909 judge=0 recall@k=0.5
+  time per item (s): judge 13.029; build per message {"bitemporal":1.029,"overwrite":0.273}
+Wrote results\stage6c-lme-pilot-031748ae/
+[2026-10-22T16:08:49.079Z] 031748ae: done; committed and pushed
+[2026-10-22T16:08:49.081Z] f9e8c073: attempt 1
+f9e8c073: 504 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 54 versions (45 current) in 343.6 s; ADD=45 NOOP=5 SUPERSEDE=1 UPDATE=8
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 45 versions (45 current) in 114.6 s; ADD=45 NOOP=5 SUPERSEDE=1 UPDATE=8
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=1 judge=1 recall@k=1
+  overwrite_memory: n=1 F1=0 judge=0 recall@k=0.5
+  ours: n=1 F1=0 judge=0 recall@k=0.5
+  ours_no_temporal: n=1 F1=0 judge=0 recall@k=0.5
+  ours_no_provenance: n=1 F1=0 judge=0 recall@k=0.5
+  time per item (s): judge 13.915; build per message {"bitemporal":1.374,"overwrite":0.458}
+Wrote results\stage6c-lme-pilot-f9e8c073/
+[2026-10-22T16:18:15.442Z] f9e8c073: done; committed and pushed
+[2026-10-22T16:18:15.445Z] 5a4f22c0: attempt 1
+5a4f22c0: 487 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 22 versions (20 current) in 207.9 s; ADD=20 NOOP=2 UPDATE=2
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 20 versions (20 current) in 47.7 s; ADD=20 NOOP=2 UPDATE=2
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=1 judge=1 recall@k=1
+  overwrite_memory: n=1 F1=0 judge=0 recall@k=0.5
+  ours: n=1 F1=0 judge=0 recall@k=0.5
+  ours_no_temporal: n=1 F1=0 judge=0 recall@k=0.5
+  ours_no_provenance: n=1 F1=0 judge=0 recall@k=0.5
+  time per item (s): judge 12.497; build per message {"bitemporal":0.859,"overwrite":0.197}
+Wrote results\stage6c-lme-pilot-5a4f22c0/
+[2026-10-22T16:24:09.912Z] 5a4f22c0: done; committed and pushed
+[2026-10-22T16:24:09.914Z] 01493427: attempt 1
+01493427: 487 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 43 versions (34 current) in 303.4 s; ADD=34 NOOP=4 UPDATE=9
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 35 versions (35 current) in 98.8 s; ADD=35 NOOP=4 UPDATE=8
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=1 judge=1 recall@k=1
+  overwrite_memory: n=1 F1=1 judge=1 recall@k=0.5
+  ours: n=1 F1=1 judge=1 recall@k=0.5
+  ours_no_temporal: n=1 F1=1 judge=1 recall@k=0.5
+  ours_no_provenance: n=1 F1=1 judge=1 recall@k=0.5
+  time per item (s): judge 12.158; build per message {"bitemporal":1.254,"overwrite":0.408}
+Wrote results\stage6c-lme-pilot-01493427/
+[2026-10-22T16:32:32.561Z] 01493427: done; committed and pushed
+[2026-10-22T16:32:32.562Z] 8fb83627: attempt 1
+8fb83627: 485 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 38 versions (33 current) in 266.1 s; ADD=33 NOOP=4 UPDATE=5
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 33 versions (33 current) in 71.8 s; ADD=33 NOOP=4 UPDATE=5
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=1 judge=1 recall@k=0.6667
+  overwrite_memory: n=1 F1=0 judge=0 recall@k=0
+  ours: n=1 F1=0 judge=0 recall@k=0
+  ours_no_temporal: n=1 F1=0 judge=0 recall@k=0
+  ours_no_provenance: n=1 F1=0 judge=0 recall@k=0
+  time per item (s): judge 12.814; build per message {"bitemporal":1.104,"overwrite":0.298}
+Wrote results\stage6c-lme-pilot-8fb83627/
+[2026-10-22T16:39:51.499Z] 8fb83627: done; committed and pushed
+[2026-10-22T16:39:51.501Z] b01defab: attempt 1
+b01defab: 503 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 45 versions (36 current) in 317.1 s; ADD=36 NOOP=6 SUPERSEDE=1 UPDATE=8
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 36 versions (36 current) in 101.2 s; ADD=36 NOOP=7 UPDATE=8
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=1 judge=1 recall@k=1
+  overwrite_memory: n=1 F1=1 judge=1 recall@k=0
+  ours: n=1 F1=1 judge=1 recall@k=0
+  ours_no_temporal: n=1 F1=1 judge=1 recall@k=0
+  ours_no_provenance: n=1 F1=1 judge=1 recall@k=0
+  time per item (s): judge 11.597; build per message {"bitemporal":1.268,"overwrite":0.405}
+Wrote results\stage6c-lme-pilot-b01defab/
+[2026-10-22T16:48:25.345Z] b01defab: done; committed and pushed
+[2026-10-22T16:48:25.346Z] 603deb26: attempt 1
+603deb26: 472 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 40 versions (36 current) in 266.7 s; ADD=36 NOOP=1 SUPERSEDE=1 UPDATE=3
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 36 versions (36 current) in 80.3 s; ADD=36 NOOP=1 UPDATE=4
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=1 judge=1 recall@k=1
+  overwrite_memory: n=1 F1=0 judge=0 recall@k=0
+  ours: n=1 F1=0 judge=0 recall@k=0
+  ours_no_temporal: n=1 F1=0 judge=0 recall@k=0
+  ours_no_provenance: n=1 F1=0 judge=0 recall@k=0
+  time per item (s): judge 13.935; build per message {"bitemporal":1.135,"overwrite":0.342}
+Wrote results\stage6c-lme-pilot-603deb26/
+[2026-10-22T16:56:06.316Z] 603deb26: done; committed and pushed
+[2026-10-22T16:56:06.321Z] 9bbe84a2: attempt 1
+[2026-10-22T16:56:24.452Z] 9bbe84a2: attempt 2
+9bbe84a2: 459 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 29 versions (28 current) in 233.1 s; ADD=28 NOOP=2 UPDATE=1
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 28 versions (28 current) in 59.3 s; ADD=28 NOOP=2 UPDATE=1
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=1 judge=1 recall@k=1
+  overwrite_memory: n=1 F1=1 judge=1 recall@k=0.5
+  ours: n=1 F1=1 judge=1 recall@k=0.5
+  ours_no_temporal: n=1 F1=1 judge=1 recall@k=0.5
+  ours_no_provenance: n=1 F1=0 judge=0 recall@k=0.5
+  time per item (s): judge 11.857; build per message {"bitemporal":1.022,"overwrite":0.26}
+Wrote results\stage6c-lme-pilot-9bbe84a2/
+[2026-10-22T17:02:52.456Z] 9bbe84a2: done; committed and pushed
+[2026-10-22T17:02:52.457Z] 0ddfec37_abs: attempt 1
+[2026-10-22T17:03:10.575Z] 0ddfec37_abs: attempt 2
+0ddfec37_abs: 447 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 27 versions (22 current) in 217.8 s; ADD=22 NOOP=1 UPDATE=5
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 21 versions (21 current) in 56.7 s; ADD=21 NOOP=2 UPDATE=5
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=1 judge=1 recall@k=null
+  overwrite_memory: n=1 F1=1 judge=1 recall@k=null
+  ours: n=1 F1=1 judge=1 recall@k=null
+  ours_no_temporal: n=1 F1=1 judge=1 recall@k=null
+  ours_no_provenance: n=1 F1=1 judge=1 recall@k=null
+  time per item (s): judge 12.669; build per message {"bitemporal":0.981,"overwrite":0.255}
+Wrote results\stage6c-lme-pilot-0ddfec37_abs/
+[2026-10-22T17:09:24.300Z] 0ddfec37_abs: done; committed and pushed
+[2026-10-22T17:09:24.302Z] 89941a94: attempt 1
+89941a94: 523 messages, 1 questions
+  rag_messages: 1 questions answered
+  bitemporal store: 20 versions (16 current) in 216.5 s; ADD=16 NOOP=3 SUPERSEDE=1 UPDATE=3
+  ours: 1 questions answered
+  ours_no_temporal: 1 questions answered
+  ours_no_provenance: 1 questions answered
+  overwrite store: 16 versions (16 current) in 50.6 s; ADD=16 NOOP=3 SUPERSEDE=1 UPDATE=3
+  overwrite_memory: 1 questions answered
+Charts: chart_f1.svg, chart_judge.svg, chart_recall.svg
+
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+  rag_messages: n=1 F1=0.2857 judge=1 recall@k=1
+  overwrite_memory: n=1 F1=0.2857 judge=1 recall@k=0.5
+  ours: n=1 F1=0.2857 judge=1 recall@k=0.5
+  ours_no_temporal: n=1 F1=0 judge=0 recall@k=0.5
+  ours_no_provenance: n=1 F1=0.2857 judge=1 recall@k=0.5
+  time per item (s): judge 13.83; build per message {"bitemporal":0.833,"overwrite":0.195}
+Wrote results\stage6c-lme-pilot-89941a94/
+[2026-10-22T17:15:39.774Z] 89941a94: done; committed and pushed
+[2026-10-22T17:15:39.775Z] batch stage6c-lme-pilot: done (48/48)

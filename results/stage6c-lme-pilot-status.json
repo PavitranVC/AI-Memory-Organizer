@@ -61,7 +61,7 @@
     "ours_no_provenance"
   ],
   "maxItemChars": 1400,
-  "state": "running",
+  "state": "done",
   "pid": 8664,
   "startedAt": "2026-10-22T14:19:35.098Z",
   "done": [
@@ -111,9 +111,10 @@
     "a2f3aa27",
     "9bbe84a2",
     "0ddfec37_abs",
-    "f685340e_abs"
+    "f685340e_abs",
+    "89941a94"
   ],
-  "current": "89941a94",
+  "current": null,
   "failedInARow": 0,
   "lastBackup": "committed and pushed",
   "durations": {
@@ -139,7 +140,8 @@
     "b01defab": 509,
     "603deb26": 456,
     "9bbe84a2": 402,
-    "0ddfec37_abs": 388
+    "0ddfec37_abs": 388,
+    "89941a94": 371
   },
-  "updatedAt": "2026-10-22T17:09:24.302Z"
+  "updatedAt": "2026-10-22T17:15:39.775Z"
 }
