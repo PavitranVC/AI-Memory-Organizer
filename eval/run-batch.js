@@ -27,7 +27,7 @@ const { option, gitCommit } = require('./meta');
 
 const ROOT = path.join(__dirname, '..');
 const MONGO_URI = process.env.MONGO_URI_EVAL || 'mongodb://127.0.0.1:27017/aimemory_eval';
-const git = (...args) => spawnSync('git', args, { cwd: ROOT, encoding: 'utf8' });
+const git = (...args) => spawnSync('git', args, { cwd: ROOT, encoding: 'utf8', windowsHide: true }); // windowsHide: no console window flashes on Windows
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function writeStatus(file, status) {
@@ -152,7 +152,7 @@ async function main() {
     let success = false;
     for (let attempt = 1; attempt <= 3 && !success && !stopped; attempt += 1) {
       say(`${id}: attempt ${attempt}`);
-      const child = spawnSync(process.execPath, [path.join(__dirname, 'run.js'), '--dataset', 'longmemeval', '--file', path.basename(file), '--ids', id, '--provider', provider, '--embeddings', embeddings, '--judge-sample', '5', '--max-item-chars', String(maxItemChars), '--run-id', runId], { cwd: ROOT, stdio: ['ignore', log, log], env: process.env });
+      const child = spawnSync(process.execPath, [path.join(__dirname, 'run.js'), '--dataset', 'longmemeval', '--file', path.basename(file), '--ids', id, '--provider', provider, '--embeddings', embeddings, '--judge-sample', '5', '--max-item-chars', String(maxItemChars), '--run-id', runId], { cwd: ROOT, stdio: ['ignore', log, log], env: process.env, windowsHide: true });
       success = child.status === 0 && Ledger.inspect(path.join(ROOT, runDir)).complete;
       if (!success) await sleep(15000); // give Ollama a moment before the run continues from its checkpoint
     }

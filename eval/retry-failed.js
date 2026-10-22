@@ -22,7 +22,7 @@ const S = require('./systems');
 const DATA = path.join(process.env.DATA_DIR || path.join(__dirname, '..', 'data'), 'locomo', 'locomo10.json');
 const TIMEOUT = /did not answer within/;
 const MONGO_URI = process.env.MONGO_URI_EVAL || 'mongodb://127.0.0.1:27017/aimemory_eval';
-const git = (...args) => spawnSync('git', args, { cwd: path.join(__dirname, '..'), encoding: 'utf8' });
+const git = (...args) => spawnSync('git', args, { cwd: path.join(__dirname, '..'), encoding: 'utf8', windowsHide: true });
 
 // Commit (and push) what the retry has produced so far; a failed push is only noted and tried again next time
 function backup(out, message, push) {

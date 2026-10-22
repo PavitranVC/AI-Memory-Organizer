@@ -34,7 +34,7 @@ async function main() {
       process.exit(1);
     }
   }
-  const git = (...a) => spawnSync('git', a, { cwd: ROOT, encoding: 'utf8' });
+  const git = (...a) => spawnSync('git', a, { cwd: ROOT, encoding: 'utf8', windowsHide: true });
   const branch = git('rev-parse', '--abbrev-ref', 'HEAD').stdout.trim();
   const dirty = git('status', '--porcelain', '--untracked-files=no').stdout.trim();
   const llm = llmConfig();

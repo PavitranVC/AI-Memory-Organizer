@@ -5,7 +5,7 @@ const { spawnSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
 const file = path.join(ROOT, 'results', 'stage6e-locomo-retry-full_context', 'status.json');
-const git = (...a) => spawnSync('git', a, { cwd: ROOT, encoding: 'utf8' }).stdout.trim();
+const git = (...a) => spawnSync('git', a, { cwd: ROOT, encoding: 'utf8', windowsHide: true }).stdout.trim();
 if (!fs.existsSync(file)) {
   console.log('No status file yet: the retry has not been started (or git pull has not brought it).');
 } else {
