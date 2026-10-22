@@ -1,0 +1,1 @@
+LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
