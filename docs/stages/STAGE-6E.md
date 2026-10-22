@@ -11,12 +11,24 @@ the harness assumed) and shows that seven of the ten conversations really need 3
 model's native 32,768-token window, so no retry can fix those 1,486 failures. The other 60 failures were timeouts in the
 three conversations that do fit; `npm run eval:retry` asks exactly those again with a longer time limit.
 
+## Outcome of the retry (from `results/stage6e-locomo-retry-full_context/`, run 22 Oct, about 4.75 hours)
+5 of the 60 timed-out questions were answered; 55 failed again with "Cannot reach Ollama ... fetch failed". Ollama was
+not down: each failure took about 5 minutes (a server that is unreachable fails at once), the answered questions took
+9 to 16 seconds, and one took 298 seconds. Node's built-in `fetch` gives up on its own after 300 seconds without
+response headers, whatever timeout the code sets, and the provider labelled that error "unreachable". So these
+questions need more than 300 seconds before the first byte. The likely reason, **inferred and not measured**, is that
+the model and a 32,768-token window do not fully fit in 12 GB of GPU memory on those calls, so part of the work runs on
+the CPU. The fix to the label is in `services/llm/ollamaProvider.js` (with a test); the retry itself is not worth
+repeating before the deadline (about 55 answers, many minutes each), so the full-context row stays valid on the three
+conversations that fit (the original answered questions, plus these 5).
+
 ## 2. What changed
 | File | Why |
 |---|---|
 | `eval/token-fit.js`, `results/stage6e-locomo-fullcontext-token-fit.txt` | Measures, per conversation, whether the whole history fits the window, from committed answers and Ollama's real token counts |
 | `eval/retry-failed.js` | Re-asks only the timed-out full-context answers (never the "does not fit" ones), one line per finished question so it can be stopped and restarted, writes to `results/stage6e-locomo-retry-full_context/`. Needs MongoDB only because each model call is logged |
 | `eval/launch-retry.js`, `eval/retry-status.js` | `npm run eval:launch-retry` checks the conditions (same gate as the LongMemEval pilot), starts the retry in the background and returns; the retry writes `status.json` and commits and pushes its results every 10 answers and at the end; `npm run eval:retry-status` shows progress. A second launch is refused while one runs |
+| `services/llm/ollamaProvider.js`, `tests/ollama.test.js` | A request that hits Node's own 300-second wait limit is reported as a slow answer (`timeout`), not as "Cannot reach Ollama"; other connection errors now include the error code |
 | `eval/harness.js` | Exports `answerAndScore` for the retry script; behaviour unchanged |
 | `package.json` | `eval:retry`, `eval:token-fit` |
 
