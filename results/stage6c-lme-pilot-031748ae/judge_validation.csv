@@ -1,0 +1,6 @@
+row_id,question,gold,candidate,human_correct
+1,How many engineers do I lead when I just started my new role as Senior Software Engineer? How many engineers do I lead now?,"When you just started your new role as Senior Software Engineer, you led 4 engineers. Now, you lead 5 engineers",4 engineers,
+2,How many engineers do I lead when I just started my new role as Senior Software Engineer? How many engineers do I lead now?,"When you just started your new role as Senior Software Engineer, you led 4 engineers. Now, you lead 5 engineers","0, 5",
+3,How many engineers do I lead when I just started my new role as Senior Software Engineer? How many engineers do I lead now?,"When you just started your new role as Senior Software Engineer, you led 4 engineers. Now, you lead 5 engineers",No information available,
+4,How many engineers do I lead when I just started my new role as Senior Software Engineer? How many engineers do I lead now?,"When you just started your new role as Senior Software Engineer, you led 4 engineers. Now, you lead 5 engineers",No information available,
+5,How many engineers do I lead when I just started my new role as Senior Software Engineer? How many engineers do I lead now?,"When you just started your new role as Senior Software Engineer, you led 4 engineers. Now, you lead 5 engineers",No information available,

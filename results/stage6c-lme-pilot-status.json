@@ -88,11 +88,14 @@
     "gpt4_2f584639",
     "gpt4_c27434e8",
     "982b5123_abs",
-    "c8090214_abs"
+    "c8090214_abs",
+    "852ce960",
+    "89941a93",
+    "a1eacc2a"
   ],
-  "current": "852ce960",
+  "current": "031748ae",
   "failedInARow": 0,
-  "lastBackup": "committed and pushed",
+  "lastBackup": "commit failed: error: pathspec 'results\\stage6c-lme-pilot-89941a93' did not match any file(s) known to git",
   "durations": {
     "b46e15ed": 330,
     "af082822": 443,
@@ -105,7 +108,9 @@
     "gpt4_8c8961ae": 421,
     "gpt4_c27434e8": 459,
     "982b5123_abs": 363,
-    "c8090214_abs": 493
+    "c8090214_abs": 493,
+    "852ce960": 388,
+    "89941a93": 462
   },
-  "updatedAt": "2026-10-22T15:47:30.067Z"
+  "updatedAt": "2026-10-22T16:01:47.392Z"
 }
