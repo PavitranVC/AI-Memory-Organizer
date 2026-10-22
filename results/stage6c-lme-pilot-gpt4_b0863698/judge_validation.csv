@@ -1,0 +1,6 @@
+row_id,question,gold,candidate,human_correct
+1,How many days ago did I participate in the 5K charity run?,7 days ago. 8 days (including the last day) is also acceptable.,6,
+2,How many days ago did I participate in the 5K charity run?,7 days ago. 8 days (including the last day) is also acceptable.,7,
+3,How many days ago did I participate in the 5K charity run?,7 days ago. 8 days (including the last day) is also acceptable.,7,
+4,How many days ago did I participate in the 5K charity run?,7 days ago. 8 days (including the last day) is also acceptable.,7,
+5,How many days ago did I participate in the 5K charity run?,7 days ago. 8 days (including the last day) is also acceptable.,7,
