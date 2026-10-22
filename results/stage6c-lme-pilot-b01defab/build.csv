@@ -1,0 +1,5 @@
+sample,store,messages_mined,failed_messages,decisions,memory_versions,memory_current,memory_bytes,extract_calls,reconcile_calls,build_input_tokens,build_output_tokens,build_cost_usd,build_seconds
+b01defab,raw messages,0,,,,,603260,,,,,,
+b01defab,rag message vectors,0,,,,,3090432,,,,,,
+b01defab,bitemporal,250,0,ADD=36 NOOP=6 SUPERSEDE=1 UPDATE=8,45,36,472372,250,50,559311,8763,0,317.1
+b01defab,overwrite,250,0,ADD=36 NOOP=7 UPDATE=8,36,36,377309,0,50,50855,3256,0,101.2

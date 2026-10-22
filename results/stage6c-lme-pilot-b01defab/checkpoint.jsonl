@@ -1,0 +1,268 @@
+{"type":"run","at":"2026-10-22T16:39:53.695Z","commit":"c69c26bafbec7c2c2f7a122ee749627cca44d810 + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["b01defab"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"b01defab","userIds":["6ada3c59a77febd683c3034d"]}
+{"type":"build","sample":"b01defab","build":{"sample":"b01defab","store":"raw messages","messages_mined":0,"memory_bytes":603260}}
+{"type":"build","sample":"b01defab","build":{"sample":"b01defab","store":"rag message vectors","messages_mined":0,"memory_bytes":3090432}}
+{"type":"row","row":{"sample":"b01defab","qa_index":0,"category":5,"question_type":"knowledge-update","system":"rag_messages","question":"Did I finish reading 'The Nightingale' by Kristin Hannah?","gold":"Yes","answer":"Yes","insufficient":false,"cited":"answer_8c0712af_1:2","score_f1":1,"judge_correct":1,"judge_reason":"Same answer as the gold.","recall_at_k":1,"context_items":10,"context_dia":"answer_8c0712af_1:2 answer_8c0712af_1:3 answer_8c0712af_1:4 answer_8c0712af_1:10 answer_8c0712af_1:11 answer_8c0712af_2:0 answer_8c0712af_2:8 answer_8c0712af_2:9 answer_8c0712af_2:10 answer_8c0712af_2:11","context_tokens_est":1867,"retrieval_ms":26.97,"answer_ms":8267,"judge_ms":9158,"input_tokens":2351,"output_tokens":35,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"b01defab"}
+{"type":"store_start","sample":"b01defab","store":"bitemporal"}
+{"type":"cache","sample":"b01defab","key":"sharegpt_fB2ri01_0:0|2023-01-01T00:52:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_fB2ri01_0:2|2023-01-01T00:52:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_fB2ri01_0:4|2023-01-01T00:52:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_fB2ri01_0:6|2023-01-01T00:52:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_fB2ri01_0:8|2023-01-01T00:52:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_fB2ri01_0:10|2023-01-01T00:52:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_fB2ri01_0:12|2023-01-01T00:52:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_fB2ri01_0:14|2023-01-01T00:52:14.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_fB2ri01_0:16|2023-01-01T00:52:16.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_fB2ri01_0:18|2023-01-01T00:52:18.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_fB2ri01_0:20|2023-01-01T00:52:20.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"dc378711_2:0|2023-01-15T15:38:00.000Z","data":{"candidates":[{"content":"Plans to go back to school for a graduate degree","topic":"plan graduate degree","category":"Learning","importance":4,"confidence":0.8,"sensitivity":"normal","validFrom":null},{"content":"Graduated from high school 10 years ago","topic":"event high school graduation","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2013-01-01"}]}}
+{"type":"cache","sample":"b01defab","key":"dc378711_2:2|2023-01-15T15:38:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"dc378711_2:4|2023-01-15T15:38:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"dc378711_2:6|2023-01-15T15:38:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"dc378711_2:8|2023-01-15T15:38:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"dc378711_2:10|2023-01-15T15:38:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_5LQ3qDt_0:0|2023-01-21T12:36:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"answer_8c0712af_1:0|2023-01-21T15:05:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"answer_8c0712af_1:2|2023-01-21T15:05:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"answer_8c0712af_1:4|2023-01-21T15:05:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"answer_8c0712af_1:6|2023-01-21T15:05:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"answer_8c0712af_1:8|2023-01-21T15:05:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"answer_8c0712af_1:10|2023-01-21T15:05:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"c8effec9_2:0|2023-01-22T20:04:00.000Z","data":{"candidates":[{"content":"Plans a bike trip to the Blue Ridge Parkway this summer","topic":"plan bike trip","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Got a new bike light, a Bontrager Flare R, which has been great for my evening rides","topic":"event bike light","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-01-21"},{"content":"Started tracking rides with a new Garmin Edge 830 bike computer","topic":"event bike computer","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-01-21"},{"content":"Got a bike tune-up recently","topic":"event bike tune-up","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-01-21"},{"content":"Got a new water bottle cage and bike lock","topic":"event bike accessories","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-01-21"}]}}
+{"type":"cache","sample":"b01defab","key":"c8effec9_2:2|2023-01-22T20:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"c8effec9_2:4|2023-01-22T20:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"c8effec9_2:6|2023-01-22T20:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"c8effec9_2:8|2023-01-22T20:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"c8effec9_2:10|2023-01-22T20:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"3891baea_2:0|2023-01-25T03:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"3891baea_2:2|2023-01-25T03:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"3891baea_2:4|2023-01-25T03:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"3891baea_2:6|2023-01-25T03:58:06.000Z","data":{"candidates":[{"content":"Plans to meet up with friends at a new cafe for brunch on 2023-01-25","topic":"event brunch","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-01-25"},{"content":"Plans to do grocery shopping at Fresh Mart on 2023-01-25","topic":"plan grocery shopping","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-01-25"}]}}
+{"type":"cache","sample":"b01defab","key":"3891baea_2:8|2023-01-25T03:58:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"3891baea_2:10|2023-01-25T03:58:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"3304f57b_4:0|2023-01-29T02:54:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"3304f57b_4:2|2023-01-29T02:54:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"3304f57b_4:4|2023-01-29T02:54:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"3304f57b_4:6|2023-01-29T02:54:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"3304f57b_4:8|2023-01-29T02:54:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"3304f57b_4:10|2023-01-29T02:54:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_8ns7j9U_0:0|2023-01-29T15:16:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_8ns7j9U_0:2|2023-01-29T15:16:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_8ns7j9U_0:4|2023-01-29T15:16:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"639cec58:0|2023-01-30T08:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"639cec58:2|2023-01-30T08:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"639cec58:4|2023-01-30T08:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"639cec58:6|2023-01-30T08:03:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"639cec58:8|2023-01-30T08:03:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"639cec58:10|2023-01-30T08:03:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"59dc866c_1:0|2023-01-30T13:08:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"59dc866c_1:2|2023-01-30T13:08:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"59dc866c_1:4|2023-01-30T13:08:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"59dc866c_1:6|2023-01-30T13:08:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"59dc866c_1:8|2023-01-30T13:08:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"59dc866c_1:10|2023-01-30T13:08:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_mbVZBHe_0:0|2023-02-01T19:49:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_mbVZBHe_0:2|2023-02-01T19:49:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_mbVZBHe_0:4|2023-02-01T19:49:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_zMUpvkc_57:1|2023-02-02T00:41:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_zMUpvkc_57:3|2023-02-02T00:41:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_zMUpvkc_57:5|2023-02-02T00:41:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_zMUpvkc_57:7|2023-02-02T00:41:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_zMUpvkc_57:9|2023-02-02T00:41:09.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_zMUpvkc_57:11|2023-02-02T00:41:11.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"9aa07e25:0|2023-02-04T16:22:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"9aa07e25:2|2023-02-04T16:22:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"9aa07e25:4|2023-02-04T16:22:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"9aa07e25:6|2023-02-04T16:22:06.000Z","data":{"candidates":[{"content":"Saw The 1975 live on an unspecified date","topic":"event concert","category":"Personal","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":null},{"content":"Listens to The 1975's new album nonstop","topic":"hobby music","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Met the lead singer of Imagine Dragons backstage at their show at the Wells Fargo Center on 2022-09-01","topic":"event concert","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2022-09-01"}]}}
+{"type":"cache","sample":"b01defab","key":"9aa07e25:8|2023-02-04T16:22:08.000Z","data":{"candidates":[{"content":"Met the lead singer of Imagine Dragons backstage at their show at the Wells Fargo Center on 2022-09-01","topic":"event imagine dragons meet","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2022-09-01"},{"content":"Listens to Imagine Dragons' new album nonstop","topic":"hobby imagine dragons","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Got Imagine Dragons merch signed by Dan Reynolds","topic":"event imagine dragons merch","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2022-09-01"},{"content":"Friends Rachel and Mike were with the user at the Imagine Dragons meet","topic":"personal friends","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"b01defab","key":"9aa07e25:10|2023-02-04T16:22:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"fc69fd44_7:0|2023-02-04T19:56:00.000Z","data":{"candidates":[{"content":"Plans to get a new TV stand","topic":"plan TV stand","category":"Personal","importance":2,"confidence":0.8,"sensitivity":"normal","validFrom":null},{"content":"Has been doing organizing and decluttering","topic":"hobby organizing","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-02-04"},{"content":"Replaced old mattress in April 2023","topic":"event mattress replacement","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":"2023-04-01"}]}}
+{"type":"cache","sample":"b01defab","key":"fc69fd44_7:2|2023-02-04T19:56:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"fc69fd44_7:4|2023-02-04T19:56:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"fc69fd44_7:6|2023-02-04T19:56:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"fc69fd44_7:8|2023-02-04T19:56:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"fc69fd44_7:10|2023-02-04T19:56:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_A8RUQVi_0:0|2023-02-07T23:11:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_A8RUQVi_0:2|2023-02-07T23:11:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_A8RUQVi_0:4|2023-02-07T23:11:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_A8RUQVi_0:6|2023-02-07T23:11:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_A8RUQVi_0:8|2023-02-07T23:11:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_A8RUQVi_0:10|2023-02-07T23:11:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_A8RUQVi_0:12|2023-02-07T23:11:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"a15fe646:0|2023-02-08T16:27:00.000Z","data":{"candidates":[{"content":"Got married and changed last name to [new last name] on 2023-02-07","topic":"event marriage","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-02-07"},{"content":"Plans a trip to Europe","topic":"plan trip","category":"Personal","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"b01defab","key":"a15fe646:2|2023-02-08T16:27:02.000Z","data":{"candidates":[{"content":"Changed name from Emily Anne Thompson to Emily Anne Rodriguez","topic":"personal name change","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-02-07"},{"content":"Plans to update social security card","topic":"plan social security card update","category":"Personal","importance":3,"confidence":0.8,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"b01defab","key":"a15fe646:4|2023-02-08T16:27:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"a15fe646:6|2023-02-08T16:27:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"a15fe646:8|2023-02-08T16:27:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"a15fe646:10|2023-02-08T16:27:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1dcfb9a0_1:0|2023-02-11T01:15:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1dcfb9a0_1:2|2023-02-11T01:15:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1dcfb9a0_1:4|2023-02-11T01:15:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1dcfb9a0_1:6|2023-02-11T01:15:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1dcfb9a0_1:8|2023-02-11T01:15:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1dcfb9a0_1:10|2023-02-11T01:15:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_KnprCCS_0:0|2023-02-12T13:47:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_KnprCCS_0:2|2023-02-12T13:47:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_HNy24nG_0:0|2023-02-13T05:30:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_HNy24nG_0:2|2023-02-13T05:30:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_HNy24nG_0:4|2023-02-13T05:30:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"6408b911:0|2023-02-19T10:51:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"6408b911:2|2023-02-19T10:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"6408b911:4|2023-02-19T10:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"6408b911:6|2023-02-19T10:51:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"6408b911:8|2023-02-19T10:51:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"6408b911:10|2023-02-19T10:51:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"36f96326_1:0|2023-02-20T04:01:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"36f96326_1:2|2023-02-20T04:01:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"36f96326_1:4|2023-02-20T04:01:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"36f96326_1:6|2023-02-20T04:01:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"36f96326_1:8|2023-02-20T04:01:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"36f96326_1:10|2023-02-20T04:01:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"71a1451a_1:0|2023-02-23T12:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"71a1451a_1:2|2023-02-23T12:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"71a1451a_1:4|2023-02-23T12:43:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"71a1451a_1:6|2023-02-23T12:43:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"71a1451a_1:8|2023-02-23T12:43:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"71a1451a_1:10|2023-02-23T12:43:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_YcpcK2K_18:0|2023-02-24T05:46:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"b1d9eb66_2:0|2023-02-24T19:41:00.000Z","data":{"candidates":[{"content":"Finished a charity 5K run on 2023-02-18","topic":"event 5k run","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-02-18"},{"content":"Participated in the local tennis tournament from 2023-09-15 to 2023-09-18, reached the quarterfinals in singles","topic":"event tennis tournament","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-09-15"},{"content":"Plans to plan a fitness routine for the next few weeks","topic":"plan fitness routine","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"b01defab","key":"b1d9eb66_2:2|2023-02-24T19:41:02.000Z","data":{"candidates":[{"content":"Continues running routine","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to improve swimming technique and endurance","topic":"plan swimming","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Taking swimming lessons at the YMCA since September 1st","topic":"event swimming lessons","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-09-01"}]}}
+{"type":"cache","sample":"b01defab","key":"b1d9eb66_2:4|2023-02-24T19:41:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"b1d9eb66_2:6|2023-02-24T19:41:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"b1d9eb66_2:8|2023-02-24T19:41:08.000Z","data":{"candidates":[{"content":"Started yoga classes twice a week since July","topic":"event yoga classes","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-07-01"},{"content":"Plans to start ankle circles and calf raises","topic":"plan ankle exercises","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"b01defab","key":"b1d9eb66_2:10|2023-02-24T19:41:10.000Z","data":{"candidates":[{"content":"Plans to do ankle circles and calf raises 2-3 times a week","topic":"plan ankle exercises","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Wants to see improvement in ankle mobility and strength over the next few weeks","topic":"goal ankle improvement","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_482799:0|2023-02-26T15:31:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_482799:2|2023-02-26T15:31:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_482799:4|2023-02-26T15:31:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_482799:6|2023-02-26T15:31:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_Puv7Ehp_0:0|2023-02-27T08:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_76442:0|2023-03-01T22:33:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_76442:2|2023-03-01T22:33:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_76442:4|2023-03-01T22:33:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_76442:6|2023-03-01T22:33:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_76442:8|2023-03-01T22:33:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_76442:10|2023-03-01T22:33:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_454582:0|2023-03-02T05:16:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_454582:2|2023-03-02T05:16:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_454582:4|2023-03-02T05:16:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1db471f5_1:0|2023-03-05T19:53:00.000Z","data":{"candidates":[{"content":"Plans to participate in a charity run next month","topic":"plan charity run","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Volunteered in a Beach Cleanup event in the first week of March","topic":"event beach cleanup","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-03-01"}]}}
+{"type":"cache","sample":"b01defab","key":"1db471f5_1:2|2023-03-05T19:53:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1db471f5_1:4|2023-03-05T19:53:04.000Z","data":{"candidates":[{"content":"Planned to organize a charity walk supporting the local food bank","topic":"plan charity walk","category":"Personal","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":null},{"content":"Participated in the Walk for Hunger charity event on 2023-04-15","topic":"event walk for hunger","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-15"},{"content":"Raised $500 in donations from friends and family for the Walk for Hunger event","topic":"event walk for hunger donations","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-04-15"}]}}
+{"type":"cache","sample":"b01defab","key":"1db471f5_1:6|2023-03-05T19:53:06.000Z","data":{"candidates":[{"content":"Plans to organize a charity walk for the local food bank on a date to be determined","topic":"plan charity walk","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Had experience with the Walk for Hunger charity event on 2023-04-15","topic":"event walk for hunger","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-15"},{"content":"Raised $500 in donations from friends and family for the Walk for Hunger event","topic":"event walk for hunger","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-04-15"},{"content":"Wants to have a representative from the food bank present at the charity walk to give a speech about food insecurity","topic":"plan charity walk","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Wants to set up a donation station at the charity walk for non-perishable food items","topic":"plan charity walk","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Wants to offer the food bank an opportunity to promote their services and upcoming events to the participants","topic":"plan charity walk","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"b01defab","key":"1db471f5_1:8|2023-03-05T19:53:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1db471f5_1:10|2023-03-05T19:53:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"6bf223b6_1:0|2023-03-05T20:23:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"6bf223b6_1:2|2023-03-05T20:23:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"6bf223b6_1:4|2023-03-05T20:23:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"6bf223b6_1:6|2023-03-05T20:23:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"6bf223b6_1:8|2023-03-05T20:23:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"6bf223b6_1:10|2023-03-05T20:23:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ebea0375_1:0|2023-03-06T06:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ebea0375_1:2|2023-03-06T06:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ebea0375_1:4|2023-03-06T06:43:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ebea0375_1:6|2023-03-06T06:43:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ebea0375_1:8|2023-03-06T06:43:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ebea0375_1:10|2023-03-06T06:43:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_399927:0|2023-03-07T16:36:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_399927:2|2023-03-07T16:36:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_399927:4|2023-03-07T16:36:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_399927:6|2023-03-07T16:36:06.000Z","data":{"candidates":[{"content":"Plans to set a regular sleep schedule","topic":"plan sleep schedule","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to avoid electronics before bedtime","topic":"plan electronics","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_VbIxRWJ_33:1|2023-03-09T19:35:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_VbIxRWJ_33:3|2023-03-09T19:35:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_VbIxRWJ_33:5|2023-03-09T19:35:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_VbIxRWJ_33:7|2023-03-09T19:35:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_355155:0|2023-03-11T07:10:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_355155:2|2023-03-11T07:10:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_355155:4|2023-03-11T07:10:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_355155:6|2023-03-11T07:10:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1dac88da_1:0|2023-03-12T21:43:00.000Z","data":{"candidates":[{"content":"Started the process of changing my name on 2023-03-12","topic":"event name change","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-03-12"},{"content":"Plans to take a trip to Europe","topic":"plan trip to Europe","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"b01defab","key":"1dac88da_1:2|2023-03-12T21:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1dac88da_1:4|2023-03-12T21:43:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1dac88da_1:6|2023-03-12T21:43:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1dac88da_1:8|2023-03-12T21:43:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"1dac88da_1:10|2023-03-12T21:43:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"936b0969_2:0|2023-03-14T12:29:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"936b0969_2:2|2023-03-14T12:29:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"936b0969_2:4|2023-03-14T12:29:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"936b0969_2:6|2023-03-14T12:29:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"936b0969_2:8|2023-03-14T12:29:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"936b0969_2:10|2023-03-14T12:29:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_16387:0|2023-03-14T13:36:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_16387:2|2023-03-14T13:36:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_16387:4|2023-03-14T13:36:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_16387:6|2023-03-14T13:36:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_107318:0|2023-03-16T11:34:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_107318:2|2023-03-16T11:34:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_107318:4|2023-03-16T11:34:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_107318:6|2023-03-16T11:34:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_156681:0|2023-03-21T01:09:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_156681:2|2023-03-21T01:09:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_156681:4|2023-03-21T01:09:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_156681:6|2023-03-21T01:09:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_156681:8|2023-03-21T01:09:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_156681:10|2023-03-21T01:09:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_156681:12|2023-03-21T01:09:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_207469:0|2023-03-21T12:10:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_207469:2|2023-03-21T12:10:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_207469:4|2023-03-21T12:10:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_207469:6|2023-03-21T12:10:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_207469:8|2023-03-21T12:10:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_207469:10|2023-03-21T12:10:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"340d9b1c_2:0|2023-03-23T17:33:00.000Z","data":{"candidates":[{"content":"Sent a self-care package to a brother on 2023-03-23","topic":"event gift-giving","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-03-23"}]}}
+{"type":"cache","sample":"b01defab","key":"340d9b1c_2:2|2023-03-23T17:33:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"340d9b1c_2:4|2023-03-23T17:33:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"340d9b1c_2:6|2023-03-23T17:33:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"340d9b1c_2:8|2023-03-23T17:33:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"340d9b1c_2:10|2023-03-23T17:33:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"549b442a_2:0|2023-03-25T05:16:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"549b442a_2:2|2023-03-25T05:16:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"549b442a_2:4|2023-03-25T05:16:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"549b442a_2:6|2023-03-25T05:16:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"549b442a_2:8|2023-03-25T05:16:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"549b442a_2:10|2023-03-25T05:16:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_8216:0|2023-03-26T19:46:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_8216:2|2023-03-26T19:46:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_8216:4|2023-03-26T19:46:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_8216:6|2023-03-26T19:46:06.000Z","data":{"candidates":[{"content":"Plans to start a weekly encouragement challenge with friends","topic":"plan encouragement challenge","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_8216:8|2023-03-26T19:46:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"sharegpt_c4mdU44_0:0|2023-03-26T22:42:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"answer_8c0712af_2:0|2023-03-30T01:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"answer_8c0712af_2:2|2023-03-30T01:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"answer_8c0712af_2:4|2023-03-30T01:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"answer_8c0712af_2:6|2023-03-30T01:14:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"answer_8c0712af_2:8|2023-03-30T01:14:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"answer_8c0712af_2:10|2023-03-30T01:14:10.000Z","data":{"candidates":[{"content":"Read 'The Nightingale' by Kristin Hannah on 2023-03-30","topic":"event reading 'The Nightingale'","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-30"}]}}
+{"type":"cache","sample":"b01defab","key":"d75869af:0|2023-03-30T23:12:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"d75869af:2|2023-03-30T23:12:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"d75869af:4|2023-03-30T23:12:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"d75869af:6|2023-03-30T23:12:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"d75869af:8|2023-03-30T23:12:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"d75869af:10|2023-03-30T23:12:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_479632:0|2023-04-02T08:44:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_479632:2|2023-04-02T08:44:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_479632:4|2023-04-02T08:44:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_479632:6|2023-04-02T08:44:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_479632:8|2023-04-02T08:44:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_479632:10|2023-04-02T08:44:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_472062:0|2023-04-08T00:11:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_472062:2|2023-04-08T00:11:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_472062:4|2023-04-08T00:11:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_407511:0|2023-04-08T05:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_407511:2|2023-04-08T05:18:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_407511:4|2023-04-08T05:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_407511:6|2023-04-08T05:18:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_407511:8|2023-04-08T05:18:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_407511:10|2023-04-08T05:18:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"b01defab","key":"ultrachat_407511:12|2023-04-08T05:18:12.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"b01defab","build":{"sample":"b01defab","store":"bitemporal","messages_mined":250,"failed_messages":0,"decisions":"ADD=36 NOOP=6 SUPERSEDE=1 UPDATE=8","memory_versions":45,"memory_current":36,"memory_bytes":472372,"extract_calls":250,"reconcile_calls":50,"build_input_tokens":559311,"build_output_tokens":8763,"build_cost_usd":0,"build_seconds":317.1}}
+{"type":"store_built","sample":"b01defab","store":"bitemporal","versions":45}
+{"type":"row","row":{"sample":"b01defab","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours","question":"Did I finish reading 'The Nightingale' by Kristin Hannah?","gold":"Yes","answer":"Yes","insufficient":false,"cited":"m1","score_f1":1,"judge_correct":1,"judge_reason":"Same answer as the gold.","recall_at_k":0,"context_items":2,"context_dia":"answer_8c0712af_2:10 b1d9eb66_2:0","context_tokens_est":227,"retrieval_ms":45.99,"answer_ms":1155,"judge_ms":14274,"input_tokens":839,"output_tokens":25,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"b01defab","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_temporal","question":"Did I finish reading 'The Nightingale' by Kristin Hannah?","gold":"Yes","answer":"Yes","insufficient":false,"cited":"m1","score_f1":1,"judge_correct":1,"judge_reason":"Same answer as the gold.","recall_at_k":0,"context_items":2,"context_dia":"answer_8c0712af_2:10 b1d9eb66_2:0","context_tokens_est":204,"retrieval_ms":617.12,"answer_ms":7375,"judge_ms":9403,"input_tokens":781,"output_tokens":24,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"b01defab","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_provenance","question":"Did I finish reading 'The Nightingale' by Kristin Hannah?","gold":"Yes","answer":"Yes","insufficient":false,"cited":"m1","score_f1":1,"judge_correct":1,"judge_reason":"Same answer as the gold.","recall_at_k":0,"context_items":2,"context_dia":"answer_8c0712af_2:10 b1d9eb66_2:0","context_tokens_est":51,"retrieval_ms":652.19,"answer_ms":7292,"judge_ms":10030,"input_tokens":638,"output_tokens":24,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"b01defab","store":"overwrite"}
+{"type":"build","sample":"b01defab","build":{"sample":"b01defab","store":"overwrite","messages_mined":250,"failed_messages":0,"decisions":"ADD=36 NOOP=7 UPDATE=8","memory_versions":36,"memory_current":36,"memory_bytes":377309,"extract_calls":0,"reconcile_calls":50,"build_input_tokens":50855,"build_output_tokens":3256,"build_cost_usd":0,"build_seconds":101.2}}
+{"type":"store_built","sample":"b01defab","store":"overwrite","versions":36}
+{"type":"row","row":{"sample":"b01defab","qa_index":0,"category":5,"question_type":"knowledge-update","system":"overwrite_memory","question":"Did I finish reading 'The Nightingale' by Kristin Hannah?","gold":"Yes","answer":"Yes","insufficient":false,"cited":"m1","score_f1":1,"judge_correct":1,"judge_reason":"Same answer as the gold.","recall_at_k":0,"context_items":2,"context_dia":"answer_8c0712af_2:10 b1d9eb66_2:0","context_tokens_est":227,"retrieval_ms":44.18,"answer_ms":1113,"judge_ms":15118,"input_tokens":839,"output_tokens":25,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"b01defab"}
+{"type":"complete","at":"2026-10-22T16:48:20.713Z"}
