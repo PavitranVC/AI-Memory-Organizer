@@ -1,0 +1,34 @@
+{
+  "runId": "stage6c-lme-pilot-6e984302",
+  "models": {
+    "extract": "qwen2.5-coder:14b",
+    "reconcile": "qwen2.5-coder:14b",
+    "answer": "qwen2.5-coder:14b",
+    "judge": "deepseek-r1:14b"
+  },
+  "provider": "ollama",
+  "unit": "seconds per item (measured)",
+  "messages_mined_per_store": {
+    "bitemporal": 230,
+    "overwrite": 230
+  },
+  "questions_per_system": {
+    "rag_messages": 1,
+    "ours": 1,
+    "ours_no_temporal": 1,
+    "ours_no_provenance": 1,
+    "overwrite_memory": 1
+  },
+  "seconds_per_message": {
+    "bitemporal": 1.051,
+    "overwrite": 0.285
+  },
+  "seconds_per_answer": {
+    "rag_messages": 7.523,
+    "ours": 1.31,
+    "ours_no_temporal": 12.794,
+    "ours_no_provenance": 7.918,
+    "overwrite_memory": 1.257
+  },
+  "seconds_per_judge": 11.905
+}
