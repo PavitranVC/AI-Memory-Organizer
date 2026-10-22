@@ -1,0 +1,245 @@
+{"type":"run","at":"2026-10-22T07:43:39.056Z","commit":"5cdd1fcea37fbe1beb2a60dac522090e1f7f7b9a + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["f685340e_abs"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"f685340e_abs","userIds":["6ad9beab4463382619ec4b8b"]}
+{"type":"build","sample":"f685340e_abs","build":{"sample":"f685340e_abs","store":"raw messages","messages_mined":0,"memory_bytes":587959}}
+{"type":"build","sample":"f685340e_abs","build":{"sample":"f685340e_abs","store":"rag message vectors","messages_mined":0,"memory_bytes":2801664}}
+{"type":"row","row":{"sample":"f685340e_abs","qa_index":0,"category":5,"question_type":"knowledge-update","system":"rag_messages","question":"How often do I play table tennis with my friends at the local park?","gold":"The information provided is not enough. You mentioned playing tennis but not table tennis.","answer":"every other week","insufficient":false,"cited":"answer_25df025b_abs_1:6 answer_25df025b_abs_2:0","score_f1":0,"judge_correct":0,"judge_reason":"The candidate provides a specific frequency, whereas the gold answer indicates the information is not available.","recall_at_k":null,"context_items":10,"context_dia":"answer_25df025b_abs_1:0 answer_25df025b_abs_1:6 answer_25df025b_abs_1:7 answer_25df025b_abs_1:8 answer_25df025b_abs_1:9 answer_25df025b_abs_1:11 6b895848_1:0 6b895848_1:1 answer_25df025b_abs_2:0 answer_25df025b_abs_2:10","context_tokens_est":1709,"retrieval_ms":40.66,"answer_ms":8716,"judge_ms":10058,"input_tokens":2222,"output_tokens":55,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"f685340e_abs"}
+{"type":"store_start","sample":"f685340e_abs","store":"bitemporal"}
+{"type":"cache","sample":"f685340e_abs","key":"f8e8d445_1:0|2023-05-22T00:51:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"f8e8d445_1:2|2023-05-22T00:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"f8e8d445_1:4|2023-05-22T00:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"f8e8d445_1:6|2023-05-22T00:51:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"f8e8d445_1:8|2023-05-22T00:51:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"f8e8d445_1:10|2023-05-22T00:51:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"answer_25df025b_abs_1:0|2023-05-22T05:28:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"answer_25df025b_abs_1:2|2023-05-22T05:28:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"answer_25df025b_abs_1:4|2023-05-22T05:28:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"answer_25df025b_abs_1:6|2023-05-22T05:28:06.000Z","data":{"candidates":[{"content":"Plans to play tennis with friends on 2023-05-21","topic":"plan tennis","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f685340e_abs","key":"answer_25df025b_abs_1:8|2023-05-22T05:28:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"answer_25df025b_abs_1:10|2023-05-22T05:28:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"7e2c6065:0|2023-05-22T06:15:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"7e2c6065:2|2023-05-22T06:15:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"7e2c6065:4|2023-05-22T06:15:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"7e2c6065:6|2023-05-22T06:15:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"7e2c6065:8|2023-05-22T06:15:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"7e2c6065:10|2023-05-22T06:15:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"11fa2b8f:0|2023-05-22T07:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"11fa2b8f:2|2023-05-22T07:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"11fa2b8f:4|2023-05-22T07:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"11fa2b8f:6|2023-05-22T07:19:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"11fa2b8f:8|2023-05-22T07:19:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"11fa2b8f:10|2023-05-22T07:19:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"b390fc21_1:0|2023-05-22T12:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"b390fc21_1:2|2023-05-22T12:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"b390fc21_1:4|2023-05-22T12:24:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"b390fc21_1:6|2023-05-22T12:24:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"b390fc21_1:8|2023-05-22T12:24:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"b390fc21_1:10|2023-05-22T12:24:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_276410:0|2023-05-22T12:45:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_276410:2|2023-05-22T12:45:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_276410:4|2023-05-22T12:45:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_276410:6|2023-05-22T12:45:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_276410:8|2023-05-22T12:45:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_376687:0|2023-05-22T13:05:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_376687:2|2023-05-22T13:05:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_376687:4|2023-05-22T13:05:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_376687:6|2023-05-22T13:05:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_376687:8|2023-05-22T13:05:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_376687:10|2023-05-22T13:05:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"9bd960f5_1:0|2023-05-22T14:23:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"9bd960f5_1:2|2023-05-22T14:23:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"9bd960f5_1:4|2023-05-22T14:23:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"9bd960f5_1:6|2023-05-22T14:23:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"9bd960f5_1:8|2023-05-22T14:23:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"9bd960f5_1:10|2023-05-22T14:23:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_181714:0|2023-05-22T15:31:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_181714:2|2023-05-22T15:31:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_181714:4|2023-05-22T15:31:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_181714:6|2023-05-22T15:31:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_181714:8|2023-05-22T15:31:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_181714:10|2023-05-22T15:31:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_151373:0|2023-05-22T16:41:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_151373:2|2023-05-22T16:41:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_151373:4|2023-05-22T16:41:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_151373:6|2023-05-22T16:41:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_151373:8|2023-05-22T16:41:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_151373:10|2023-05-22T16:41:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_151373:12|2023-05-22T16:41:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"41a34a0d_3:0|2023-05-22T16:47:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"41a34a0d_3:2|2023-05-22T16:47:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"41a34a0d_3:4|2023-05-22T16:47:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"41a34a0d_3:6|2023-05-22T16:47:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"41a34a0d_3:8|2023-05-22T16:47:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"41a34a0d_3:10|2023-05-22T16:47:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_DoscKXg_0:0|2023-05-22T19:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"6b895848_1:0|2023-05-22T20:40:00.000Z","data":{"candidates":[{"content":"Takes Max to puppy socialization classes every Thursday evening","topic":"event puppy socialization","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-18"}]}}
+{"type":"cache","sample":"f685340e_abs","key":"6b895848_1:2|2023-05-22T20:40:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"6b895848_1:4|2023-05-22T20:40:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"6b895848_1:6|2023-05-22T20:40:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"6b895848_1:8|2023-05-22T20:40:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"6b895848_1:10|2023-05-22T20:40:10.000Z","data":{"candidates":[{"content":"Plans to take Max to the dog park this weekend for some off-leash playtime","topic":"plan dog park visit","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Decided to try Skippy creamy peanut butter","topic":"hobby pet care","category":"Hobbies","importance":2,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-22"}]}}
+{"type":"cache","sample":"f685340e_abs","key":"44713827_2:0|2023-05-22T22:21:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"44713827_2:2|2023-05-22T22:21:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"44713827_2:4|2023-05-22T22:21:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"44713827_2:6|2023-05-22T22:21:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"44713827_2:8|2023-05-22T22:21:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"44713827_2:10|2023-05-22T22:21:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_520053:0|2023-05-22T22:59:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_520053:2|2023-05-22T22:59:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_520053:4|2023-05-22T22:59:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_520053:6|2023-05-22T22:59:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_531749:0|2023-05-22T23:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_531749:2|2023-05-22T23:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_531749:4|2023-05-22T23:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_531749:6|2023-05-22T23:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"afe04238_2:0|2023-05-23T01:00:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"afe04238_2:2|2023-05-23T01:00:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"afe04238_2:4|2023-05-23T01:00:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"afe04238_2:6|2023-05-23T01:00:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"afe04238_2:8|2023-05-23T01:00:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"afe04238_2:10|2023-05-23T01:00:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"a268827b_3:0|2023-05-23T01:56:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"a268827b_3:2|2023-05-23T01:56:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"a268827b_3:4|2023-05-23T01:56:04.000Z","data":{"candidates":[{"content":"Tried making spaghetti Bolognese with ground turkey instead of beef on 2023-05-16","topic":"event spaghetti bolognese","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-16"},{"content":"Plans to try Mushroom and Spinach Cream Pasta","topic":"plan mushroom and spinach cream pasta","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f685340e_abs","key":"a268827b_3:6|2023-05-23T01:56:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"a268827b_3:8|2023-05-23T01:56:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"a268827b_3:10|2023-05-23T01:56:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"66ffbb8b_1:0|2023-05-23T02:26:00.000Z","data":{"candidates":[{"content":"Plans to increase online presence as a freelance writer","topic":"plan online presence","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Experimenting with different social media platforms and hashtag strategies","topic":"hobby social media","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Had a post about journaling for mental health that got 25 likes","topic":"event social media post","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-22"}]}}
+{"type":"cache","sample":"f685340e_abs","key":"66ffbb8b_1:2|2023-05-23T02:26:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"66ffbb8b_1:4|2023-05-23T02:26:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"66ffbb8b_1:6|2023-05-23T02:26:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"66ffbb8b_1:8|2023-05-23T02:26:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"66ffbb8b_1:10|2023-05-23T02:26:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"5a30c8b2:0|2023-05-23T03:16:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"5a30c8b2:2|2023-05-23T03:16:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"5a30c8b2:4|2023-05-23T03:16:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"5a30c8b2:6|2023-05-23T03:16:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"5a30c8b2:8|2023-05-23T03:16:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"5a30c8b2:10|2023-05-23T03:16:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"6d8e00f7_1:0|2023-05-23T03:35:00.000Z","data":{"candidates":[{"content":"Plans to decorate bedroom to create a cozy atmosphere","topic":"plan bedroom decoration","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Uses lavender essential oil to unwind and improve sleep quality","topic":"hobby lavender oil","category":"Health","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"f685340e_abs","key":"6d8e00f7_1:2|2023-05-23T03:35:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"6d8e00f7_1:4|2023-05-23T03:35:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"6d8e00f7_1:6|2023-05-23T03:35:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"6d8e00f7_1:8|2023-05-23T03:35:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"6d8e00f7_1:10|2023-05-23T03:35:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"7b49beea:0|2023-05-23T03:41:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"7b49beea:2|2023-05-23T03:41:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"7b49beea:4|2023-05-23T03:41:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"7b49beea:6|2023-05-23T03:41:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"7b49beea:8|2023-05-23T03:41:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"7b49beea:10|2023-05-23T03:41:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_300801:0|2023-05-23T04:05:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_300801:2|2023-05-23T04:05:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_300801:4|2023-05-23T04:05:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_300801:6|2023-05-23T04:05:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_224988:0|2023-05-23T05:29:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_224988:2|2023-05-23T05:29:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_224988:4|2023-05-23T05:29:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_224988:6|2023-05-23T05:29:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_224988:8|2023-05-23T05:29:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ca3aa07f_1:0|2023-05-23T07:06:00.000Z","data":{"candidates":[{"content":"Sells handmade jewelry at the Local Artisans Market in the park","topic":"hobby","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Went to the Local Artisans Market in the park on 2023-05-23","topic":"event artisan market","category":"Hobbies","importance":2,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-23"}]}}
+{"type":"cache","sample":"f685340e_abs","key":"ca3aa07f_1:2|2023-05-23T07:06:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ca3aa07f_1:4|2023-05-23T07:06:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ca3aa07f_1:6|2023-05-23T07:06:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ca3aa07f_1:8|2023-05-23T07:06:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ca3aa07f_1:10|2023-05-23T07:06:10.000Z","data":{"candidates":[{"content":"Plans to attend the Arusha Gemstone Trade Show to find suppliers for a handmade jewelry business","topic":"plan gemstone trade show","category":"Business","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f685340e_abs","key":"1970789e:0|2023-05-23T07:37:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"1970789e:2|2023-05-23T07:37:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"1970789e:4|2023-05-23T07:37:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"1970789e:6|2023-05-23T07:37:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"1970789e:8|2023-05-23T07:37:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"1970789e:10|2023-05-23T07:37:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_0v3QbWW_39:1|2023-05-23T08:33:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_0v3QbWW_39:3|2023-05-23T08:33:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_0v3QbWW_39:5|2023-05-23T08:33:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_0v3QbWW_39:7|2023-05-23T08:33:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_0v3QbWW_39:9|2023-05-23T08:33:09.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_230460:0|2023-05-23T08:40:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_230460:2|2023-05-23T08:40:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_230460:4|2023-05-23T08:40:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"e08bf81f_1:0|2023-05-23T08:48:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"e08bf81f_1:2|2023-05-23T08:48:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"e08bf81f_1:4|2023-05-23T08:48:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"e08bf81f_1:6|2023-05-23T08:48:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"e08bf81f_1:8|2023-05-23T08:48:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"e08bf81f_1:10|2023-05-23T08:48:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_553365:0|2023-05-23T08:59:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_553365:2|2023-05-23T08:59:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_553365:4|2023-05-23T08:59:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_553365:6|2023-05-23T08:59:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_553365:8|2023-05-23T08:59:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"79bb1298_5:0|2023-05-23T10:01:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"79bb1298_5:2|2023-05-23T10:01:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"79bb1298_5:4|2023-05-23T10:01:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"79bb1298_5:6|2023-05-23T10:01:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"79bb1298_5:8|2023-05-23T10:01:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"79bb1298_5:10|2023-05-23T10:01:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"b1c55080_1:0|2023-05-23T10:08:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"b1c55080_1:2|2023-05-23T10:08:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"b1c55080_1:4|2023-05-23T10:08:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"b1c55080_1:6|2023-05-23T10:08:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"b1c55080_1:8|2023-05-23T10:08:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"b1c55080_1:10|2023-05-23T10:08:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"answer_25df025b_abs_2:0|2023-05-23T11:17:00.000Z","data":{"candidates":[{"content":"Plays tennis with friends at the local park every other week","topic":"hobby tennis","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to jog on the weekend","topic":"plan jogging","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f685340e_abs","key":"answer_25df025b_abs_2:2|2023-05-23T11:17:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"answer_25df025b_abs_2:4|2023-05-23T11:17:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"answer_25df025b_abs_2:6|2023-05-23T11:17:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"answer_25df025b_abs_2:8|2023-05-23T11:17:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"answer_25df025b_abs_2:10|2023-05-23T11:17:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"aa312a08:0|2023-05-23T11:46:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"aa312a08:2|2023-05-23T11:46:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"aa312a08:4|2023-05-23T11:46:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"aa312a08:6|2023-05-23T11:46:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"aa312a08:8|2023-05-23T11:46:08.000Z","data":{"candidates":[{"content":"Has a cat named Luna since 2023-05-23","topic":"pets","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-23"},{"content":"Plans to take Luna to the vet for a checkup","topic":"plan vet visit","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f685340e_abs","key":"aa312a08:10|2023-05-23T11:46:10.000Z","data":{"candidates":[{"content":"Scheduled a vet visit for Luna","topic":"event vet visit","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-23"}]}}
+{"type":"cache","sample":"f685340e_abs","key":"be4dc764_1:0|2023-05-23T12:38:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"be4dc764_1:2|2023-05-23T12:38:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"be4dc764_1:4|2023-05-23T12:38:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"be4dc764_1:6|2023-05-23T12:38:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"be4dc764_1:8|2023-05-23T12:38:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"be4dc764_1:10|2023-05-23T12:38:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_RReCreP_0:0|2023-05-23T15:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_RReCreP_0:2|2023-05-23T15:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_RReCreP_0:4|2023-05-23T15:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_RReCreP_0:6|2023-05-23T15:14:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_RReCreP_0:8|2023-05-23T15:14:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_RReCreP_0:10|2023-05-23T15:14:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_RReCreP_0:12|2023-05-23T15:14:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_RReCreP_0:14|2023-05-23T15:14:14.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"bc6c5757_2:0|2023-05-23T18:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"bc6c5757_2:2|2023-05-23T18:18:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"bc6c5757_2:4|2023-05-23T18:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"bc6c5757_2:6|2023-05-23T18:18:06.000Z","data":{"candidates":[{"content":"Plans to get smart light bulbs for the kitchen","topic":"plan smart light bulbs","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f685340e_abs","key":"bc6c5757_2:8|2023-05-23T18:18:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"bc6c5757_2:10|2023-05-23T18:18:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"d1794297:0|2023-05-23T19:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"d1794297:2|2023-05-23T19:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"d1794297:4|2023-05-23T19:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"d1794297:6|2023-05-23T19:04:06.000Z","data":{"candidates":[{"content":"Plans to build an emergency fund to 3-6 months' worth of expenses","topic":"plan emergency fund","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"f685340e_abs","key":"d1794297:8|2023-05-23T19:04:08.000Z","data":{"candidates":[{"content":"Plans to review budget and cut discretionary spending to free up more money for emergency fund","topic":"plan budget review","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to reallocate funds from entertainment budget","topic":"plan budget reallocation","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to cancel unused subscription services","topic":"plan subscription cancellation","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to increase income by taking on freelance work","topic":"plan freelance work","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f685340e_abs","key":"d1794297:10|2023-05-23T19:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_oF0gxsp_0:0|2023-05-23T19:57:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"60fa773f:0|2023-05-23T20:57:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"60fa773f:2|2023-05-23T20:57:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"60fa773f:4|2023-05-23T20:57:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"60fa773f:6|2023-05-23T20:57:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"60fa773f:8|2023-05-23T20:57:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"60fa773f:10|2023-05-23T20:57:10.000Z","data":{"candidates":[{"content":"Plans to book a full-day Tokyo city tour covering Shibuya, Harajuku, and Asakusa","topic":"plan Tokyo city tour","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Considers booking a sumo tournament tour","topic":"plan sumo tournament tour","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":null},{"content":"Considers visiting the Tokyo Tower","topic":"plan Tokyo Tower visit","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_271005:0|2023-05-23T21:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_271005:2|2023-05-23T21:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"ultrachat_271005:4|2023-05-23T21:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_P5L0ISm_135:1|2023-06-08T05:03:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_P5L0ISm_135:3|2023-06-08T05:03:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_P5L0ISm_135:5|2023-06-08T05:03:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f685340e_abs","key":"sharegpt_Wi7Op1u_72:0|2023-06-11T09:05:00.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"f685340e_abs","build":{"sample":"f685340e_abs","store":"bitemporal","messages_mined":227,"failed_messages":0,"decisions":"ADD=21 NOOP=3 SKIP=1 UPDATE=3","memory_versions":24,"memory_current":21,"memory_bytes":251637,"extract_calls":227,"reconcile_calls":25,"build_input_tokens":489035,"build_output_tokens":4972,"build_cost_usd":0,"build_seconds":211.3}}
+{"type":"store_built","sample":"f685340e_abs","store":"bitemporal","versions":24}
+{"type":"row","row":{"sample":"f685340e_abs","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours","question":"How often do I play table tennis with my friends at the local park?","gold":"The information provided is not enough. You mentioned playing tennis but not table tennis.","answer":"No information available","insufficient":true,"cited":"","score_f1":1,"judge_correct":1,"judge_reason":"Both answers state that the information is not available.","recall_at_k":null,"context_items":4,"context_dia":"answer_25df025b_abs_1:6 6b895848_1:10 ca3aa07f_1:0 6b895848_1:0","context_tokens_est":410,"retrieval_ms":49.15,"answer_ms":1221,"judge_ms":16270,"input_tokens":1046,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"f685340e_abs","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_temporal","question":"How often do I play table tennis with my friends at the local park?","gold":"The information provided is not enough. You mentioned playing tennis but not table tennis.","answer":"No information available","insufficient":true,"cited":"","score_f1":1,"judge_correct":1,"judge_reason":"Both answers state that the information is not available.","recall_at_k":null,"context_items":4,"context_dia":"answer_25df025b_abs_1:6 6b895848_1:10 ca3aa07f_1:0 6b895848_1:0","context_tokens_est":365,"retrieval_ms":665.73,"answer_ms":7358,"judge_ms":9360,"input_tokens":930,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"f685340e_abs","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_provenance","question":"How often do I play table tennis with my friends at the local park?","gold":"The information provided is not enough. You mentioned playing tennis but not table tennis.","answer":"No information available","insufficient":true,"cited":"","score_f1":1,"judge_correct":1,"judge_reason":"Both answers state that the information is not available.","recall_at_k":null,"context_items":4,"context_dia":"answer_25df025b_abs_1:6 6b895848_1:10 ca3aa07f_1:0 6b895848_1:0","context_tokens_est":118,"retrieval_ms":728.16,"answer_ms":5208,"judge_ms":10847,"input_tokens":704,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"f685340e_abs","store":"overwrite"}
+{"type":"build","sample":"f685340e_abs","build":{"sample":"f685340e_abs","store":"overwrite","messages_mined":227,"failed_messages":0,"decisions":"ADD=21 NOOP=3 SKIP=1 UPDATE=3","memory_versions":21,"memory_current":21,"memory_bytes":220047,"extract_calls":0,"reconcile_calls":25,"build_input_tokens":24648,"build_output_tokens":1518,"build_cost_usd":0,"build_seconds":50.7}}
+{"type":"store_built","sample":"f685340e_abs","store":"overwrite","versions":21}
+{"type":"row","row":{"sample":"f685340e_abs","qa_index":0,"category":5,"question_type":"knowledge-update","system":"overwrite_memory","question":"How often do I play table tennis with my friends at the local park?","gold":"The information provided is not enough. You mentioned playing tennis but not table tennis.","answer":"No information available","insufficient":true,"cited":"","score_f1":1,"judge_correct":1,"judge_reason":"Both answers state that the information is not available.","recall_at_k":null,"context_items":4,"context_dia":"answer_25df025b_abs_1:6 6b895848_1:10 ca3aa07f_1:0 6b895848_1:0","context_tokens_est":410,"retrieval_ms":37.51,"answer_ms":1206,"judge_ms":14558,"input_tokens":1046,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"f685340e_abs"}
+{"type":"complete","at":"2026-10-22T07:49:31.544Z"}
