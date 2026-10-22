@@ -1,0 +1,269 @@
+{"type":"run","at":"2026-10-22T06:07:58.042Z","commit":"ccb1c82af1668bcb21a7e312d204a29769ff5015 + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["gpt4_cd90e484"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"gpt4_cd90e484","userIds":["6ad9a83eb5474d3acf2c93db"]}
+{"type":"build","sample":"gpt4_cd90e484","build":{"sample":"gpt4_cd90e484","store":"raw messages","messages_mined":0,"memory_bytes":593173}}
+{"type":"build","sample":"gpt4_cd90e484","build":{"sample":"gpt4_cd90e484","store":"rag message vectors","messages_mined":0,"memory_bytes":3121152}}
+{"type":"row","row":{"sample":"gpt4_cd90e484","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"rag_messages","question":"How long did I use my new binoculars before I saw the American goldfinches returning to the area?","gold":"Two weeks","answer":"three weeks","insufficient":false,"cited":"answer_aa930b56_1:4","score_f1":0.5,"judge_correct":0,"judge_reason":"Different duration from the gold answer.","recall_at_k":1,"context_items":10,"context_dia":"answer_aa930b56_1:0 answer_aa930b56_1:1 answer_aa930b56_1:4 answer_aa930b56_1:5 answer_aa930b56_1:7 answer_aa930b56_1:11 answer_aa930b56_2:0 answer_aa930b56_2:7 answer_aa930b56_2:8 answer_aa930b56_2:9","context_tokens_est":2565,"retrieval_ms":31.27,"answer_ms":8029,"judge_ms":8988,"input_tokens":2976,"output_tokens":36,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"gpt4_cd90e484"}
+{"type":"store_start","sample":"gpt4_cd90e484","store":"bitemporal"}
+{"type":"cache","sample":"gpt4_cd90e484","key":"4bfcc251_1:0|2023-05-20T00:04:00.000Z","data":{"candidates":[{"content":"Participated in the 'Walk for Hunger' charity event on 2023-05-20, walking 5 kilometers to raise money for the local food bank","topic":"event charity walk","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-20"}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"4bfcc251_1:2|2023-05-20T00:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"4bfcc251_1:4|2023-05-20T00:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"4bfcc251_1:6|2023-05-20T00:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"4bfcc251_1:8|2023-05-20T00:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"4bfcc251_1:10|2023-05-20T00:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_80771:0|2023-05-20T00:38:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_80771:2|2023-05-20T00:38:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_80771:4|2023-05-20T00:38:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_80771:6|2023-05-20T00:38:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_80771:8|2023-05-20T00:38:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"83fb74bf_1:0|2023-05-20T02:07:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"83fb74bf_1:2|2023-05-20T02:07:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"83fb74bf_1:4|2023-05-20T02:07:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"83fb74bf_1:6|2023-05-20T02:07:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"83fb74bf_1:8|2023-05-20T02:07:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"83fb74bf_1:10|2023-05-20T02:07:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_Ajf7nVz_113:1|2023-05-20T02:17:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_52420:0|2023-05-20T02:39:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_52420:2|2023-05-20T02:39:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_52420:4|2023-05-20T02:39:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_V5oqo7j_0:0|2023-05-20T02:41:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_V5oqo7j_0:2|2023-05-20T02:41:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_V5oqo7j_0:4|2023-05-20T02:41:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_219330:0|2023-05-20T03:06:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_219330:2|2023-05-20T03:06:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_219330:4|2023-05-20T03:06:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_6cz1Sq6_264:0|2023-05-20T04:34:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_6cz1Sq6_264:2|2023-05-20T04:34:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_6cz1Sq6_264:4|2023-05-20T04:34:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_6cz1Sq6_264:6|2023-05-20T04:34:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_6cz1Sq6_264:8|2023-05-20T04:34:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"e83f60f1_1:0|2023-05-20T05:26:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"e83f60f1_1:2|2023-05-20T05:26:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"e83f60f1_1:4|2023-05-20T05:26:04.000Z","data":{"candidates":[{"content":"Uses sumac and za'atar in cooking","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Adds za'atar to scrambled eggs and roasted vegetables","topic":"event cooking","category":"Learning","importance":2,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"e83f60f1_1:6|2023-05-20T05:26:06.000Z","data":{"candidates":[{"content":"Made a delicious chicken shawarma wrap using sumac on 2023-05-20","topic":"event chicken shawarma","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-20"}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"e83f60f1_1:8|2023-05-20T05:26:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"e83f60f1_1:10|2023-05-20T05:26:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_y03H32R_5:1|2023-05-20T05:43:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_y03H32R_5:3|2023-05-20T05:43:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_XIimoNW_0:0|2023-05-20T06:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"93af58b2_2:0|2023-05-20T06:49:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"93af58b2_2:2|2023-05-20T06:49:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"93af58b2_2:4|2023-05-20T06:49:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"93af58b2_2:6|2023-05-20T06:49:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"93af58b2_2:8|2023-05-20T06:49:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"93af58b2_2:10|2023-05-20T06:49:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_91711:0|2023-05-20T06:50:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_91711:2|2023-05-20T06:50:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_91711:4|2023-05-20T06:50:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_91711:6|2023-05-20T06:50:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_91711:8|2023-05-20T06:50:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_91711:10|2023-05-20T06:50:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_91711:12|2023-05-20T06:50:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_iYOIYVD_0:0|2023-05-20T07:16:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_obCC1BP_14:0|2023-05-20T07:56:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_obCC1BP_14:2|2023-05-20T07:56:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_obCC1BP_14:4|2023-05-20T07:56:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_obCC1BP_14:6|2023-05-20T07:56:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_obCC1BP_14:8|2023-05-20T07:56:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_obCC1BP_14:10|2023-05-20T07:56:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_obCC1BP_14:12|2023-05-20T07:56:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_obCC1BP_14:14|2023-05-20T07:56:14.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"8850c94e:0|2023-05-20T07:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"8850c94e:2|2023-05-20T07:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"8850c94e:4|2023-05-20T07:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"8850c94e:6|2023-05-20T07:58:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"8850c94e:8|2023-05-20T07:58:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"8850c94e:10|2023-05-20T07:58:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"4d452cdb_3:0|2023-05-20T09:35:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"4d452cdb_3:2|2023-05-20T09:35:02.000Z","data":{"candidates":[{"content":"Took online courses in data analytics and digital marketing to improve skills and stay competitive in the industry","topic":"hobbies","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-01"},{"content":"Had a performance review with Rachel earlier this month and discussed career development plan","topic":"event performance review","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-01"},{"content":"Goal to take on more leadership roles in the company and increase visibility within the organization","topic":"plan leadership roles","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"4d452cdb_3:4|2023-05-20T09:35:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"4d452cdb_3:6|2023-05-20T09:35:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"4d452cdb_3:8|2023-05-20T09:35:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"4d452cdb_3:10|2023-05-20T09:35:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"835e1b84_2:0|2023-05-20T09:37:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"835e1b84_2:2|2023-05-20T09:37:02.000Z","data":{"candidates":[{"content":"Wakes up at 7 am and goes to bed at 10 pm","topic":"daily routine","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Has work from 9 am to 5 pm","topic":"work schedule","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Has a lunch break at 12 pm","topic":"daily routine","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Allocates time for exercise at 7:30 am","topic":"daily routine","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Allocates time for focused work from 2 pm to 4 pm","topic":"daily routine","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Limits social media use to 30 minutes in the morning and 30 minutes in the evening","topic":"daily routine","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"835e1b84_2:4|2023-05-20T09:37:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"835e1b84_2:6|2023-05-20T09:37:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"835e1b84_2:8|2023-05-20T09:37:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"835e1b84_2:10|2023-05-20T09:37:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"9aad36bb_1:0|2023-05-20T10:48:00.000Z","data":{"candidates":[{"content":"Experiencing abdominal pain and discomfort since mid-February","topic":"health digestion issues","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":"2023-02-15"},{"content":"Looking for advice on what to eat to help with digestion","topic":"health diet advice","category":"Health","importance":3,"confidence":0.8,"sensitivity":"special","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"9aad36bb_1:2|2023-05-20T10:48:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"9aad36bb_1:4|2023-05-20T10:48:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"9aad36bb_1:6|2023-05-20T10:48:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"9aad36bb_1:8|2023-05-20T10:48:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"9aad36bb_1:10|2023-05-20T10:48:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_4211:0|2023-05-20T10:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_4211:2|2023-05-20T10:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_4211:4|2023-05-20T10:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"9764990c_3:0|2023-05-20T11:58:00.000Z","data":{"candidates":[{"content":"Started taking an online watercolor class on 2023-01-15","topic":"event watercolor class","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-01-15"}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"9764990c_3:2|2023-05-20T11:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"9764990c_3:4|2023-05-20T11:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"9764990c_3:6|2023-05-20T11:58:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"9764990c_3:8|2023-05-20T11:58:08.000Z","data":{"candidates":[{"content":"Started taking an online watercolor class on 2023-01-15","topic":"event watercolor class","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-01-15"},{"content":"Inspired to take up watercolor painting because of interest in evoking emotions and moods","topic":"hobby watercolor","category":"Hobbies","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-20"},{"content":"Follows watercolor artists on Instagram","topic":"hobby watercolor","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":"2023-05-20"}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"9764990c_3:10|2023-05-20T11:58:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_K6HY8Q4_63:1|2023-05-20T12:56:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_K6HY8Q4_63:3|2023-05-20T12:56:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_K6HY8Q4_63:5|2023-05-20T12:56:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_K6HY8Q4_63:7|2023-05-20T12:56:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_K6HY8Q4_63:9|2023-05-20T12:56:09.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_K6HY8Q4_63:11|2023-05-20T12:56:11.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_K6HY8Q4_63:13|2023-05-20T12:56:13.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_K6HY8Q4_63:15|2023-05-20T12:56:15.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_K6HY8Q4_63:17|2023-05-20T12:56:17.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_K6HY8Q4_63:19|2023-05-20T12:56:19.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"cc04e351_3:0|2023-05-20T12:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"cc04e351_3:2|2023-05-20T12:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"cc04e351_3:4|2023-05-20T12:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"cc04e351_3:6|2023-05-20T12:58:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"cc04e351_3:8|2023-05-20T12:58:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"cc04e351_3:10|2023-05-20T12:58:10.000Z","data":{"candidates":[{"content":"Plans to take a broad-based writing course","topic":"plan writing course","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to focus on poetry later on","topic":"plan poetry focus","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Bought two books from poet Emily Patel","topic":"event book purchase","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-20"}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_UUaR1PN_13:1|2023-05-20T14:07:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_UUaR1PN_13:3|2023-05-20T14:07:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_UUaR1PN_13:5|2023-05-20T14:07:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_UUaR1PN_13:7|2023-05-20T14:07:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_192933:0|2023-05-20T14:36:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_192933:2|2023-05-20T14:36:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_192933:4|2023-05-20T14:36:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_192933:6|2023-05-20T14:36:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_192933:8|2023-05-20T14:36:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_192933:10|2023-05-20T14:36:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"6043dcf6_1:0|2023-05-20T15:20:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"6043dcf6_1:2|2023-05-20T15:20:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"6043dcf6_1:4|2023-05-20T15:20:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"6043dcf6_1:6|2023-05-20T15:20:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"6043dcf6_1:8|2023-05-20T15:20:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"6043dcf6_1:10|2023-05-20T15:20:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"cc5a6057_2:0|2023-05-20T15:25:00.000Z","data":{"candidates":[{"content":"Helped sister and brother-in-law close on a new house today","topic":"event house closing","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-20"}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"cc5a6057_2:2|2023-05-20T15:25:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"cc5a6057_2:4|2023-05-20T15:25:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"cc5a6057_2:6|2023-05-20T15:25:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"cc5a6057_2:8|2023-05-20T15:25:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"cc5a6057_2:10|2023-05-20T15:25:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_u1AM5RT_171:1|2023-05-20T16:27:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_u1AM5RT_171:3|2023-05-20T16:27:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"e123ac8f:0|2023-05-20T16:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"e123ac8f:2|2023-05-20T16:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"e123ac8f:4|2023-05-20T16:32:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"e123ac8f:6|2023-05-20T16:32:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"e123ac8f:8|2023-05-20T16:32:08.000Z","data":{"candidates":[{"content":"Takes the train frequently between New York and Boston","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Uses the Acela Express or Northeast Regional trains","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Takes the train from New York to Boston 3 times in the past 2 weeks","topic":"event train travel","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-14"}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"e123ac8f:10|2023-05-20T16:32:10.000Z","data":{"candidates":[{"content":"Had a train delay from New York to Boston on the Acela Express in May 2023","topic":"event train delay","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-01"}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_37638:0|2023-05-20T16:55:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_37638:2|2023-05-20T16:55:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_37638:4|2023-05-20T16:55:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_37638:6|2023-05-20T16:55:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_GXDi9WQ_0:0|2023-05-20T17:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_GXDi9WQ_0:2|2023-05-20T17:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_1uJXC3j_7:1|2023-05-20T18:29:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_407308:0|2023-05-20T18:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_4eVd8BN_12:0|2023-05-20T18:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_407308:2|2023-05-20T18:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_4eVd8BN_12:2|2023-05-20T18:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_407308:4|2023-05-20T18:32:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_4eVd8BN_12:4|2023-05-20T18:32:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_407308:6|2023-05-20T18:32:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_4eVd8BN_12:6|2023-05-20T18:32:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_4eVd8BN_12:8|2023-05-20T18:32:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_4eVd8BN_12:10|2023-05-20T18:32:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_193158:0|2023-05-20T18:55:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_193158:2|2023-05-20T18:55:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_193158:4|2023-05-20T18:55:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_193158:6|2023-05-20T18:55:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_193158:8|2023-05-20T18:55:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_193158:10|2023-05-20T18:55:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_193158:12|2023-05-20T18:55:12.000Z","data":{"candidates":[{"content":"Plans to go solo and explore Hammersmith and nearby areas","topic":"plan solo trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_OmfGuWY_0:0|2023-05-20T19:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_OmfGuWY_0:2|2023-05-20T19:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"08c306e2:0|2023-05-20T20:07:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"08c306e2:2|2023-05-20T20:07:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"08c306e2:4|2023-05-20T20:07:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"08c306e2:6|2023-05-20T20:07:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"08c306e2:8|2023-05-20T20:07:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"08c306e2:10|2023-05-20T20:07:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"answer_aa930b56_1:0|2023-05-20T20:08:00.000Z","data":{"candidates":[{"content":"Started listening to bird calls online for about a month","topic":"hobby bird identification","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-20"},{"content":"Received new binoculars","topic":"hobby bird identification","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"answer_aa930b56_1:2|2023-05-20T20:08:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"answer_aa930b56_1:4|2023-05-20T20:08:04.000Z","data":{"candidates":[{"content":"Focused on bird shapes and silhouettes","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Got new binoculars on 2023-05-01","topic":"event binoculars","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-01"},{"content":"Used friend's old binoculars before","topic":"event binoculars","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"answer_aa930b56_1:6|2023-05-20T20:08:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"answer_aa930b56_1:8|2023-05-20T20:08:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"answer_aa930b56_1:10|2023-05-20T20:08:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_251014:0|2023-05-20T20:44:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_Y0aL8N3_0:0|2023-05-20T20:44:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_251014:2|2023-05-20T20:44:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_Y0aL8N3_0:2|2023-05-20T20:44:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_251014:4|2023-05-20T20:44:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_Y0aL8N3_0:4|2023-05-20T20:44:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_251014:6|2023-05-20T20:44:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_Y0aL8N3_0:6|2023-05-20T20:44:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_Y0aL8N3_0:8|2023-05-20T20:44:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_Y0aL8N3_0:10|2023-05-20T20:44:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"61b27d67_3:0|2023-05-20T21:03:00.000Z","data":{"candidates":[{"content":"Plans to start training for a 5K charity run","topic":"plan 5k run","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"61b27d67_3:2|2023-05-20T21:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"61b27d67_3:4|2023-05-20T21:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"61b27d67_3:6|2023-05-20T21:03:06.000Z","data":{"candidates":[{"content":"Plans to find a running buddy","topic":"plan running buddy","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to explore new routes around the city","topic":"plan new routes","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to track progress","topic":"plan track progress","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"61b27d67_3:8|2023-05-20T21:03:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"61b27d67_3:10|2023-05-20T21:03:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"d850eba6_2:0|2023-05-20T21:22:00.000Z","data":{"candidates":[{"content":"Is working on a quilt for her sister's birthday","topic":"hobby quilting","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Experiments with natural dyeing","topic":"hobby natural dyeing","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"d850eba6_2:2|2023-05-20T21:22:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"d850eba6_2:4|2023-05-20T21:22:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"d850eba6_2:6|2023-05-20T21:22:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"d850eba6_2:8|2023-05-20T21:22:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"d850eba6_2:10|2023-05-20T21:22:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"866de400:0|2023-05-20T21:26:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"866de400:2|2023-05-20T21:26:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"866de400:4|2023-05-20T21:26:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"866de400:6|2023-05-20T21:26:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"866de400:8|2023-05-20T21:26:08.000Z","data":{"candidates":[{"content":"Plans to add a list for 'Upcoming Events' on Trello","topic":"plan trello","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to use Trello to set reminders for networking events","topic":"plan trello reminders","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"866de400:10|2023-05-20T21:26:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_153640:0|2023-05-20T21:56:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_153640:2|2023-05-20T21:56:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_153640:4|2023-05-20T21:56:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_153640:6|2023-05-20T21:56:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_347068:0|2023-05-20T22:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_347068:2|2023-05-20T22:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_347068:4|2023-05-20T22:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_347068:6|2023-05-20T22:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_347068:8|2023-05-20T22:02:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_347068:10|2023-05-20T22:02:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_0YLkf8m_0:0|2023-05-20T22:11:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_0YLkf8m_0:2|2023-05-20T22:11:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_iCNra6W_0:0|2023-05-20T22:12:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"answer_aa930b56_2:0|2023-05-20T22:12:00.000Z","data":{"candidates":[{"content":"Started listening to bird calls online for about a month","topic":"hobby bird identification","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":"2023-04-20"},{"content":"Went birding around the neighborhood after dinner a week ago","topic":"event birding","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":"2023-05-13"},{"content":"Noticed American goldfinches returning to the area","topic":"observation bird migration","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":"2023-05-13"}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"sharegpt_iCNra6W_0:2|2023-05-20T22:12:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"answer_aa930b56_2:2|2023-05-20T22:12:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"answer_aa930b56_2:4|2023-05-20T22:12:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"answer_aa930b56_2:6|2023-05-20T22:12:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"answer_aa930b56_2:8|2023-05-20T22:12:08.000Z","data":{"candidates":[{"content":"Keeps a birding journal","topic":"hobby birding","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-14"},{"content":"Has seen 43 bird species in the past six months","topic":"event bird sightings","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-14"},{"content":"Frequents a nearby nature reserve for birding","topic":"event birding at nature reserve","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-14"}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"018eac29:0|2023-05-20T22:30:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"018eac29:2|2023-05-20T22:30:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"018eac29:4|2023-05-20T22:30:04.000Z","data":{"candidates":[{"content":"Attended a book reading event by Sarah Lee at the local library on 2023-01-10","topic":"event book reading","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-01-10"}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"018eac29:6|2023-05-20T22:30:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"018eac29:8|2023-05-20T22:30:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"018eac29:10|2023-05-20T22:30:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_529850:0|2023-05-20T23:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_529850:2|2023-05-20T23:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_529850:4|2023-05-20T23:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_529850:6|2023-05-20T23:19:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_529850:8|2023-05-20T23:19:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"ultrachat_529850:10|2023-05-20T23:19:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"af42ae9c_1:0|2023-05-20T23:39:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"af42ae9c_1:2|2023-05-20T23:39:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"af42ae9c_1:4|2023-05-20T23:39:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"af42ae9c_1:6|2023-05-20T23:39:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"af42ae9c_1:8|2023-05-20T23:39:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"af42ae9c_1:10|2023-05-20T23:39:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"0ed21ce0_2:0|2023-05-20T23:51:00.000Z","data":{"candidates":[{"content":"Plans to participate in a charity event soon","topic":"plan charity event","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Helped sort and pack over 1,000 toys for underprivileged kids in the city during the 'Toy Drive' event","topic":"event toy drive","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"0ed21ce0_2:2|2023-05-20T23:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"0ed21ce0_2:4|2023-05-20T23:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"0ed21ce0_2:6|2023-05-20T23:51:06.000Z","data":{"candidates":[{"content":"Explores educational resources for underprivileged kids during the summer break","topic":"Learning","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Participated in the 'Walk for Hunger' event, raising $2,500 for the local food bank","topic":"event charity event","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-19"},{"content":"Plans to organize a charity event to support summer programs for underprivileged kids","topic":"plan charity event","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"0ed21ce0_2:8|2023-05-20T23:51:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_cd90e484","key":"0ed21ce0_2:10|2023-05-20T23:51:10.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"gpt4_cd90e484","build":{"sample":"gpt4_cd90e484","store":"bitemporal","messages_mined":251,"failed_messages":0,"decisions":"ADD=43 NOOP=2 UPDATE=8","memory_versions":51,"memory_current":43,"memory_bytes":534717,"extract_calls":251,"reconcile_calls":50,"build_input_tokens":557808,"build_output_tokens":8615,"build_cost_usd":0,"build_seconds":312.9}}
+{"type":"store_built","sample":"gpt4_cd90e484","store":"bitemporal","versions":51}
+{"type":"row","row":{"sample":"gpt4_cd90e484","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours","question":"How long did I use my new binoculars before I saw the American goldfinches returning to the area?","gold":"Two weeks","answer":"7 days","insufficient":false,"cited":"m1 m2","score_f1":0,"judge_correct":0,"judge_reason":"The candidate answer provides a different duration than the gold answer.","recall_at_k":1,"context_items":10,"context_dia":"answer_aa930b56_2:0 answer_aa930b56_1:4 e83f60f1_1:6 e123ac8f:10 cc5a6057_2:0 e83f60f1_1:4 answer_aa930b56_2:8","context_tokens_est":1119,"retrieval_ms":37.63,"answer_ms":1744,"judge_ms":16106,"input_tokens":1911,"output_tokens":30,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"gpt4_cd90e484","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours_no_temporal","question":"How long did I use my new binoculars before I saw the American goldfinches returning to the area?","gold":"Two weeks","answer":"three weeks","insufficient":false,"cited":"m1 m2","score_f1":0.5,"judge_correct":0,"judge_reason":"Different duration from the gold answer.","recall_at_k":1,"context_items":10,"context_dia":"answer_aa930b56_2:0 answer_aa930b56_1:4 answer_aa930b56_1:0 e123ac8f:8 61b27d67_3:6 835e1b84_2:2 e123ac8f:10 e83f60f1_1:6 cc5a6057_2:0 e83f60f1_1:4","context_tokens_est":1012,"retrieval_ms":692.31,"answer_ms":11422,"judge_ms":9814,"input_tokens":1648,"output_tokens":30,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"gpt4_cd90e484","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours_no_provenance","question":"How long did I use my new binoculars before I saw the American goldfinches returning to the area?","gold":"Two weeks","answer":"10 days","insufficient":false,"cited":"m1 m2","score_f1":0,"judge_correct":0,"judge_reason":"Different duration from the gold answer.","recall_at_k":1,"context_items":10,"context_dia":"answer_aa930b56_2:0 answer_aa930b56_1:4 e83f60f1_1:6 e123ac8f:10 cc5a6057_2:0 e83f60f1_1:4 answer_aa930b56_2:8","context_tokens_est":279,"retrieval_ms":739.03,"answer_ms":5758,"judge_ms":8103,"input_tokens":949,"output_tokens":31,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"gpt4_cd90e484","store":"overwrite"}
+{"type":"build","sample":"gpt4_cd90e484","build":{"sample":"gpt4_cd90e484","store":"overwrite","messages_mined":251,"failed_messages":1,"decisions":"ADD=37 NOOP=2 UPDATE=8","memory_versions":38,"memory_current":38,"memory_bytes":398350,"extract_calls":0,"reconcile_calls":46,"build_input_tokens":47118,"build_output_tokens":2807,"build_cost_usd":0,"build_seconds":90.3}}
+{"type":"store_built","sample":"gpt4_cd90e484","store":"overwrite","versions":38}
+{"type":"row","row":{"sample":"gpt4_cd90e484","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"overwrite_memory","question":"How long did I use my new binoculars before I saw the American goldfinches returning to the area?","gold":"Two weeks","answer":"three weeks","insufficient":false,"cited":"m1 m10","score_f1":0.5,"judge_correct":0,"judge_reason":"Different duration from the gold answer.","recall_at_k":1,"context_items":10,"context_dia":"answer_aa930b56_2:0 e83f60f1_1:6 e123ac8f:10 cc5a6057_2:0 e83f60f1_1:4 answer_aa930b56_2:8 answer_aa930b56_1:0 answer_aa930b56_1:4","context_tokens_est":1193,"retrieval_ms":34.7,"answer_ms":1766,"judge_ms":15520,"input_tokens":1988,"output_tokens":31,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"gpt4_cd90e484"}
+{"type":"complete","at":"2026-10-22T06:16:14.526Z"}
