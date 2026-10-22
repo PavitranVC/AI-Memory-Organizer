@@ -163,6 +163,9 @@ with real data, because it deletes everything first.
 | `npm run eval:judge-agreement -- results/<run-id>` | After you label `judge_validation.csv`: agreement and Cohen's kappa between you and the LLM judge |
 | `npm run eval:launch -- --batch-id <name> --types ... --per-type N` / `npm run eval:status` | Start a LongMemEval batch in the background after checking every condition (backup to git after each question) / show how far it is |
 | `npm run eval:judge-sample` | One blind 50-row sheet for the judge check, drawn from all LoCoMo samples |
+| `npm run eval:pool -- [--prefix ... --out-name ... --retry-dir ...]` | Pools per-sample or per-question run folders into one table with bootstrap intervals and paired comparisons; failed answers shown separately |
+| `npm run eval:lme-diagnostics` | Counts that explain the LongMemEval pilot: abstentions per system, identical answers, memory-store sizes |
+| `npm run eval:token-fit` / `npm run eval:retry` / `npm run eval:launch-retry` / `npm run eval:retry-status` | Whether each LoCoMo conversation fits the context window; re-ask the timed-out full-context answers; start that retry in the background; show its progress |
 | `npm run eval:preflight -- [--dataset longmemeval --types ... --per-type N]` | Before a run: which samples fit the model's context window, the projected duration, and the GPU share of the loaded model. Sends nothing to a model |
 | `npm run erasure:verify` | Stage 7: proves nothing derived from erased data remains (anti-joins over every reference). `-- --user <id>`, `-- --messages <id>,<id>`, `-- --text "phrase"`. Exit code 1 if any check fails |
 | `npm run retention` | Stage 7: erase `special` memories older than `RETENTION_SPECIAL_DAYS` (`-- --days 365` overrides, `-- --dry-run` only counts). Schedule it daily (cron or Windows Task Scheduler) |
