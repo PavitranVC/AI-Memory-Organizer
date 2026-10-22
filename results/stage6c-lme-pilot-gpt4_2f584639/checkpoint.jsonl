@@ -1,0 +1,252 @@
+{"type":"run","at":"2026-10-22T06:24:15.804Z","commit":"d49d330ae7033c0e8d45395da6f35dcbc5e076b0 + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["gpt4_2f584639"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"gpt4_2f584639","userIds":["6ad9ac0fed92b0527a522c03"]}
+{"type":"build","sample":"gpt4_2f584639","build":{"sample":"gpt4_2f584639","store":"raw messages","messages_mined":0,"memory_bytes":572805}}
+{"type":"build","sample":"gpt4_2f584639","build":{"sample":"gpt4_2f584639","store":"rag message vectors","messages_mined":0,"memory_bytes":2899968}}
+{"type":"row","row":{"sample":"gpt4_2f584639","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"rag_messages","question":"Which gift did I buy first, the necklace for my sister or the photo album for my mom?","gold":"the photo album for my mom","answer":"necklace for my sister","insufficient":false,"cited":"answer_11a8f823_1:0 answer_11a8f823_2:4","score_f1":0.4444,"judge_correct":0,"judge_reason":"The candidate answer contradicts the gold answer by stating the opposite order.","recall_at_k":0.5,"context_items":10,"context_dia":"answer_11a8f823_2:4 answer_11a8f823_2:5 answer_11a8f823_2:7 answer_11a8f823_2:9 answer_11a8f823_1:0 answer_11a8f823_1:1 answer_11a8f823_1:6 answer_11a8f823_1:7 answer_11a8f823_1:8 answer_11a8f823_1:9","context_tokens_est":2132,"retrieval_ms":36.36,"answer_ms":8033,"judge_ms":10009,"input_tokens":2566,"output_tokens":57,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"gpt4_2f584639"}
+{"type":"store_start","sample":"gpt4_2f584639","store":"bitemporal"}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_cp6hfVh_19:1|2023-05-30T00:01:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_cp6hfVh_19:3|2023-05-30T00:01:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_107617:0|2023-05-30T00:08:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_107617:2|2023-05-30T00:08:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_107617:4|2023-05-30T00:08:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_107617:6|2023-05-30T00:08:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_107617:8|2023-05-30T00:08:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_323851:0|2023-05-30T00:42:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_323851:2|2023-05-30T00:42:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_323851:4|2023-05-30T00:42:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_430445:0|2023-05-30T00:52:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_430445:2|2023-05-30T00:52:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_430445:4|2023-05-30T00:52:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_430445:6|2023-05-30T00:52:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_430445:8|2023-05-30T00:52:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_430445:10|2023-05-30T00:52:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"answer_11a8f823_2:0|2023-05-30T03:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"answer_11a8f823_2:2|2023-05-30T03:18:02.000Z","data":{"candidates":[{"content":"Ordered a customized photo album from Shutterfly for my mom's anniversary on 2023-05-16","topic":"event photo album","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-16"}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"answer_11a8f823_2:4|2023-05-30T03:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"answer_11a8f823_2:6|2023-05-30T03:18:06.000Z","data":{"candidates":[{"content":"Got a customized photo album from Shutterfly for mom's anniversary on 2023-05-24","topic":"event photo album","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-24"},{"content":"Focused on family vacation memories in the photo album","topic":"event photo album","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-24"},{"content":"Added captions and funny quotes to the photo album","topic":"event photo album","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-24"}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"answer_11a8f823_2:8|2023-05-30T03:18:08.000Z","data":{"candidates":[{"content":"Included a funny quote about a beach trip where a sandcastle looked like a giant pile of poop in a customized photo album for mom's anniversary on 2023-05-24","topic":"event photo album","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-24"}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"answer_11a8f823_2:10|2023-05-30T03:18:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"3d85d91e_2:0|2023-05-30T04:07:00.000Z","data":{"candidates":[{"content":"Plans to pursue a Master's degree in Data Science","topic":"plan data science","category":"Learning","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Parents immigrated to the US from China on 2023-05-30","topic":"event immigration","category":"Personal","importance":5,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-30"}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"3d85d91e_2:2|2023-05-30T04:07:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"3d85d91e_2:4|2023-05-30T04:07:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"3d85d91e_2:6|2023-05-30T04:07:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"3d85d91e_2:8|2023-05-30T04:07:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"3d85d91e_2:10|2023-05-30T04:07:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_Cpj17Ji_0:0|2023-05-30T04:53:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_Cpj17Ji_0:2|2023-05-30T04:53:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"4b3a0ee6_1:0|2023-05-30T05:34:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"4b3a0ee6_1:2|2023-05-30T05:34:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"4b3a0ee6_1:4|2023-05-30T05:34:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"4b3a0ee6_1:6|2023-05-30T05:34:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"4b3a0ee6_1:8|2023-05-30T05:34:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"4b3a0ee6_1:10|2023-05-30T05:34:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_9Ypd9LO_59:1|2023-05-30T05:36:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_9Ypd9LO_59:3|2023-05-30T05:36:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_9Ypd9LO_59:5|2023-05-30T05:36:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_9Ypd9LO_59:7|2023-05-30T05:36:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_rYzIWyy_13:1|2023-05-30T06:27:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_rYzIWyy_13:3|2023-05-30T06:27:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_rYzIWyy_13:5|2023-05-30T06:27:05.000Z","data":{"candidates":[{"content":"Plans to go to House of Blues for dinner on 2023-05-30","topic":"plan dinner","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_rYzIWyy_13:7|2023-05-30T06:27:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_rYzIWyy_13:9|2023-05-30T06:27:09.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_rYzIWyy_13:11|2023-05-30T06:27:11.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"9216c4d3_3:0|2023-05-30T07:06:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"9216c4d3_3:2|2023-05-30T07:06:02.000Z","data":{"candidates":[{"content":"Went on a hike in Rocky Mountain National Park a few weeks ago","topic":"event hiking","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-01"}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"9216c4d3_3:4|2023-05-30T07:06:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"9216c4d3_3:6|2023-05-30T07:06:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"9216c4d3_3:8|2023-05-30T07:06:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"9216c4d3_3:10|2023-05-30T07:06:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_kS6twK0_14:0|2023-05-30T07:50:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_122083:0|2023-05-30T08:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_122083:2|2023-05-30T08:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_122083:4|2023-05-30T08:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_122083:6|2023-05-30T08:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_122083:8|2023-05-30T08:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_122083:10|2023-05-30T08:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_122083:12|2023-05-30T08:04:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"13947b64_1:0|2023-05-30T08:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"13947b64_1:2|2023-05-30T08:18:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"13947b64_1:4|2023-05-30T08:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"13947b64_1:6|2023-05-30T08:18:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"13947b64_1:8|2023-05-30T08:18:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"13947b64_1:10|2023-05-30T08:18:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"d95e64a7_3:0|2023-05-30T08:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"d95e64a7_3:2|2023-05-30T08:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"d95e64a7_3:4|2023-05-30T08:24:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"d95e64a7_3:6|2023-05-30T08:24:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"d95e64a7_3:8|2023-05-30T08:24:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"d95e64a7_3:10|2023-05-30T08:24:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"d441f4c5:0|2023-05-30T08:53:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"d441f4c5:2|2023-05-30T08:53:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"d441f4c5:4|2023-05-30T08:53:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"d441f4c5:6|2023-05-30T08:53:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"d441f4c5:8|2023-05-30T08:53:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"d441f4c5:10|2023-05-30T08:53:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"answer_11a8f823_1:0|2023-05-30T09:00:00.000Z","data":{"candidates":[{"content":"Plans a birthday dinner for sister this weekend","topic":"plan birthday dinner","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Got a necklace from Tiffany's last weekend for sister","topic":"event gift","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-27"},{"content":"Plans to give a gift card to sister's favorite restaurant","topic":"plan gift card","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"answer_11a8f823_1:2|2023-05-30T09:00:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"answer_11a8f823_1:4|2023-05-30T09:00:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"answer_11a8f823_1:6|2023-05-30T09:00:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"answer_11a8f823_1:8|2023-05-30T09:00:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"answer_11a8f823_1:10|2023-05-30T09:00:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"9786d553:0|2023-05-30T09:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"9786d553:2|2023-05-30T09:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"9786d553:4|2023-05-30T09:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"9786d553:6|2023-05-30T09:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"9786d553:8|2023-05-30T09:02:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"9786d553:10|2023-05-30T09:02:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_229781:0|2023-05-30T10:15:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_229781:2|2023-05-30T10:15:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_229781:4|2023-05-30T10:15:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_229781:6|2023-05-30T10:15:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_229781:8|2023-05-30T10:15:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"df4d9e0d_1:0|2023-05-30T10:20:00.000Z","data":{"candidates":[{"content":"Completed a 10K event on 2023-03-01","topic":"event 10k run","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-01"},{"content":"Started doing regular 5K runs every Sunday morning for about 4 weeks leading up to March 1st","topic":"event 5k runs","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-02-05"},{"content":"Plans to create a fitness routine incorporating both running and cycling","topic":"plan fitness routine","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"df4d9e0d_1:2|2023-05-30T10:20:02.000Z","data":{"candidates":[{"content":"Plans to build endurance and speed for a cycling event on 2023-05-03","topic":"plan cycling event","category":"Fitness","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Can dedicate 4 days a week to exercise","topic":"exercise schedule","category":"Fitness","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Is a complete beginner when it comes to cycling","topic":"cycling experience","category":"Fitness","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Prefers to run in the morning and cycle in the afternoon or evening","topic":"exercise timing","category":"Fitness","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"df4d9e0d_1:4|2023-05-30T10:20:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"df4d9e0d_1:6|2023-05-30T10:20:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"df4d9e0d_1:8|2023-05-30T10:20:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"df4d9e0d_1:10|2023-05-30T10:20:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_570726:0|2023-05-30T11:35:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_570726:2|2023-05-30T11:35:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_570726:4|2023-05-30T11:35:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_570726:6|2023-05-30T11:35:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_570726:8|2023-05-30T11:35:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_570726:10|2023-05-30T11:35:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_570726:12|2023-05-30T11:35:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_551735:0|2023-05-30T12:26:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_551735:2|2023-05-30T12:26:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_551735:4|2023-05-30T12:26:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_551735:6|2023-05-30T12:26:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_551735:8|2023-05-30T12:26:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_551735:10|2023-05-30T12:26:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_551735:12|2023-05-30T12:26:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"21b19306_2:0|2023-05-30T12:30:00.000Z","data":{"candidates":[{"content":"Got a flu shot last week","topic":"event flu shot","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-23"}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"21b19306_2:2|2023-05-30T12:30:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"21b19306_2:4|2023-05-30T12:30:04.000Z","data":{"candidates":[{"content":"Got a humidifier for the bedroom on 2023-05-29","topic":"event humidifier","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-29"},{"content":"Plans to get a humidifier for the office","topic":"plan humidifier","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"21b19306_2:6|2023-05-30T12:30:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"21b19306_2:8|2023-05-30T12:30:08.000Z","data":{"candidates":[{"content":"Has an eye appointment with an optometrist on 2023-03-10","topic":"event eye appointment","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-10"},{"content":"Experiences eye strain from staring at a computer screen all day","topic":"health issue","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"21b19306_2:10|2023-05-30T12:30:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_91920:0|2023-05-30T12:45:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_91920:2|2023-05-30T12:45:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_91920:4|2023-05-30T12:45:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_91920:6|2023-05-30T12:45:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_91920:8|2023-05-30T12:45:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_91920:10|2023-05-30T12:45:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"f07752be_1:0|2023-05-30T14:36:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"f07752be_1:2|2023-05-30T14:36:02.000Z","data":{"candidates":[{"content":"Plans to schedule a doctor's appointment for 12:00 PM","topic":"plan doctor's appointment","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"f07752be_1:4|2023-05-30T14:36:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"f07752be_1:6|2023-05-30T14:36:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"f07752be_1:8|2023-05-30T14:36:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"f07752be_1:10|2023-05-30T14:36:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ebe3b6bf_5:0|2023-05-30T14:42:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ebe3b6bf_5:2|2023-05-30T14:42:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ebe3b6bf_5:4|2023-05-30T14:42:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ebe3b6bf_5:6|2023-05-30T14:42:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ebe3b6bf_5:8|2023-05-30T14:42:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ebe3b6bf_5:10|2023-05-30T14:42:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_EEB6Fsp_0:0|2023-05-30T15:11:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_EEB6Fsp_0:2|2023-05-30T15:11:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_EEB6Fsp_0:4|2023-05-30T15:11:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_EEB6Fsp_0:6|2023-05-30T15:11:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"821242cd_2:0|2023-05-30T15:47:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"821242cd_2:2|2023-05-30T15:47:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"821242cd_2:4|2023-05-30T15:47:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"821242cd_2:6|2023-05-30T15:47:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"821242cd_2:8|2023-05-30T15:47:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"821242cd_2:10|2023-05-30T15:47:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_464469:0|2023-05-30T15:51:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_464469:2|2023-05-30T15:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_464469:4|2023-05-30T15:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_464469:6|2023-05-30T15:51:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_23347:0|2023-05-30T16:29:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_23347:2|2023-05-30T16:29:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_23347:4|2023-05-30T16:29:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_23347:6|2023-05-30T16:29:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_23347:8|2023-05-30T16:29:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_23347:10|2023-05-30T16:29:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_dIgdYPv_13:1|2023-05-30T17:03:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_dIgdYPv_13:3|2023-05-30T17:03:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"54df03d4_1:0|2023-05-30T18:40:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"54df03d4_1:2|2023-05-30T18:40:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"54df03d4_1:4|2023-05-30T18:40:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"54df03d4_1:6|2023-05-30T18:40:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"54df03d4_1:8|2023-05-30T18:40:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"54df03d4_1:10|2023-05-30T18:40:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_64391:0|2023-05-30T20:16:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_64391:2|2023-05-30T20:16:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_64391:4|2023-05-30T20:16:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_64391:6|2023-05-30T20:16:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_64391:8|2023-05-30T20:16:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_64391:10|2023-05-30T20:16:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"68131948:0|2023-05-30T20:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"68131948:2|2023-05-30T20:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"68131948:4|2023-05-30T20:32:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"68131948:6|2023-05-30T20:32:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"68131948:8|2023-05-30T20:32:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"68131948:10|2023-05-30T20:32:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c3d89115:0|2023-05-30T20:40:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c3d89115:2|2023-05-30T20:40:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c3d89115:4|2023-05-30T20:40:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c3d89115:6|2023-05-30T20:40:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c3d89115:8|2023-05-30T20:40:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c3d89115:10|2023-05-30T20:40:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c33707b0:0|2023-05-30T20:45:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c33707b0:2|2023-05-30T20:45:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c33707b0:4|2023-05-30T20:45:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c33707b0:6|2023-05-30T20:45:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c33707b0:8|2023-05-30T20:45:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c33707b0:10|2023-05-30T20:45:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c6eb17f0_1:0|2023-05-30T20:48:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c6eb17f0_1:2|2023-05-30T20:48:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c6eb17f0_1:4|2023-05-30T20:48:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c6eb17f0_1:6|2023-05-30T20:48:06.000Z","data":{"candidates":[{"content":"Wore a red off-the-shoulder dress to a friend's birthday party on 2023-05-27","topic":"event birthday party","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-27"},{"content":"Bought a red off-the-shoulder dress from Zara on 2023-05-25","topic":"event dress purchase","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-25"}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c6eb17f0_1:8|2023-05-30T20:48:08.000Z","data":{"candidates":[{"content":"Wore a red off-the-shoulder dress to a friend's birthday party on 2023-05-30","topic":"event birthday party","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-30"},{"content":"Bought a red off-the-shoulder dress from Zara on 2023-05-25","topic":"event shopping","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-25"},{"content":"Got a shoe cleaning kit from Nordstrom","topic":"event shopping","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"c6eb17f0_1:10|2023-05-30T20:48:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"55ca8b20_3:0|2023-05-30T21:12:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"55ca8b20_3:2|2023-05-30T21:12:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"55ca8b20_3:4|2023-05-30T21:12:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"55ca8b20_3:6|2023-05-30T21:12:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"55ca8b20_3:8|2023-05-30T21:12:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"55ca8b20_3:10|2023-05-30T21:12:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ca555919_3:0|2023-05-30T21:14:00.000Z","data":{"candidates":[{"content":"Bought a portable power bank from Mophie on 2023-02-20","topic":"event portable power bank","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-02-20"}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ca555919_3:2|2023-05-30T21:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ca555919_3:4|2023-05-30T21:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ca555919_3:6|2023-05-30T21:14:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ca555919_3:8|2023-05-30T21:14:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ca555919_3:10|2023-05-30T21:14:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"96f8be8b_2:0|2023-05-30T21:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"96f8be8b_2:2|2023-05-30T21:18:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"96f8be8b_2:4|2023-05-30T21:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"96f8be8b_2:6|2023-05-30T21:18:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"96f8be8b_2:8|2023-05-30T21:18:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"96f8be8b_2:10|2023-05-30T21:18:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_101401:0|2023-05-30T21:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_101401:2|2023-05-30T21:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_101401:4|2023-05-30T21:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"905d7d4e:0|2023-05-30T21:23:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"905d7d4e:2|2023-05-30T21:23:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"905d7d4e:4|2023-05-30T21:23:04.000Z","data":{"candidates":[{"content":"Had a conversation with a stranger at a coffee shop on 2023-05-27","topic":"event coffee shop conversation","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-27"}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"905d7d4e:6|2023-05-30T21:23:06.000Z","data":{"candidates":[{"content":"Plans to try out a new coffee shop downtown that just opened up","topic":"plan coffee shop visit","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"905d7d4e:8|2023-05-30T21:23:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"905d7d4e:10|2023-05-30T21:23:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ad32e276_1:0|2023-05-30T21:53:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ad32e276_1:2|2023-05-30T21:53:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ad32e276_1:4|2023-05-30T21:53:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ad32e276_1:6|2023-05-30T21:53:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ad32e276_1:8|2023-05-30T21:53:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ad32e276_1:10|2023-05-30T21:53:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"sharegpt_bq9G6bT_2:0|2023-05-30T23:23:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_64410:0|2023-05-30T23:33:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_64410:2|2023-05-30T23:33:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_2f584639","key":"ultrachat_64410:4|2023-05-30T23:33:04.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"gpt4_2f584639","build":{"sample":"gpt4_2f584639","store":"bitemporal","messages_mined":234,"failed_messages":0,"decisions":"ADD=21 NOOP=3 SKIP=4 SUPERSEDE=1 UPDATE=4","memory_versions":26,"memory_current":21,"memory_bytes":272931,"extract_calls":234,"reconcile_calls":27,"build_input_tokens":505566,"build_output_tokens":5973,"build_cost_usd":0,"build_seconds":240.8}}
+{"type":"store_built","sample":"gpt4_2f584639","store":"bitemporal","versions":26}
+{"type":"row","row":{"sample":"gpt4_2f584639","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours","question":"Which gift did I buy first, the necklace for my sister or the photo album for my mom?","gold":"the photo album for my mom","answer":"necklace for my sister","insufficient":false,"cited":"m2 m1","score_f1":0.4444,"judge_correct":0,"judge_reason":"The candidate answer contradicts the gold answer by stating the opposite order.","recall_at_k":1,"context_items":2,"context_dia":"answer_11a8f823_2:2 answer_11a8f823_2:6 answer_11a8f823_2:8 answer_11a8f823_1:0","context_tokens_est":358,"retrieval_ms":34.55,"answer_ms":1345,"judge_ms":16894,"input_tokens":948,"output_tokens":33,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"gpt4_2f584639","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours_no_temporal","question":"Which gift did I buy first, the necklace for my sister or the photo album for my mom?","gold":"the photo album for my mom","answer":"necklace for my sister","insufficient":false,"cited":"m2 m3","score_f1":0.4444,"judge_correct":0,"judge_reason":"The candidate answer contradicts the gold answer by stating the opposite order.","recall_at_k":1,"context_items":3,"context_dia":"answer_11a8f823_2:2 answer_11a8f823_2:6 answer_11a8f823_2:8 answer_11a8f823_1:0","context_tokens_est":436,"retrieval_ms":613.84,"answer_ms":6397,"judge_ms":10304,"input_tokens":983,"output_tokens":33,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"gpt4_2f584639","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours_no_provenance","question":"Which gift did I buy first, the necklace for my sister or the photo album for my mom?","gold":"the photo album for my mom","answer":"the photo album for my mom","insufficient":false,"cited":"m1 m2","score_f1":1,"judge_correct":1,"judge_reason":"Same answer as the gold.","recall_at_k":1,"context_items":2,"context_dia":"answer_11a8f823_2:2 answer_11a8f823_2:6 answer_11a8f823_2:8 answer_11a8f823_1:0","context_tokens_est":105,"retrieval_ms":646.9,"answer_ms":6176,"judge_ms":10197,"input_tokens":669,"output_tokens":33,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"gpt4_2f584639","store":"overwrite"}
+{"type":"build","sample":"gpt4_2f584639","build":{"sample":"gpt4_2f584639","store":"overwrite","messages_mined":234,"failed_messages":0,"decisions":"ADD=21 NOOP=3 SKIP=4 SUPERSEDE=2 UPDATE=3","memory_versions":21,"memory_current":21,"memory_bytes":220062,"extract_calls":0,"reconcile_calls":27,"build_input_tokens":26839,"build_output_tokens":1872,"build_cost_usd":0,"build_seconds":58.9}}
+{"type":"store_built","sample":"gpt4_2f584639","store":"overwrite","versions":21}
+{"type":"row","row":{"sample":"gpt4_2f584639","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"overwrite_memory","question":"Which gift did I buy first, the necklace for my sister or the photo album for my mom?","gold":"the photo album for my mom","answer":"necklace for my sister","insufficient":false,"cited":"m2 m1","score_f1":0.4444,"judge_correct":0,"judge_reason":"The candidate answer contradicts the gold answer by stating the opposite order.","recall_at_k":0.5,"context_items":2,"context_dia":"answer_11a8f823_2:6 answer_11a8f823_2:8 answer_11a8f823_1:0","context_tokens_est":353,"retrieval_ms":42.87,"answer_ms":1324,"judge_ms":15899,"input_tokens":945,"output_tokens":33,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"gpt4_2f584639"}
+{"type":"complete","at":"2026-10-22T06:30:47.743Z"}

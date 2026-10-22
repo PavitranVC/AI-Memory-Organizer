@@ -1,0 +1,6 @@
+row_id,question,gold,candidate,human_correct
+1,"Which gift did I buy first, the necklace for my sister or the photo album for my mom?",the photo album for my mom,necklace for my sister,
+2,"Which gift did I buy first, the necklace for my sister or the photo album for my mom?",the photo album for my mom,the photo album for my mom,
+3,"Which gift did I buy first, the necklace for my sister or the photo album for my mom?",the photo album for my mom,necklace for my sister,
+4,"Which gift did I buy first, the necklace for my sister or the photo album for my mom?",the photo album for my mom,necklace for my sister,
+5,"Which gift did I buy first, the necklace for my sister or the photo album for my mom?",the photo album for my mom,necklace for my sister,
