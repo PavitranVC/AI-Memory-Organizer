@@ -13,6 +13,7 @@ require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const { llmConfig } = require('../services/llm/config');
+const { spawnSync } = require('child_process');
 const { parseCsv, toCsv, gitCommit, command, option, assertDisposable } = require('./meta');
 const mongoose = require('mongoose');
 const { prepareLocomo, answerAndScore } = require('./harness');
@@ -21,6 +22,16 @@ const S = require('./systems');
 const DATA = path.join(process.env.DATA_DIR || path.join(__dirname, '..', 'data'), 'locomo', 'locomo10.json');
 const TIMEOUT = /did not answer within/;
 const MONGO_URI = process.env.MONGO_URI_EVAL || 'mongodb://127.0.0.1:27017/aimemory_eval';
+const git = (...args) => spawnSync('git', args, { cwd: path.join(__dirname, '..'), encoding: 'utf8' });
+
+// Commit (and push) what the retry has produced so far; a failed push is only noted and tried again next time
+function backup(out, message, push) {
+  git('add', '--', out);
+  const commit = git('commit', '-m', message, '--', out);
+  if (commit.status !== 0) return /nothing to commit|no changes added/.test(`${commit.stdout}${commit.stderr}`) ? 'nothing new' : 'commit failed';
+  if (!push) return 'committed (push disabled)';
+  return git('push', '-u', 'origin', git('rev-parse', '--abbrev-ref', 'HEAD').stdout.trim()).status === 0 ? 'committed and pushed' : 'committed; push failed (retried at the next backup)';
+}
 
 async function main() {
   const args = process.argv.slice(2);
@@ -44,6 +55,8 @@ async function main() {
   const latest = new Map(fs.existsSync(journal) ? fs.readFileSync(journal, 'utf8').trim().split('\n').filter(Boolean).map((l) => JSON.parse(l)).map((r) => [`${r.sample}|${r.qa_index}`, r]) : []);
 
   const isDone = (key) => latest.has(key) && !latest.get(key).error;
+  const push = !args.includes('--no-push');
+  const backups = args.includes('--backup'); // the launcher turns this on; a plain run only writes files
   const dirs = fs.readdirSync(RESULTS).filter((d) => d.startsWith(prefix) && fs.existsSync(path.join(RESULTS, d, 'answers.csv'))).sort();
   let total = 0;
   const plan = [];
@@ -55,6 +68,10 @@ async function main() {
     total += rows.length;
   }
   console.log(`${total} timed-out ${systemId} answers to ask again in ${plan.length} sample(s); ${[...latest.keys()].filter(isDone).length} already answered by an earlier retry.`);
+  const statusFile = path.join(out, 'status.json');
+  const status = { state: 'running', pid: process.pid, startedAt: new Date().toISOString(), total, answeredBefore: [...latest.keys()].filter(isDone).length, answered: 0, failedAgain: 0, current: null, lastBackup: null };
+  const save = () => fs.writeFileSync(statusFile, `${JSON.stringify({ ...status, updatedAt: new Date().toISOString() }, null, 2)}\n`);
+  save();
   assertDisposable(MONGO_URI, 'eval');
   await mongoose.connect(MONGO_URI);
 
@@ -64,9 +81,15 @@ async function main() {
     for (const index of indexes) {
       if (isDone(`${sid}|${index}`)) continue;
       const item = prep.items.find((x) => x.index === index);
+      status.current = `${sid} #${index}`;
+      save();
       const row = await answerAndScore({ system, item, context, asOf: prep.asOf, retrievalMs: 0, score: prep.score });
       latest.set(`${sid}|${index}`, row);
       fs.appendFileSync(journal, `${JSON.stringify(row)}\n`);
+      if (row.error) status.failedAgain += 1;
+      else status.answered += 1;
+      if (backups && (status.answered + status.failedAgain) % 10 === 0) status.lastBackup = backup(out, `Full-context retry: ${status.answered} answered so far`, push);
+      save();
       console.log(`  ${sid} #${index}: ${row.error ? `FAILED again (${row.error.slice(0, 70)})` : `answered, judge ${row.judge_correct}`}`);
     }
   }
@@ -84,6 +107,11 @@ async function main() {
     `models: answer ${llm.models.answer}, judge ${llm.models.judge}; timeout per answer ${process.env.OLLAMA_TIMEOUT_MS} ms; context window ${(llm.ollama || {}).numCtxLarge}`,
     '',
   ].join('\n'));
+  status.state = 'done';
+  status.current = null;
+  if (backups) status.lastBackup = backup(out, `Full-context retry finished: ${rows.length - failed} answered, ${failed} failed again`, push);
+  save();
+  if (backups) status.lastBackup = backup(out, 'Full-context retry: final status', push);
   console.log(`Wrote ${path.relative(process.cwd(), out)}/ (${rows.length - failed} answered, ${failed} failed again)`);
 }
 
