@@ -1,0 +1,6 @@
+row_id,question,gold,candidate,human_correct
+1,"Which item did I purchase first, the dog bed for Max or the training pads for Luna?",Training pads for Luna,the training pads for Luna,
+2,"Which item did I purchase first, the dog bed for Max or the training pads for Luna?",Training pads for Luna,No information available,
+3,"Which item did I purchase first, the dog bed for Max or the training pads for Luna?",Training pads for Luna,training pads for Luna,
+4,"Which item did I purchase first, the dog bed for Max or the training pads for Luna?",Training pads for Luna,training pads for Luna,
+5,"Which item did I purchase first, the dog bed for Max or the training pads for Luna?",Training pads for Luna,training pads for Luna,
