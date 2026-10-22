@@ -16,6 +16,7 @@ three conversations that do fit; `npm run eval:retry` asks exactly those again w
 |---|---|
 | `eval/token-fit.js`, `results/stage6e-locomo-fullcontext-token-fit.txt` | Measures, per conversation, whether the whole history fits the window, from committed answers and Ollama's real token counts |
 | `eval/retry-failed.js` | Re-asks only the timed-out full-context answers (never the "does not fit" ones), one line per finished question so it can be stopped and restarted, writes to `results/stage6e-locomo-retry-full_context/`. Needs MongoDB only because each model call is logged |
+| `eval/launch-retry.js`, `eval/retry-status.js` | `npm run eval:launch-retry` checks the conditions (same gate as the LongMemEval pilot), starts the retry in the background and returns; the retry writes `status.json` and commits and pushes its results every 10 answers and at the end; `npm run eval:retry-status` shows progress. A second launch is refused while one runs |
 | `eval/harness.js` | Exports `answerAndScore` for the retry script; behaviour unchanged |
 | `package.json` | `eval:retry`, `eval:token-fit` |
 
@@ -46,5 +47,6 @@ three conversations that do fit; `npm run eval:retry` asks exactly those again w
 git checkout claude/stage-6e-fullcontext-retry
 npm install
 npm run eval:token-fit                         # which conversations fit, and the measured ratio
-npm run eval:retry -- --provider ollama        # the 60 timeouts; about an hour; run it again after an interruption
+npm run eval:launch-retry -- --provider ollama # checks, then runs the 60 timeouts in the background; about an hour
+npm run eval:retry-status                      # progress; run the launch command again after an interruption
 ```
