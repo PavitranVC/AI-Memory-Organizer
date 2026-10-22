@@ -10,11 +10,12 @@ const Memory = require('../models/Memory');
 const AuditLog = require('../models/AuditLog');
 const LlmCall = require('../models/LlmCall');
 const { buildSample } = require('../services/datasets/locomo');
+const { buildQuestion } = require('../services/datasets/longmemeval');
 const { ensureCategories } = require('../services/datasets/synthetic');
 const { createRng } = require('../services/datasets/common');
 const { processMessage } = require('../services/extractionService');
 const { callLlmDetailed } = require('../services/llm');
-const { locomoScore, recallAtK } = require('./metrics');
+const { locomoScore, longmemevalScore, recallAtK } = require('./metrics');
 const S = require('./systems');
 
 const NO_INFO = 'No information available';
@@ -106,7 +107,7 @@ async function clearStore(userIds) {
 }
 
 // One answer + one judge verdict for (system, question)
-async function answerAndScore({ system, item, context, asOf, retrievalMs }) {
+async function answerAndScore({ system, item, context, asOf, retrievalMs, score = locomoScore }) {
   const gold = item.answer === null ? NO_INFO : item.answer;
   const contextText = context.items.map((i) => i.text).join('\n') || '(nothing retrieved)';
   // One failed call (e.g. a local model's answer cut off at its token cap) must not end a run of thousands of
@@ -151,7 +152,7 @@ async function answerAndScore({ system, item, context, asOf, retrievalMs }) {
     answer: answered.data.answer,
     insufficient: answered.data.insufficient,
     cited: (answered.data.citedMemories || []).join(' '),
-    score_f1: error && error.startsWith('answer') ? 0 : Math.round(locomoScore(answered.data.answer, item) * 1e4) / 1e4,
+    score_f1: error && error.startsWith('answer') ? 0 : Math.round(score(answered.data.answer, item) * 1e4) / 1e4,
     judge_correct: judged.data.correct ? 1 : 0,
     judge_reason: judged.data.reason,
     recall_at_k: recallAtK(item.evidence, covered),
@@ -175,6 +176,39 @@ async function answerAndScore({ system, item, context, asOf, retrievalMs }) {
   };
 }
 
+// What evaluateSample needs to know about a sample, in one shape for every dataset:
+//   sid, parts [{ part: { user, conversations, messages }, person }]  one entry per memory "perspective",
+//   messages (all of them, time order), freshSources, asOf, items, score (the scoring rule)
+// LoCoMo is a chat between two people, so it has two perspectives (see mirror). LongMemEval is a chat between a
+// user and an assistant, so it has one: the user, whose turns the extractor mines.
+function prepareLocomo(sample, { questions, seed }) {
+  const built = buildSample(sample);
+  const { speaker_a: speakerA, speaker_b: speakerB } = sample.conversation;
+  const mirrored = mirror(built, speakerB);
+  const messages = [...built.messages].sort((a, b) => a.sentAt - b.sentAt);
+  // Evidence is translated through these ids, which exist in memory only (the database may hold an earlier copy)
+  const freshSources = new Map([...built.messages, ...mirrored.messages].map((m) => [String(m._id), m]));
+  // The question date: the day after the last session (LoCoMo questions are asked after the conversation)
+  const asOf = new Date(messages[messages.length - 1].sentAt.getTime() + 86400000);
+  // Evidence as dialog ids, keeping only the ids that match a loaded turn (Stage 5 lists the others apart)
+  const items = pickQuestions(sample.qa, questions, seed).map((i) => {
+    const item = built.evalItems[i];
+    return { ...item, index: i, sampleId: sample.sample_id, evidence: item.evidenceMessageIds.map((id) => freshSources.get(String(id)).source.id) };
+  });
+  return { sid: sample.sample_id, parts: [{ part: built, person: speakerA }, { part: mirrored, person: speakerB }], messages, freshSources, asOf, items, score: locomoScore };
+}
+
+// sample = { sample_id, item } where item is one question of a LongMemEval file (see services/datasets/longmemeval)
+function prepareLongMemEval(sample) {
+  const built = buildQuestion(sample.item);
+  const messages = [...built.messages].sort((a, b) => a.sentAt - b.sentAt);
+  const freshSources = new Map(built.messages.map((m) => [String(m._id), m]));
+  // The question is asked on the date the benchmark gives it, so memories are read as they stood that day
+  const evalItem = built.evalItem;
+  const items = [{ ...evalItem, index: 0, sampleId: sample.sample_id, evidence: evalItem.evidenceMessageIds.map((id) => freshSources.get(String(id)).source.id) }];
+  return { sid: sample.sample_id, parts: [{ part: built, person: 'the user' }], messages, freshSources, asOf: evalItem.questionDate, items, score: longmemevalScore };
+}
+
 // The four groups of systems that share one build, in the order they run. A memory store is built once per
 // group, so every system of a group answers from the SAME store.
 const GROUPS = ['full_context', 'rag_messages', 'bitemporal', 'overwrite'];
@@ -192,27 +226,15 @@ const BUILD_OF_GROUP = { rag_messages: 'rag message vectors', bitemporal: 'bitem
 //     systems of a group always answer from one single build.
 // `resetDb` (required with a ledger) empties the disposable database when the sample must start from nothing.
 // Without a ledger the database must be empty and the behaviour is exactly the Stage 6 one.
-async function evaluateSample(sample, { questions = 10, k = 10, systems = S.SYSTEM_IDS, seed = 1, log = () => {}, ledger = null, resetDb = null } = {}) {
+async function evaluateSample(sample, { questions = 10, k = 10, systems = S.SYSTEM_IDS, seed = 1, log = () => {}, ledger = null, resetDb = null, dataset = 'locomo' } = {}) {
   const chosen = systems.map((id) => {
     const s = S.SYSTEMS.find((x) => x.id === id);
     if (!s) throw new Error(`Unknown system "${id}" (known: ${S.SYSTEM_IDS.join(', ')})`);
     return s;
   });
   if (ledger && !resetDb) throw new Error('evaluateSample needs resetDb when it is given a ledger');
-  const sid = sample.sample_id;
-  const built = buildSample(sample);
-  const { speaker_a: speakerA, speaker_b: speakerB } = sample.conversation;
-  const mirrored = mirror(built, speakerB);
-  const messages = [...built.messages].sort((a, b) => a.sentAt - b.sentAt);
-  // Evidence is translated through these ids, which exist in memory only (the database may hold an earlier copy)
-  const freshSources = new Map([...built.messages, ...mirrored.messages].map((m) => [String(m._id), m]));
-  // The question date: the day after the last session (LoCoMo questions are asked after the conversation)
-  const asOf = new Date(messages[messages.length - 1].sentAt.getTime() + 86400000);
-  // Evidence as dialog ids, keeping only the ids that match a loaded turn (Stage 5 lists the others apart)
-  const items = pickQuestions(sample.qa, questions, seed).map((i) => {
-    const item = built.evalItems[i];
-    return { ...item, index: i, sampleId: sid, evidence: item.evidenceMessageIds.map((id) => freshSources.get(String(id)).source.id) };
-  });
+  if (!['locomo', 'longmemeval'].includes(dataset)) throw new Error(`Unknown dataset "${dataset}" (known: locomo, longmemeval)`);
+  const { sid, parts, messages, freshSources, asOf, items, score } = dataset === 'longmemeval' ? prepareLongMemEval(sample) : prepareLocomo(sample, { questions, seed });
 
   const rowMap = ledger ? ledger.rowsFor(sid) : new Map();
   const buildMap = new Map();
@@ -240,7 +262,7 @@ async function evaluateSample(sample, { questions = 10, k = 10, systems = S.SYST
   let sources = freshSources;
   if (needDb) {
     const prior = ledger ? ledger.dataOf(sid) : null;
-    const attached = prior ? await reattach(prior, built, mirrored, { speakerA, speakerB }) : null;
+    const attached = prior ? await reattach(prior, parts) : null;
     if (attached) {
       perspectives = attached.perspectives;
       sources = attached.sources;
@@ -250,15 +272,12 @@ async function evaluateSample(sample, { questions = 10, k = 10, systems = S.SYST
       // resetDb drops the categories too, so they are created after it
       if (ledger) await resetDb();
       await ensureCategories();
-      for (const part of [built, mirrored]) {
+      for (const { part } of parts) {
         await User.create(part.user);
         await Conversation.insertMany(part.conversations);
         await Message.insertMany(part.messages);
       }
-      perspectives = [
-        { userId: built.user._id, person: speakerA, messages: built.messages },
-        { userId: mirrored.user._id, person: speakerB, messages: mirrored.messages },
-      ];
+      perspectives = parts.map(({ part, person }) => ({ userId: part.user._id, person, messages: part.messages }));
       if (ledger) ledger.setData(sid, perspectives.map((p) => String(p.userId)));
     }
     if (!getBuild('raw messages')) {
@@ -275,7 +294,7 @@ async function evaluateSample(sample, { questions = 10, k = 10, systems = S.SYST
       if (rowMap.has(keyOf(system, item))) continue;
       const start = process.hrtime.bigint();
       const context = await contextFor(item.question);
-      record(await answerAndScore({ system, item, context, asOf, retrievalMs: ms(start) }));
+      record(await answerAndScore({ system, item, context, asOf, retrievalMs: ms(start), score }));
       asked += 1;
     }
     log(`  ${system.id}: ${items.length} questions answered${asked < items.length ? ` (${items.length - asked} from the checkpoint)` : ''}`);
@@ -344,15 +363,15 @@ async function evaluateSample(sample, { questions = 10, k = 10, systems = S.SYST
 // Finds the sample's users, conversations and messages from an earlier process in MongoDB. Returns the
 // perspectives and the message lookup, or null when the database does not hold exactly that sample (then the
 // caller starts from an empty database).
-async function reattach(prior, built, mirrored, { speakerA, speakerB }) {
+async function reattach(prior, parts) {
   const ids = prior.userIds.map((id) => new mongoose.Types.ObjectId(id));
-  if (ids.length !== 2 || (await User.countDocuments({ _id: { $in: ids } })) !== 2) return null;
+  if (ids.length !== parts.length || (await User.countDocuments({ _id: { $in: ids } })) !== parts.length) return null;
   const conversations = await Conversation.find({ userId: { $in: ids } }).select('_id userId').lean();
-  if (conversations.length !== built.conversations.length + mirrored.conversations.length) return null;
+  if (conversations.length !== parts.reduce((n, { part }) => n + part.conversations.length, 0)) return null;
   const stored = await Message.find({ conversationId: { $in: conversations.map((c) => c._id) } }).lean();
-  if (stored.length !== built.messages.length + mirrored.messages.length) return null;
+  if (stored.length !== parts.reduce((n, { part }) => n + part.messages.length, 0)) return null;
   const owner = new Map(conversations.map((c) => [String(c._id), String(c.userId)]));
-  const perspectives = [speakerA, speakerB].map((person, i) => ({
+  const perspectives = parts.map(({ person }, i) => ({
     userId: ids[i],
     person,
     messages: stored.filter((m) => owner.get(String(m.conversationId)) === String(ids[i])),
@@ -360,4 +379,4 @@ async function reattach(prior, built, mirrored, { speakerA, speakerB }) {
   return { perspectives, sources: new Map(stored.map((m) => [String(m._id), m])) };
 }
 
-module.exports = { evaluateSample, pickQuestions, mirror, NO_INFO };
+module.exports = { evaluateSample, pickQuestions, mirror, prepareLocomo, prepareLongMemEval, NO_INFO };

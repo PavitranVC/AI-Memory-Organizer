@@ -1,0 +1,245 @@
+{"type":"run","at":"2026-10-22T05:29:04.868Z","commit":"f7a332008d952f2e2ee91b7fb009a41cf9025906 + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["gpt4_b0863698"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"gpt4_b0863698","userIds":["6ad99f20d4d88fc165d09840"]}
+{"type":"build","sample":"gpt4_b0863698","build":{"sample":"gpt4_b0863698","store":"raw messages","messages_mined":0,"memory_bytes":590918}}
+{"type":"build","sample":"gpt4_b0863698","build":{"sample":"gpt4_b0863698","store":"rag message vectors","messages_mined":0,"memory_bytes":2807808}}
+{"type":"row","row":{"sample":"gpt4_b0863698","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"rag_messages","question":"How many days ago did I participate in the 5K charity run?","gold":"7 days ago. 8 days (including the last day) is also acceptable.","answer":"6","insufficient":false,"cited":"91e581ad_3:0","score_f1":0,"judge_correct":0,"judge_reason":"The candidate answer does not match the acceptable range of 7 or 8 days ago.","recall_at_k":1,"context_items":10,"context_dia":"91e581ad_3:0 91e581ad_3:1 91e581ad_3:2 91e581ad_3:3 91e581ad_3:5 4a79d078_2:0 4a79d078_2:2 4a79d078_2:7 answer_550bb2d1_1:0 answer_550bb2d1_1:1","context_tokens_est":2183,"retrieval_ms":28.87,"answer_ms":7177,"judge_ms":8692,"input_tokens":2555,"output_tokens":33,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"gpt4_b0863698"}
+{"type":"store_start","sample":"gpt4_b0863698","store":"bitemporal"}
+{"type":"cache","sample":"gpt4_b0863698","key":"63bc9fa3:0|2023-02-17T04:23:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"63bc9fa3:2|2023-02-17T04:23:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"63bc9fa3:4|2023-02-17T04:23:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"63bc9fa3:6|2023-02-17T04:23:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"63bc9fa3:8|2023-02-17T04:23:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"63bc9fa3:10|2023-02-17T04:23:10.000Z","data":{"candidates":[{"content":"Plans to look into local book clubs focusing on a favorite genre","topic":"plan book club","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"833750a1:0|2023-02-18T00:26:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"833750a1:2|2023-02-18T00:26:02.000Z","data":{"candidates":[{"content":"Went to Castello di Amorosa with family on 2023-02-11","topic":"event wine tasting","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-02-11"},{"content":"Plans to go camping near Napa Valley","topic":"plan camping","category":"Personal","importance":3,"confidence":0.8,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"833750a1:4|2023-02-18T00:26:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"833750a1:6|2023-02-18T00:26:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"833750a1:8|2023-02-18T00:26:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"833750a1:10|2023-02-18T00:26:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"bdcee74e_2:0|2023-02-19T22:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"bdcee74e_2:2|2023-02-19T22:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"bdcee74e_2:4|2023-02-19T22:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"bdcee74e_2:6|2023-02-19T22:14:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"bdcee74e_2:8|2023-02-19T22:14:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"bdcee74e_2:10|2023-02-19T22:14:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"65f6f130_1:0|2023-02-21T16:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"65f6f130_1:2|2023-02-21T16:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_215928:0|2023-02-22T05:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_215928:2|2023-02-22T05:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_215928:4|2023-02-22T05:24:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_215928:6|2023-02-22T05:24:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_215928:8|2023-02-22T05:24:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_215928:10|2023-02-22T05:24:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_215928:12|2023-02-22T05:24:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ffd7b8ba:0|2023-02-23T12:53:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ffd7b8ba:2|2023-02-23T12:53:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ffd7b8ba:4|2023-02-23T12:53:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ffd7b8ba:6|2023-02-23T12:53:06.000Z","data":{"candidates":[{"content":"Planned a spa day soiree for sister on 2023-02-16","topic":"event spa day soiree","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-02-16"},{"content":"Includes healthy snacks and drinks like fruit or herbal tea","topic":"event spa day soiree","category":"Health","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-02-16"}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ffd7b8ba:8|2023-02-23T12:53:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ffd7b8ba:10|2023-02-23T12:53:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_39914:0|2023-02-25T01:20:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_39914:2|2023-02-25T01:20:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_39914:4|2023-02-25T01:20:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_39914:6|2023-02-25T01:20:06.000Z","data":{"candidates":[{"content":"Started using Tandem to practice speaking with native speakers","topic":"event language exchange","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-02-25"}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_39914:8|2023-02-25T01:20:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c2969245:0|2023-02-25T17:00:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c2969245:2|2023-02-25T17:00:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c2969245:4|2023-02-25T17:00:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c2969245:6|2023-02-25T17:00:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c2969245:8|2023-02-25T17:00:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c2969245:10|2023-02-25T17:00:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_bPEPrlN_21:1|2023-02-26T15:37:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_bPEPrlN_21:3|2023-02-26T15:37:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_555062:0|2023-02-26T15:49:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_555062:2|2023-02-26T15:49:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_555062:4|2023-02-26T15:49:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_555062:6|2023-02-26T15:49:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_555062:8|2023-02-26T15:49:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_555062:10|2023-02-26T15:49:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_555062:12|2023-02-26T15:49:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_350080:0|2023-02-27T23:34:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_350080:2|2023-02-27T23:34:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_350080:4|2023-02-27T23:34:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_350080:6|2023-02-27T23:34:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ce8b2a9e_2:0|2023-02-28T12:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ce8b2a9e_2:2|2023-02-28T12:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ce8b2a9e_2:4|2023-02-28T12:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ce8b2a9e_2:6|2023-02-28T12:58:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ce8b2a9e_2:8|2023-02-28T12:58:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ce8b2a9e_2:10|2023-02-28T12:58:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_ArR1ems_0:0|2023-03-02T15:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"b2fa108b_1:0|2023-03-03T06:17:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"b2fa108b_1:2|2023-03-03T06:17:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"b2fa108b_1:4|2023-03-03T06:17:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"b2fa108b_1:6|2023-03-03T06:17:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"b2fa108b_1:8|2023-03-03T06:17:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"b2fa108b_1:10|2023-03-03T06:17:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"3b7c6429:0|2023-03-04T19:37:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"3b7c6429:2|2023-03-04T19:37:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"3b7c6429:4|2023-03-04T19:37:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"3b7c6429:6|2023-03-04T19:37:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"3b7c6429:8|2023-03-04T19:37:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"3b7c6429:10|2023-03-04T19:37:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"e627b1aa_1:0|2023-03-05T09:06:00.000Z","data":{"candidates":[{"content":"Plans to visit niece Emma in Ann Arbor","topic":"plan visit niece","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Attended niece Emma's high school graduation ceremony on 2023-06-15","topic":"event graduation ceremony","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-06-15"}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"e627b1aa_1:2|2023-03-05T09:06:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"e627b1aa_1:4|2023-03-05T09:06:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"e627b1aa_1:6|2023-03-05T09:06:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"e627b1aa_1:8|2023-03-05T09:06:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"e627b1aa_1:10|2023-03-05T09:06:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"684d636b:0|2023-03-05T09:38:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"684d636b:2|2023-03-05T09:38:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"684d636b:4|2023-03-05T09:38:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"684d636b:6|2023-03-05T09:38:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"684d636b:8|2023-03-05T09:38:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"684d636b:10|2023-03-05T09:38:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c2808c05_5:0|2023-03-05T12:57:00.000Z","data":{"candidates":[{"content":"Started yoga practice after attending a weekend-long yoga retreat in the mountains in February 2023","topic":"event yoga retreat","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-02-01"},{"content":"Plans to continue yoga practice","topic":"plan yoga","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c2808c05_5:2|2023-03-05T12:57:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c2808c05_5:4|2023-03-05T12:57:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c2808c05_5:6|2023-03-05T12:57:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c2808c05_5:8|2023-03-05T12:57:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c2808c05_5:10|2023-03-05T12:57:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"5815a84d:0|2023-03-05T13:01:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"5815a84d:2|2023-03-05T13:01:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"5815a84d:4|2023-03-05T13:01:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"5815a84d:6|2023-03-05T13:01:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"5815a84d:8|2023-03-05T13:01:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"5815a84d:10|2023-03-05T13:01:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"710833f3:0|2023-03-06T22:12:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"710833f3:2|2023-03-06T22:12:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"710833f3:4|2023-03-06T22:12:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"710833f3:6|2023-03-06T22:12:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"710833f3:8|2023-03-06T22:12:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"710833f3:10|2023-03-06T22:12:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_paS1piM_0:0|2023-03-09T06:23:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_paS1piM_0:2|2023-03-09T06:23:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_yU6xT9T_0:0|2023-03-09T10:31:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_yU6xT9T_0:2|2023-03-09T10:31:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_yU6xT9T_0:4|2023-03-09T10:31:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_yU6xT9T_0:6|2023-03-09T10:31:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_yU6xT9T_0:8|2023-03-09T10:31:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_yU6xT9T_0:10|2023-03-09T10:31:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_yU6xT9T_0:12|2023-03-09T10:31:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_yU6xT9T_0:14|2023-03-09T10:31:14.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"91e581ad_3:0|2023-03-10T23:10:00.000Z","data":{"candidates":[{"content":"Plans to run a charity event","topic":"plan charity event","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Trained for six months before running a marathon","topic":"event marathon training","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2022-09-10"}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"91e581ad_3:2|2023-03-10T23:10:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"91e581ad_3:4|2023-03-10T23:10:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"91e581ad_3:6|2023-03-10T23:10:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"91e581ad_3:8|2023-03-10T23:10:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"91e581ad_3:10|2023-03-10T23:10:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"b4ea8533_1:0|2023-03-11T04:51:00.000Z","data":{"candidates":[{"content":"Tries to get back on track with healthy eating","topic":"health","category":"Health","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":null},{"content":"Had Italian food catered for lunch on 2023-03-09","topic":"event lunch","category":"Personal","importance":2,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-09"}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"b4ea8533_1:2|2023-03-11T04:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"b4ea8533_1:4|2023-03-11T04:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"b4ea8533_1:6|2023-03-11T04:51:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"b4ea8533_1:8|2023-03-11T04:51:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"b4ea8533_1:10|2023-03-11T04:51:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_313605:0|2023-03-12T15:26:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_313605:2|2023-03-12T15:26:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_313605:4|2023-03-12T15:26:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_313605:6|2023-03-12T15:26:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_313605:8|2023-03-12T15:26:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_313605:10|2023-03-12T15:26:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"ultrachat_313605:12|2023-03-12T15:26:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"fba28a35_2:0|2023-03-13T12:13:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"fba28a35_2:2|2023-03-13T12:13:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"fba28a35_2:4|2023-03-13T12:13:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"fba28a35_2:6|2023-03-13T12:13:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"fba28a35_2:8|2023-03-13T12:13:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"fba28a35_2:10|2023-03-13T12:13:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"e6123485:0|2023-03-14T01:30:00.000Z","data":{"candidates":[{"content":"Plans to go on a trip to Japan","topic":"plan trip to Japan","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Booked tickets for a trip to Japan last week","topic":"event trip to Japan","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-07"},{"content":"Tried Japanese food for the first time","topic":"event first Japanese food","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-13"},{"content":"Got hooked on Japanese food","topic":"hobby Japanese food","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-13"}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"e6123485:2|2023-03-14T01:30:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"e6123485:4|2023-03-14T01:30:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"e6123485:6|2023-03-14T01:30:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"e6123485:8|2023-03-14T01:30:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"e6123485:10|2023-03-14T01:30:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"4a79d078_2:0|2023-03-14T14:17:00.000Z","data":{"candidates":[{"content":"Plans to participate in a charity bike ride next month","topic":"plan charity bike ride","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Attended a gala at the downtown Marriott hotel for the Children's Hospital on 2023-02-26 and donated $100 to the event","topic":"event charity gala","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-02-26"}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"4a79d078_2:2|2023-03-14T14:17:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"4a79d078_2:4|2023-03-14T14:17:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"4a79d078_2:6|2023-03-14T14:17:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"4a79d078_2:8|2023-03-14T14:17:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"4a79d078_2:10|2023-03-14T14:17:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_CMbaRkD_37:1|2023-03-15T05:50:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_CMbaRkD_37:3|2023-03-15T05:50:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_CMbaRkD_37:5|2023-03-15T05:50:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_CMbaRkD_37:7|2023-03-15T05:50:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_vGZ5lH1_21:1|2023-03-15T14:04:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_vGZ5lH1_21:3|2023-03-15T14:04:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_vGZ5lH1_21:5|2023-03-15T14:04:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_vGZ5lH1_21:7|2023-03-15T14:04:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_NITaMP6_0:0|2023-03-16T06:00:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"554b054e_2:0|2023-03-17T07:34:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"554b054e_2:2|2023-03-17T07:34:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"554b054e_2:4|2023-03-17T07:34:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"554b054e_2:6|2023-03-17T07:34:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"554b054e_2:8|2023-03-17T07:34:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"554b054e_2:10|2023-03-17T07:34:10.000Z","data":{"candidates":[{"content":"Attended Easter Sunday mass at St. Mary's Church on 2023-04-17","topic":"event easter sunday mass","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-04-17"},{"content":"Received Holy Communion for the first time in months","topic":"event holy communion","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-04-17"},{"content":"Struggling to let go of some past grudges","topic":"personal grudges","category":"Personal","importance":3,"confidence":0.8,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_yePPued_0:0|2023-03-17T17:50:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_yePPued_0:2|2023-03-17T17:50:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_yePPued_0:4|2023-03-17T17:50:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c0a55886_1:0|2023-03-17T20:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c0a55886_1:2|2023-03-17T20:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c0a55886_1:4|2023-03-17T20:24:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c0a55886_1:6|2023-03-17T20:24:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c0a55886_1:8|2023-03-17T20:24:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"c0a55886_1:10|2023-03-17T20:24:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_vuBUy8l_0:0|2023-03-18T10:34:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_vuBUy8l_0:2|2023-03-18T10:34:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_vuBUy8l_0:4|2023-03-18T10:34:04.000Z","data":{"candidates":[{"content":"Was living in a shelter on Oak street and complaining about shoe theft","topic":"event shelter stay","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-03-17"},{"content":"Referred to ReHouse for rapid rehousing","topic":"event referral","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-03-17"},{"content":"Completed intake with ReHouse and became an active client","topic":"event rehouse intake","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-03-17"}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_vuBUy8l_0:6|2023-03-18T10:34:06.000Z","data":{"candidates":[{"content":"James is an active client with ReHouse since 2023-03-17","topic":"event rehouse intake","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-17"},{"content":"James is unemployed","topic":"employment status","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_vuBUy8l_0:8|2023-03-18T10:34:08.000Z","data":{"candidates":[{"content":"Was assaulted by roommate at halfway house on 2023-03-17","topic":"event assault","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-03-17"},{"content":"Got kicked out of halfway house for violating policies on 2023-03-17","topic":"event halfway house","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-03-17"},{"content":"Is in shelter on Oak street","topic":"home situation","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-03-17"},{"content":"Mother died last week","topic":"event mother's death","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-03-11"},{"content":"Is concerned about relapse","topic":"concern relapse","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Plans to find emergency housing organization","topic":"plan emergency housing","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_vuBUy8l_0:10|2023-03-18T10:34:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_vuBUy8l_0:12|2023-03-18T10:34:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_vuBUy8l_0:14|2023-03-18T10:34:14.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_FPbCOuq_30:0|2023-03-19T00:12:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_FPbCOuq_30:2|2023-03-19T00:12:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_FPbCOuq_30:4|2023-03-19T00:12:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_FPbCOuq_30:6|2023-03-19T00:12:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_FPbCOuq_30:8|2023-03-19T00:12:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"05b64314_2:0|2023-03-19T00:29:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"05b64314_2:2|2023-03-19T00:29:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"05b64314_2:4|2023-03-19T00:29:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"05b64314_2:6|2023-03-19T00:29:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"05b64314_2:8|2023-03-19T00:29:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"05b64314_2:10|2023-03-19T00:29:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"70dc7d08_abs_1:0|2023-03-19T08:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"70dc7d08_abs_1:2|2023-03-19T08:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"70dc7d08_abs_1:4|2023-03-19T08:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"70dc7d08_abs_1:6|2023-03-19T08:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"70dc7d08_abs_1:8|2023-03-19T08:04:08.000Z","data":{"candidates":[{"content":"Plans to design a custom phone case with her name and a message like 'Sis' or 'Birthday Girl'","topic":"plan phone case","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Attended the annual Holiday Market at the local mall a week before Black Friday","topic":"event holiday market","category":"Personal","importance":2,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-11-24"},{"content":"Considers getting her a piece of jewelry from the Holiday Market","topic":"plan jewelry","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"70dc7d08_abs_1:10|2023-03-19T08:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"5b014f9b_1:0|2023-03-19T11:05:00.000Z","data":{"candidates":[{"content":"Volunteered at Disneyland Resort for their annual 'VoluntEARS' event on 2023-03-18","topic":"event Disneyland Resort","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-18"},{"content":"Plans to look for volunteer opportunities in the local community","topic":"plan volunteer opportunities","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"5b014f9b_1:2|2023-03-19T11:05:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"5b014f9b_1:4|2023-03-19T11:05:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"5b014f9b_1:6|2023-03-19T11:05:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"5b014f9b_1:8|2023-03-19T11:05:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"5b014f9b_1:10|2023-03-19T11:05:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"answer_550bb2d1_1:0|2023-03-19T12:13:00.000Z","data":{"candidates":[{"content":"Started running again on 2023-03-19","topic":"event running start","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-19"},{"content":"Finished a 5K charity run on 2023-03-19 in 27 minutes and 12 seconds","topic":"event 5k run","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-19"}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"answer_550bb2d1_1:2|2023-03-19T12:13:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"answer_550bb2d1_1:4|2023-03-19T12:13:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"answer_550bb2d1_1:6|2023-03-19T12:13:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"answer_550bb2d1_1:8|2023-03-19T12:13:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"answer_550bb2d1_1:10|2023-03-19T12:13:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"005ec7cf_1:0|2023-03-19T17:18:00.000Z","data":{"candidates":[{"content":"Completed a Bachelor's degree in Business Administration from the University of Michigan in 2012","topic":"education","category":"Learning","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":"2012-01-01"},{"content":"Plans to pursue an MBA","topic":"plan MBA","category":"Learning","importance":4,"confidence":0.8,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"005ec7cf_1:2|2023-03-19T17:18:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"005ec7cf_1:4|2023-03-19T17:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"005ec7cf_1:6|2023-03-19T17:18:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"005ec7cf_1:8|2023-03-19T17:18:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"005ec7cf_1:10|2023-03-19T17:18:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_T377N30_0:0|2023-03-19T17:21:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_T377N30_0:2|2023-03-19T17:21:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_T377N30_0:4|2023-03-19T17:21:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_T377N30_0:6|2023-03-19T17:21:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_T377N30_0:8|2023-03-19T17:21:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_T377N30_0:10|2023-03-19T17:21:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_b0863698","key":"sharegpt_T377N30_0:12|2023-03-19T17:21:12.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"gpt4_b0863698","build":{"sample":"gpt4_b0863698","store":"bitemporal","messages_mined":227,"failed_messages":0,"decisions":"ADD=34 NOOP=5 SUPERSEDE=1 UPDATE=3","memory_versions":38,"memory_current":34,"memory_bytes":398112,"extract_calls":227,"reconcile_calls":40,"build_input_tokens":507179,"build_output_tokens":7253,"build_cost_usd":0,"build_seconds":274.2}}
+{"type":"store_built","sample":"gpt4_b0863698","store":"bitemporal","versions":38}
+{"type":"row","row":{"sample":"gpt4_b0863698","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours","question":"How many days ago did I participate in the 5K charity run?","gold":"7 days ago. 8 days (including the last day) is also acceptable.","answer":"7","insufficient":false,"cited":"m1","score_f1":0.1667,"judge_correct":1,"judge_reason":"The candidate's answer matches one of the acceptable responses in the gold answer.","recall_at_k":1,"context_items":8,"context_dia":"answer_550bb2d1_1:0 91e581ad_3:0 4a79d078_2:0 ffd7b8ba:6 5b014f9b_1:0 c2808c05_5:0","context_tokens_est":903,"retrieval_ms":40.56,"answer_ms":1544,"judge_ms":14114,"input_tokens":1633,"output_tokens":25,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"gpt4_b0863698","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours_no_temporal","question":"How many days ago did I participate in the 5K charity run?","gold":"7 days ago. 8 days (including the last day) is also acceptable.","answer":"7","insufficient":false,"cited":"m1","score_f1":0.1667,"judge_correct":1,"judge_reason":"The candidate's answer matches one of the acceptable responses in the gold answer.","recall_at_k":1,"context_items":8,"context_dia":"answer_550bb2d1_1:0 91e581ad_3:0 4a79d078_2:0 ffd7b8ba:6 5b014f9b_1:0 c2808c05_5:0","context_tokens_est":813,"retrieval_ms":612.53,"answer_ms":6445,"judge_ms":12714,"input_tokens":1401,"output_tokens":25,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"gpt4_b0863698","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours_no_provenance","question":"How many days ago did I participate in the 5K charity run?","gold":"7 days ago. 8 days (including the last day) is also acceptable.","answer":"7","insufficient":false,"cited":"m1","score_f1":0.1667,"judge_correct":1,"judge_reason":"The candidate's answer matches one of the acceptable responses in the gold answer.","recall_at_k":1,"context_items":8,"context_dia":"answer_550bb2d1_1:0 91e581ad_3:0 4a79d078_2:0 ffd7b8ba:6 5b014f9b_1:0 c2808c05_5:0","context_tokens_est":274,"retrieval_ms":623.27,"answer_ms":6159,"judge_ms":12021,"input_tokens":931,"output_tokens":26,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"gpt4_b0863698","store":"overwrite"}
+{"type":"build","sample":"gpt4_b0863698","build":{"sample":"gpt4_b0863698","store":"overwrite","messages_mined":227,"failed_messages":0,"decisions":"ADD=36 NOOP=4 SUPERSEDE=1 UPDATE=2","memory_versions":36,"memory_current":36,"memory_bytes":377045,"extract_calls":0,"reconcile_calls":40,"build_input_tokens":39820,"build_output_tokens":2391,"build_cost_usd":0,"build_seconds":76}}
+{"type":"store_built","sample":"gpt4_b0863698","store":"overwrite","versions":36}
+{"type":"row","row":{"sample":"gpt4_b0863698","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"overwrite_memory","question":"How many days ago did I participate in the 5K charity run?","gold":"7 days ago. 8 days (including the last day) is also acceptable.","answer":"7","insufficient":false,"cited":"m1","score_f1":0.1667,"judge_correct":1,"judge_reason":"The candidate's answer matches one of the acceptable responses in the gold answer.","recall_at_k":1,"context_items":9,"context_dia":"answer_550bb2d1_1:0 91e581ad_3:0 4a79d078_2:0 ffd7b8ba:6 5b014f9b_1:0 c2808c05_5:0","context_tokens_est":992,"retrieval_ms":37.62,"answer_ms":1580,"judge_ms":17462,"input_tokens":1752,"output_tokens":26,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"gpt4_b0863698"}
+{"type":"complete","at":"2026-10-22T05:36:28.837Z"}

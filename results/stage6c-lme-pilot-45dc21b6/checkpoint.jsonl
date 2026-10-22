@@ -1,0 +1,260 @@
+{"type":"run","at":"2026-10-22T06:44:46.588Z","commit":"8124899cf57d23a2e2761867231073265eeaa7cc + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["45dc21b6"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"45dc21b6","userIds":["6ad9b0de99ed074b83e1fc8a"]}
+{"type":"build","sample":"45dc21b6","build":{"sample":"45dc21b6","store":"raw messages","messages_mined":0,"memory_bytes":570085}}
+{"type":"build","sample":"45dc21b6","build":{"sample":"45dc21b6","store":"rag message vectors","messages_mined":0,"memory_bytes":2979840}}
+{"type":"row","row":{"sample":"45dc21b6","qa_index":0,"category":5,"question_type":"knowledge-update","system":"rag_messages","question":"How many of Emma's recipes have I tried out?","gold":"3","answer":"3","insufficient":false,"cited":"answer_07664d43_2:2","score_f1":1,"judge_correct":1,"judge_reason":"Same numerical answer.","recall_at_k":1,"context_items":10,"context_dia":"b7f69a7d_2:10 b7f69a7d_2:11 answer_07664d43_1:0 answer_07664d43_1:1 eb34144a_2:10 eb34144a_2:11 answer_07664d43_2:2 sharegpt_mMdyu3t_0:6 8acb29f9_1:2 8acb29f9_1:8","context_tokens_est":1377,"retrieval_ms":37.63,"answer_ms":7198,"judge_ms":8383,"input_tokens":1931,"output_tokens":37,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"45dc21b6"}
+{"type":"store_start","sample":"45dc21b6","store":"bitemporal"}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_kXjhIjQ_256:0|2023-04-29T23:51:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_kXjhIjQ_256:2|2023-04-29T23:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_kXjhIjQ_256:4|2023-04-29T23:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_kXjhIjQ_256:6|2023-04-29T23:51:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_kXjhIjQ_256:8|2023-04-29T23:51:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_kXjhIjQ_256:10|2023-04-29T23:51:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_kXjhIjQ_256:12|2023-04-29T23:51:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_kXjhIjQ_256:14|2023-04-29T23:51:14.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_kXjhIjQ_256:16|2023-04-29T23:51:16.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_kXjhIjQ_256:18|2023-04-29T23:51:18.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_kXjhIjQ_256:20|2023-04-29T23:51:20.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_kXjhIjQ_256:22|2023-04-29T23:51:22.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"b45291a9:0|2023-05-06T10:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"b45291a9:2|2023-05-06T10:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"b45291a9:4|2023-05-06T10:32:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"b45291a9:6|2023-05-06T10:32:06.000Z","data":{"candidates":[{"content":"Takes painting classes at the local art studio since 2023-04-06","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-06"},{"content":"Dedicates at least 2 hours every weekend to practicing painting","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Completed five pieces of art since 2023-04-06","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-06"}]}}
+{"type":"cache","sample":"45dc21b6","key":"b45291a9:8|2023-05-06T10:32:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"b45291a9:10|2023-05-06T10:32:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ef69c258:0|2023-05-07T17:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ef69c258:2|2023-05-07T17:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ef69c258:4|2023-05-07T17:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ef69c258:6|2023-05-07T17:19:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ef69c258:8|2023-05-07T17:19:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ef69c258:10|2023-05-07T17:19:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"b7f69a7d_2:0|2023-05-10T06:12:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"b7f69a7d_2:2|2023-05-10T06:12:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"b7f69a7d_2:4|2023-05-10T06:12:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"b7f69a7d_2:6|2023-05-10T06:12:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"b7f69a7d_2:8|2023-05-10T06:12:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"b7f69a7d_2:10|2023-05-10T06:12:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_gu4sndU_0:0|2023-05-10T10:50:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0504a710_4:0|2023-05-17T14:35:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0504a710_4:2|2023-05-17T14:35:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0504a710_4:4|2023-05-17T14:35:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0504a710_4:6|2023-05-17T14:35:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0504a710_4:8|2023-05-17T14:35:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0504a710_4:10|2023-05-17T14:35:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"9eb7bb35:0|2023-05-18T07:09:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"9eb7bb35:2|2023-05-18T07:09:02.000Z","data":{"candidates":[{"content":"Plans to move into a new home on 2023-04-01","topic":"plan move","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Finalized a mortgage application with Wells Fargo on 2023-05-11","topic":"event mortgage application","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-11"}]}}
+{"type":"cache","sample":"45dc21b6","key":"9eb7bb35:4|2023-05-18T07:09:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"9eb7bb35:6|2023-05-18T07:09:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"9eb7bb35:8|2023-05-18T07:09:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"9eb7bb35:10|2023-05-18T07:09:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_BVfC7JV_0:0|2023-05-19T15:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_yZ6yXnQ_0:0|2023-05-19T16:54:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_yZ6yXnQ_0:2|2023-05-19T16:54:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_yZ6yXnQ_0:4|2023-05-19T16:54:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_yZ6yXnQ_0:6|2023-05-19T16:54:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_xhK5G9o_0:0|2023-05-20T08:31:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_xhK5G9o_0:2|2023-05-20T08:31:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_xhK5G9o_0:4|2023-05-20T08:31:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_xhK5G9o_0:6|2023-05-20T08:31:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_xhK5G9o_0:8|2023-05-20T08:31:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_339999:0|2023-05-20T12:26:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_339999:2|2023-05-20T12:26:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_339999:4|2023-05-20T12:26:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_XBgnox4_0:0|2023-05-22T16:23:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_Us25gXO_16:0|2023-05-24T19:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_149914:0|2023-05-28T11:17:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_149914:2|2023-05-28T11:17:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_149914:4|2023-05-28T11:17:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_149914:6|2023-05-28T11:17:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_149914:8|2023-05-28T11:17:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_149914:10|2023-05-28T11:17:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_e3npOdq_0:0|2023-05-28T15:48:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_318979:0|2023-05-29T03:21:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_318979:2|2023-05-29T03:21:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_318979:4|2023-05-29T03:21:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"26bc645b_5:0|2023-05-29T04:28:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"26bc645b_5:2|2023-05-29T04:28:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"26bc645b_5:4|2023-05-29T04:28:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"26bc645b_5:6|2023-05-29T04:28:06.000Z","data":{"candidates":[{"content":"Bought skincare products during the Sephora VIB Sale on 2023-09-17","topic":"event skincare shopping","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-09-17"},{"content":"Plans to use the Sunday Riley C.E.O. 15% Vitamin C Brightening Serum","topic":"plan skincare routine","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"45dc21b6","key":"26bc645b_5:8|2023-05-29T04:28:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"26bc645b_5:10|2023-05-29T04:28:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"answer_07664d43_1:0|2023-05-29T04:51:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"answer_07664d43_1:2|2023-05-29T04:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"answer_07664d43_1:4|2023-05-29T04:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"answer_07664d43_1:6|2023-05-29T04:51:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"answer_07664d43_1:8|2023-05-29T04:51:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"answer_07664d43_1:10|2023-05-29T04:51:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"a1f43f8d_2:0|2023-05-29T05:51:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"a1f43f8d_2:2|2023-05-29T05:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"a1f43f8d_2:4|2023-05-29T05:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"a1f43f8d_2:6|2023-05-29T05:51:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"a1f43f8d_2:8|2023-05-29T05:51:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"a1f43f8d_2:10|2023-05-29T05:51:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_169242:0|2023-05-29T07:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_169242:2|2023-05-29T07:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_169242:4|2023-05-29T07:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_169242:6|2023-05-29T07:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_169242:8|2023-05-29T07:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_169242:10|2023-05-29T07:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_508619:0|2023-05-29T07:09:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_508619:2|2023-05-29T07:09:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_508619:4|2023-05-29T07:09:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"eb34144a_2:0|2023-05-29T07:44:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"eb34144a_2:2|2023-05-29T07:44:02.000Z","data":{"candidates":[{"content":"Had an amazing brisket at a BBQ festival a few weeks ago","topic":"event brisket festival","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":"2023-05-01"},{"content":"Plans to try out some brisket recipes","topic":"plan brisket recipes","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"45dc21b6","key":"eb34144a_2:4|2023-05-29T07:44:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"eb34144a_2:6|2023-05-29T07:44:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"eb34144a_2:8|2023-05-29T07:44:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"eb34144a_2:10|2023-05-29T07:44:10.000Z","data":{"candidates":[{"content":"Had an amazing burger at an uncle's backyard BBQ party a few weeks ago","topic":"event BBQ party","category":"Personal","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":"2023-05-01"}]}}
+{"type":"cache","sample":"45dc21b6","key":"c28213e4:0|2023-05-29T11:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"c28213e4:2|2023-05-29T11:18:02.000Z","data":{"candidates":[{"content":"Attended Sunday mass at St. Mary's Catholic Church on 2023-03-12, 2023-03-22, and 2023-03-29","topic":"event church attendance","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-12"}]}}
+{"type":"cache","sample":"45dc21b6","key":"c28213e4:4|2023-05-29T11:18:04.000Z","data":{"candidates":[{"content":"Participated in the Lenten prayer group every Wednesday evening from March 15th to April 5th, led by Deacon Thomas","topic":"event Lenten prayer group","category":"Spiritual","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-03-15"}]}}
+{"type":"cache","sample":"45dc21b6","key":"c28213e4:6|2023-05-29T11:18:06.000Z","data":{"candidates":[{"content":"Attended the Stations of the Cross service at St. Joseph's Catholic Church on 2023-04-02","topic":"event Stations of the Cross","category":"Spiritual","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-04-02"}]}}
+{"type":"cache","sample":"45dc21b6","key":"c28213e4:8|2023-05-29T11:18:08.000Z","data":{"candidates":[{"content":"Attended the Easter vigil service at St. Mary's Catholic Church on 2023-04-03","topic":"event easter vigil","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-03"}]}}
+{"type":"cache","sample":"45dc21b6","key":"c28213e4:10|2023-05-29T11:18:10.000Z","data":{"candidates":[{"content":"Attended a retreat at the Franciscan Center from April 14th to 16th, focusing on 'Spiritual Renewal' and led by Sister Margaret","topic":"event retreat","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-14"}]}}
+{"type":"cache","sample":"45dc21b6","key":"369695b4_2:0|2023-05-29T12:47:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"369695b4_2:2|2023-05-29T12:47:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"369695b4_2:4|2023-05-29T12:47:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"369695b4_2:6|2023-05-29T12:47:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"369695b4_2:8|2023-05-29T12:47:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"369695b4_2:10|2023-05-29T12:47:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5934b91f:0|2023-05-29T18:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5934b91f:2|2023-05-29T18:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5934b91f:4|2023-05-29T18:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5934b91f:6|2023-05-29T18:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5934b91f:8|2023-05-29T18:02:08.000Z","data":{"candidates":[{"content":"Plans to visit the Ellis Island Immigration Museum","topic":"plan ellis island visit","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to take a walk across the Brooklyn Bridge","topic":"plan brooklyn bridge walk","category":"Hobbies","importance":2,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to visit good Irish pubs in NYC","topic":"plan irish pubs visit","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"45dc21b6","key":"5934b91f:10|2023-05-29T18:02:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5754046b:0|2023-05-29T21:51:00.000Z","data":{"candidates":[{"content":"Plans to plan a family trip to the beach house this summer","topic":"plan family trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"45dc21b6","key":"5754046b:2|2023-05-29T21:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5754046b:4|2023-05-29T21:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5754046b:6|2023-05-29T21:51:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5754046b:8|2023-05-29T21:51:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5754046b:10|2023-05-29T21:51:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_541647:0|2023-05-30T00:15:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_541647:2|2023-05-30T00:15:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_541647:4|2023-05-30T00:15:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_541647:6|2023-05-30T00:15:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"7caf3391_2:0|2023-05-30T00:59:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"7caf3391_2:2|2023-05-30T00:59:02.000Z","data":{"candidates":[{"content":"Found Blue Jay chicks in a nest a few weeks ago","topic":"event bird watching","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-23"},{"content":"Plans to set up a feeder for Blue Jays","topic":"plan bird feeder","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"45dc21b6","key":"7caf3391_2:4|2023-05-30T00:59:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"7caf3391_2:6|2023-05-30T00:59:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"7caf3391_2:8|2023-05-30T00:59:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"7caf3391_2:10|2023-05-30T00:59:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_X5WmUUf_0:0|2023-05-30T01:54:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_X5WmUUf_0:2|2023-05-30T01:54:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_X5WmUUf_0:4|2023-05-30T01:54:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_X5WmUUf_0:6|2023-05-30T01:54:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0da2772d:0|2023-05-30T02:41:00.000Z","data":{"candidates":[{"content":"Plans to go to Chicago next month","topic":"plan trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Went on a business trip to Chicago last month","topic":"event business trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-01"}]}}
+{"type":"cache","sample":"45dc21b6","key":"0da2772d:2|2023-05-30T02:41:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0da2772d:4|2023-05-30T02:41:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0da2772d:6|2023-05-30T02:41:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0da2772d:8|2023-05-30T02:41:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0da2772d:10|2023-05-30T02:41:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0060e708:0|2023-05-30T03:54:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0060e708:2|2023-05-30T03:54:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0060e708:4|2023-05-30T03:54:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0060e708:6|2023-05-30T03:54:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0060e708:8|2023-05-30T03:54:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0060e708:10|2023-05-30T03:54:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_467365:0|2023-05-30T04:25:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_467365:2|2023-05-30T04:25:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_467365:4|2023-05-30T04:25:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_467365:6|2023-05-30T04:25:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_NSacJOD_0:0|2023-05-30T06:30:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"answer_07664d43_2:0|2023-05-30T06:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"answer_07664d43_2:2|2023-05-30T06:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"answer_07664d43_2:4|2023-05-30T06:32:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"answer_07664d43_2:6|2023-05-30T06:32:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"answer_07664d43_2:8|2023-05-30T06:32:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"answer_07664d43_2:10|2023-05-30T06:32:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_gGriMhQ_91:1|2023-05-30T07:25:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_gGriMhQ_91:3|2023-05-30T07:25:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_gGriMhQ_91:5|2023-05-30T07:25:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"de459c4b:0|2023-05-30T07:44:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"de459c4b:2|2023-05-30T07:44:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"de459c4b:4|2023-05-30T07:44:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"de459c4b:6|2023-05-30T07:44:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"de459c4b:8|2023-05-30T07:44:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"de459c4b:10|2023-05-30T07:44:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5cbfaf3e_1:0|2023-05-30T07:56:00.000Z","data":{"candidates":[{"content":"Takes guitar lessons with Rachel","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Attended a music festival at the Oakland Arena on 2023-05-14","topic":"event music festival","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-14"}]}}
+{"type":"cache","sample":"45dc21b6","key":"5cbfaf3e_1:2|2023-05-30T07:56:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5cbfaf3e_1:4|2023-05-30T07:56:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5cbfaf3e_1:6|2023-05-30T07:56:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5cbfaf3e_1:8|2023-05-30T07:56:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"5cbfaf3e_1:10|2023-05-30T07:56:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"28ad789a_1:0|2023-05-30T08:40:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"28ad789a_1:2|2023-05-30T08:40:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"28ad789a_1:4|2023-05-30T08:40:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"28ad789a_1:6|2023-05-30T08:40:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"28ad789a_1:8|2023-05-30T08:40:08.000Z","data":{"candidates":[{"content":"Bought a vintage armchair from a garage sale on 2023-05-29","topic":"event furniture purchase","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-29"},{"content":"Uses the vintage armchair as a reading nook","topic":"hobby reading","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Finds the vintage armchair comfortable for napping","topic":"hobby napping","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"45dc21b6","key":"28ad789a_1:10|2023-05-30T08:40:10.000Z","data":{"candidates":[{"content":"Got a new dining table from parents' house on 2023-05-30","topic":"event dining table","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-30"},{"content":"Replaced light bulbs in floor lamps with warmer color temperature","topic":"event light bulbs","category":"Personal","importance":2,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-30"}]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_E69B6Mu_0:0|2023-05-30T10:29:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_E69B6Mu_0:2|2023-05-30T10:29:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_E69B6Mu_0:4|2023-05-30T10:29:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_E69B6Mu_0:6|2023-05-30T10:29:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"f43d9ae5:0|2023-05-30T11:38:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"f43d9ae5:2|2023-05-30T11:38:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"f43d9ae5:4|2023-05-30T11:38:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"f43d9ae5:6|2023-05-30T11:38:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"f43d9ae5:8|2023-05-30T11:38:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"f43d9ae5:10|2023-05-30T11:38:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_mMdyu3t_0:0|2023-05-30T15:54:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_mMdyu3t_0:2|2023-05-30T15:54:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_mMdyu3t_0:4|2023-05-30T15:54:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_mMdyu3t_0:6|2023-05-30T15:54:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"sharegpt_Cpc5FCH_0:0|2023-05-30T16:09:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"1c0921ee_3:0|2023-05-30T16:21:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"1c0921ee_3:2|2023-05-30T16:21:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"1c0921ee_3:4|2023-05-30T16:21:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"1c0921ee_3:6|2023-05-30T16:21:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"1c0921ee_3:8|2023-05-30T16:21:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"1c0921ee_3:10|2023-05-30T16:21:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0ad56ba6:0|2023-05-30T16:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0ad56ba6:2|2023-05-30T16:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0ad56ba6:4|2023-05-30T16:32:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0ad56ba6:6|2023-05-30T16:32:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0ad56ba6:8|2023-05-30T16:32:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"0ad56ba6:10|2023-05-30T16:32:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_494140:0|2023-05-30T21:25:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_494140:2|2023-05-30T21:25:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_494140:4|2023-05-30T21:25:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_494140:6|2023-05-30T21:25:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_494140:8|2023-05-30T21:25:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_494140:10|2023-05-30T21:25:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_494140:12|2023-05-30T21:25:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"8acb29f9_1:0|2023-06-01T22:23:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"8acb29f9_1:2|2023-06-01T22:23:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"8acb29f9_1:4|2023-06-01T22:23:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"8acb29f9_1:6|2023-06-01T22:23:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"8acb29f9_1:8|2023-06-01T22:23:08.000Z","data":{"candidates":[{"content":"Planned to make a Summer Mix fruit combination with sliced peaches, nectarines, and plums, along with fresh berries, on 2023-06-01","topic":"event fruit preparation","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-01"}]}}
+{"type":"cache","sample":"45dc21b6","key":"8acb29f9_1:10|2023-06-01T22:23:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"60147f90_1:0|2023-06-07T11:37:00.000Z","data":{"candidates":[{"content":"Submitted a thesis proposal on 2023-04-10","topic":"event thesis proposal","category":"Learning","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-10"},{"content":"Plans to start working on thesis","topic":"plan thesis","category":"Learning","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"45dc21b6","key":"60147f90_1:2|2023-06-07T11:37:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"60147f90_1:4|2023-06-07T11:37:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"60147f90_1:6|2023-06-07T11:37:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"60147f90_1:8|2023-06-07T11:37:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"60147f90_1:10|2023-06-07T11:37:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_106496:0|2023-06-09T16:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_106496:2|2023-06-09T16:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_106496:4|2023-06-09T16:24:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_106496:6|2023-06-09T16:24:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_106496:8|2023-06-09T16:24:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_106496:10|2023-06-09T16:24:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"ultrachat_106496:12|2023-06-09T16:24:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"2f57c190_1:0|2023-06-13T21:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"2f57c190_1:2|2023-06-13T21:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"2f57c190_1:4|2023-06-13T21:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"2f57c190_1:6|2023-06-13T21:14:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"2f57c190_1:8|2023-06-13T21:14:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"45dc21b6","key":"2f57c190_1:10|2023-06-13T21:14:10.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"45dc21b6","build":{"sample":"45dc21b6","store":"bitemporal","messages_mined":242,"failed_messages":0,"decisions":"ADD=27 SKIP=2 UPDATE=4","memory_versions":31,"memory_current":27,"memory_bytes":325160,"extract_calls":242,"reconcile_calls":30,"build_input_tokens":515935,"build_output_tokens":6156,"build_cost_usd":0,"build_seconds":246.5}}
+{"type":"store_built","sample":"45dc21b6","store":"bitemporal","versions":31}
+{"type":"row","row":{"sample":"45dc21b6","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours","question":"How many of Emma's recipes have I tried out?","gold":"3","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate incorrectly states it is not available.","recall_at_k":0,"context_items":4,"context_dia":"eb34144a_2:2 8acb29f9_1:8 5cbfaf3e_1:0 b45291a9:6","context_tokens_est":465,"retrieval_ms":43.47,"answer_ms":1267,"judge_ms":16110,"input_tokens":1093,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"45dc21b6","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_temporal","question":"How many of Emma's recipes have I tried out?","gold":"3","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate incorrectly states it is not available.","recall_at_k":0,"context_items":4,"context_dia":"eb34144a_2:2 b45291a9:6 8acb29f9_1:8 5cbfaf3e_1:0","context_tokens_est":420,"retrieval_ms":611.72,"answer_ms":6211,"judge_ms":8858,"input_tokens":977,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"45dc21b6","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_provenance","question":"How many of Emma's recipes have I tried out?","gold":"3","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate incorrectly states it is not available.","recall_at_k":0,"context_items":4,"context_dia":"eb34144a_2:2 8acb29f9_1:8 5cbfaf3e_1:0 b45291a9:6","context_tokens_est":152,"retrieval_ms":653.09,"answer_ms":6507,"judge_ms":8758,"input_tokens":746,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"45dc21b6","store":"overwrite"}
+{"type":"build","sample":"45dc21b6","build":{"sample":"45dc21b6","store":"overwrite","messages_mined":242,"failed_messages":0,"decisions":"ADD=27 SKIP=2 UPDATE=4","memory_versions":27,"memory_current":27,"memory_bytes":283017,"extract_calls":0,"reconcile_calls":30,"build_input_tokens":29884,"build_output_tokens":1979,"build_cost_usd":0,"build_seconds":63.8}}
+{"type":"store_built","sample":"45dc21b6","store":"overwrite","versions":27}
+{"type":"row","row":{"sample":"45dc21b6","qa_index":0,"category":5,"question_type":"knowledge-update","system":"overwrite_memory","question":"How many of Emma's recipes have I tried out?","gold":"3","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate incorrectly states it is not available.","recall_at_k":0,"context_items":4,"context_dia":"eb34144a_2:2 8acb29f9_1:8 5cbfaf3e_1:0 b45291a9:6","context_tokens_est":465,"retrieval_ms":43.09,"answer_ms":1237,"judge_ms":16463,"input_tokens":1093,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"45dc21b6"}
+{"type":"complete","at":"2026-10-22T06:51:23.788Z"}

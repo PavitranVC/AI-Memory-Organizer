@@ -1,6 +1,6 @@
 ---
 description: Viva practice. Quizzes you on one stage's notes and code, one examiner question at a time. Read-only.
-argument-hint: <stage: 1 | 2 | 3 | 3b | 4 | 5 | 6 | 7>
+argument-hint: <stage: 1 | 2 | 3 | 3b | 4 | 5 | 5b | 6 | 7>
 allowed-tools: Read, Grep, Glob, Bash(git log:*), Bash(git show:*), Bash(ls:*)
 ---
 
@@ -12,8 +12,8 @@ command that changes files or git state. Only read.
 
 ## 1. Pick the stage
 The stage is: `$ARGUMENTS`
-- Accept `1`, `2`, `3`, `3b`, `4`, `5`, `6` or `7` (also `stage 3b`, `3B`). The notes file is
-  `docs/stages/STAGE-<stage in upper case>.md`, for example `docs/stages/STAGE-3B.md`.
+- Accept `1`, `2`, `3`, `3b`, `4`, `5`, `5b`, `6` or `7` (also `stage 3b`, `3B`). The notes file is
+  `docs/stages/STAGE-<stage in upper case>.md`, for example `docs/stages/STAGE-3B.md` or `docs/stages/STAGE-5B.md`.
 - If the argument is empty or not one of these, list the files in `docs/stages/` and ask which stage, then stop.
 - If the file does not exist, say so and stop.
 

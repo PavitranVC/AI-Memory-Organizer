@@ -1,0 +1,250 @@
+{"type":"run","at":"2026-10-22T05:08:57.680Z","commit":"cb1943c0c9d6be285099472c5941e7358d889584 + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["gpt4_e061b84f"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"gpt4_e061b84f","userIds":["6ad99a69f04cd69957973ad6"]}
+{"type":"build","sample":"gpt4_e061b84f","build":{"sample":"gpt4_e061b84f","store":"raw messages","messages_mined":0,"memory_bytes":566780}}
+{"type":"build","sample":"gpt4_e061b84f","build":{"sample":"gpt4_e061b84f","store":"rag message vectors","messages_mined":0,"memory_bytes":2869248}}
+{"type":"row","row":{"sample":"gpt4_e061b84f","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"rag_messages","question":"What is the order of the three sports events I participated in during the past month, from earliest to latest?","gold":"I first completed the Spring Sprint Triathlon, then took part in the Midsummer 5K Run, and finally participated in the company's annual charity soccer tournament.","answer":"Spring Sprint Triathlon, charity soccer tournament, volleyball league game","insufficient":false,"cited":"answer_8c64ce25_2:0 answer_8c64ce25_3:0 answer_8c64ce25_2:4","score_f1":0.3871,"judge_correct":0,"judge_reason":"The candidate includes an extra event and omits the Midsummer 5K Run, which is part of the gold answer.","recall_at_k":0.6666666666666666,"context_items":10,"context_dia":"1446b088_2:2 9345f7dc_4:11 answer_8c64ce25_2:0 answer_8c64ce25_2:4 answer_8c64ce25_2:5 answer_8c64ce25_3:0 answer_8c64ce25_3:1 answer_8c64ce25_3:6 answer_8c64ce25_3:10 answer_8c64ce25_3:11","context_tokens_est":1459,"retrieval_ms":39.15,"answer_ms":8846,"judge_ms":12026,"input_tokens":1958,"output_tokens":77,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"gpt4_e061b84f"}
+{"type":"store_start","sample":"gpt4_e061b84f","store":"bitemporal"}
+{"type":"cache","sample":"gpt4_e061b84f","key":"6661e67c_1:0|2023-05-04T10:19:00.000Z","data":{"candidates":[{"content":"Plans a big family dinner to celebrate cousin's son's college graduation next month","topic":"plan family dinner","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Graduated from high school on June 17, 1992","topic":"event high school graduation","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"1992-06-17"}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"6661e67c_1:2|2023-05-04T10:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"6661e67c_1:4|2023-05-04T10:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"6661e67c_1:6|2023-05-04T10:19:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"6661e67c_1:8|2023-05-04T10:19:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"6661e67c_1:10|2023-05-04T10:19:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"32973dad:0|2023-05-04T17:33:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"32973dad:2|2023-05-04T17:33:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"32973dad:4|2023-05-04T17:33:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"32973dad:6|2023-05-04T17:33:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"32973dad:8|2023-05-04T17:33:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"32973dad:10|2023-05-04T17:33:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"390acb55_3:0|2023-05-05T12:13:00.000Z","data":{"candidates":[{"content":"Experimenting with different BBQ sauce recipes","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Made a BBQ sauce for a family gathering on Memorial Day weekend","topic":"event family gathering","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-29"},{"content":"Tried slow-cooking ribs for the first time last week","topic":"event slow-cooking ribs","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-28"}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"390acb55_3:2|2023-05-05T12:13:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"390acb55_3:4|2023-05-05T12:13:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"390acb55_3:6|2023-05-05T12:13:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"390acb55_3:8|2023-05-05T12:13:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"390acb55_3:10|2023-05-05T12:13:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_Jr5kp9S_0:0|2023-05-06T07:53:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_Jr5kp9S_0:2|2023-05-06T07:53:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_Jr5kp9S_0:4|2023-05-06T07:53:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_Jr5kp9S_0:6|2023-05-06T07:53:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"294fc20b:0|2023-05-07T04:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"294fc20b:2|2023-05-07T04:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"294fc20b:4|2023-05-07T04:43:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"294fc20b:6|2023-05-07T04:43:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"294fc20b:8|2023-05-07T04:43:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"294fc20b:10|2023-05-07T04:43:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_ipLglky_45:1|2023-05-10T05:41:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"1446b088_2:0|2023-05-12T15:34:00.000Z","data":{"candidates":[{"content":"Plans to explore new workouts to increase step count","topic":"plan workouts","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Got blood pressure monitor calibrated on 2023-05-12","topic":"event blood pressure check","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":"2023-05-12"}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"1446b088_2:2|2023-05-12T15:34:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"1446b088_2:4|2023-05-12T15:34:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"1446b088_2:6|2023-05-12T15:34:06.000Z","data":{"candidates":[{"content":"Tracked body fat percentage and skeletal muscle percentage over the past month","topic":"event body fat tracking","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-12"},{"content":"Got blood pressure monitor calibrated at the doctor's office on 2023-05-05","topic":"event blood pressure calibration","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":"2023-05-05"},{"content":"Tracks blood pressure regularly due to family history","topic":"health monitoring","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"1446b088_2:8|2023-05-12T15:34:08.000Z","data":{"candidates":[{"content":"Borrowed a white noise machine from sister to help fall asleep faster","topic":"event sleep aid","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-11"},{"content":"Plans to buy a Hatch Rest Sound Machine for sleep","topic":"plan sleep aid","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"1446b088_2:10|2023-05-12T15:34:10.000Z","data":{"candidates":[{"content":"Plans to buy a Hatch Rest Sound Machine","topic":"plan sleep machine","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Plans to establish a relaxing bedtime routine","topic":"plan bedtime routine","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Aims to get at least 7-8 hours of sleep each night","topic":"goal sleep duration","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Wakes up feeling groggy and tired often","topic":"sleep quality","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"4cc9270f:0|2023-05-12T22:09:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"4cc9270f:2|2023-05-12T22:09:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"4cc9270f:4|2023-05-12T22:09:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"4cc9270f:6|2023-05-12T22:09:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"4cc9270f:8|2023-05-12T22:09:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"4cc9270f:10|2023-05-12T22:09:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_5LQ3qDt_0:0|2023-05-13T11:12:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"3275acf9:0|2023-05-14T19:30:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"3275acf9:2|2023-05-14T19:30:02.000Z","data":{"candidates":[{"content":"Redeemed 5,000 Walgreens Balance Rewards points for a $5 reward last week","topic":"event walgreens rewards","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-07"},{"content":"CVS ExtraCare Rewards has an ExtraBucks reward expiring on April 15th","topic":"event cvs rewards","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-15"},{"content":"Has loyalty programs with Target RedCard, Starbucks Rewards, ShopRite Price Plus, and Fetch Rewards","topic":"loyalty programs","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"3275acf9:4|2023-05-14T19:30:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"3275acf9:6|2023-05-14T19:30:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"3275acf9:8|2023-05-14T19:30:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"3275acf9:10|2023-05-14T19:30:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"5a78688d_1:0|2023-05-16T05:28:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"5a78688d_1:2|2023-05-16T05:28:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"5a78688d_1:4|2023-05-16T05:28:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"5a78688d_1:6|2023-05-16T05:28:06.000Z","data":{"candidates":[{"content":"Subscribed to Google One 200GB plan","topic":"plan google one","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Went on a beach trip with photos","topic":"event beach trip","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"5a78688d_1:8|2023-05-16T05:28:08.000Z","data":{"candidates":[{"content":"Had a beach trip with friends on 2023-05-15","topic":"event beach trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-15"},{"content":"Decided to get the 200GB Google Drive plan","topic":"plan google drive","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_129606:0|2023-05-17T20:44:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_129606:2|2023-05-17T20:44:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_129606:4|2023-05-17T20:44:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_129606:6|2023-05-17T20:44:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_129606:8|2023-05-17T20:44:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_129606:10|2023-05-17T20:44:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_129606:12|2023-05-17T20:44:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_dQPyY7w_0:0|2023-05-19T01:21:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_dQPyY7w_0:2|2023-05-19T01:21:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_dQPyY7w_0:4|2023-05-19T01:21:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_dQPyY7w_0:6|2023-05-19T01:21:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_401859:0|2023-05-19T10:55:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_401859:2|2023-05-19T10:55:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_401859:4|2023-05-19T10:55:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_401859:6|2023-05-19T10:55:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"9345f7dc_4:0|2023-05-21T12:34:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"9345f7dc_4:2|2023-05-21T12:34:02.000Z","data":{"candidates":[{"content":"Plans to fit in a 7-minute workout 3 times a week","topic":"plan workout","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Bus ride is crowded on Mondays and Wednesdays, relatively empty on Tuesdays and Thursdays","topic":"personal commute","category":"Personal","importance":2,"confidence":0.8,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"9345f7dc_4:4|2023-05-21T12:34:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"9345f7dc_4:6|2023-05-21T12:34:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"9345f7dc_4:8|2023-05-21T12:34:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"9345f7dc_4:10|2023-05-21T12:34:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_18218:0|2023-05-23T15:22:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_18218:2|2023-05-23T15:22:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_18218:4|2023-05-23T15:22:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_18218:6|2023-05-23T15:22:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_18218:8|2023-05-23T15:22:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_18218:10|2023-05-23T15:22:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_203429:0|2023-05-25T02:57:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_203429:2|2023-05-25T02:57:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_203429:4|2023-05-25T02:57:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_369361:0|2023-05-26T12:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_369361:2|2023-05-26T12:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_369361:4|2023-05-26T12:43:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_369361:6|2023-05-26T12:43:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_556456:0|2023-05-27T21:37:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_556456:2|2023-05-27T21:37:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_556456:4|2023-05-27T21:37:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_556456:6|2023-05-27T21:37:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_556456:8|2023-05-27T21:37:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_F6ICROH_7:1|2023-06-01T02:53:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_2:0|2023-06-02T15:29:00.000Z","data":{"candidates":[{"content":"Completed the Spring Sprint Triathlon on 2023-06-02","topic":"event triathlon","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-02"},{"content":"Enjoys biking","topic":"hobby","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_2:2|2023-06-02T15:29:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_2:4|2023-06-02T15:29:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_2:6|2023-06-02T15:29:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_2:8|2023-06-02T15:29:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_2:10|2023-06-02T15:29:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_308277:0|2023-06-04T01:46:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_308277:2|2023-06-04T01:46:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_308277:4|2023-06-04T01:46:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_308277:6|2023-06-04T01:46:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_308277:8|2023-06-04T01:46:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_308277:10|2023-06-04T01:46:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_308277:12|2023-06-04T01:46:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"d5d46422:0|2023-06-10T05:01:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"d5d46422:2|2023-06-10T05:01:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"d5d46422:4|2023-06-10T05:01:04.000Z","data":{"candidates":[{"content":"Eats baby carrots with hummus as a snack","topic":"hobby snacking","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Eats protein smoothies as a snack","topic":"hobby snacking","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Eats Clif Bars, especially the peanut butter flavor, as a quick snack","topic":"hobby snacking","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"d5d46422:6|2023-06-10T05:01:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"d5d46422:8|2023-06-10T05:01:08.000Z","data":{"candidates":[{"content":"Tried the Peanut Butter Banana Bites recipe on 2023-06-10","topic":"event peanut butter banana bites","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-10"},{"content":"Plans to make more energy balls","topic":"plan energy balls","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"d5d46422:10|2023-06-10T05:01:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_1:0|2023-06-10T15:00:00.000Z","data":{"candidates":[{"content":"Finished a 5K run with a personal best time of 27 minutes and 42 seconds at the Midsummer 5K Run on 2023-06-09","topic":"event 5k run","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-09"},{"content":"Plans to upgrade running gear","topic":"plan running gear","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_1:2|2023-06-10T15:00:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_1:4|2023-06-10T15:00:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_1:6|2023-06-10T15:00:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_1:8|2023-06-10T15:00:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_1:10|2023-06-10T15:00:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_8ns7j9U_0:0|2023-06-11T06:42:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_8ns7j9U_0:2|2023-06-11T06:42:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_8ns7j9U_0:4|2023-06-11T06:42:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"183b6085:0|2023-06-15T18:01:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"183b6085:2|2023-06-15T18:01:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"183b6085:4|2023-06-15T18:01:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"183b6085:6|2023-06-15T18:01:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"183b6085:8|2023-06-15T18:01:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"183b6085:10|2023-06-15T18:01:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"78d28576_2:0|2023-06-16T15:35:00.000Z","data":{"candidates":[{"content":"Started a fitness routine with 30-minute brisk walks every morning at 6:30 am, Monday to Friday","topic":"event fitness routine","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-12"},{"content":"Plans to create a personalized fitness plan","topic":"plan fitness plan","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"78d28576_2:2|2023-06-16T15:35:02.000Z","data":{"candidates":[{"content":"Aims to lose weight and increase endurance","topic":"fitness goals","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Current fitness level is beginner","topic":"fitness level","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Has experience with walking and bodyweight exercises","topic":"fitness experience","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Wants to dedicate 5 days a week to exercise","topic":"exercise frequency","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Available for exercise in the mornings and evenings, Monday to Friday, and anytime on weekends","topic":"exercise availability","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"78d28576_2:4|2023-06-16T15:35:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"78d28576_2:6|2023-06-16T15:35:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"78d28576_2:8|2023-06-16T15:35:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"78d28576_2:10|2023-06-16T15:35:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_5jHUxvs_80:0|2023-06-17T01:07:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_5jHUxvs_80:2|2023-06-17T01:07:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_5jHUxvs_80:4|2023-06-17T01:07:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_5jHUxvs_80:6|2023-06-17T01:07:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"bab3f409:0|2023-06-17T02:50:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"bab3f409:2|2023-06-17T02:50:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"bab3f409:4|2023-06-17T02:50:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"bab3f409:6|2023-06-17T02:50:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"bab3f409:8|2023-06-17T02:50:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"bab3f409:10|2023-06-17T02:50:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"77974d02:0|2023-06-17T04:47:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"77974d02:2|2023-06-17T04:47:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"77974d02:4|2023-06-17T04:47:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"77974d02:6|2023-06-17T04:47:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"77974d02:8|2023-06-17T04:47:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"77974d02:10|2023-06-17T04:47:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_436674:0|2023-06-17T05:01:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_436674:2|2023-06-17T05:01:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_436674:4|2023-06-17T05:01:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_436674:6|2023-06-17T05:01:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_436674:8|2023-06-17T05:01:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_436674:10|2023-06-17T05:01:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"c58fdf1e_2:0|2023-06-17T05:25:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"c58fdf1e_2:2|2023-06-17T05:25:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"c58fdf1e_2:4|2023-06-17T05:25:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"c58fdf1e_2:6|2023-06-17T05:25:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"c58fdf1e_2:8|2023-06-17T05:25:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"c58fdf1e_2:10|2023-06-17T05:25:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"11a8f823_1:0|2023-06-17T06:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"11a8f823_1:2|2023-06-17T06:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"11a8f823_1:4|2023-06-17T06:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"11a8f823_1:6|2023-06-17T06:14:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"11a8f823_1:8|2023-06-17T06:14:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"11a8f823_1:10|2023-06-17T06:14:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"2aee3e70:0|2023-06-17T06:47:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"2aee3e70:2|2023-06-17T06:47:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"2aee3e70:4|2023-06-17T06:47:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"2aee3e70:6|2023-06-17T06:47:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"2aee3e70:8|2023-06-17T06:47:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"2aee3e70:10|2023-06-17T06:47:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_3:0|2023-06-17T11:09:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_3:2|2023-06-17T11:09:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_3:4|2023-06-17T11:09:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_3:6|2023-06-17T11:09:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_3:8|2023-06-17T11:09:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"answer_8c64ce25_3:10|2023-06-17T11:09:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_559276:0|2023-06-17T12:34:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_559276:2|2023-06-17T12:34:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_559276:4|2023-06-17T12:34:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_559276:6|2023-06-17T12:34:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_559276:8|2023-06-17T12:34:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"0a6bf5e4_1:0|2023-06-17T14:08:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"0a6bf5e4_1:2|2023-06-17T14:08:02.000Z","data":{"candidates":[{"content":"Ordered from BurgerFi, Sweetfin Poké, and El Torito Grill from UberEats on 2023-06-16","topic":"event food delivery","category":"Hobbies","importance":2,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-16"},{"content":"Really liked the Korean BBQ tacos from Sweetfin Poké","topic":"event food experience","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-16"},{"content":"Tries to eat healthy and save money by meal prepping on Sundays","topic":"habit meal prep","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Makes quinoa and roasted veggies","topic":"habit meal prep","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Experiments with overnight oats recipes","topic":"habit meal prep","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"0a6bf5e4_1:4|2023-06-17T14:08:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"0a6bf5e4_1:6|2023-06-17T14:08:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"0a6bf5e4_1:8|2023-06-17T14:08:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"0a6bf5e4_1:10|2023-06-17T14:08:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_85Y0l0J_249:1|2023-06-17T15:37:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_85Y0l0J_249:3|2023-06-17T15:37:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_194928:0|2023-06-17T16:38:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_194928:2|2023-06-17T16:38:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_194928:4|2023-06-17T16:38:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_194928:6|2023-06-17T16:38:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_194928:8|2023-06-17T16:38:08.000Z","data":{"candidates":[{"content":"Plans to audition for a play or musical at the local theater company","topic":"plan audition","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"77dd7700:0|2023-06-17T17:20:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"77dd7700:2|2023-06-17T17:20:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"77dd7700:4|2023-06-17T17:20:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"77dd7700:6|2023-06-17T17:20:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"77dd7700:8|2023-06-17T17:20:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"77dd7700:10|2023-06-17T17:20:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"539c2346_3:0|2023-06-17T18:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"539c2346_3:2|2023-06-17T18:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"539c2346_3:4|2023-06-17T18:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"539c2346_3:6|2023-06-17T18:14:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"539c2346_3:8|2023-06-17T18:14:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"539c2346_3:10|2023-06-17T18:14:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"73bc3176_2:0|2023-06-17T19:23:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"73bc3176_2:2|2023-06-17T19:23:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"73bc3176_2:4|2023-06-17T19:23:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"73bc3176_2:6|2023-06-17T19:23:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"73bc3176_2:8|2023-06-17T19:23:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"73bc3176_2:10|2023-06-17T19:23:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_E3FiZj3_62:0|2023-06-17T19:42:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_E3FiZj3_62:2|2023-06-17T19:42:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_E3FiZj3_62:4|2023-06-17T19:42:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_E3FiZj3_62:6|2023-06-17T19:42:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_E3FiZj3_62:8|2023-06-17T19:42:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_E3FiZj3_62:10|2023-06-17T19:42:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_E3FiZj3_62:12|2023-06-17T19:42:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"773287dc_1:0|2023-06-17T22:23:00.000Z","data":{"candidates":[{"content":"Plans a bigger trip later this year, possibly to Japan or New Zealand","topic":"plan trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Went on a 7-day international trip to Paris, France with my family on 2023-06-16","topic":"event trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-06-16"}]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"773287dc_1:2|2023-06-17T22:23:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"773287dc_1:4|2023-06-17T22:23:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"773287dc_1:6|2023-06-17T22:23:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"773287dc_1:8|2023-06-17T22:23:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"773287dc_1:10|2023-06-17T22:23:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"sharegpt_Jr20tPa_0:0|2023-06-17T22:44:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_356174:0|2023-06-17T23:44:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_356174:2|2023-06-17T23:44:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"gpt4_e061b84f","key":"ultrachat_356174:4|2023-06-17T23:44:04.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"gpt4_e061b84f","build":{"sample":"gpt4_e061b84f","store":"bitemporal","messages_mined":232,"failed_messages":0,"decisions":"ADD=39 NOOP=4 SUPERSEDE=2 UPDATE=4","memory_versions":45,"memory_current":39,"memory_bytes":471803,"extract_calls":232,"reconcile_calls":47,"build_input_tokens":520829,"build_output_tokens":8105,"build_cost_usd":0,"build_seconds":295.2}}
+{"type":"store_built","sample":"gpt4_e061b84f","store":"bitemporal","versions":45}
+{"type":"row","row":{"sample":"gpt4_e061b84f","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours","question":"What is the order of the three sports events I participated in during the past month, from earliest to latest?","gold":"I first completed the Spring Sprint Triathlon, then took part in the Midsummer 5K Run, and finally participated in the company's annual charity soccer tournament.","answer":"Midsummer 5K Run, Spring Sprint Triathlon, Beach trip with friends","insufficient":false,"cited":"m6 m3 m7","score_f1":0.375,"judge_correct":0,"judge_reason":"The order of events is incorrect and the candidate includes an extra event not mentioned in the gold answer.","recall_at_k":0.6666666666666666,"context_items":10,"context_dia":"0a6bf5e4_1:2 1446b088_2:6 answer_8c64ce25_2:0 773287dc_1:0 78d28576_2:0 answer_8c64ce25_1:0 5a78688d_1:8 d5d46422:8 390acb55_3:0","context_tokens_est":1158,"retrieval_ms":54.12,"answer_ms":2183,"judge_ms":21183,"input_tokens":1983,"output_tokens":47,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"gpt4_e061b84f","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours_no_temporal","question":"What is the order of the three sports events I participated in during the past month, from earliest to latest?","gold":"I first completed the Spring Sprint Triathlon, then took part in the Midsummer 5K Run, and finally participated in the company's annual charity soccer tournament.","answer":"Midsummer 5K Run, Spring Sprint Triathlon, Beach trip with friends","insufficient":false,"cited":"m5 m3 m7","score_f1":0.375,"judge_correct":0,"judge_reason":"The order of events is incorrect and the candidate includes an extra event not mentioned in the gold answer.","recall_at_k":0.6666666666666666,"context_items":10,"context_dia":"1446b088_2:6 0a6bf5e4_1:2 answer_8c64ce25_2:0 773287dc_1:0 answer_8c64ce25_1:0 78d28576_2:0 5a78688d_1:8 1446b088_2:0 3275acf9:2","context_tokens_est":1056,"retrieval_ms":622.46,"answer_ms":8253,"judge_ms":16933,"input_tokens":1715,"output_tokens":47,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"gpt4_e061b84f","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours_no_provenance","question":"What is the order of the three sports events I participated in during the past month, from earliest to latest?","gold":"I first completed the Spring Sprint Triathlon, then took part in the Midsummer 5K Run, and finally participated in the company's annual charity soccer tournament.","answer":"Spring Sprint Triathlon, Midsummer 5K Run, Paris trip","insufficient":false,"cited":"m3 m6 m4","score_f1":0.4,"judge_correct":0,"judge_reason":"The candidate adds a Paris trip, which is not part of the gold answer, and omits the charity soccer tournament.","recall_at_k":0.6666666666666666,"context_items":10,"context_dia":"0a6bf5e4_1:2 1446b088_2:6 answer_8c64ce25_2:0 773287dc_1:0 78d28576_2:0 answer_8c64ce25_1:0 5a78688d_1:8 d5d46422:8 390acb55_3:0","context_tokens_est":331,"retrieval_ms":642.4,"answer_ms":7798,"judge_ms":15422,"input_tokens":1038,"output_tokens":46,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"gpt4_e061b84f","store":"overwrite"}
+{"type":"build","sample":"gpt4_e061b84f","build":{"sample":"gpt4_e061b84f","store":"overwrite","messages_mined":232,"failed_messages":0,"decisions":"ADD=38 NOOP=4 SUPERSEDE=2 UPDATE=5","memory_versions":38,"memory_current":38,"memory_bytes":398255,"extract_calls":0,"reconcile_calls":47,"build_input_tokens":46891,"build_output_tokens":2991,"build_cost_usd":0,"build_seconds":96.9}}
+{"type":"store_built","sample":"gpt4_e061b84f","store":"overwrite","versions":38}
+{"type":"row","row":{"sample":"gpt4_e061b84f","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"overwrite_memory","question":"What is the order of the three sports events I participated in during the past month, from earliest to latest?","gold":"I first completed the Spring Sprint Triathlon, then took part in the Midsummer 5K Run, and finally participated in the company's annual charity soccer tournament.","answer":"Spring Sprint Triathlon, Midsummer 5K Run, Beach trip with friends","insufficient":false,"cited":"m4 m6 m8","score_f1":0.375,"judge_correct":0,"judge_reason":"The candidate includes an extra event (Beach trip with friends) and omits the charity soccer tournament.","recall_at_k":0.6666666666666666,"context_items":10,"context_dia":"0a6bf5e4_1:2 1446b088_2:6 answer_8c64ce25_2:0 773287dc_1:0 answer_8c64ce25_1:0 78d28576_2:0 78d28576_2:2 5a78688d_1:8 d5d46422:8 390acb55_3:0","context_tokens_est":1245,"retrieval_ms":34.17,"answer_ms":2147,"judge_ms":17532,"input_tokens":2068,"output_tokens":47,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"gpt4_e061b84f"}
+{"type":"complete","at":"2026-10-22T05:17:27.919Z"}

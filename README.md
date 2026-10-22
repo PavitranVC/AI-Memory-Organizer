@@ -6,7 +6,7 @@ Built with **Node.js, Express and MongoDB (Mongoose)**.
 
 It started as a DBMS course project (CRUD, indexing, aggregation) and is being developed in stages
 towards a research project on AI memory as a database problem. See [`docs/ROADMAP.md`](docs/ROADMAP.md).
-This README describes the code as of **Stage 7: privacy and governance**, plus **Stage 3b: free local AI with
+This README describes the code as of **Stage 7: privacy and governance**, plus the **Stage 5b LongMemEval loader**, plus **Stage 3b: free local AI with
 Ollama**, so the project never needs a paid API key. Laptop setup: [`docs/LOCAL_SETUP.md`](docs/LOCAL_SETUP.md).
 
 **Study commands (Claude Code).** In Claude Code, `/viva <stage>` (1, 2, 3, 3b, 4, 5, 6, 7) quizzes you on a
@@ -150,6 +150,8 @@ with real data, because it deletes everything first.
 | `npm run test:live` | Opt-in live smoke test with a real model (3 conversations). With `LLM_PROVIDER=ollama`: free, skips if Ollama is not reachable. Otherwise Anthropic: prints a cost estimate first and skips if `ANTHROPIC_API_KEY` is not set (`-- --estimate` prints only the estimate) |
 | `npm run data:download` | Download datasets into `data/` and check their SHA-256 (`-- locomo` is the default; `-- --from <file>` uses a file you downloaded) |
 | `npm run data:load:locomo` | Load LoCoMo as benchmark users, conversations, messages and `evalitems`. Skips loaded samples; `-- --reset` replaces them |
+| `npm run data:load:longmemeval` | Load LongMemEval (Stage 5b) the same way, one user per question. `-- --types a,b --per-type N --seed S` or `-- --ids x,y` loads a repeatable pilot; `-- --reset` replaces. Needs `npm run data:download -- longmemeval` first (277 MB, not gated) |
+| `npm run data:stats:longmemeval` | Counts of the LongMemEval file (no database needed) -> `results/stage5b-longmemeval-stats-*.json` |
 | `npm run data:synthetic` | Generate synthetic memories for scale tests: `-- --memories 100000 [--users N] [--seed 42] [--reset]`, or `-- --remove` |
 | `npm run data:stats` | Count documents per dataset label and check the LoCoMo file; writes `results/stage5-dataset-stats.json` |
 | `npm run embed:backfill` | Embed every memory version that has no vector from the current model (`-- --dataset synthetic`, `-- --batch 50`). Safe to re-run |
@@ -159,6 +161,9 @@ with real data, because it deletes everything first.
 | `npm run eval` | Stage 6 evaluation on LoCoMo: six systems answer the same questions, scored by token F1 and an LLM judge; writes `results/<run-id>/`. Mock model by default; `-- --provider ollama` for the free local models; a paid provider needs `-- --paid` (see [Evaluation](#evaluation-stage-6)) |
 | `npm run eval:cost` | Cost projection for the evaluation (no API calls; `$0` with `-- --provider ollama`), plus a time projection from a pilot run with `-- --pilot results/<run-id>`; writes `results/stage6-cost-projection.csv`, `.txt` (and `-time.csv`) |
 | `npm run eval:judge-agreement -- results/<run-id>` | After you label `judge_validation.csv`: agreement and Cohen's kappa between you and the LLM judge |
+| `npm run eval:launch -- --batch-id <name> --types ... --per-type N` / `npm run eval:status` | Start a LongMemEval batch in the background after checking every condition (backup to git after each question) / show how far it is |
+| `npm run eval:judge-sample` | One blind 50-row sheet for the judge check, drawn from all LoCoMo samples |
+| `npm run eval:preflight -- [--dataset longmemeval --types ... --per-type N]` | Before a run: which samples fit the model's context window, the projected duration, and the GPU share of the loaded model. Sends nothing to a model |
 | `npm run erasure:verify` | Stage 7: proves nothing derived from erased data remains (anti-joins over every reference). `-- --user <id>`, `-- --messages <id>,<id>`, `-- --text "phrase"`. Exit code 1 if any check fails |
 | `npm run retention` | Stage 7: erase `special` memories older than `RETENTION_SPECIAL_DAYS` (`-- --days 365` overrides, `-- --dry-run` only counts). Schedule it daily (cron or Windows Task Scheduler) |
 | `npm run migrate` | Upgrade an older database to the current schema: runs the Stage 1 and Stage 2 migrations in order (see [Upgrading an old database](#upgrading-an-old-database)) |
@@ -458,6 +463,9 @@ npm run data:download                       # LoCoMo -> data/locomo/locomo10.jso
 npm run data:load:locomo                    # 10 users, 272 conversations, 5,882 messages, 1,986 evalitems
 npm run data:synthetic -- --memories 10000  # synthetic memories for index experiments only
 npm run data:stats                          # counts per label -> results/stage5-dataset-stats.json
+# Stage 5b, LongMemEval (277 MB from Hugging Face, no token needed):
+npm run data:download -- longmemeval
+npm run data:load:longmemeval -- --types knowledge-update,temporal-reasoning --per-type 5   # a pilot; omit the flags for all 500 questions
 ```
 
 Every loaded LoCoMo user can log in with `SEED_PASSWORD`, e.g. `locomo-conv-26@benchmark.invalid`.
@@ -770,6 +778,15 @@ It refuses to continue a checkpoint made with another model, prompt version, `k`
 count (it names the difference). The full run is best done one sample per run, so a finished sample is saved and
 pushed on its own (PowerShell loop in the Stage 6b notes). `meta.txt` says how many times a run was continued.
 
+### LongMemEval (Stage 6c)
+The same systems can be evaluated on LongMemEval questions (each with its own chat history). Download the file first
+(`npm run data:download -- longmemeval`). `full_context` is left out by default there (a history is about 150k tokens).
+```
+npm run eval:preflight -- --dataset longmemeval --types knowledge-update,temporal-reasoning --per-type 12
+npm run eval -- --dataset longmemeval --provider ollama --embeddings ollama --types knowledge-update,temporal-reasoning --per-type 12 --run-id stage6c-lme-pilot
+```
+Options: `--dataset longmemeval`, `--file`, `--types`, `--per-type`, `--ids`, `--max-item-chars` (default 1400). For a long run use the safe launcher, which checks the conditions, backs up to git after every question and starts in the background: `npm run eval:launch -- --batch-id stage6c-lme-pilot ...`, then `npm run eval:status` ([docs/LAUNCH_LME_PILOT.md](docs/LAUNCH_LME_PILOT.md)). Notes: `docs/stages/STAGE-6C.md`.
+
 ## Privacy and governance (Stage 7)
 
 Legal mapping (DPDP Act 2023 and GDPR) and its open `TODO: verify` items: [docs/PRIVACY.md](docs/PRIVACY.md).
@@ -843,7 +860,8 @@ npm run erasure:verify -- --messages $MSG --text "penicillin"
   roles swapped (see [docs/RESULTS.md](docs/RESULTS.md)).
 - **No real evaluation result yet.** The Stage 6 harness has only run on the mock model (a pipeline check). The paid
   LoCoMo run needs your approval; its projected cost is in `results/stage6-cost-projection.txt`.
-- **Only LoCoMo is loaded.** LongMemEval and WildChat are on Hugging Face, which is blocked in the cloud session;
-  there is no loader for them yet, and no PII scrubbing or annotation tool (see docs/DATASETS.md).
+- **LongMemEval has a loader but no accuracy result.** Stage 5b loads it (one user per question, 500 questions), but
+  the Stage 6 harness is written for LoCoMo and has not been run on it. WildChat has no loader, no PII scrubbing and
+  no annotation tool (see docs/DATASETS.md).
 - **One worker, one job at a time.** Two workers would be safe (claiming is atomic) but could reconcile two facts of
   the same user against each other at the same moment.

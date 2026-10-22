@@ -1,0 +1,6 @@
+row_id,raw_row,sample,qa_index,system,judge_correct
+1,0,4d6b87c8,0,rag_messages,1
+2,3,4d6b87c8,0,ours_no_provenance,0
+3,1,4d6b87c8,0,ours,0
+4,4,4d6b87c8,0,overwrite_memory,0
+5,2,4d6b87c8,0,ours_no_temporal,0

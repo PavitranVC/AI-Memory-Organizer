@@ -1,0 +1,5 @@
+sample,store,messages_mined,failed_messages,decisions,memory_versions,memory_current,memory_bytes,extract_calls,reconcile_calls,build_input_tokens,build_output_tokens,build_cost_usd,build_seconds
+gpt4_2f584639,raw messages,0,,,,,572805,,,,,,
+gpt4_2f584639,rag message vectors,0,,,,,2899968,,,,,,
+gpt4_2f584639,bitemporal,234,0,ADD=21 NOOP=3 SKIP=4 SUPERSEDE=1 UPDATE=4,26,21,272931,234,27,505566,5973,0,240.8
+gpt4_2f584639,overwrite,234,0,ADD=21 NOOP=3 SKIP=4 SUPERSEDE=2 UPDATE=3,21,21,220062,0,27,26839,1872,0,58.9

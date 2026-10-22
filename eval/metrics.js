@@ -58,6 +58,15 @@ function locomoScore(prediction, item) {
   return tokenF1(prediction, gold);
 }
 
+// LongMemEval: its questions have free-form gold answers and no numeric LoCoMo categories, so none of the
+// category rules above apply. An abstention question (the history does not contain the answer) is right only when
+// the prediction says so; every other question is plain token F1. The headline number for LongMemEval is the
+// judge verdict, as in the benchmark; this F1 is only a cheap second view.
+function longmemevalScore(prediction, item) {
+  if (item.abstention) return abstains(prediction) ? 1 : 0;
+  return tokenF1(prediction, String(item.answer === null || item.answer === undefined ? '' : item.answer));
+}
+
 // evidence: the question's evidence dialog ids; covered: the dialog ids present in the context.
 // null when the question has no evidence (it cannot be scored).
 function recallAtK(evidence, covered) {
@@ -67,4 +76,4 @@ function recallAtK(evidence, covered) {
   return wanted.filter((id) => have.has(id)).length / wanted.length;
 }
 
-module.exports = { normalizeAnswer, tokenF1, locomoScore, recallAtK, abstains };
+module.exports = { normalizeAnswer, tokenF1, locomoScore, longmemevalScore, recallAtK, abstains };

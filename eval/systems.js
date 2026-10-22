@@ -33,9 +33,18 @@ const SYSTEM_IDS = SYSTEMS.map((s) => s.id);
 const day = (d) => (d ? new Date(d).toISOString().slice(0, 10) : '');
 const estimateTokens = (text) => Math.ceil(String(text).length / 4);
 
+// Optional cap on the text of ONE message shown to the answer model (LongMemEval turns can be 10,000 characters;
+// ten of them would not fit the small context window). null = no cap, as for LoCoMo. Set by eval/run.js.
+let itemCharCap = null;
+const setItemCharCap = (n) => {
+  itemCharCap = n > 0 ? n : null;
+};
+const TRUNCATED = ' [truncated]';
+const clip = (text) => (itemCharCap && text.length > itemCharCap ? `${text.slice(0, itemCharCap - TRUNCATED.length)}${TRUNCATED}` : text);
+
 // A message as the answer model sees it, e.g.  [D1:3] 2023-05-08 Asha: I have 2 cats at home.
 function formatMessage(m) {
-  return `[${m.source.id}] ${day(m.sentAt)} ${m.source.speaker}: ${m.content}`;
+  return `[${m.source.id}] ${day(m.sentAt)} ${m.source.speaker}: ${clip(m.content)}`;
 }
 
 // A memory as the answer model sees it. sources: Map(messageId -> message) for the provenance quote.
@@ -98,4 +107,4 @@ async function memoryContext(system, perspectives, sources, question, k, asOf) {
   return { kind: `${items.length} retrieved memories`, items };
 }
 
-module.exports = { SYSTEMS, SYSTEM_IDS, formatMessage, formatMemory, fullContext, buildMessageIndex, ragContext, memoryContext, estimateTokens };
+module.exports = { SYSTEMS, SYSTEM_IDS, setItemCharCap, formatMessage, formatMemory, fullContext, buildMessageIndex, ragContext, memoryContext, estimateTokens };

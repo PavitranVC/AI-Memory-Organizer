@@ -1,0 +1,6 @@
+row_id,question,gold,candidate,human_correct
+1,How many days had passed between the Sunday mass at St. Mary's Church and the Ash Wednesday service at the cathedral?,30 days. 31 days (including the last day) is also acceptable.,29,
+2,How many days had passed between the Sunday mass at St. Mary's Church and the Ash Wednesday service at the cathedral?,30 days. 31 days (including the last day) is also acceptable.,30,
+3,How many days had passed between the Sunday mass at St. Mary's Church and the Ash Wednesday service at the cathedral?,30 days. 31 days (including the last day) is also acceptable.,29,
+4,How many days had passed between the Sunday mass at St. Mary's Church and the Ash Wednesday service at the cathedral?,30 days. 31 days (including the last day) is also acceptable.,29,
+5,How many days had passed between the Sunday mass at St. Mary's Church and the Ash Wednesday service at the cathedral?,30 days. 31 days (including the last day) is also acceptable.,30,

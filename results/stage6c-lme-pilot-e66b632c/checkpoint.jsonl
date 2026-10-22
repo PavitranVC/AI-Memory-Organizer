@@ -1,0 +1,268 @@
+{"type":"run","at":"2026-10-22T07:18:25.653Z","commit":"3e09cc06694328b5f21520b889e35a385470a180 + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["e66b632c"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"e66b632c","userIds":["6ad9b8c136b1afe50ba626ae"]}
+{"type":"build","sample":"e66b632c","build":{"sample":"e66b632c","store":"raw messages","messages_mined":0,"memory_bytes":593683}}
+{"type":"build","sample":"e66b632c","build":{"sample":"e66b632c","store":"rag message vectors","messages_mined":0,"memory_bytes":3108864}}
+{"type":"row","row":{"sample":"e66b632c","qa_index":0,"category":5,"question_type":"knowledge-update","system":"rag_messages","question":"What was my previous personal best time for the charity 5K run?","gold":"27 minutes and 45 seconds","answer":"26 minutes and 30 seconds","insufficient":false,"cited":"answer_ac0140ce_1:2","score_f1":0.5,"judge_correct":0,"judge_reason":"Different time from the gold answer.","recall_at_k":1,"context_items":10,"context_dia":"answer_ac0140ce_1:2 answer_ac0140ce_1:6 answer_ac0140ce_1:7 answer_ac0140ce_1:9 answer_ac0140ce_2:6 answer_ac0140ce_2:7 answer_ac0140ce_2:8 answer_ac0140ce_2:9 answer_ac0140ce_2:10 answer_ac0140ce_2:11","context_tokens_est":2401,"retrieval_ms":29.81,"answer_ms":7931,"judge_ms":10187,"input_tokens":3338,"output_tokens":41,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"e66b632c"}
+{"type":"store_start","sample":"e66b632c","store":"bitemporal"}
+{"type":"cache","sample":"e66b632c","key":"b3070ec4_1:0|2023-03-13T05:40:00.000Z","data":{"candidates":[{"content":"Plans to host a farm open house event","topic":"plan farm open house","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Fixed a broken fence on the east side of the property three weeks ago","topic":"event fixing fence","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-02-24"}]}}
+{"type":"cache","sample":"e66b632c","key":"b3070ec4_1:2|2023-03-13T05:40:02.000Z","data":{"candidates":[{"content":"Got goats vaccinated against parasites on 2023-03-09","topic":"event goat vaccination","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-09"}]}}
+{"type":"cache","sample":"e66b632c","key":"b3070ec4_1:4|2023-03-13T05:40:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"b3070ec4_1:6|2023-03-13T05:40:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"b3070ec4_1:8|2023-03-13T05:40:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"b3070ec4_1:10|2023-03-13T05:40:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_323488:0|2023-03-25T22:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_323488:2|2023-03-25T22:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_323488:4|2023-03-25T22:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_323488:6|2023-03-25T22:58:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_m58t82U_11:1|2023-04-01T22:19:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_m58t82U_11:3|2023-04-01T22:19:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_m58t82U_11:5|2023-04-01T22:19:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_6nLR5n5_0:0|2023-04-07T16:40:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"answer_ac0140ce_1:0|2023-04-11T13:31:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"answer_ac0140ce_1:2|2023-04-11T13:31:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"answer_ac0140ce_1:4|2023-04-11T13:31:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"answer_ac0140ce_1:6|2023-04-11T13:31:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"answer_ac0140ce_1:8|2023-04-11T13:31:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"answer_ac0140ce_1:10|2023-04-11T13:31:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"4f51038b:0|2023-04-14T21:55:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"4f51038b:2|2023-04-14T21:55:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"4f51038b:4|2023-04-14T21:55:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"4f51038b:6|2023-04-14T21:55:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"4f51038b:8|2023-04-14T21:55:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"4f51038b:10|2023-04-14T21:55:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_358301:0|2023-04-17T21:11:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_358301:2|2023-04-17T21:11:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_358301:4|2023-04-17T21:11:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_358301:6|2023-04-17T21:11:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_358301:8|2023-04-17T21:11:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"0781daa1_3:0|2023-04-18T11:53:00.000Z","data":{"candidates":[{"content":"Carpools with Rachel on Thursdays for the past six weeks","topic":"event carpooling","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-02-20"},{"content":"Plans to reduce carbon footprint","topic":"plan reduce carbon footprint","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"e66b632c","key":"0781daa1_3:2|2023-04-18T11:53:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"0781daa1_3:4|2023-04-18T11:53:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"0781daa1_3:6|2023-04-18T11:53:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"0781daa1_3:8|2023-04-18T11:53:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"0781daa1_3:10|2023-04-18T11:53:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_21535:0|2023-04-19T17:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_21535:2|2023-04-19T17:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_21535:4|2023-04-19T17:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_21535:6|2023-04-19T17:03:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_21535:8|2023-04-19T17:03:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_21535:10|2023-04-19T17:03:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_533755:0|2023-04-19T21:06:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_533755:2|2023-04-19T21:06:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_533755:4|2023-04-19T21:06:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_533755:6|2023-04-19T21:06:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_533755:8|2023-04-19T21:06:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_533755:10|2023-04-19T21:06:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_TlAbjNp_7:1|2023-04-21T05:48:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_TlAbjNp_7:3|2023-04-21T05:48:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_7YM1yxO_0:0|2023-04-22T11:01:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_7YM1yxO_0:2|2023-04-22T11:01:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_7YM1yxO_0:4|2023-04-22T11:01:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_7YM1yxO_0:6|2023-04-22T11:01:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_7YM1yxO_0:8|2023-04-22T11:01:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_7YM1yxO_0:10|2023-04-22T11:01:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_7YM1yxO_0:12|2023-04-22T11:01:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_7YM1yxO_0:14|2023-04-22T11:01:14.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_7YM1yxO_0:16|2023-04-22T11:01:16.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_7YM1yxO_0:18|2023-04-22T11:01:18.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"75621e39_1:0|2023-04-24T03:07:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"75621e39_1:2|2023-04-24T03:07:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"75621e39_1:4|2023-04-24T03:07:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"75621e39_1:6|2023-04-24T03:07:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"75621e39_1:8|2023-04-24T03:07:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"75621e39_1:10|2023-04-24T03:07:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"b876911c:0|2023-04-25T02:01:00.000Z","data":{"candidates":[{"content":"Plans to build a sustainable home","topic":"plan sustainable home","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Is interested in exploring eco-friendly building materials","topic":"interest eco-friendly materials","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"e66b632c","key":"b876911c:2|2023-04-25T02:01:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"b876911c:4|2023-04-25T02:01:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"b876911c:6|2023-04-25T02:01:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"b876911c:8|2023-04-25T02:01:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"b876911c:10|2023-04-25T02:01:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"994f80de:0|2023-04-30T03:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"994f80de:2|2023-04-30T03:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"994f80de:4|2023-04-30T03:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"994f80de:6|2023-04-30T03:04:06.000Z","data":{"candidates":[{"content":"Posts at least 3 times a week on Instagram","topic":"posting frequency","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-23"},{"content":"Experimenting with IGTV, Reels, and Stories on Instagram","topic":"content types","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-23"},{"content":"Got 200 likes and 30 comments on a 'day in the life' vlog from two weeks ago","topic":"event vlog","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-16"},{"content":"Engagement rate is higher on Tuesdays and Thursdays","topic":"engagement pattern","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-23"},{"content":"Plans to prioritize posting on Tuesdays and Thursdays","topic":"plan posting schedule","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"e66b632c","key":"994f80de:8|2023-04-30T03:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"994f80de:10|2023-04-30T03:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_djIQHW4_0:0|2023-04-30T10:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_djIQHW4_0:2|2023-04-30T10:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_djIQHW4_0:4|2023-04-30T10:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_djIQHW4_0:6|2023-04-30T10:03:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"c2808c05_2:0|2023-05-04T15:08:00.000Z","data":{"candidates":[{"content":"Plans a photography trip to LA","topic":"plan photography trip","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Attended a two-day photography workshop at a studio in downtown LA on 2023-05-02","topic":"event photography workshop","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-02"}]}}
+{"type":"cache","sample":"e66b632c","key":"c2808c05_2:2|2023-05-04T15:08:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"c2808c05_2:4|2023-05-04T15:08:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"c2808c05_2:6|2023-05-04T15:08:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"c2808c05_2:8|2023-05-04T15:08:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"c2808c05_2:10|2023-05-04T15:08:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_306973:0|2023-05-06T10:39:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_306973:2|2023-05-06T10:39:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_306973:4|2023-05-06T10:39:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_306973:6|2023-05-06T10:39:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_306973:8|2023-05-06T10:39:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_306973:10|2023-05-06T10:39:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"92f1ea4d_1:0|2023-05-07T16:07:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"92f1ea4d_1:2|2023-05-07T16:07:02.000Z","data":{"candidates":[{"content":"Has a meeting with the team on 2023-05-08 at 10 am","topic":"event team meeting","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-08"},{"content":"Needs to finish a report by 2023-05-12","topic":"event report deadline","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-12"},{"content":"Enjoys reading and taking short walks","topic":"hobby","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Allocates at least 30 minutes each day for self-care","topic":"plan self-care","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Prefers to do self-care during lunch break or right after work","topic":"plan self-care timing","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Maintains a daily journaling practice","topic":"hobby","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Available to work from 9 am to 5 pm","topic":"work hours","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"More focused in the morning","topic":"work preference","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"e66b632c","key":"92f1ea4d_1:4|2023-05-07T16:07:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"92f1ea4d_1:6|2023-05-07T16:07:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"92f1ea4d_1:8|2023-05-07T16:07:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"92f1ea4d_1:10|2023-05-07T16:07:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_0njTdDE_0:0|2023-05-09T13:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_0njTdDE_0:2|2023-05-09T13:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_0njTdDE_0:4|2023-05-09T13:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_UUaR1PN_13:1|2023-05-10T05:11:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_UUaR1PN_13:3|2023-05-10T05:11:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_UUaR1PN_13:5|2023-05-10T05:11:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_UUaR1PN_13:7|2023-05-10T05:11:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"47d18b61_1:0|2023-05-11T04:41:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"47d18b61_1:2|2023-05-11T04:41:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"47d18b61_1:4|2023-05-11T04:41:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"47d18b61_1:6|2023-05-11T04:41:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"47d18b61_1:8|2023-05-11T04:41:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"47d18b61_1:10|2023-05-11T04:41:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_9N7Sr9p_1:1|2023-05-11T13:33:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_9N7Sr9p_1:3|2023-05-11T13:33:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_9N7Sr9p_1:5|2023-05-11T13:33:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_nspc8Nf_199:1|2023-05-12T03:43:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_nspc8Nf_199:3|2023-05-12T03:43:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_nspc8Nf_199:5|2023-05-12T03:43:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_nspc8Nf_199:7|2023-05-12T03:43:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_nspc8Nf_199:9|2023-05-12T03:43:09.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_nspc8Nf_199:11|2023-05-12T03:43:11.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_nspc8Nf_199:13|2023-05-12T03:43:13.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_nspc8Nf_199:15|2023-05-12T03:43:15.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_75211:0|2023-05-15T09:08:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_75211:2|2023-05-15T09:08:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_75211:4|2023-05-15T09:08:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_75211:6|2023-05-15T09:08:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_75211:8|2023-05-15T09:08:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_75211:10|2023-05-15T09:08:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_75211:12|2023-05-15T09:08:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_QwBy81n_0:0|2023-05-23T05:38:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_382289:0|2023-05-25T00:08:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_382289:2|2023-05-25T00:08:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_382289:4|2023-05-25T00:08:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_382289:6|2023-05-25T00:08:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_382289:8|2023-05-25T00:08:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_382289:10|2023-05-25T00:08:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_382289:12|2023-05-25T00:08:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"57c8bf62_3:0|2023-05-26T19:52:00.000Z","data":{"candidates":[{"content":"Attended a marketing workshop from March 15-17","topic":"event marketing workshop","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-15"},{"content":"Met Rachel, a social media influencer, during the marketing workshop","topic":"event meeting Rachel","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-03-15"},{"content":"Plans to increase Instagram followers","topic":"plan increase Instagram followers","category":"Learning","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"e66b632c","key":"57c8bf62_3:2|2023-05-26T19:52:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"57c8bf62_3:4|2023-05-26T19:52:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"57c8bf62_3:6|2023-05-26T19:52:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"57c8bf62_3:8|2023-05-26T19:52:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"57c8bf62_3:10|2023-05-26T19:52:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"1185691f_1:0|2023-05-27T05:40:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"1185691f_1:2|2023-05-27T05:40:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"1185691f_1:4|2023-05-27T05:40:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"1185691f_1:6|2023-05-27T05:40:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"1185691f_1:8|2023-05-27T05:40:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"1185691f_1:10|2023-05-27T05:40:10.000Z","data":{"candidates":[{"content":"Bought a new bathroom trash can with a pedal-operated lid, a removable liner, and an antimicrobial coating on 2023-05-27","topic":"event trash can purchase","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-27"}]}}
+{"type":"cache","sample":"e66b632c","key":"49b1d93f_2:0|2023-06-04T02:16:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"49b1d93f_2:2|2023-06-04T02:16:02.000Z","data":{"candidates":[{"content":"Bought clothes for nephew from H&M on 2023-06-03","topic":"event gift","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-06-03"}]}}
+{"type":"cache","sample":"e66b632c","key":"49b1d93f_2:4|2023-06-04T02:16:04.000Z","data":{"candidates":[{"content":"Bought gifts for grandma on 2023-06-04, including blankets, scented candles, and snacks from Costco, totaling $200","topic":"event gifts for grandma","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-06-04"}]}}
+{"type":"cache","sample":"e66b632c","key":"49b1d93f_2:6|2023-06-04T02:16:06.000Z","data":{"candidates":[{"content":"Bought a coffee maker for brother from Bed Bath & Beyond for $100","topic":"event gift coffee maker","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-06-04"}]}}
+{"type":"cache","sample":"e66b632c","key":"49b1d93f_2:8|2023-06-04T02:16:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"49b1d93f_2:10|2023-06-04T02:16:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_223509:0|2023-06-05T06:49:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_223509:2|2023-06-05T06:49:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_223509:4|2023-06-05T06:49:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_223509:6|2023-06-05T06:49:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_223509:8|2023-06-05T06:49:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_223509:10|2023-06-05T06:49:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"805528d6_1:0|2023-06-05T17:20:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"805528d6_1:2|2023-06-05T17:20:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"805528d6_1:4|2023-06-05T17:20:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"805528d6_1:6|2023-06-05T17:20:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"805528d6_1:8|2023-06-05T17:20:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"805528d6_1:10|2023-06-05T17:20:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_202651:0|2023-06-06T17:25:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_202651:2|2023-06-06T17:25:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_202651:4|2023-06-06T17:25:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_202651:6|2023-06-06T17:25:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_202651:8|2023-06-06T17:25:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_aQ4TU1X_49:1|2023-06-06T21:54:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"sharegpt_aQ4TU1X_49:3|2023-06-06T21:54:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"84098c1b:0|2023-06-14T07:52:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"84098c1b:2|2023-06-14T07:52:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"84098c1b:4|2023-06-14T07:52:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"84098c1b:6|2023-06-14T07:52:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"84098c1b:8|2023-06-14T07:52:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"84098c1b:10|2023-06-14T07:52:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"3304f57b_1:0|2023-06-14T09:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"3304f57b_1:2|2023-06-14T09:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"3304f57b_1:4|2023-06-14T09:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"3304f57b_1:6|2023-06-14T09:03:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"3304f57b_1:8|2023-06-14T09:03:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"3304f57b_1:10|2023-06-14T09:03:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_436858:0|2023-06-18T06:47:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_436858:2|2023-06-18T06:47:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_436858:4|2023-06-18T06:47:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_436858:6|2023-06-18T06:47:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_436858:8|2023-06-18T06:47:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"2d674e1b_1:0|2023-06-18T23:42:00.000Z","data":{"candidates":[{"content":"Plans to plan a road trip to the mountains with friends","topic":"plan road trip","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Went on a road trip to the beach house with family on 2023-06-17","topic":"event beach trip","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-06-17"}]}}
+{"type":"cache","sample":"e66b632c","key":"2d674e1b_1:2|2023-06-18T23:42:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"2d674e1b_1:4|2023-06-18T23:42:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"2d674e1b_1:6|2023-06-18T23:42:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"2d674e1b_1:8|2023-06-18T23:42:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"2d674e1b_1:10|2023-06-18T23:42:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"107b6981_1:0|2023-06-20T11:41:00.000Z","data":{"candidates":[{"content":"Is working on a research paper about sustainable business practices","topic":"Learning","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Developed a sustainable business plan for a fictional company that produces eco-friendly cleaning products with classmates Rachel and Mike since April 1st","topic":"event group project","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-01"}]}}
+{"type":"cache","sample":"e66b632c","key":"107b6981_1:2|2023-06-20T11:41:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"107b6981_1:4|2023-06-20T11:41:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"107b6981_1:6|2023-06-20T11:41:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"107b6981_1:8|2023-06-20T11:41:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"107b6981_1:10|2023-06-20T11:41:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"49b1d93f_1:0|2023-06-25T05:25:00.000Z","data":{"candidates":[{"content":"Bought a silver necklace from Tiffany's for $150 on 2023-05-25","topic":"event necklace purchase","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-25"}]}}
+{"type":"cache","sample":"e66b632c","key":"49b1d93f_1:2|2023-06-25T05:25:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"49b1d93f_1:4|2023-06-25T05:25:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"49b1d93f_1:6|2023-06-25T05:25:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"49b1d93f_1:8|2023-06-25T05:25:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"49b1d93f_1:10|2023-06-25T05:25:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"9b820206:0|2023-06-27T19:40:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"9b820206:2|2023-06-27T19:40:02.000Z","data":{"candidates":[{"content":"Listened to electronic dance music lately","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Had a great workout playing tennis with Rachel at the community center on 2023-06-24","topic":"event tennis","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-24"}]}}
+{"type":"cache","sample":"e66b632c","key":"9b820206:4|2023-06-27T19:40:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"9b820206:6|2023-06-27T19:40:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"9b820206:8|2023-06-27T19:40:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"9b820206:10|2023-06-27T19:40:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"259d58da_2:0|2023-07-02T11:39:00.000Z","data":{"candidates":[{"content":"Bought a pair of black Adidas sneakers on 2023-07-01","topic":"event buying sneakers","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-07-01"},{"content":"Plans to buy a new pair of gym shoes","topic":"plan gym shoes","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"e66b632c","key":"259d58da_2:2|2023-07-02T11:39:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"259d58da_2:4|2023-07-02T11:39:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"259d58da_2:6|2023-07-02T11:39:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"259d58da_2:8|2023-07-02T11:39:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"259d58da_2:10|2023-07-02T11:39:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_138609:0|2023-07-07T09:05:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_138609:2|2023-07-07T09:05:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_138609:4|2023-07-07T09:05:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_507667:0|2023-07-07T17:39:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_507667:2|2023-07-07T17:39:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_507667:4|2023-07-07T17:39:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_507667:6|2023-07-07T17:39:06.000Z","data":{"candidates":[{"content":"Loves spicy food","topic":"hobby","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to try Chongqing Spicy Chicken at Z & Y Restaurant","topic":"plan restaurant","category":"Personal","importance":2,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"e66b632c","key":"ultrachat_507667:8|2023-07-07T17:39:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"57a6a404_2:0|2023-07-18T23:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"57a6a404_2:2|2023-07-18T23:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"57a6a404_2:4|2023-07-18T23:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"57a6a404_2:6|2023-07-18T23:14:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"57a6a404_2:8|2023-07-18T23:14:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"57a6a404_2:10|2023-07-18T23:14:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"answer_ac0140ce_2:0|2023-07-30T18:30:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"answer_ac0140ce_2:2|2023-07-30T18:30:02.000Z","data":{"candidates":[{"content":"Lives in Oakdale","topic":"home city","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-07-30"},{"content":"Participated in a charity 5K run on 2023-07-29","topic":"event 5K run","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-07-29"}]}}
+{"type":"cache","sample":"e66b632c","key":"answer_ac0140ce_2:4|2023-07-30T18:30:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"answer_ac0140ce_2:6|2023-07-30T18:30:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"answer_ac0140ce_2:8|2023-07-30T18:30:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"answer_ac0140ce_2:10|2023-07-30T18:30:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"487fd03c:0|2023-08-12T03:53:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"487fd03c:2|2023-08-12T03:53:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"487fd03c:4|2023-08-12T03:53:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"487fd03c:6|2023-08-12T03:53:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"487fd03c:8|2023-08-12T03:53:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"e66b632c","key":"487fd03c:10|2023-08-12T03:53:10.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"e66b632c","build":{"sample":"e66b632c","store":"bitemporal","messages_mined":250,"failed_messages":0,"decisions":"ADD=38 NOOP=1 UPDATE=3","memory_versions":41,"memory_current":38,"memory_bytes":429507,"extract_calls":250,"reconcile_calls":41,"build_input_tokens":551964,"build_output_tokens":7242,"build_cost_usd":0,"build_seconds":282.1}}
+{"type":"store_built","sample":"e66b632c","store":"bitemporal","versions":41}
+{"type":"row","row":{"sample":"e66b632c","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours","question":"What was my previous personal best time for the charity 5K run?","gold":"27 minutes and 45 seconds","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate claims it is not available.","recall_at_k":0,"context_items":7,"context_dia":"answer_ac0140ce_2:2 92f1ea4d_1:2 9b820206:2 994f80de:6 0781daa1_3:0 57c8bf62_3:0","context_tokens_est":824,"retrieval_ms":54.66,"answer_ms":1494,"judge_ms":9986,"input_tokens":1556,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"e66b632c","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_temporal","question":"What was my previous personal best time for the charity 5K run?","gold":"27 minutes and 45 seconds","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate claims it is not available.","recall_at_k":0,"context_items":7,"context_dia":"answer_ac0140ce_2:2 92f1ea4d_1:2 994f80de:6 9b820206:2 0781daa1_3:0 57c8bf62_3:0","context_tokens_est":745,"retrieval_ms":617.32,"answer_ms":11421,"judge_ms":9166,"input_tokens":1353,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"e66b632c","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_provenance","question":"What was my previous personal best time for the charity 5K run?","gold":"27 minutes and 45 seconds","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate claims it is not available.","recall_at_k":0,"context_items":7,"context_dia":"answer_ac0140ce_2:2 92f1ea4d_1:2 9b820206:2 994f80de:6 0781daa1_3:0 57c8bf62_3:0","context_tokens_est":216,"retrieval_ms":646,"answer_ms":5855,"judge_ms":9235,"input_tokens":855,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"e66b632c","store":"overwrite"}
+{"type":"build","sample":"e66b632c","build":{"sample":"e66b632c","store":"overwrite","messages_mined":250,"failed_messages":0,"decisions":"ADD=38 NOOP=1 UPDATE=3","memory_versions":38,"memory_current":38,"memory_bytes":398030,"extract_calls":0,"reconcile_calls":41,"build_input_tokens":40014,"build_output_tokens":2433,"build_cost_usd":0,"build_seconds":77.4}}
+{"type":"store_built","sample":"e66b632c","store":"overwrite","versions":38}
+{"type":"row","row":{"sample":"e66b632c","qa_index":0,"category":5,"question_type":"knowledge-update","system":"overwrite_memory","question":"What was my previous personal best time for the charity 5K run?","gold":"27 minutes and 45 seconds","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate claims it is not available.","recall_at_k":0,"context_items":7,"context_dia":"answer_ac0140ce_2:2 92f1ea4d_1:2 9b820206:2 994f80de:6 0781daa1_3:0 57c8bf62_3:0","context_tokens_est":824,"retrieval_ms":46.71,"answer_ms":1455,"judge_ms":14973,"input_tokens":1556,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"e66b632c"}
+{"type":"complete","at":"2026-10-22T07:25:52.718Z"}

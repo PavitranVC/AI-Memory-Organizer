@@ -1,0 +1,259 @@
+{"type":"run","at":"2026-10-22T05:54:13.409Z","commit":"96828dbee242b920abd52e52d48912d7ddc83497 + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["a3838d2b"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"a3838d2b","userIds":["6ad9a5058168fa4307ec8fff"]}
+{"type":"build","sample":"a3838d2b","build":{"sample":"a3838d2b","store":"raw messages","messages_mined":0,"memory_bytes":575650}}
+{"type":"build","sample":"a3838d2b","build":{"sample":"a3838d2b","store":"rag message vectors","messages_mined":0,"memory_bytes":2973696}}
+{"type":"row","row":{"sample":"a3838d2b","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"rag_messages","question":"How many charity events did I participate in before the 'Run for the Cure' event?","gold":"4","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides a specific number, but the candidate claims the information is not available.","recall_at_k":0.16666666666666666,"context_items":10,"context_dia":"answer_4ffa04a2_1:0 answer_4ffa04a2_1:1 answer_4ffa04a2_1:6 answer_4ffa04a2_1:7 answer_4ffa04a2_1:8 answer_4ffa04a2_1:9 answer_4ffa04a2_2:1 answer_4ffa04a2_6:5 answer_4ffa04a2_6:8 answer_4ffa04a2_6:9","context_tokens_est":2525,"retrieval_ms":40.36,"answer_ms":7370,"judge_ms":9787,"input_tokens":2797,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"a3838d2b"}
+{"type":"store_start","sample":"a3838d2b","store":"bitemporal"}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_368906:0|2023-11-29T00:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_368906:2|2023-11-29T00:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_368906:4|2023-11-29T00:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_368906:6|2023-11-29T00:19:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_368906:8|2023-11-29T00:19:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_368906:10|2023-11-29T00:19:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_487772:0|2023-11-29T00:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_487772:2|2023-11-29T00:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_487772:4|2023-11-29T00:24:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_487772:6|2023-11-29T00:24:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_487772:8|2023-11-29T00:24:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_154465:0|2023-11-29T01:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_154465:2|2023-11-29T01:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_154465:4|2023-11-29T01:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_154465:6|2023-11-29T01:03:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_154465:8|2023-11-29T01:03:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_154465:10|2023-11-29T01:03:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_154465:12|2023-11-29T01:03:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ff5922e7:0|2023-11-29T02:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ff5922e7:2|2023-11-29T02:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ff5922e7:4|2023-11-29T02:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ff5922e7:6|2023-11-29T02:19:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ff5922e7:8|2023-11-29T02:19:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ff5922e7:10|2023-11-29T02:19:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_1:0|2023-11-29T03:49:00.000Z","data":{"candidates":[{"content":"Participated in the 'Run for the Cure' event on 2023-10-15 and raised $250 for breast cancer research","topic":"event charity run","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-15"}]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_1:2|2023-11-29T03:49:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_1:4|2023-11-29T03:49:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_1:6|2023-11-29T03:49:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_1:8|2023-11-29T03:49:08.000Z","data":{"candidates":[{"content":"Participated in the 'Run for the Cure' event on 2023-10-15, raising $250 for breast cancer research","topic":"event run for the cure","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-10-15"},{"content":"Plans to participate in a charity swim event to support a local children's hospital","topic":"plan charity swim","category":"Personal","importance":3,"confidence":0.8,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_1:10|2023-11-29T03:49:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_34858:0|2023-11-29T04:55:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_34858:2|2023-11-29T04:55:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_34858:4|2023-11-29T04:55:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_34858:6|2023-11-29T04:55:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_34858:8|2023-11-29T04:55:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_2:0|2023-11-29T05:08:00.000Z","data":{"candidates":[{"content":"Volunteered at the 'Food for Thought' charity gala on 2023-09-25","topic":"event charity gala","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-09-25"}]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_2:2|2023-11-29T05:08:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_2:4|2023-11-29T05:08:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_2:6|2023-11-29T05:08:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_2:8|2023-11-29T05:08:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_2:10|2023-11-29T05:08:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"6dc62df6_2:0|2023-11-29T05:54:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"6dc62df6_2:2|2023-11-29T05:54:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"6dc62df6_2:4|2023-11-29T05:54:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"6dc62df6_2:6|2023-11-29T05:54:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"6dc62df6_2:8|2023-11-29T05:54:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"6dc62df6_2:10|2023-11-29T05:54:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_336244:0|2023-11-29T06:28:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_336244:2|2023-11-29T06:28:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_336244:4|2023-11-29T06:28:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_336244:6|2023-11-29T06:28:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_336244:8|2023-11-29T06:28:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e02ddb14_1:0|2023-11-29T07:15:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e02ddb14_1:2|2023-11-29T07:15:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e02ddb14_1:4|2023-11-29T07:15:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e02ddb14_1:6|2023-11-29T07:15:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e02ddb14_1:8|2023-11-29T07:15:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e02ddb14_1:10|2023-11-29T07:15:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_23714:0|2023-11-29T07:35:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_23714:2|2023-11-29T07:35:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_23714:4|2023-11-29T07:35:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_23714:6|2023-11-29T07:35:06.000Z","data":{"candidates":[{"content":"Started bringing reusable bags and water bottles to reduce plastic use","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-29"}]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_23714:8|2023-11-29T07:35:08.000Z","data":{"candidates":[{"content":"Started using bamboo toothbrushes and reusable food containers","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-29"}]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_23714:10|2023-11-29T07:35:10.000Z","data":{"candidates":[{"content":"Tries to eat less seafood to reduce impact on marine ecosystems","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_162118:0|2023-11-29T07:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_162118:2|2023-11-29T07:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_162118:4|2023-11-29T07:43:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_162118:6|2023-11-29T07:43:06.000Z","data":{"candidates":[{"content":"Plans to reduce meat and dairy intake","topic":"plan diet","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to use public transportation more often","topic":"plan transportation","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_162118:8|2023-11-29T07:43:08.000Z","data":{"candidates":[{"content":"Plans to switch to renewable energy sources for the home","topic":"plan renewable energy","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_162118:10|2023-11-29T07:43:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_162118:12|2023-11-29T07:43:12.000Z","data":{"candidates":[{"content":"Plans to start a community garden in the neighborhood","topic":"plan community garden","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_3:0|2023-11-29T07:51:00.000Z","data":{"candidates":[{"content":"Participated in the 'Bike-a-Thon' charity event in November","topic":"event bike-a-thon","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-01"}]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_3:2|2023-11-29T07:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_3:4|2023-11-29T07:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_3:6|2023-11-29T07:51:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_3:8|2023-11-29T07:51:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_3:10|2023-11-29T07:51:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"82a04f59:0|2023-11-29T08:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"82a04f59:2|2023-11-29T08:18:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"82a04f59:4|2023-11-29T08:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"82a04f59:6|2023-11-29T08:18:06.000Z","data":{"candidates":[{"content":"Overpacked on a trip to Costa Rica on 2023-11-22","topic":"event overpacking","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-22"},{"content":"Tends to overpack","topic":"hobby packing","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"82a04f59:8|2023-11-29T08:18:08.000Z","data":{"candidates":[{"content":"Invested in travel-sized toiletry bottles and a packing cube","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_oXjQ9O1_0:0|2023-11-29T08:40:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_oXjQ9O1_0:2|2023-11-29T08:40:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_oXjQ9O1_0:4|2023-11-29T08:40:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_oXjQ9O1_0:6|2023-11-29T08:40:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_oXjQ9O1_0:8|2023-11-29T08:40:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_oXjQ9O1_0:10|2023-11-29T08:40:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e8de3056_1:0|2023-11-29T09:04:00.000Z","data":{"candidates":[{"content":"Plans to attend a salsa festival next month","topic":"plan salsa festival","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Has been taking salsa classes at the local dance studio for about 3 months","topic":"hobby salsa","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-08-29"}]}}
+{"type":"cache","sample":"a3838d2b","key":"e8de3056_1:2|2023-11-29T09:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e8de3056_1:4|2023-11-29T09:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e8de3056_1:6|2023-11-29T09:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e8de3056_1:8|2023-11-29T09:04:08.000Z","data":{"candidates":[{"content":"Plans to take salsa classes with Emily before the festival","topic":"plan salsa classes","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"e8de3056_1:10|2023-11-29T09:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"638e7094_1:0|2023-11-29T09:27:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"638e7094_1:2|2023-11-29T09:27:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"638e7094_1:4|2023-11-29T09:27:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"638e7094_1:6|2023-11-29T09:27:06.000Z","data":{"candidates":[{"content":"Plans to plan the week, set weekly goals, and do meal prep","topic":"plan weekly planning","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to take a walk or watch a movie for self-care","topic":"plan self-care","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"638e7094_1:8|2023-11-29T09:27:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"638e7094_1:10|2023-11-29T09:27:10.000Z","data":{"candidates":[{"content":"Plans to establish a bedtime routine","topic":"plan bedtime routine","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to set a consistent bedtime","topic":"plan consistent bedtime","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to dim the lights before bed","topic":"plan dim lights","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to avoid screens for at least 30 minutes before bed","topic":"plan avoid screens","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to wind down with reading or listening to calming music","topic":"plan wind down activities","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to write down the to-do list for the next day","topic":"plan to-do list","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"ae73b0f7_2:0|2023-11-29T09:48:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ae73b0f7_2:2|2023-11-29T09:48:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ae73b0f7_2:4|2023-11-29T09:48:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ae73b0f7_2:6|2023-11-29T09:48:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ae73b0f7_2:8|2023-11-29T09:48:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ae73b0f7_2:10|2023-11-29T09:48:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_462884:0|2023-11-29T09:56:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_462884:2|2023-11-29T09:56:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_462884:4|2023-11-29T09:56:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_462884:6|2023-11-29T09:56:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_462884:8|2023-11-29T09:56:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_462884:10|2023-11-29T09:56:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_462884:12|2023-11-29T09:56:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_6:0|2023-11-29T10:18:00.000Z","data":{"candidates":[{"content":"Participated in the 'Dance for a Cause' event on 2023-05-01","topic":"event dance for a cause","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-01"}]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_6:2|2023-11-29T10:18:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_6:4|2023-11-29T10:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_6:6|2023-11-29T10:18:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_6:8|2023-11-29T10:18:08.000Z","data":{"candidates":[{"content":"Participated in a dance marathon on 2023-05-01","topic":"event dance marathon","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-01"}]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_6:10|2023-11-29T10:18:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_94693:0|2023-11-29T10:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_94693:2|2023-11-29T10:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_94693:4|2023-11-29T10:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_2Td9Irt_0:0|2023-11-29T10:20:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_2Td9Irt_0:2|2023-11-29T10:20:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"8cf0d2a9:0|2023-11-29T11:01:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"8cf0d2a9:2|2023-11-29T11:01:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"8cf0d2a9:4|2023-11-29T11:01:04.000Z","data":{"candidates":[{"content":"Attended a Billie Eilish concert at the Forum on 2023-11-28","topic":"event concert","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-28"}]}}
+{"type":"cache","sample":"a3838d2b","key":"8cf0d2a9:6|2023-11-29T11:01:06.000Z","data":{"candidates":[{"content":"Attended a Billie Eilish concert at the Forum on 2023-11-28","topic":"event concert","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-28"},{"content":"Was with best friend Emma at the concert","topic":"event concert","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-11-28"}]}}
+{"type":"cache","sample":"a3838d2b","key":"8cf0d2a9:8|2023-11-29T11:01:08.000Z","data":{"candidates":[{"content":"Attended a concert at the Forum on 2023-11-28","topic":"event concert","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-28"},{"content":"Was with best friend Emma at the concert","topic":"event concert","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-11-28"},{"content":"Got to the Forum at 5 pm and secured a good spot in the general admission section","topic":"event concert","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-28"},{"content":"Crowd energy was electric at the concert","topic":"event concert","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-28"},{"content":"Sang along to 'Bad Guy' and 'When the Party's Over' at the concert","topic":"event concert","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-28"}]}}
+{"type":"cache","sample":"a3838d2b","key":"8cf0d2a9:10|2023-11-29T11:01:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_59fzD6J_0:0|2023-11-29T11:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_59fzD6J_0:2|2023-11-29T11:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_SQzWPKF_34:0|2023-11-29T12:23:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_SQzWPKF_34:2|2023-11-29T12:23:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_SQzWPKF_34:4|2023-11-29T12:23:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_SQzWPKF_34:6|2023-11-29T12:23:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"06317e04:0|2023-11-29T12:42:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"953d5a4b_2:0|2023-11-29T12:42:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"06317e04:2|2023-11-29T12:42:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"953d5a4b_2:2|2023-11-29T12:42:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"06317e04:4|2023-11-29T12:42:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"953d5a4b_2:4|2023-11-29T12:42:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"06317e04:6|2023-11-29T12:42:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"953d5a4b_2:6|2023-11-29T12:42:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"06317e04:8|2023-11-29T12:42:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"953d5a4b_2:8|2023-11-29T12:42:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"06317e04:10|2023-11-29T12:42:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"953d5a4b_2:10|2023-11-29T12:42:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_5NoXULS_0:0|2023-11-29T13:35:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_5NoXULS_0:2|2023-11-29T13:35:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_3PxcmyO_0:0|2023-11-29T14:00:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_3PxcmyO_0:2|2023-11-29T14:00:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"511e2d61:0|2023-11-29T14:31:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"511e2d61:2|2023-11-29T14:31:02.000Z","data":{"candidates":[{"content":"Got a new phone case on 2023-11-22","topic":"event phone case","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-22"},{"content":"Plans to find a better screen cleaner","topic":"plan screen cleaner","category":"Personal","importance":2,"confidence":0.8,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"511e2d61:4|2023-11-29T14:31:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"511e2d61:6|2023-11-29T14:31:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"511e2d61:8|2023-11-29T14:31:08.000Z","data":{"candidates":[{"content":"Plans to organize contacts list","topic":"plan contacts","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to get a portable power bank","topic":"plan power bank","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"511e2d61:10|2023-11-29T14:31:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_173051:0|2023-11-29T14:48:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_173051:2|2023-11-29T14:48:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_173051:4|2023-11-29T14:48:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_173051:6|2023-11-29T14:48:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_173051:8|2023-11-29T14:48:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_95340:0|2023-11-29T14:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_95340:2|2023-11-29T14:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_95340:4|2023-11-29T14:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_95340:6|2023-11-29T14:58:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_95340:8|2023-11-29T14:58:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"4162afef_2:0|2023-11-29T15:25:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"4162afef_2:2|2023-11-29T15:25:02.000Z","data":{"candidates":[{"content":"Got oil changed on 2023-03-18 for $35","topic":"event oil change","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-18"},{"content":"Got tires rotated and balanced on 2023-03-18 for $20","topic":"event tire service","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-18"},{"content":"Got a flat tire repaired on 2023-02-22 for $15","topic":"event tire repair","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-02-22"}]}}
+{"type":"cache","sample":"a3838d2b","key":"4162afef_2:4|2023-11-29T15:25:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"4162afef_2:6|2023-11-29T15:25:06.000Z","data":{"candidates":[{"content":"Got car detailed on 2023-04-01 for $120","topic":"event car detailing","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-01"}]}}
+{"type":"cache","sample":"a3838d2b","key":"4162afef_2:8|2023-11-29T15:25:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"4162afef_2:10|2023-11-29T15:25:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_4:0|2023-11-29T15:28:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_4:2|2023-11-29T15:28:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_4:4|2023-11-29T15:28:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_4:6|2023-11-29T15:28:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_bA6P6oG_0:0|2023-11-29T15:48:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_bA6P6oG_0:2|2023-11-29T15:48:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_bA6P6oG_0:4|2023-11-29T15:48:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e285de4b:0|2023-11-29T15:54:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e285de4b:2|2023-11-29T15:54:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e285de4b:4|2023-11-29T15:54:04.000Z","data":{"candidates":[{"content":"Bought a Samsung Galaxy S22 Ultra on 2023-02-10","topic":"event phone purchase","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-02-10"},{"content":"Bought a portable power bank from Anker on 2023-02-03","topic":"event power bank purchase","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-02-03"}]}}
+{"type":"cache","sample":"a3838d2b","key":"e285de4b:6|2023-11-29T15:54:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e285de4b:8|2023-11-29T15:54:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"e285de4b:10|2023-11-29T15:54:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_JXREDs0_4:0|2023-11-29T16:12:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_JXREDs0_4:2|2023-11-29T16:12:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_JXREDs0_4:4|2023-11-29T16:12:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_538097:0|2023-11-29T17:52:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_538097:2|2023-11-29T17:52:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_538097:4|2023-11-29T17:52:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_538097:6|2023-11-29T17:52:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_538097:8|2023-11-29T17:52:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_538097:10|2023-11-29T17:52:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"ultrachat_538097:12|2023-11-29T17:52:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"bd4110bc:0|2023-11-29T18:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"bd4110bc:2|2023-11-29T18:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"bd4110bc:4|2023-11-29T18:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"bd4110bc:6|2023-11-29T18:19:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"bd4110bc:8|2023-11-29T18:19:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"bd4110bc:10|2023-11-29T18:19:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_GDFyxeT_0:0|2023-11-29T18:52:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"4c358f1b_2:0|2023-11-29T21:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"4c358f1b_2:2|2023-11-29T21:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"4c358f1b_2:4|2023-11-29T21:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"4c358f1b_2:6|2023-11-29T21:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"4c358f1b_2:8|2023-11-29T21:02:08.000Z","data":{"candidates":[{"content":"Plans to purchase a helmet with MIPS technology","topic":"plan helmet","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Needs 1,200 points to get 10% off on a new helmet","topic":"personal goal","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"4c358f1b_2:10|2023-11-29T21:02:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_fhj3OCi_0:0|2023-11-29T21:26:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_5:0|2023-11-29T22:12:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_5:2|2023-11-29T22:12:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_5:4|2023-11-29T22:12:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_5:6|2023-11-29T22:12:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_5:8|2023-11-29T22:12:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"answer_4ffa04a2_5:10|2023-11-29T22:12:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_Fy9JAep_157:1|2023-11-29T22:31:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_Fy9JAep_157:3|2023-11-29T22:31:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_Fy9JAep_157:5|2023-11-29T22:31:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_Kz8ljab_95:1|2023-11-29T22:40:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_Kz8ljab_95:3|2023-11-29T22:40:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_Kz8ljab_95:5|2023-11-29T22:40:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_Kz8ljab_95:7|2023-11-29T22:40:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_Kz8ljab_95:9|2023-11-29T22:40:09.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_Kz8ljab_95:11|2023-11-29T22:40:11.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_Kz8ljab_95:13|2023-11-29T22:40:13.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_Kz8ljab_95:15|2023-11-29T22:40:15.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"sharegpt_Kz8ljab_95:17|2023-11-29T22:40:17.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"10305ca9_2:0|2023-11-29T23:29:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"10305ca9_2:2|2023-11-29T23:29:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"10305ca9_2:4|2023-11-29T23:29:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"10305ca9_2:6|2023-11-29T23:29:06.000Z","data":{"candidates":[{"content":"Plans to donate old sneakers and a lightweight jacket","topic":"plan donation","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a3838d2b","key":"10305ca9_2:8|2023-11-29T23:29:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"10305ca9_2:10|2023-11-29T23:29:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"2fe5510e_4:0|2023-11-29T23:52:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"2fe5510e_4:2|2023-11-29T23:52:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"2fe5510e_4:4|2023-11-29T23:52:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"2fe5510e_4:6|2023-11-29T23:52:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"2fe5510e_4:8|2023-11-29T23:52:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a3838d2b","key":"2fe5510e_4:10|2023-11-29T23:52:10.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"a3838d2b","build":{"sample":"a3838d2b","store":"bitemporal","messages_mined":241,"failed_messages":0,"decisions":"ADD=35 NOOP=7 SUPERSEDE=1 UPDATE=6","memory_versions":42,"memory_current":35,"memory_bytes":440364,"extract_calls":241,"reconcile_calls":47,"build_input_tokens":542107,"build_output_tokens":8393,"build_cost_usd":0,"build_seconds":308.4}}
+{"type":"store_built","sample":"a3838d2b","store":"bitemporal","versions":42}
+{"type":"row","row":{"sample":"a3838d2b","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours","question":"How many charity events did I participate in before the 'Run for the Cure' event?","gold":"4","answer":"2","insufficient":false,"cited":"m1 m2","score_f1":0,"judge_correct":0,"judge_reason":"Different number from the gold answer.","recall_at_k":0.6666666666666666,"context_items":10,"context_dia":"answer_4ffa04a2_1:0 answer_4ffa04a2_3:0 answer_4ffa04a2_2:0 answer_4ffa04a2_6:0 8cf0d2a9:4 8cf0d2a9:6 8cf0d2a9:8 82a04f59:6 511e2d61:2 4162afef_2:2","context_tokens_est":1226,"retrieval_ms":42.25,"answer_ms":1880,"judge_ms":16470,"input_tokens":2110,"output_tokens":29,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"a3838d2b","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours_no_temporal","question":"How many charity events did I participate in before the 'Run for the Cure' event?","gold":"4","answer":"two","insufficient":false,"cited":"m4 m5","score_f1":0,"judge_correct":0,"judge_reason":"The candidate provides a different number than the gold answer.","recall_at_k":0.6666666666666666,"context_items":10,"context_dia":"answer_4ffa04a2_1:0 answer_4ffa04a2_3:0 answer_4ffa04a2_1:8 answer_4ffa04a2_2:0 answer_4ffa04a2_6:0 8cf0d2a9:4 8cf0d2a9:6 8cf0d2a9:8 4162afef_2:2 82a04f59:6","context_tokens_est":1125,"retrieval_ms":630.87,"answer_ms":11474,"judge_ms":9803,"input_tokens":1808,"output_tokens":29,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"a3838d2b","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours_no_provenance","question":"How many charity events did I participate in before the 'Run for the Cure' event?","gold":"4","answer":"2","insufficient":false,"cited":"m1 m2","score_f1":0,"judge_correct":0,"judge_reason":"Different number from the gold answer.","recall_at_k":0.6666666666666666,"context_items":10,"context_dia":"answer_4ffa04a2_1:0 answer_4ffa04a2_3:0 answer_4ffa04a2_2:0 answer_4ffa04a2_6:0 8cf0d2a9:4 8cf0d2a9:6 8cf0d2a9:8 82a04f59:6 511e2d61:2 4162afef_2:2","context_tokens_est":308,"retrieval_ms":609.83,"answer_ms":11111,"judge_ms":9645,"input_tokens":1045,"output_tokens":29,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"a3838d2b","store":"overwrite"}
+{"type":"build","sample":"a3838d2b","build":{"sample":"a3838d2b","store":"overwrite","messages_mined":241,"failed_messages":0,"decisions":"ADD=36 NOOP=6 SUPERSEDE=1 UPDATE=6","memory_versions":36,"memory_current":36,"memory_bytes":377068,"extract_calls":0,"reconcile_calls":47,"build_input_tokens":47904,"build_output_tokens":3074,"build_cost_usd":0,"build_seconds":96}}
+{"type":"store_built","sample":"a3838d2b","store":"overwrite","versions":36}
+{"type":"row","row":{"sample":"a3838d2b","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"overwrite_memory","question":"How many charity events did I participate in before the 'Run for the Cure' event?","gold":"4","answer":"two","insufficient":false,"cited":"m4 m3","score_f1":0,"judge_correct":0,"judge_reason":"The candidate provides a different number than the gold answer.","recall_at_k":0.6666666666666666,"context_items":10,"context_dia":"answer_4ffa04a2_1:0 answer_4ffa04a2_3:0 answer_4ffa04a2_2:0 answer_4ffa04a2_6:0 8cf0d2a9:4 8cf0d2a9:6 8cf0d2a9:8 82a04f59:6 511e2d61:2 4162afef_2:2","context_tokens_est":1227,"retrieval_ms":32.5,"answer_ms":1895,"judge_ms":17426,"input_tokens":2111,"output_tokens":29,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"a3838d2b"}
+{"type":"complete","at":"2026-10-22T06:02:40.423Z"}
