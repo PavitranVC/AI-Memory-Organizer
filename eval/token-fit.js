@@ -1,5 +1,6 @@
 // Did the full-context prompts of the finished LoCoMo runs really not fit the model's window?
-//   npm run eval:token-fit        writes results/stage6e-locomo-fullcontext-token-fit.txt
+//   npm run eval:token-fit                 prints the table; changes no file
+//   npm run eval:token-fit -- --write      also (re)writes results/stage6e-locomo-fullcontext-token-fit.txt
 // Uses only the committed answers.csv files. For the samples where the full-context system DID answer, Ollama's own
 // count (input_tokens) against the prompt's characters gives the real characters per token; that ratio is then
 // applied to every sample to see how many tokens its whole conversation needs, plus the room the harness keeps for
@@ -27,7 +28,7 @@ function main() {
   const mean = ratios.reduce((a, b) => a + b, 0) / ratios.length;
   const lines = [
     'Full-context prompt size against the context window, LoCoMo runs on local models (dataset: benchmark, LoCoMo)',
-    `command: ${command('eval:token-fit', [])}`,
+    `command: ${command('eval:token-fit', process.argv.slice(2))}`,
     `commit: ${gitCommit()} (the code that ran; the results are committed in a later commit)`,
     `date: ${new Date().toISOString()}`,
     `real characters per token (Ollama's input_tokens against the prompt, ${ratios.length} answered questions): mean ${mean.toFixed(2)}, min ${Math.min(...ratios).toFixed(2)}, max ${Math.max(...ratios).toFixed(2)}; the harness assumed 3.3`,
@@ -40,7 +41,7 @@ function main() {
     }),
     '',
   ];
-  fs.writeFileSync(path.join(RESULTS, 'stage6e-locomo-fullcontext-token-fit.txt'), lines.join('\n'));
+  if (process.argv.includes('--write')) fs.writeFileSync(path.join(RESULTS, 'stage6e-locomo-fullcontext-token-fit.txt'), lines.join('\n'));
   console.log(lines.join('\n'));
 }
 
