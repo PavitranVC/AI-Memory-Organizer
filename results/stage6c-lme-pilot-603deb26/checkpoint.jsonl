@@ -1,0 +1,253 @@
+{"type":"run","at":"2026-10-22T16:48:27.478Z","commit":"564327b74eb6654f441e12e8f882ef336a053929 + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["603deb26"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"603deb26","userIds":["6ada3e5b70e29b733890add8"]}
+{"type":"build","sample":"603deb26","build":{"sample":"603deb26","store":"raw messages","messages_mined":0,"memory_bytes":589888}}
+{"type":"build","sample":"603deb26","build":{"sample":"603deb26","store":"rag message vectors","messages_mined":0,"memory_bytes":2899968}}
+{"type":"row","row":{"sample":"603deb26","qa_index":0,"category":5,"question_type":"knowledge-update","system":"rag_messages","question":"How many times have I tried making a Negroni at home since my friend Emma showed me how to make it?","gold":"10","answer":"10","insufficient":false,"cited":"answer_8afdebac_1:4 answer_8afdebac_2:0 answer_8afdebac_2:6","score_f1":1,"judge_correct":1,"judge_reason":"Same numerical value.","recall_at_k":1,"context_items":10,"context_dia":"answer_8afdebac_1:4 answer_8afdebac_1:5 answer_8afdebac_1:6 answer_8afdebac_1:7 ede65c84_2:9 answer_8afdebac_2:0 answer_8afdebac_2:1 answer_8afdebac_2:6 answer_8afdebac_2:7 answer_8afdebac_2:10","context_tokens_est":2377,"retrieval_ms":32.19,"answer_ms":9235,"judge_ms":9260,"input_tokens":3127,"output_tokens":58,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"603deb26"}
+{"type":"store_start","sample":"603deb26","store":"bitemporal"}
+{"type":"cache","sample":"603deb26","key":"37f66729:0|2023-08-04T04:05:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"37f66729:2|2023-08-04T04:05:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"37f66729:4|2023-08-04T04:05:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"37f66729:6|2023-08-04T04:05:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"37f66729:8|2023-08-04T04:05:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"37f66729:10|2023-08-04T04:05:10.000Z","data":{"candidates":[{"content":"Plans to start a seasonal photography project, focusing on capturing the changing seasons in a specific location like a park or a trail","topic":"plan seasonal project","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to start a themed photography project, focusing on wildlife and nature","topic":"plan wildlife project","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to combine seasonal and wildlife photography projects, focusing on a natural setting like a forest or a wetland","topic":"plan combined projects","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_DjfaDml_11:1|2023-08-11T00:49:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_DjfaDml_11:3|2023-08-11T00:49:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_DjfaDml_11:5|2023-08-11T00:49:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_DjfaDml_11:7|2023-08-11T00:49:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_DjfaDml_11:9|2023-08-11T00:49:09.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_DjfaDml_11:11|2023-08-11T00:49:11.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"answer_8afdebac_1:0|2023-08-11T17:11:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"answer_8afdebac_1:2|2023-08-11T17:11:02.000Z","data":{"candidates":[{"content":"Plans to experiment with lavender in a cocktail","topic":"plan lavender cocktail","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Experiments with different Negroni recipes at home","topic":"event negroni recipes","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-08-10"}]}}
+{"type":"cache","sample":"603deb26","key":"answer_8afdebac_1:4|2023-08-11T17:11:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"answer_8afdebac_1:6|2023-08-11T17:11:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"answer_8afdebac_1:8|2023-08-11T17:11:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"433ce12c:0|2023-08-11T19:46:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"433ce12c:2|2023-08-11T19:46:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"433ce12c:4|2023-08-11T19:46:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"433ce12c:6|2023-08-11T19:46:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"433ce12c:8|2023-08-11T19:46:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"433ce12c:10|2023-08-11T19:46:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"58e5adf2:0|2023-08-12T03:22:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"58e5adf2:2|2023-08-12T03:22:02.000Z","data":{"candidates":[{"content":"Ordered a beginner's kit online","topic":"hobby fly fishing","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Caught a 3-pound trout on Lake Tahoe on 2023-08-05","topic":"event fishing","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-08-05"}]}}
+{"type":"cache","sample":"603deb26","key":"58e5adf2:4|2023-08-12T03:22:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"58e5adf2:6|2023-08-12T03:22:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"58e5adf2:8|2023-08-12T03:22:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"58e5adf2:10|2023-08-12T03:22:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ede65c84_2:0|2023-08-14T16:17:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ede65c84_2:2|2023-08-14T16:17:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ede65c84_2:4|2023-08-14T16:17:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ede65c84_2:6|2023-08-14T16:17:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ede65c84_2:8|2023-08-14T16:17:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ede65c84_2:10|2023-08-14T16:17:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"a55a5afc_2:0|2023-08-14T21:57:00.000Z","data":{"candidates":[{"content":"Cleaned out the chicken coop on 2023-08-14","topic":"event chicken coop","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-08-14"},{"content":"Ordered fencing supplies","topic":"plan fencing supplies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Scheduled a vet visit for the chickens","topic":"plan vet visit","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Sold excess roosters to a neighbor on 2023-08-14","topic":"event sold roosters","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-08-14"}]}}
+{"type":"cache","sample":"603deb26","key":"a55a5afc_2:2|2023-08-14T21:57:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"a55a5afc_2:4|2023-08-14T21:57:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"a55a5afc_2:6|2023-08-14T21:57:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"a55a5afc_2:8|2023-08-14T21:57:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"a55a5afc_2:10|2023-08-14T21:57:10.000Z","data":{"candidates":[{"content":"Bought a Flotec FP4012 submersible water pump on 2023-08-14","topic":"event water pump purchase","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-08-14"},{"content":"Bought a Craftsman 10-Piece Combination Wrench Set on 2023-08-14","topic":"event toolset purchase","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-08-14"},{"content":"Plans to create a social media account for the farm","topic":"plan social media account","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_43OIeUI_0:0|2023-08-15T08:11:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"feb5f98a_2:0|2023-08-16T06:11:00.000Z","data":{"candidates":[{"content":"Plans to start looking for a new job in the next few months","topic":"plan job search","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"603deb26","key":"feb5f98a_2:2|2023-08-16T06:11:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"feb5f98a_2:4|2023-08-16T06:11:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"feb5f98a_2:6|2023-08-16T06:11:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"feb5f98a_2:8|2023-08-16T06:11:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"feb5f98a_2:10|2023-08-16T06:11:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"5e867c2f_2:0|2023-08-27T17:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"5e867c2f_2:2|2023-08-27T17:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"5e867c2f_2:4|2023-08-27T17:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"5e867c2f_2:6|2023-08-27T17:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"5e867c2f_2:8|2023-08-27T17:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"5e867c2f_2:10|2023-08-27T17:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"28d52bff:0|2023-08-28T02:17:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"28d52bff:2|2023-08-28T02:17:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"28d52bff:4|2023-08-28T02:17:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"28d52bff:6|2023-08-28T02:17:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"28d52bff:8|2023-08-28T02:17:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"28d52bff:10|2023-08-28T02:17:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_104321:0|2023-08-28T21:23:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_104321:2|2023-08-28T21:23:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_104321:4|2023-08-28T21:23:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_104321:6|2023-08-28T21:23:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f0e71553_4:0|2023-08-30T18:47:00.000Z","data":{"candidates":[{"content":"Uses a glucometer once a week since 2023-01-01","topic":"event blood sugar monitoring","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":"2023-01-01"},{"content":"Plans to get a smart scale","topic":"plan smart scale","category":"Health","importance":3,"confidence":0.8,"sensitivity":"special","validFrom":null}]}}
+{"type":"cache","sample":"603deb26","key":"f0e71553_4:2|2023-08-30T18:47:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f0e71553_4:4|2023-08-30T18:47:04.000Z","data":{"candidates":[{"content":"Uses a glucometer once a week since last year","topic":"event glucometer use","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":"2022-08-31"},{"content":"Notices higher blood sugar levels with poor sleep","topic":"event blood sugar and sleep","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Considers getting a smart scale to track sleep quality","topic":"plan smart scale for sleep","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"603deb26","key":"f0e71553_4:6|2023-08-30T18:47:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f0e71553_4:8|2023-08-30T18:47:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f0e71553_4:10|2023-08-30T18:47:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_w7bjHzU_78:0|2023-08-31T04:27:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_w7bjHzU_78:2|2023-08-31T04:27:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_w7bjHzU_78:4|2023-08-31T04:27:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7badf4f3_3:0|2023-09-01T09:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7badf4f3_3:2|2023-09-01T09:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7badf4f3_3:4|2023-09-01T09:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7badf4f3_3:6|2023-09-01T09:03:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7badf4f3_3:8|2023-09-01T09:03:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7badf4f3_3:10|2023-09-01T09:03:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"4f5880c6_2:0|2023-09-01T19:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"4f5880c6_2:2|2023-09-01T19:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"4f5880c6_2:4|2023-09-01T19:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"4f5880c6_2:6|2023-09-01T19:58:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"4f5880c6_2:8|2023-09-01T19:58:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"4f5880c6_2:10|2023-09-01T19:58:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f379d356_3:0|2023-09-06T02:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f379d356_3:2|2023-09-06T02:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f379d356_3:4|2023-09-06T02:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f379d356_3:6|2023-09-06T02:04:06.000Z","data":{"candidates":[{"content":"Asks sister Rachel to be the party photographer","topic":"plan photographer","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"603deb26","key":"f379d356_3:8|2023-09-06T02:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f379d356_3:10|2023-09-06T02:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_201507:0|2023-09-08T23:53:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_201507:2|2023-09-08T23:53:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_201507:4|2023-09-08T23:53:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_201507:6|2023-09-08T23:53:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7db28e68_1:0|2023-09-12T13:39:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7db28e68_1:2|2023-09-12T13:39:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7db28e68_1:4|2023-09-12T13:39:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7db28e68_1:6|2023-09-12T13:39:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7db28e68_1:8|2023-09-12T13:39:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7db28e68_1:10|2023-09-12T13:39:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_69476:0|2023-09-23T08:05:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_69476:2|2023-09-23T08:05:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_69476:4|2023-09-23T08:05:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_69476:6|2023-09-23T08:05:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_69476:8|2023-09-23T08:05:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_69476:10|2023-09-23T08:05:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_Wj3iOcG_0:0|2023-09-23T19:16:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_409438:0|2023-09-24T21:36:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_409438:2|2023-09-24T21:36:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_409438:4|2023-09-24T21:36:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_409438:6|2023-09-24T21:36:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_409438:8|2023-09-24T21:36:08.000Z","data":{"candidates":[{"content":"Plans to make lentil soup","topic":"plan lentil soup","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to make chia seed pudding","topic":"plan chia seed pudding","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_409438:10|2023-09-24T21:36:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"5e523d80_3:0|2023-09-26T22:22:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"5e523d80_3:2|2023-09-26T22:22:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"5e523d80_3:4|2023-09-26T22:22:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"5e523d80_3:6|2023-09-26T22:22:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"5e523d80_3:8|2023-09-26T22:22:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"5e523d80_3:10|2023-09-26T22:22:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_182173:0|2023-09-28T07:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_182173:2|2023-09-28T07:18:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_182173:4|2023-09-28T07:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_408354:0|2023-10-01T22:47:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_408354:2|2023-10-01T22:47:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_408354:4|2023-10-01T22:47:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_408354:6|2023-10-01T22:47:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_Ab5RUMY_0:0|2023-10-02T00:53:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"81f6b12f_2:0|2023-10-03T07:29:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"81f6b12f_2:2|2023-10-03T07:29:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"81f6b12f_2:4|2023-10-03T07:29:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"81f6b12f_2:6|2023-10-03T07:29:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"81f6b12f_2:8|2023-10-03T07:29:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"81f6b12f_2:10|2023-10-03T07:29:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_ZmDJxcL_0:0|2023-10-04T13:26:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_ZmDJxcL_0:2|2023-10-04T13:26:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_ZmDJxcL_0:4|2023-10-04T13:26:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_ZmDJxcL_0:6|2023-10-04T13:26:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_ZmDJxcL_0:8|2023-10-04T13:26:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_ZmDJxcL_0:10|2023-10-04T13:26:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_ZmDJxcL_0:12|2023-10-04T13:26:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_ZmDJxcL_0:14|2023-10-04T13:26:14.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"c4661b3c_1:0|2023-10-08T16:28:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"c4661b3c_1:2|2023-10-08T16:28:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"c4661b3c_1:4|2023-10-08T16:28:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"c4661b3c_1:6|2023-10-08T16:28:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"c4661b3c_1:8|2023-10-08T16:28:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"c4661b3c_1:10|2023-10-08T16:28:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_EtyzQD9_0:0|2023-10-12T20:53:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_dXzPvS4_0:0|2023-10-21T21:49:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_dXzPvS4_0:2|2023-10-21T21:49:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_dXzPvS4_0:4|2023-10-21T21:49:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_dXzPvS4_0:6|2023-10-21T21:49:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"d05d6391_3:0|2023-10-22T11:56:00.000Z","data":{"candidates":[{"content":"Plans to volunteer at a charity event","topic":"plan charity event","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Helped out at the 'Fireworks Festival' charity event on 2023-10-21","topic":"event charity event","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-21"}]}}
+{"type":"cache","sample":"603deb26","key":"d05d6391_3:2|2023-10-22T11:56:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"d05d6391_3:4|2023-10-22T11:56:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"d05d6391_3:6|2023-10-22T11:56:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"d05d6391_3:8|2023-10-22T11:56:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"d05d6391_3:10|2023-10-22T11:56:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f26846e1_3:0|2023-10-28T19:09:00.000Z","data":{"candidates":[{"content":"Plans a trip to the nearby nature reserve on 2023-10-28","topic":"plan nature reserve trip","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Went on a bird watching trip to the nearby nature reserve on 2023-03-12","topic":"event bird watching trip","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-12"},{"content":"Spotted a pair of American Goldfinches for the first time this season","topic":"event bird sighting","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-12"}]}}
+{"type":"cache","sample":"603deb26","key":"f26846e1_3:2|2023-10-28T19:09:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f26846e1_3:4|2023-10-28T19:09:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f26846e1_3:6|2023-10-28T19:09:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f26846e1_3:8|2023-10-28T19:09:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"f26846e1_3:10|2023-10-28T19:09:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_QDfpZQ4_0:0|2023-10-31T04:52:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"c77250d2:0|2023-11-07T17:29:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"c77250d2:2|2023-11-07T17:29:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"c77250d2:4|2023-11-07T17:29:04.000Z","data":{"candidates":[{"content":"Bought wireless headphones on Amazon three weeks ago","topic":"event buying headphones","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-17"}]}}
+{"type":"cache","sample":"603deb26","key":"c77250d2:6|2023-11-07T17:29:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"c77250d2:8|2023-11-07T17:29:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"c77250d2:10|2023-11-07T17:29:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_98824:0|2023-11-11T06:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_98824:2|2023-11-11T06:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_98824:4|2023-11-11T06:32:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_98824:6|2023-11-11T06:32:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_98824:8|2023-11-11T06:32:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_98824:10|2023-11-11T06:32:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_324293:0|2023-11-13T04:54:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_324293:2|2023-11-13T04:54:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_324293:4|2023-11-13T04:54:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_324293:6|2023-11-13T04:54:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_mMTudFY_0:0|2023-11-16T00:25:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"9594de66_2:0|2023-11-22T12:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"9594de66_2:2|2023-11-22T12:18:02.000Z","data":{"candidates":[{"content":"Plans to buy a Pro-Ject Debut Carbon DC record player","topic":"plan record player","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Owns a Marvel Iron Man Funko Pop","topic":"Marvel collectibles","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"603deb26","key":"9594de66_2:4|2023-11-22T12:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"9594de66_2:6|2023-11-22T12:18:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"9594de66_2:8|2023-11-22T12:18:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"9594de66_2:10|2023-11-22T12:18:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_453841:0|2023-11-23T01:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_453841:2|2023-11-23T01:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_453841:4|2023-11-23T01:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_453841:6|2023-11-23T01:58:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_453841:8|2023-11-23T01:58:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_453841:10|2023-11-23T01:58:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_etklNfN_11:1|2023-11-23T23:49:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_etklNfN_11:3|2023-11-23T23:49:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"93191d30_2:0|2023-11-25T14:27:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"93191d30_2:2|2023-11-25T14:27:02.000Z","data":{"candidates":[{"content":"Planned a picnic at the park next month","topic":"plan picnic","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Brought instruments and had a jam session with siblings","topic":"event jam session","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"personal","validFrom":null},{"content":"Had a potluck where everyone brings a dish to share","topic":"event potluck","category":"Personal","importance":3,"confidence":0.8,"sensitivity":"personal","validFrom":null},{"content":"Had an annual family reunion at aunt's house on 2023-11-18","topic":"event family reunion","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-11-18"}]}}
+{"type":"cache","sample":"603deb26","key":"93191d30_2:4|2023-11-25T14:27:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"93191d30_2:6|2023-11-25T14:27:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"93191d30_2:8|2023-11-25T14:27:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"93191d30_2:10|2023-11-25T14:27:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_z6pSZ19_0:0|2023-11-25T21:20:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_z6pSZ19_0:2|2023-11-25T21:20:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_z6pSZ19_0:4|2023-11-25T21:20:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"sharegpt_z6pSZ19_0:6|2023-11-25T21:20:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7b0dea50_1:0|2023-11-29T21:01:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7b0dea50_1:2|2023-11-29T21:01:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7b0dea50_1:4|2023-11-29T21:01:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7b0dea50_1:6|2023-11-29T21:01:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7b0dea50_1:8|2023-11-29T21:01:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"7b0dea50_1:10|2023-11-29T21:01:10.000Z","data":{"candidates":[{"content":"Attended a book reading event at the local library on 2023-11-22","topic":"event book reading","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-22"},{"content":"Finished reading 'The Lost City' by Emma Taylor a week prior to the event","topic":"event reading 'The Lost City'","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-15"},{"content":"Got 'The Lost City' signed by Emma Taylor at the event","topic":"event book signing","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-22"}]}}
+{"type":"cache","sample":"603deb26","key":"answer_8afdebac_2:0|2023-11-30T01:59:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"answer_8afdebac_2:2|2023-11-30T01:59:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"answer_8afdebac_2:4|2023-11-30T01:59:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"answer_8afdebac_2:6|2023-11-30T01:59:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"answer_8afdebac_2:8|2023-11-30T01:59:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"answer_8afdebac_2:10|2023-11-30T01:59:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_191335:0|2023-11-30T15:10:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_191335:2|2023-11-30T15:10:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_191335:4|2023-11-30T15:10:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_191335:6|2023-11-30T15:10:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_191335:8|2023-11-30T15:10:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_191335:10|2023-11-30T15:10:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_191335:12|2023-11-30T15:10:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"88611fff:0|2023-11-30T16:07:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"88611fff:2|2023-11-30T16:07:02.000Z","data":{"candidates":[{"content":"Plans to make lasagna for a dinner party","topic":"plan dinner party","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Has been having family dinners every evening since 2023-10-01","topic":"event family dinners","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-10-01"}]}}
+{"type":"cache","sample":"603deb26","key":"88611fff:4|2023-11-30T16:07:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"88611fff:6|2023-11-30T16:07:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"88611fff:8|2023-11-30T16:07:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"88611fff:10|2023-11-30T16:07:10.000Z","data":{"candidates":[{"content":"Plans to serve Moscato d'Asti as dessert wine","topic":"plan dessert wine","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_528423:0|2023-12-01T00:05:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_528423:2|2023-12-01T00:05:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"603deb26","key":"ultrachat_528423:4|2023-12-01T00:05:04.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"603deb26","build":{"sample":"603deb26","store":"bitemporal","messages_mined":235,"failed_messages":0,"decisions":"ADD=36 NOOP=1 SUPERSEDE=1 UPDATE=3","memory_versions":40,"memory_current":36,"memory_bytes":419082,"extract_calls":235,"reconcile_calls":39,"build_input_tokens":519982,"build_output_tokens":6969,"build_cost_usd":0,"build_seconds":266.7}}
+{"type":"store_built","sample":"603deb26","store":"bitemporal","versions":40}
+{"type":"row","row":{"sample":"603deb26","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours","question":"How many times have I tried making a Negroni at home since my friend Emma showed me how to make it?","gold":"10","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides a specific number, but the candidate claims the information is not available.","recall_at_k":0,"context_items":8,"context_dia":"answer_8afdebac_1:2 88611fff:2 7b0dea50_1:10 ultrachat_409438:8 f0e71553_4:4 f26846e1_3:0","context_tokens_est":784,"retrieval_ms":42.76,"answer_ms":1424,"judge_ms":17625,"input_tokens":1516,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"603deb26","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_temporal","question":"How many times have I tried making a Negroni at home since my friend Emma showed me how to make it?","gold":"10","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides a specific number, but the candidate claims the information is not available.","recall_at_k":0,"context_items":9,"context_dia":"answer_8afdebac_1:2 88611fff:2 f0e71553_4:4 f0e71553_4:0 ultrachat_409438:8 7b0dea50_1:10 f26846e1_3:0","context_tokens_est":794,"retrieval_ms":686.93,"answer_ms":7674,"judge_ms":12449,"input_tokens":1394,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"603deb26","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_provenance","question":"How many times have I tried making a Negroni at home since my friend Emma showed me how to make it?","gold":"10","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides a specific number, but the candidate claims the information is not available.","recall_at_k":0,"context_items":8,"context_dia":"answer_8afdebac_1:2 88611fff:2 7b0dea50_1:10 ultrachat_409438:8 f0e71553_4:4 f26846e1_3:0","context_tokens_est":220,"retrieval_ms":753.69,"answer_ms":12104,"judge_ms":12354,"input_tokens":865,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"603deb26","store":"overwrite"}
+{"type":"build","sample":"603deb26","build":{"sample":"603deb26","store":"overwrite","messages_mined":235,"failed_messages":0,"decisions":"ADD=36 NOOP=1 UPDATE=4","memory_versions":36,"memory_current":36,"memory_bytes":377053,"extract_calls":0,"reconcile_calls":39,"build_input_tokens":39094,"build_output_tokens":2340,"build_cost_usd":0,"build_seconds":80.3}}
+{"type":"store_built","sample":"603deb26","store":"overwrite","versions":36}
+{"type":"row","row":{"sample":"603deb26","qa_index":0,"category":5,"question_type":"knowledge-update","system":"overwrite_memory","question":"How many times have I tried making a Negroni at home since my friend Emma showed me how to make it?","gold":"10","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides a specific number, but the candidate claims the information is not available.","recall_at_k":0,"context_items":8,"context_dia":"answer_8afdebac_1:2 88611fff:2 7b0dea50_1:10 ultrachat_409438:8 f0e71553_4:0 f0e71553_4:4 f26846e1_3:0","context_tokens_est":870,"retrieval_ms":33.24,"answer_ms":1450,"judge_ms":17985,"input_tokens":1610,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"603deb26"}
+{"type":"complete","at":"2026-10-22T16:56:01.790Z"}
