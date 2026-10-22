@@ -4,9 +4,9 @@
   "startedAt": "2026-10-22T08:44:02.889Z",
   "total": 60,
   "answeredBefore": 0,
-  "answered": 2,
-  "failedAgain": 17,
-  "current": "conv-26 #193",
+  "answered": 4,
+  "failedAgain": 25,
+  "current": "conv-30 #42",
   "lastBackup": "committed; push failed (retried at the next backup)",
-  "updatedAt": "2026-10-22T10:10:58.211Z"
+  "updatedAt": "2026-10-22T10:57:01.422Z"
 }
