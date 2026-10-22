@@ -1,0 +1,34 @@
+{
+  "runId": "stage6c-lme-pilot-603deb26",
+  "models": {
+    "extract": "qwen2.5-coder:14b",
+    "reconcile": "qwen2.5-coder:14b",
+    "answer": "qwen2.5-coder:14b",
+    "judge": "deepseek-r1:14b"
+  },
+  "provider": "ollama",
+  "unit": "seconds per item (measured)",
+  "messages_mined_per_store": {
+    "bitemporal": 235,
+    "overwrite": 235
+  },
+  "questions_per_system": {
+    "rag_messages": 1,
+    "ours": 1,
+    "ours_no_temporal": 1,
+    "ours_no_provenance": 1,
+    "overwrite_memory": 1
+  },
+  "seconds_per_message": {
+    "bitemporal": 1.135,
+    "overwrite": 0.342
+  },
+  "seconds_per_answer": {
+    "rag_messages": 9.267,
+    "ours": 1.467,
+    "ours_no_temporal": 8.361,
+    "ours_no_provenance": 12.858,
+    "overwrite_memory": 1.483
+  },
+  "seconds_per_judge": 13.935
+}

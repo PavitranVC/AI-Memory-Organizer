@@ -1,0 +1,264 @@
+{"type":"run","at":"2026-10-22T14:25:10.473Z","commit":"249f9368ec6ae017a6ba39933086f621ef4bca9d + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["af082822"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"af082822","userIds":["6ada1cc6ceb16693d9629ce2"]}
+{"type":"build","sample":"af082822","build":{"sample":"af082822","store":"raw messages","messages_mined":0,"memory_bytes":582359}}
+{"type":"build","sample":"af082822","build":{"sample":"af082822","store":"rag message vectors","messages_mined":0,"memory_bytes":3041280}}
+{"type":"row","row":{"sample":"af082822","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"rag_messages","question":"How many weeks ago did I attend the friends and family sale at Nordstrom?","gold":"2","answer":"1 week ago","insufficient":false,"cited":"answer_b51b6115_1:2","score_f1":0,"judge_correct":0,"judge_reason":"The candidate provides a different number of weeks than the gold answer.","recall_at_k":1,"context_items":10,"context_dia":"bf38543d_2:6 bf38543d_2:7 bf38543d_2:9 bf38543d_2:11 1dfef591_2:1 1dfef591_2:7 1a920713_2:3 answer_b51b6115_1:2 answer_b51b6115_1:4 answer_b51b6115_1:5","context_tokens_est":1957,"retrieval_ms":31.67,"answer_ms":8434,"judge_ms":9707,"input_tokens":2463,"output_tokens":37,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"af082822"}
+{"type":"store_start","sample":"af082822","store":"bitemporal"}
+{"type":"cache","sample":"af082822","key":"fbe6fa2c_2:0|2022-10-23T10:23:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"fbe6fa2c_2:2|2022-10-23T10:23:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"fbe6fa2c_2:4|2022-10-23T10:23:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"fbe6fa2c_2:6|2022-10-23T10:23:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"fbe6fa2c_2:8|2022-10-23T10:23:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"fbe6fa2c_2:10|2022-10-23T10:23:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"6bb8af95_2:0|2022-10-25T12:20:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"6bb8af95_2:2|2022-10-25T12:20:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"6bb8af95_2:4|2022-10-25T12:20:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"6bb8af95_2:6|2022-10-25T12:20:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"6bb8af95_2:8|2022-10-25T12:20:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"6bb8af95_2:10|2022-10-25T12:20:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_D5vldxd_0:0|2022-10-29T04:00:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_D5vldxd_0:2|2022-10-29T04:00:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_D5vldxd_0:4|2022-10-29T04:00:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_D5vldxd_0:6|2022-10-29T04:00:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_D5vldxd_0:8|2022-10-29T04:00:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"e132259f:0|2022-10-29T22:31:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"e132259f:2|2022-10-29T22:31:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"e132259f:4|2022-10-29T22:31:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"e132259f:6|2022-10-29T22:31:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"e132259f:8|2022-10-29T22:31:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"e132259f:10|2022-10-29T22:31:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"facef6e0_1:0|2022-10-30T07:38:00.000Z","data":{"candidates":[{"content":"Finished a 5-week beginner salsa class at DanceFever from mid-February to late March","topic":"event salsa class","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2022-02-15"},{"content":"Looking for new salsa shoes","topic":"plan salsa shoes","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"af082822","key":"facef6e0_1:2|2022-10-30T07:38:02.000Z","data":{"candidates":[{"content":"Attends DanceFever's social nights every other Friday","topic":"event dance social nights","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2022-10-28"},{"content":"Met Maria, who's become a dance friend","topic":"relationship dance friend","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2022-10-28"}]}}
+{"type":"cache","sample":"af082822","key":"facef6e0_1:4|2022-10-30T07:38:04.000Z","data":{"candidates":[{"content":"Attended a Latin dance festival at the convention center downtown on 2022-03-04","topic":"event latin dance festival","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2022-03-04"},{"content":"Plans to explore other Latin dance styles, like afro-cuban rhythms","topic":"plan latin dance styles","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"af082822","key":"facef6e0_1:6|2022-10-30T07:38:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"facef6e0_1:8|2022-10-30T07:38:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"facef6e0_1:10|2022-10-30T07:38:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_284874:0|2022-11-02T05:35:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_284874:2|2022-11-02T05:35:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_284874:4|2022-11-02T05:35:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_284874:6|2022-11-02T05:35:06.000Z","data":{"candidates":[{"content":"Carries an EpiPen","topic":"health","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":null},{"content":"Wishes for more consistent allergen protocols in restaurants","topic":"plan restaurant protocols","category":"Health","importance":3,"confidence":0.8,"sensitivity":"special","validFrom":null}]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_284874:8|2022-11-02T05:35:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_284874:10|2022-11-02T05:35:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_284874:12|2022-11-02T05:35:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"cdf068b1_2:0|2022-11-14T07:51:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"cdf068b1_2:2|2022-11-14T07:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"cdf068b1_2:4|2022-11-14T07:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"cdf068b1_2:6|2022-11-14T07:51:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"cdf068b1_2:8|2022-11-14T07:51:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"cdf068b1_2:10|2022-11-14T07:51:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_243673:0|2022-11-16T10:11:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_243673:2|2022-11-16T10:11:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_243673:4|2022-11-16T10:11:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_243673:6|2022-11-16T10:11:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_243673:8|2022-11-16T10:11:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"a113eec0:0|2022-11-17T02:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"a113eec0:2|2022-11-17T02:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"a113eec0:4|2022-11-17T02:24:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"a113eec0:6|2022-11-17T02:24:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"a113eec0:8|2022-11-17T02:24:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"a113eec0:10|2022-11-17T02:24:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"54f0d6f9_1:0|2022-11-18T00:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"54f0d6f9_1:2|2022-11-18T00:18:02.000Z","data":{"candidates":[{"content":"Started checking the soil daily for ferns","topic":"event plant care","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2022-11-18"},{"content":"Plans to get a few more plants for the bedroom","topic":"plan plants","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"af082822","key":"54f0d6f9_1:4|2022-11-18T00:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"54f0d6f9_1:6|2022-11-18T00:18:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"54f0d6f9_1:8|2022-11-18T00:18:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"54f0d6f9_1:10|2022-11-18T00:18:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"4bf66c38_1:0|2022-11-18T00:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"4bf66c38_1:2|2022-11-18T00:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"4bf66c38_1:4|2022-11-18T00:24:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"4bf66c38_1:6|2022-11-18T00:24:06.000Z","data":{"candidates":[{"content":"Plans a 4-5 day trip to Kyoto","topic":"plan trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Prioritizes exploring temples and gardens on the first two days of the trip","topic":"plan trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to visit the Kyoto Imperial Palace and Nishiki Market on the third day","topic":"plan trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to enjoy a traditional Kaiseki dinner on the third day","topic":"plan trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to take a day trip to Nara on the fourth day","topic":"plan trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to visit Ginkakuji Temple and explore the Kurama Onsen on the last day","topic":"plan trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"af082822","key":"4bf66c38_1:8|2022-11-18T00:24:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"4bf66c38_1:10|2022-11-18T00:24:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_67669:0|2022-11-18T00:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_67669:2|2022-11-18T00:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_67669:4|2022-11-18T00:43:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_67669:6|2022-11-18T00:43:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1fcb4134_2:0|2022-11-18T02:35:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1fcb4134_2:2|2022-11-18T02:35:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1fcb4134_2:4|2022-11-18T02:35:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1fcb4134_2:6|2022-11-18T02:35:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1fcb4134_2:8|2022-11-18T02:35:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1fcb4134_2:10|2022-11-18T02:35:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_396809:0|2022-11-18T03:00:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_396809:2|2022-11-18T03:00:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_396809:4|2022-11-18T03:00:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_396809:6|2022-11-18T03:00:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_323777:0|2022-11-18T03:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_323777:2|2022-11-18T03:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_323777:4|2022-11-18T03:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_323777:6|2022-11-18T03:58:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"bf38543d_2:0|2022-11-18T04:21:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"bf38543d_2:2|2022-11-18T04:21:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"bf38543d_2:4|2022-11-18T04:21:04.000Z","data":{"candidates":[{"content":"Had to take a morning off on a Wednesday, February 20th","topic":"event morning off","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2022-02-20"},{"content":"Plans to have a doctor's appointment on Thursday, March 1st","topic":"plan doctor's appointment","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"af082822","key":"bf38543d_2:6|2022-11-18T04:21:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"bf38543d_2:8|2022-11-18T04:21:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"bf38543d_2:10|2022-11-18T04:21:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"d048ae4b_2:0|2022-11-18T05:10:00.000Z","data":{"candidates":[{"content":"Owns a tripod since 2018","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2018-01-01"},{"content":"Received an old camera body from Rachel on 2022-01-25","topic":"event camera body","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2022-01-25"}]}}
+{"type":"cache","sample":"af082822","key":"d048ae4b_2:2|2022-11-18T05:10:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"d048ae4b_2:4|2022-11-18T05:10:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"d048ae4b_2:6|2022-11-18T05:10:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"d048ae4b_2:8|2022-11-18T05:10:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"d048ae4b_2:10|2022-11-18T05:10:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1dfef591_2:0|2022-11-18T05:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1dfef591_2:2|2022-11-18T05:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1dfef591_2:4|2022-11-18T05:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1dfef591_2:6|2022-11-18T05:14:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1dfef591_2:8|2022-11-18T05:14:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1dfef591_2:10|2022-11-18T05:14:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"5ace29d7_2:0|2022-11-18T06:30:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"5ace29d7_2:2|2022-11-18T06:30:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"5ace29d7_2:4|2022-11-18T06:30:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"5ace29d7_2:6|2022-11-18T06:30:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"5ace29d7_2:8|2022-11-18T06:30:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"5ace29d7_2:10|2022-11-18T06:30:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_490199:0|2022-11-18T07:45:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_490199:2|2022-11-18T07:45:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_490199:4|2022-11-18T07:45:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_490199:6|2022-11-18T07:45:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_490199:8|2022-11-18T07:45:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_490199:10|2022-11-18T07:45:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_361071:0|2022-11-18T08:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_361071:2|2022-11-18T08:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_361071:4|2022-11-18T08:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_361071:6|2022-11-18T08:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_361071:8|2022-11-18T08:02:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_361071:10|2022-11-18T08:02:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_361071:12|2022-11-18T08:02:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1a920713_2:0|2022-11-18T08:16:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1a920713_2:2|2022-11-18T08:16:02.000Z","data":{"candidates":[{"content":"Enjoys painting, knitting, and sewing","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Can usually squeeze in a few hours of crafting each week, mostly during lunch break or evenings","topic":"crafting schedule","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Trying to finish a scarf for my sister's birthday on April 15th","topic":"event sister's birthday","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-04-15"},{"content":"Making progress on the quilt for my niece","topic":"event niece's quilt","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"af082822","key":"1a920713_2:4|2022-11-18T08:16:04.000Z","data":{"candidates":[{"content":"Plans to fit in 30 minutes of painting time each week","topic":"plan painting","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"af082822","key":"1a920713_2:6|2022-11-18T08:16:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1a920713_2:8|2022-11-18T08:16:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1a920713_2:10|2022-11-18T08:16:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_472070:0|2022-11-18T10:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_472070:2|2022-11-18T10:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_472070:4|2022-11-18T10:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_472070:6|2022-11-18T10:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_472070:8|2022-11-18T10:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_472070:10|2022-11-18T10:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_472070:12|2022-11-18T10:04:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"09f7f9cf:0|2022-11-18T10:36:00.000Z","data":{"candidates":[{"content":"Has trouble sleeping","topic":"health sleep","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":"2022-11-18"}]}}
+{"type":"cache","sample":"af082822","key":"09f7f9cf:2|2022-11-18T10:36:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"09f7f9cf:4|2022-11-18T10:36:04.000Z","data":{"candidates":[{"content":"Sees a therapist, Dr. Smith, for anxiety and depression since 2022-08-18","topic":"therapist","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":"2022-08-18"},{"content":"Experiences anxiety and depression symptoms since 2022-05-18","topic":"mental health symptoms","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":"2022-05-18"},{"content":"Had a mental health breakdown on 2022-11-18","topic":"event mental health breakdown","category":"Health","importance":5,"confidence":0.9,"sensitivity":"special","validFrom":"2022-11-18"}]}}
+{"type":"cache","sample":"af082822","key":"09f7f9cf:6|2022-11-18T10:36:06.000Z","data":{"candidates":[{"content":"Sees Dr. Smith for therapy since 2022-08-18","topic":"therapist","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":"2022-08-18"},{"content":"Experiences anxiety and depression since 2022-05-18","topic":"mental health","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":"2022-05-18"},{"content":"Has been working on developing positive self-talk and reframing thoughts","topic":"self-improvement","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"af082822","key":"09f7f9cf:8|2022-11-18T10:36:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"09f7f9cf:10|2022-11-18T10:36:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_38972:0|2022-11-18T13:09:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_38972:2|2022-11-18T13:09:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_38972:4|2022-11-18T13:09:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"b28990c8_7:0|2022-11-18T13:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"b28990c8_7:2|2022-11-18T13:18:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"b28990c8_7:4|2022-11-18T13:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"b28990c8_7:6|2022-11-18T13:18:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"b28990c8_7:8|2022-11-18T13:18:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"b28990c8_7:10|2022-11-18T13:18:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"b0b37fe2_1:0|2022-11-18T14:27:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"b0b37fe2_1:2|2022-11-18T14:27:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"b0b37fe2_1:4|2022-11-18T14:27:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"b0b37fe2_1:6|2022-11-18T14:27:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"b0b37fe2_1:8|2022-11-18T14:27:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"b0b37fe2_1:10|2022-11-18T14:27:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"6cf1848e_3:0|2022-11-18T15:50:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"6cf1848e_3:2|2022-11-18T15:50:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"6cf1848e_3:4|2022-11-18T15:50:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"6cf1848e_3:6|2022-11-18T15:50:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"6cf1848e_3:8|2022-11-18T15:50:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"6cf1848e_3:10|2022-11-18T15:50:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"answer_b51b6115_1:0|2022-11-18T17:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"answer_b51b6115_1:2|2022-11-18T17:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"answer_b51b6115_1:4|2022-11-18T17:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"answer_b51b6115_1:6|2022-11-18T17:03:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"answer_b51b6115_1:8|2022-11-18T17:03:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"answer_b51b6115_1:10|2022-11-18T17:03:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_4aJsGCH_0:0|2022-11-18T17:15:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_4aJsGCH_0:2|2022-11-18T17:15:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_4aJsGCH_0:4|2022-11-18T17:15:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_4aJsGCH_0:6|2022-11-18T17:15:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_4aJsGCH_0:8|2022-11-18T17:15:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_4aJsGCH_0:10|2022-11-18T17:15:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"51ec01a4:0|2022-11-18T19:27:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"51ec01a4:2|2022-11-18T19:27:02.000Z","data":{"candidates":[{"content":"Started taking cooking classes three weeks ago","topic":"event cooking classes","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2022-11-01"}]}}
+{"type":"cache","sample":"af082822","key":"51ec01a4:4|2022-11-18T19:27:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"51ec01a4:6|2022-11-18T19:27:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"51ec01a4:8|2022-11-18T19:27:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"51ec01a4:10|2022-11-18T19:27:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"09c3d921:0|2022-11-18T20:14:00.000Z","data":{"candidates":[{"content":"Started going to the gym consistently","topic":"event gym","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2022-11-14"},{"content":"Plans to try new exercises to target glutes","topic":"plan glute exercises","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"af082822","key":"09c3d921:2|2022-11-18T20:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"09c3d921:4|2022-11-18T20:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"09c3d921:6|2022-11-18T20:14:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"09c3d921:8|2022-11-18T20:14:08.000Z","data":{"candidates":[{"content":"Uses a fitness app for calorie tracking and workout logging","topic":"hobbies","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Consistently goes to the gym for 3 months","topic":"event gym routine","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":"2022-08-18"},{"content":"Notices improvements in energy levels and overall fitness","topic":"event fitness improvement","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":"2022-11-18"}]}}
+{"type":"cache","sample":"af082822","key":"09c3d921:10|2022-11-18T20:14:10.000Z","data":{"candidates":[{"content":"Lost about 5 pounds in the past month","topic":"event weight loss","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2022-10-18"},{"content":"Focusing on strengthening core and increasing flexibility","topic":"goal fitness","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to be able to do a full split by the end of the year","topic":"plan split","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"af082822","key":"bc5827b5:0|2022-11-18T20:41:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"bc5827b5:2|2022-11-18T20:41:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"bc5827b5:4|2022-11-18T20:41:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"bc5827b5:6|2022-11-18T20:41:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"bc5827b5:8|2022-11-18T20:41:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"bc5827b5:10|2022-11-18T20:41:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"522d52ae_2:0|2022-11-18T20:42:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"522d52ae_2:2|2022-11-18T20:42:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"522d52ae_2:4|2022-11-18T20:42:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"522d52ae_2:6|2022-11-18T20:42:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"522d52ae_2:8|2022-11-18T20:42:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"522d52ae_2:10|2022-11-18T20:42:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_mJ7MnQS_9:1|2022-11-18T20:46:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_mJ7MnQS_9:3|2022-11-18T20:46:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_mJ7MnQS_9:5|2022-11-18T20:46:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"dc9bf721_2:0|2022-11-18T21:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1040e24b_1:0|2022-11-18T21:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"dc9bf721_2:2|2022-11-18T21:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1040e24b_1:2|2022-11-18T21:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"dc9bf721_2:4|2022-11-18T21:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1040e24b_1:4|2022-11-18T21:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"dc9bf721_2:6|2022-11-18T21:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1040e24b_1:6|2022-11-18T21:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"dc9bf721_2:8|2022-11-18T21:02:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1040e24b_1:8|2022-11-18T21:02:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"dc9bf721_2:10|2022-11-18T21:02:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"1040e24b_1:10|2022-11-18T21:02:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"cae65795_2:0|2022-11-18T21:30:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"cae65795_2:2|2022-11-18T21:30:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"cae65795_2:4|2022-11-18T21:30:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"cae65795_2:6|2022-11-18T21:30:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"cae65795_2:8|2022-11-18T21:30:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"cae65795_2:10|2022-11-18T21:30:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_236923:0|2022-11-18T21:39:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_236923:2|2022-11-18T21:39:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_236923:4|2022-11-18T21:39:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_236923:6|2022-11-18T21:39:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"ultrachat_236923:8|2022-11-18T21:39:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"2a1d13f4:0|2022-11-18T21:53:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"2a1d13f4:2|2022-11-18T21:53:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"2a1d13f4:4|2022-11-18T21:53:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"2a1d13f4:6|2022-11-18T21:53:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"2a1d13f4:8|2022-11-18T21:53:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"2a1d13f4:10|2022-11-18T21:53:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"c285b705_1:0|2022-11-18T22:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"c285b705_1:2|2022-11-18T22:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"c285b705_1:4|2022-11-18T22:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"c285b705_1:6|2022-11-18T22:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"c285b705_1:8|2022-11-18T22:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"c285b705_1:10|2022-11-18T22:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_IJxgBrs_65:1|2022-11-18T22:26:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_IJxgBrs_65:3|2022-11-18T22:26:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_IJxgBrs_65:5|2022-11-18T22:26:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_IJxgBrs_65:7|2022-11-18T22:26:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_IJxgBrs_65:9|2022-11-18T22:26:09.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_IJxgBrs_65:11|2022-11-18T22:26:11.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_bdOsvAI_83:1|2022-11-18T23:36:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_bdOsvAI_83:3|2022-11-18T23:36:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_bdOsvAI_83:5|2022-11-18T23:36:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_bdOsvAI_83:7|2022-11-18T23:36:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_bdOsvAI_83:9|2022-11-18T23:36:09.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"af082822","key":"sharegpt_bdOsvAI_83:11|2022-11-18T23:36:11.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"af082822","build":{"sample":"af082822","store":"bitemporal","messages_mined":246,"failed_messages":0,"decisions":"ADD=32 NOOP=3 UPDATE=6","memory_versions":38,"memory_current":32,"memory_bytes":398662,"extract_calls":246,"reconcile_calls":38,"build_input_tokens":545846,"build_output_tokens":7060,"build_cost_usd":0,"build_seconds":273.4}}
+{"type":"store_built","sample":"af082822","store":"bitemporal","versions":38}
+{"type":"row","row":{"sample":"af082822","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours","question":"How many weeks ago did I attend the friends and family sale at Nordstrom?","gold":"2","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate claims it is not available.","recall_at_k":0,"context_items":7,"context_dia":"facef6e0_1:2 51ec01a4:2 1a920713_2:4 1a920713_2:2 facef6e0_1:0 facef6e0_1:4","context_tokens_est":792,"retrieval_ms":50.5,"answer_ms":1437,"judge_ms":16122,"input_tokens":1475,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"af082822","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours_no_temporal","question":"How many weeks ago did I attend the friends and family sale at Nordstrom?","gold":"2","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate claims it is not available.","recall_at_k":0,"context_items":7,"context_dia":"facef6e0_1:2 51ec01a4:2 facef6e0_1:0 facef6e0_1:4 1a920713_2:4 1a920713_2:2","context_tokens_est":713,"retrieval_ms":609,"answer_ms":5750,"judge_ms":11097,"input_tokens":1272,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"af082822","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"ours_no_provenance","question":"How many weeks ago did I attend the friends and family sale at Nordstrom?","gold":"2","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate claims it is not available.","recall_at_k":0,"context_items":7,"context_dia":"facef6e0_1:2 51ec01a4:2 1a920713_2:4 1a920713_2:2 facef6e0_1:0 facef6e0_1:4","context_tokens_est":210,"retrieval_ms":655.09,"answer_ms":6881,"judge_ms":11508,"input_tokens":822,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"af082822","store":"overwrite"}
+{"type":"build","sample":"af082822","build":{"sample":"af082822","store":"overwrite","messages_mined":246,"failed_messages":0,"decisions":"ADD=31 NOOP=3 SUPERSEDE=1 UPDATE=6","memory_versions":31,"memory_current":31,"memory_bytes":324730,"extract_calls":0,"reconcile_calls":38,"build_input_tokens":37658,"build_output_tokens":2486,"build_cost_usd":0,"build_seconds":77.5}}
+{"type":"store_built","sample":"af082822","store":"overwrite","versions":31}
+{"type":"row","row":{"sample":"af082822","qa_index":0,"category":6,"question_type":"temporal-reasoning","system":"overwrite_memory","question":"How many weeks ago did I attend the friends and family sale at Nordstrom?","gold":"2","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate claims it is not available.","recall_at_k":0,"context_items":7,"context_dia":"facef6e0_1:2 51ec01a4:2 1a920713_2:4 1a920713_2:2 facef6e0_1:0 facef6e0_1:4","context_tokens_est":792,"retrieval_ms":38.28,"answer_ms":1388,"judge_ms":12008,"input_tokens":1475,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"af082822"}
+{"type":"complete","at":"2026-10-22T14:32:31.138Z"}

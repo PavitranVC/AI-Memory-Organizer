@@ -1,0 +1,240 @@
+{"type":"run","at":"2026-10-22T17:03:12.799Z","commit":"503ac7263cf8b0b074094ee9576de82b1d4016ee + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["0ddfec37_abs"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"0ddfec37_abs","userIds":["6ada41d07a3ecced453cb242"]}
+{"type":"build","sample":"0ddfec37_abs","build":{"sample":"0ddfec37_abs","store":"raw messages","messages_mined":0,"memory_bytes":580337}}
+{"type":"build","sample":"0ddfec37_abs","build":{"sample":"0ddfec37_abs","store":"rag message vectors","messages_mined":0,"memory_bytes":2746368}}
+{"type":"row","row":{"sample":"0ddfec37_abs","qa_index":0,"category":5,"question_type":"knowledge-update","system":"rag_messages","question":"How many autographed football have I added to my collection in the first three months of collection?","gold":"The information provided is not enough. You mentioned collecting autographed baseball but not football.","answer":"No information available","insufficient":true,"cited":"","score_f1":1,"judge_correct":1,"judge_reason":"Both answers state that the information is not available.","recall_at_k":null,"context_items":10,"context_dia":"cb24e5d5_1:4 6eb55dc4_2:8 6eb55dc4_2:9 answer_a22b654d_abs_1:0 answer_a22b654d_abs_1:1 answer_a22b654d_abs_2:0 answer_a22b654d_abs_2:1 answer_a22b654d_abs_2:3 answer_a22b654d_abs_2:8 answer_a22b654d_abs_2:9","context_tokens_est":2133,"retrieval_ms":35.15,"answer_ms":8218,"judge_ms":10773,"input_tokens":2467,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"0ddfec37_abs"}
+{"type":"store_start","sample":"0ddfec37_abs","store":"bitemporal"}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_bJPEsEx_0:0|2023-04-21T00:28:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_bJPEsEx_0:2|2023-04-21T00:28:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_RMZlUp6_0:0|2023-04-26T20:30:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_RMZlUp6_0:2|2023-04-26T20:30:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_RMZlUp6_0:4|2023-04-26T20:30:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_M1z8Mxm_0:0|2023-04-28T01:10:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_M1z8Mxm_0:2|2023-04-28T01:10:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"6de70f46_1:0|2023-04-28T09:48:00.000Z","data":{"candidates":[{"content":"Decided to focus on collecting vintage cameras on 2023-04-28","topic":"event vintage cameras","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-28"},{"content":"Got a 1960s-era Canon rangefinder camera","topic":"event vintage cameras","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-28"}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"6de70f46_1:2|2023-04-28T09:48:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"6de70f46_1:4|2023-04-28T09:48:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"6de70f46_1:6|2023-04-28T09:48:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"6de70f46_1:8|2023-04-28T09:48:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"6de70f46_1:10|2023-04-28T09:48:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"261efbe2_2:0|2023-04-30T20:28:00.000Z","data":{"candidates":[{"content":"Started taking yoga classes at a new studio in the neighborhood about 6 weeks ago","topic":"event yoga classes","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-01"},{"content":"Does a quick 10-15 minute yoga practice every morning","topic":"hobby yoga","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"261efbe2_2:2|2023-04-30T20:28:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"261efbe2_2:4|2023-04-30T20:28:04.000Z","data":{"candidates":[{"content":"Tries out the Flow Fusion playlist for Vinyasa flow class","topic":"event trying out playlist","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-30"},{"content":"Enjoys the 7 am class on Fridays at the new studio","topic":"event yoga class","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-30"}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"261efbe2_2:6|2023-04-30T20:28:06.000Z","data":{"candidates":[{"content":"Attends a 7 am Friday yoga class at a new studio","topic":"event yoga class","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-28"},{"content":"Has a knowledgeable instructor named Alex at the yoga studio","topic":"personal yoga instructor","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-28"},{"content":"Experiences reduced tension in the lower back since starting yoga","topic":"health lower back","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":"2023-04-28"}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"261efbe2_2:8|2023-04-30T20:28:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"261efbe2_2:10|2023-04-30T20:28:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e1b8999c_3:0|2023-05-01T11:47:00.000Z","data":{"candidates":[{"content":"Plans to participate in a few more events this year","topic":"plan events","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Has a triathlon coming up on 2023-05-15","topic":"event triathlon","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-15"}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e1b8999c_3:2|2023-05-01T11:47:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e1b8999c_3:4|2023-05-01T11:47:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e1b8999c_3:6|2023-05-01T11:47:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e1b8999c_3:8|2023-05-01T11:47:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e1b8999c_3:10|2023-05-01T11:47:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"cb24e5d5_1:0|2023-05-01T13:31:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"cb24e5d5_1:2|2023-05-01T13:31:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"cb24e5d5_1:4|2023-05-01T13:31:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"cb24e5d5_1:6|2023-05-01T13:31:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"cb24e5d5_1:8|2023-05-01T13:31:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"cb24e5d5_1:10|2023-05-01T13:31:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"a35959ba_2:0|2023-05-02T03:51:00.000Z","data":{"candidates":[{"content":"Plans a trip to Disney World with family","topic":"plan trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Went to Orlando with family in February","topic":"event Orlando trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-02-01"}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"a35959ba_2:2|2023-05-02T03:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"a35959ba_2:4|2023-05-02T03:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"a35959ba_2:6|2023-05-02T03:51:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"a35959ba_2:8|2023-05-02T03:51:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"a35959ba_2:10|2023-05-02T03:51:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_ulELlJB_69:1|2023-05-02T08:56:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_ulELlJB_69:3|2023-05-02T08:56:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_ulELlJB_69:5|2023-05-02T08:56:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_157835:0|2023-05-06T16:05:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_157835:2|2023-05-06T16:05:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_157835:4|2023-05-06T16:05:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_NzEB05Q_5:1|2023-05-07T23:28:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_NzEB05Q_5:3|2023-05-07T23:28:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"4fb01417_2:0|2023-05-09T10:56:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"4fb01417_2:2|2023-05-09T10:56:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"4fb01417_2:4|2023-05-09T10:56:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"4fb01417_2:6|2023-05-09T10:56:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"4fb01417_2:8|2023-05-09T10:56:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"4fb01417_2:10|2023-05-09T10:56:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"4bd8d215_1:0|2023-05-09T23:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"4bd8d215_1:2|2023-05-09T23:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"4bd8d215_1:4|2023-05-09T23:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"4bd8d215_1:6|2023-05-09T23:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"4bd8d215_1:8|2023-05-09T23:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"4bd8d215_1:10|2023-05-09T23:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"8e435729_1:0|2023-05-12T19:04:00.000Z","data":{"candidates":[{"content":"Washed and waxed a car on 2022-04-10","topic":"event car maintenance","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2022-04-10"},{"content":"Plans to get a new car insurance policy","topic":"plan car insurance","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"8e435729_1:2|2023-05-12T19:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"8e435729_1:4|2023-05-12T19:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"8e435729_1:6|2023-05-12T19:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"8e435729_1:8|2023-05-12T19:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"8e435729_1:10|2023-05-12T19:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"36a06ee8:0|2023-05-12T20:24:00.000Z","data":{"candidates":[{"content":"Plans to adopt a child","topic":"plan adoption","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"36a06ee8:2|2023-05-12T20:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"36a06ee8:4|2023-05-12T20:24:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"36a06ee8:6|2023-05-12T20:24:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"36a06ee8:8|2023-05-12T20:24:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"36a06ee8:10|2023-05-12T20:24:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_V2j1zkI_0:0|2023-05-18T09:46:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"1f5370f7_4:0|2023-05-18T21:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"1f5370f7_4:2|2023-05-18T21:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"1f5370f7_4:4|2023-05-18T21:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"1f5370f7_4:6|2023-05-18T21:03:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"1f5370f7_4:8|2023-05-18T21:03:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"1f5370f7_4:10|2023-05-18T21:03:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_200650:0|2023-05-20T01:25:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_200650:2|2023-05-20T01:25:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_200650:4|2023-05-20T01:25:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_200650:6|2023-05-20T01:25:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_200650:8|2023-05-20T01:25:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_200650:10|2023-05-20T01:25:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_200650:12|2023-05-20T01:25:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"8e10bf6b_1:0|2023-05-20T02:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"8e10bf6b_1:2|2023-05-20T02:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"8e10bf6b_1:4|2023-05-20T02:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"8e10bf6b_1:6|2023-05-20T02:19:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"8e10bf6b_1:8|2023-05-20T02:19:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"8e10bf6b_1:10|2023-05-20T02:19:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"6eb55dc4_2:0|2023-05-20T02:46:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"6eb55dc4_2:2|2023-05-20T02:46:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"6eb55dc4_2:4|2023-05-20T02:46:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"6eb55dc4_2:6|2023-05-20T02:46:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"6eb55dc4_2:8|2023-05-20T02:46:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"6eb55dc4_2:10|2023-05-20T02:46:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_375298:0|2023-05-20T06:14:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_375298:2|2023-05-20T06:14:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_375298:4|2023-05-20T06:14:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_375298:6|2023-05-20T06:14:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_375298:8|2023-05-20T06:14:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"answer_a22b654d_abs_1:0|2023-05-20T06:42:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"answer_a22b654d_abs_1:2|2023-05-20T06:42:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"answer_a22b654d_abs_1:4|2023-05-20T06:42:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"answer_a22b654d_abs_1:6|2023-05-20T06:42:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"answer_a22b654d_abs_1:8|2023-05-20T06:42:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"answer_a22b654d_abs_1:10|2023-05-20T06:42:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_217382:0|2023-05-20T18:57:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_217382:2|2023-05-20T18:57:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_217382:4|2023-05-20T18:57:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_217382:6|2023-05-20T18:57:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_217382:8|2023-05-20T18:57:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_217382:10|2023-05-20T18:57:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_EvxyJO5_0:0|2023-05-20T19:00:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_EvxyJO5_0:2|2023-05-20T19:00:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ce6cae1b_2:0|2023-05-20T19:56:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ce6cae1b_2:2|2023-05-20T19:56:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ce6cae1b_2:4|2023-05-20T19:56:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ce6cae1b_2:6|2023-05-20T19:56:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ce6cae1b_2:8|2023-05-20T19:56:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ce6cae1b_2:10|2023-05-20T19:56:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"25572732:0|2023-05-20T20:55:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"25572732:2|2023-05-20T20:55:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"25572732:4|2023-05-20T20:55:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"25572732:6|2023-05-20T20:55:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"25572732:8|2023-05-20T20:55:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"25572732:10|2023-05-20T20:55:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_52452:0|2023-05-21T05:34:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_52452:2|2023-05-21T05:34:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_52452:4|2023-05-21T05:34:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"c07ae000_2:0|2023-05-21T05:59:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"c07ae000_2:2|2023-05-21T05:59:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"c07ae000_2:4|2023-05-21T05:59:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"c07ae000_2:6|2023-05-21T05:59:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"c07ae000_2:8|2023-05-21T05:59:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"c07ae000_2:10|2023-05-21T05:59:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"91074ce7:0|2023-05-22T00:13:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"91074ce7:2|2023-05-22T00:13:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"91074ce7:4|2023-05-22T00:13:04.000Z","data":{"candidates":[{"content":"Eats oatmeal with banana and honey for breakfast every morning","topic":"breakfast habit","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-22"},{"content":"Drinks a cup of green tea after breakfast to help with digestion","topic":"morning routine","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-22"}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"91074ce7:6|2023-05-22T00:13:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"91074ce7:8|2023-05-22T00:13:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"91074ce7:10|2023-05-22T00:13:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"answer_a22b654d_abs_2:0|2023-05-22T00:21:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"answer_a22b654d_abs_2:2|2023-05-22T00:21:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"answer_a22b654d_abs_2:4|2023-05-22T00:21:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"answer_a22b654d_abs_2:6|2023-05-22T00:21:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"answer_a22b654d_abs_2:8|2023-05-22T00:21:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"14cfc962_2:0|2023-05-22T01:26:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"14cfc962_2:2|2023-05-22T01:26:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"14cfc962_2:4|2023-05-22T01:26:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"14cfc962_2:6|2023-05-22T01:26:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"14cfc962_2:8|2023-05-22T01:26:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"14cfc962_2:10|2023-05-22T01:26:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_c576GpN_0:0|2023-05-22T03:00:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_c576GpN_0:2|2023-05-22T03:00:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_c576GpN_0:4|2023-05-22T03:00:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_c576GpN_0:6|2023-05-22T03:00:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_c576GpN_0:8|2023-05-22T03:00:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_c576GpN_0:10|2023-05-22T03:00:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"a6b6067b:0|2023-05-22T05:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"a6b6067b:2|2023-05-22T05:18:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"a6b6067b:4|2023-05-22T05:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"a6b6067b:6|2023-05-22T05:18:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"a6b6067b:8|2023-05-22T05:18:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"a6b6067b:10|2023-05-22T05:18:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e3e061c4:0|2023-05-22T13:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e3e061c4:2|2023-05-22T13:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e3e061c4:4|2023-05-22T13:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e3e061c4:6|2023-05-22T13:03:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e3e061c4:8|2023-05-22T13:03:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e3e061c4:10|2023-05-22T13:03:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_YHzbRoY_0:0|2023-05-22T13:41:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_120425:0|2023-05-22T14:31:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_120425:2|2023-05-22T14:31:02.000Z","data":{"candidates":[{"content":"Plans to try counting breaths","topic":"plan breathing technique","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_120425:4|2023-05-22T14:31:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_120425:6|2023-05-22T14:31:06.000Z","data":{"candidates":[{"content":"Plans to use sticky notes to remind themselves to do breathing exercises","topic":"plan breathing exercises","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_0itb7be_51:1|2023-05-22T14:51:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_0itb7be_51:3|2023-05-22T14:51:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_0itb7be_51:5|2023-05-22T14:51:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_0itb7be_51:7|2023-05-22T14:51:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"cf2b3f43_1:0|2023-05-22T15:29:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"cf2b3f43_1:2|2023-05-22T15:29:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"cf2b3f43_1:4|2023-05-22T15:29:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"cf2b3f43_1:6|2023-05-22T15:29:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"cf2b3f43_1:8|2023-05-22T15:29:08.000Z","data":{"candidates":[{"content":"Attended a photography workshop in the city recently","topic":"event photography workshop","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-21"},{"content":"Plans to do a morning shoot at the High Line","topic":"plan high line shoot","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"cf2b3f43_1:10|2023-05-22T15:29:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_433592:0|2023-05-22T16:41:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_433592:2|2023-05-22T16:41:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_433592:4|2023-05-22T16:41:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_433592:6|2023-05-22T16:41:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_433592:8|2023-05-22T16:41:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_433592:10|2023-05-22T16:41:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_433592:12|2023-05-22T16:41:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"d02bcc9e_1:0|2023-05-22T23:30:00.000Z","data":{"candidates":[{"content":"Plans to try out some new recipes this week","topic":"plan recipes","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Wakes up at 7:30 am and starts the day with a 10-minute meditation session followed by a 30-minute workout at the gym","topic":"daily routine","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"d02bcc9e_1:2|2023-05-22T23:30:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"d02bcc9e_1:4|2023-05-22T23:30:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"d02bcc9e_1:6|2023-05-22T23:30:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"d02bcc9e_1:8|2023-05-22T23:30:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"d02bcc9e_1:10|2023-05-22T23:30:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_zwfSWfk_0:0|2023-05-26T09:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"sharegpt_zwfSWfk_0:2|2023-05-26T09:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e92792b8_2:0|2023-05-30T11:45:00.000Z","data":{"candidates":[{"content":"Got a flat tire fixed at a bike shop on 2023-03-03","topic":"event bike maintenance","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-03"}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e92792b8_2:2|2023-05-30T11:45:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e92792b8_2:4|2023-05-30T11:45:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e92792b8_2:6|2023-05-30T11:45:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e92792b8_2:8|2023-05-30T11:45:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"e92792b8_2:10|2023-05-30T11:45:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"3a11533e:0|2023-05-31T00:20:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"3a11533e:2|2023-05-31T00:20:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"3a11533e:4|2023-05-31T00:20:04.000Z","data":{"candidates":[{"content":"Started a crafting binge on 2023-04-30","topic":"event crafting binge","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-30"},{"content":"Plans to continue crafting","topic":"plan crafting","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"3a11533e:6|2023-05-31T00:20:06.000Z","data":{"candidates":[{"content":"Plans to create a digital journal focusing on gratitude and mindfulness","topic":"plan digital journal","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"3a11533e:8|2023-05-31T00:20:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"3a11533e:10|2023-05-31T00:20:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_279346:0|2023-06-04T14:56:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_279346:2|2023-06-04T14:56:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_279346:4|2023-06-04T14:56:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_279346:6|2023-06-04T14:56:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_279346:8|2023-06-04T14:56:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_279346:10|2023-06-04T14:56:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_229267:0|2023-06-07T07:50:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_229267:2|2023-06-07T07:50:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_229267:4|2023-06-07T07:50:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"0ddfec37_abs","key":"ultrachat_229267:6|2023-06-07T07:50:06.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"0ddfec37_abs","build":{"sample":"0ddfec37_abs","store":"bitemporal","messages_mined":222,"failed_messages":0,"decisions":"ADD=22 NOOP=1 UPDATE=5","memory_versions":27,"memory_current":22,"memory_bytes":283507,"extract_calls":222,"reconcile_calls":27,"build_input_tokens":477884,"build_output_tokens":5263,"build_cost_usd":0,"build_seconds":217.8}}
+{"type":"store_built","sample":"0ddfec37_abs","store":"bitemporal","versions":27}
+{"type":"row","row":{"sample":"0ddfec37_abs","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours","question":"How many autographed football have I added to my collection in the first three months of collection?","gold":"The information provided is not enough. You mentioned collecting autographed baseball but not football.","answer":"No information available","insufficient":true,"cited":"","score_f1":1,"judge_correct":1,"judge_reason":"Both answers state that the information is not available.","recall_at_k":null,"context_items":1,"context_dia":"6de70f46_1:0","context_tokens_est":109,"retrieval_ms":42.94,"answer_ms":1071,"judge_ms":16364,"input_tokens":691,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"0ddfec37_abs","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_temporal","question":"How many autographed football have I added to my collection in the first three months of collection?","gold":"The information provided is not enough. You mentioned collecting autographed baseball but not football.","answer":"No information available","insufficient":true,"cited":"","score_f1":1,"judge_correct":1,"judge_reason":"Both answers state that the information is not available.","recall_at_k":null,"context_items":1,"context_dia":"6de70f46_1:0","context_tokens_est":97,"retrieval_ms":615,"answer_ms":7298,"judge_ms":9579,"input_tokens":662,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"0ddfec37_abs","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_provenance","question":"How many autographed football have I added to my collection in the first three months of collection?","gold":"The information provided is not enough. You mentioned collecting autographed baseball but not football.","answer":"No information available","insufficient":true,"cited":"","score_f1":1,"judge_correct":1,"judge_reason":"Both answers state that the information is not available.","recall_at_k":null,"context_items":1,"context_dia":"6de70f46_1:0","context_tokens_est":41,"retrieval_ms":640.31,"answer_ms":6227,"judge_ms":9595,"input_tokens":611,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"0ddfec37_abs","store":"overwrite"}
+{"type":"build","sample":"0ddfec37_abs","build":{"sample":"0ddfec37_abs","store":"overwrite","messages_mined":222,"failed_messages":0,"decisions":"ADD=21 NOOP=2 UPDATE=5","memory_versions":21,"memory_current":21,"memory_bytes":220127,"extract_calls":0,"reconcile_calls":27,"build_input_tokens":25007,"build_output_tokens":1753,"build_cost_usd":0,"build_seconds":56.7}}
+{"type":"store_built","sample":"0ddfec37_abs","store":"overwrite","versions":21}
+{"type":"row","row":{"sample":"0ddfec37_abs","qa_index":0,"category":5,"question_type":"knowledge-update","system":"overwrite_memory","question":"How many autographed football have I added to my collection in the first three months of collection?","gold":"The information provided is not enough. You mentioned collecting autographed baseball but not football.","answer":"No information available","insufficient":true,"cited":"","score_f1":1,"judge_correct":1,"judge_reason":"Both answers state that the information is not available.","recall_at_k":null,"context_items":1,"context_dia":"6de70f46_1:0","context_tokens_est":109,"retrieval_ms":39.68,"answer_ms":960,"judge_ms":17033,"input_tokens":691,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"0ddfec37_abs"}
+{"type":"complete","at":"2026-10-22T17:09:19.934Z"}

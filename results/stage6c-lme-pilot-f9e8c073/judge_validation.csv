@@ -1,0 +1,6 @@
+row_id,question,gold,candidate,human_correct
+1,How many sessions of the bereavement support group did I attend?,five,five,
+2,How many sessions of the bereavement support group did I attend?,five,three,
+3,How many sessions of the bereavement support group did I attend?,five,three,
+4,How many sessions of the bereavement support group did I attend?,five,three,
+5,How many sessions of the bereavement support group did I attend?,five,three,
