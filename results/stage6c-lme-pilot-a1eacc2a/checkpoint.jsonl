@@ -1,0 +1,253 @@
+{"type":"run","at":"2026-10-22T06:30:53.162Z","commit":"2675ba693c9888e645fbdebb92cdb2265037e3ee + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["a1eacc2a"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"a1eacc2a","userIds":["6ad9ad9d6133121304f80eca"]}
+{"type":"build","sample":"a1eacc2a","build":{"sample":"a1eacc2a","store":"raw messages","messages_mined":0,"memory_bytes":593359}}
+{"type":"build","sample":"a1eacc2a","build":{"sample":"a1eacc2a","store":"rag message vectors","messages_mined":0,"memory_bytes":2912256}}
+{"type":"row","row":{"sample":"a1eacc2a","qa_index":0,"category":5,"question_type":"knowledge-update","system":"rag_messages","question":"How many short stories have I written since I started writing regularly?","gold":"seven","answer":"7","insufficient":false,"cited":"answer_0eb23770_2:0","score_f1":0,"judge_correct":1,"judge_reason":"Same numerical value.","recall_at_k":1,"context_items":10,"context_dia":"1f035408:4 answer_0eb23770_1:2 answer_0eb23770_1:3 answer_0eb23770_2:0 answer_0eb23770_2:7 answer_0eb23770_2:9 answer_0eb23770_2:11 521255f7_2:0 521255f7_2:1 521255f7_2:6","context_tokens_est":2316,"retrieval_ms":41.47,"answer_ms":7587,"judge_ms":8050,"input_tokens":2682,"output_tokens":36,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"a1eacc2a"}
+{"type":"store_start","sample":"a1eacc2a","store":"bitemporal"}
+{"type":"cache","sample":"a1eacc2a","key":"861ed841_1:0|2023-04-25T16:27:00.000Z","data":{"candidates":[{"content":"Exercises at least 4 times a week","topic":"health","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-01"},{"content":"Meal preps on Sundays","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a1eacc2a","key":"861ed841_1:2|2023-04-25T16:27:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"861ed841_1:4|2023-04-25T16:27:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"861ed841_1:6|2023-04-25T16:27:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"861ed841_1:8|2023-04-25T16:27:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"861ed841_1:10|2023-04-25T16:27:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_TBa5HKM_0:0|2023-04-25T16:51:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_269020:0|2023-04-25T18:57:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_269020:2|2023-04-25T18:57:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_269020:4|2023-04-25T18:57:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_269020:6|2023-04-25T18:57:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"aae09c37:0|2023-04-26T00:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"aae09c37:2|2023-04-26T00:58:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"aae09c37:4|2023-04-26T00:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"aae09c37:6|2023-04-26T00:58:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"aae09c37:8|2023-04-26T00:58:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"aae09c37:10|2023-04-26T00:58:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"af2c335c:0|2023-04-28T06:31:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"af2c335c:2|2023-04-28T06:31:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"af2c335c:4|2023-04-28T06:31:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"af2c335c:6|2023-04-28T06:31:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"af2c335c:8|2023-04-28T06:31:08.000Z","data":{"candidates":[{"content":"Got grandmother's ring appraised last month, and the jeweler said it's a rare piece worth a lot of money","topic":"event ring appraisal","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-03-01"}]}}
+{"type":"cache","sample":"a1eacc2a","key":"af2c335c:10|2023-04-28T06:31:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_OJ3AYL4_0:0|2023-04-28T17:48:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_OJ3AYL4_0:2|2023-04-28T17:48:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"a8a0db2b_2:0|2023-04-29T22:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"a8a0db2b_2:2|2023-04-29T22:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"a8a0db2b_2:4|2023-04-29T22:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"a8a0db2b_2:6|2023-04-29T22:03:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"a8a0db2b_2:8|2023-04-29T22:03:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"a8a0db2b_2:10|2023-04-29T22:03:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"fde0ca18:0|2023-05-05T09:39:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"fde0ca18:2|2023-05-05T09:39:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"fde0ca18:4|2023-05-05T09:39:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"fde0ca18:6|2023-05-05T09:39:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"fde0ca18:8|2023-05-05T09:39:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"fde0ca18:10|2023-05-05T09:39:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"82b8a1b5:0|2023-05-06T22:58:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"82b8a1b5:2|2023-05-06T22:58:02.000Z","data":{"candidates":[{"content":"Plans to make a granny square blanket for niece's birthday","topic":"plan blanket","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Organized craft room three weeks ago","topic":"event craft room organization","category":"Hobbies","importance":2,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-29"}]}}
+{"type":"cache","sample":"a1eacc2a","key":"82b8a1b5:4|2023-05-06T22:58:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"82b8a1b5:6|2023-05-06T22:58:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"82b8a1b5:8|2023-05-06T22:58:08.000Z","data":{"candidates":[{"content":"Plans to make a 6-coaster set with different stitch patterns and colors","topic":"plan coaster set","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to price the 6-coaster set around $30","topic":"plan pricing","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Considers including a small care instructions card with the 6-coaster set","topic":"plan care instructions","category":"Hobbies","importance":2,"confidence":0.8,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a1eacc2a","key":"82b8a1b5:10|2023-05-06T22:58:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"20d6c376_2:0|2023-05-07T04:16:00.000Z","data":{"candidates":[{"content":"Plans a new hiking trip","topic":"plan hiking trip","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Did a hike to the top of Vernal Falls on 2023-05-06","topic":"event hiking","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-06"}]}}
+{"type":"cache","sample":"a1eacc2a","key":"20d6c376_2:2|2023-05-07T04:16:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"20d6c376_2:4|2023-05-07T04:16:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"20d6c376_2:6|2023-05-07T04:16:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"20d6c376_2:8|2023-05-07T04:16:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"20d6c376_2:10|2023-05-07T04:16:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"1f035408:0|2023-05-14T06:48:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"1f035408:2|2023-05-14T06:48:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"1f035408:4|2023-05-14T06:48:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"1f035408:6|2023-05-14T06:48:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"1f035408:8|2023-05-14T06:48:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"1f035408:10|2023-05-14T06:48:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"4abbeb2a_2:0|2023-05-15T21:50:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"4abbeb2a_2:2|2023-05-15T21:50:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"4abbeb2a_2:4|2023-05-15T21:50:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"4abbeb2a_2:6|2023-05-15T21:50:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"4abbeb2a_2:8|2023-05-15T21:50:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"4abbeb2a_2:10|2023-05-15T21:50:10.000Z","data":{"candidates":[{"content":"Studying for certification exam with Alex","topic":"event study session","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a1eacc2a","key":"e86df911_2:0|2023-05-17T04:34:00.000Z","data":{"candidates":[{"content":"Trains for a sprint triathlon","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Went on a hiking retreat with an elevation gain of 1500 feet over 10 miles on 2023-05-13","topic":"event hiking retreat","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-13"}]}}
+{"type":"cache","sample":"a1eacc2a","key":"e86df911_2:2|2023-05-17T04:34:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"e86df911_2:4|2023-05-17T04:34:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"e86df911_2:6|2023-05-17T04:34:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"e86df911_2:8|2023-05-17T04:34:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"e86df911_2:10|2023-05-17T04:34:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_269248:0|2023-05-20T04:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_269248:2|2023-05-20T04:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_269248:4|2023-05-20T04:24:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_269248:6|2023-05-20T04:24:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_269248:8|2023-05-20T04:24:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_269248:10|2023-05-20T04:24:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_ePBzYD0_57:1|2023-05-21T08:08:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_ePBzYD0_57:3|2023-05-21T08:08:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_ePBzYD0_57:5|2023-05-21T08:08:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"3704970d:0|2023-05-23T06:56:00.000Z","data":{"candidates":[{"content":"Plans a trip to New Zealand","topic":"plan trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Had a family trip to Oahu in May 2023","topic":"event family trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-01"}]}}
+{"type":"cache","sample":"a1eacc2a","key":"3704970d:2|2023-05-23T06:56:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"3704970d:4|2023-05-23T06:56:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"3704970d:6|2023-05-23T06:56:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"3704970d:8|2023-05-23T06:56:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"3704970d:10|2023-05-23T06:56:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"answer_0eb23770_1:0|2023-05-23T18:21:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"answer_0eb23770_1:2|2023-05-23T18:21:02.000Z","data":{"candidates":[{"content":"Started writing short stories regularly","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-22"},{"content":"Wrote four short stories since starting regularly","topic":"event writing short stories","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-22"},{"content":"Plans to set a goal for a certain number of short stories per month","topic":"plan short stories goal","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a1eacc2a","key":"answer_0eb23770_1:4|2023-05-23T18:21:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"answer_0eb23770_1:6|2023-05-23T18:21:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"answer_0eb23770_1:8|2023-05-23T18:21:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"answer_0eb23770_1:10|2023-05-23T18:21:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_87674:0|2023-05-23T23:10:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_87674:2|2023-05-23T23:10:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_87674:4|2023-05-23T23:10:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_87674:6|2023-05-23T23:10:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_87674:8|2023-05-23T23:10:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_87674:10|2023-05-23T23:10:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_87674:12|2023-05-23T23:10:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"80082060_4:0|2023-05-24T13:49:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"80082060_4:2|2023-05-24T13:49:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"80082060_4:4|2023-05-24T13:49:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"80082060_4:6|2023-05-24T13:49:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"80082060_4:8|2023-05-24T13:49:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"80082060_4:10|2023-05-24T13:49:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_507524:0|2023-05-24T15:00:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_507524:2|2023-05-24T15:00:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_507524:4|2023-05-24T15:00:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_507524:6|2023-05-24T15:00:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"93f23301_1:0|2023-05-24T17:30:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"93f23301_1:2|2023-05-24T17:30:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"93f23301_1:4|2023-05-24T17:30:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"93f23301_1:6|2023-05-24T17:30:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"93f23301_1:8|2023-05-24T17:30:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"93f23301_1:10|2023-05-24T17:30:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_50429:0|2023-05-25T15:46:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_50429:2|2023-05-25T15:46:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_50429:4|2023-05-25T15:46:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_50429:6|2023-05-25T15:46:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_572831:0|2023-05-26T14:45:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_572831:2|2023-05-26T14:45:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_572831:4|2023-05-26T14:45:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_572831:6|2023-05-26T14:45:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_10447:0|2023-05-26T15:42:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_10447:2|2023-05-26T15:42:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_10447:4|2023-05-26T15:42:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_10447:6|2023-05-26T15:42:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_558226:0|2023-05-27T10:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_558226:2|2023-05-27T10:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_558226:4|2023-05-27T10:43:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_558226:6|2023-05-27T10:43:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_558226:8|2023-05-27T10:43:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_558226:10|2023-05-27T10:43:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_558226:12|2023-05-27T10:43:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_83156:0|2023-05-28T09:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_83156:2|2023-05-28T09:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_83156:4|2023-05-28T09:43:04.000Z","data":{"candidates":[{"content":"Plans to try out a different Pilates class with a different instructor who communicates more clearly","topic":"plan pilates class","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_83156:6|2023-05-28T09:43:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_83156:8|2023-05-28T09:43:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_524436:0|2023-05-28T18:17:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_524436:2|2023-05-28T18:17:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_524436:4|2023-05-28T18:17:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_524436:6|2023-05-28T18:17:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_524436:8|2023-05-28T18:17:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"9e026e29:0|2023-05-29T18:51:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"9e026e29:2|2023-05-29T18:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"9e026e29:4|2023-05-29T18:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"9e026e29:6|2023-05-29T18:51:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"9e026e29:8|2023-05-29T18:51:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"9e026e29:10|2023-05-29T18:51:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"answer_0eb23770_2:0|2023-05-30T08:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"answer_0eb23770_2:2|2023-05-30T08:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"answer_0eb23770_2:4|2023-05-30T08:43:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"answer_0eb23770_2:6|2023-05-30T08:43:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"answer_0eb23770_2:8|2023-05-30T08:43:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"answer_0eb23770_2:10|2023-05-30T08:43:10.000Z","data":{"candidates":[{"content":"Writes on Sundays, starting with coffee and a blank page","topic":"hobby writing","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Writing is a therapeutic outlet for the user","topic":"hobby writing","category":"Hobbies","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"a1eacc2a","key":"7daa121d_2:0|2023-05-30T12:35:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"7daa121d_2:2|2023-05-30T12:35:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"7daa121d_2:4|2023-05-30T12:35:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"7daa121d_2:6|2023-05-30T12:35:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"7daa121d_2:8|2023-05-30T12:35:08.000Z","data":{"candidates":[{"content":"Walks to the train station instead of taking the bus","topic":"hobby","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Feels more energized and alert since starting to walk to the train station","topic":"health","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a1eacc2a","key":"7daa121d_2:10|2023-05-30T12:35:10.000Z","data":{"candidates":[{"content":"Started incorporating more exercise into daily routine","topic":"hobbies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-05-30"},{"content":"Wants to buy a better umbrella to withstand strong winds and heavy rain","topic":"plan umbrella","category":"Personal","importance":2,"confidence":0.8,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"a1eacc2a","key":"d37305a8:0|2023-05-30T15:25:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"d37305a8:2|2023-05-30T15:25:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"d37305a8:4|2023-05-30T15:25:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"d37305a8:6|2023-05-30T15:25:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"d37305a8:8|2023-05-30T15:25:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"d37305a8:10|2023-05-30T15:25:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"cb1a8c98_2:0|2023-05-30T17:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"cb1a8c98_2:2|2023-05-30T17:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"cb1a8c98_2:4|2023-05-30T17:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"cb1a8c98_2:6|2023-05-30T17:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"cb1a8c98_2:8|2023-05-30T17:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"cb1a8c98_2:10|2023-05-30T17:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_62332:0|2023-05-30T20:38:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_62332:2|2023-05-30T20:38:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_62332:4|2023-05-30T20:38:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_62332:6|2023-05-30T20:38:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_62332:8|2023-05-30T20:38:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_efcAzKB_13:1|2023-05-31T03:42:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_efcAzKB_13:3|2023-05-31T03:42:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_efcAzKB_13:5|2023-05-31T03:42:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_efcAzKB_13:7|2023-05-31T03:42:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_efcAzKB_13:9|2023-05-31T03:42:09.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"61fd18e6_1:0|2023-06-02T17:16:00.000Z","data":{"candidates":[{"content":"Plans a trip to Chicago","topic":"plan trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Stayed at the Marriott in downtown Chicago from March 10th to 14th for a conference","topic":"event conference","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-03-10"}]}}
+{"type":"cache","sample":"a1eacc2a","key":"61fd18e6_1:2|2023-06-02T17:16:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"61fd18e6_1:4|2023-06-02T17:16:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"61fd18e6_1:6|2023-06-02T17:16:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"61fd18e6_1:8|2023-06-02T17:16:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"61fd18e6_1:10|2023-06-02T17:16:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_2x5IpnY_13:1|2023-06-04T13:00:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_2x5IpnY_13:3|2023-06-04T13:00:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_2x5IpnY_13:5|2023-06-04T13:00:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_2x5IpnY_13:7|2023-06-04T13:00:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_187728:0|2023-06-05T14:16:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_187728:2|2023-06-05T14:16:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_187728:4|2023-06-05T14:16:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_187728:6|2023-06-05T14:16:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_187728:8|2023-06-05T14:16:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_187728:10|2023-06-05T14:16:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_187728:12|2023-06-05T14:16:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"65bc93cf_2:0|2023-06-08T01:11:00.000Z","data":{"candidates":[{"content":"Trains for a marathon","topic":"hobby","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Retired old Nikes after a 10K on 2023-06-04","topic":"event 10K","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-04"}]}}
+{"type":"cache","sample":"a1eacc2a","key":"65bc93cf_2:2|2023-06-08T01:11:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"65bc93cf_2:4|2023-06-08T01:11:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"65bc93cf_2:6|2023-06-08T01:11:06.000Z","data":{"candidates":[{"content":"Started spin classes on 2023-06-05","topic":"event spin classes","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-05"},{"content":"Focuses on complex carbs, lean proteins, and healthy fats in diet","topic":"diet","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Drinks plenty of water throughout the day","topic":"hydration","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a1eacc2a","key":"65bc93cf_2:8|2023-06-08T01:11:08.000Z","data":{"candidates":[{"content":"Retired old Nikes after a 10K on 2023-06-04","topic":"event 10K","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-04"},{"content":"Visualizes crossing the finish line","topic":"mental preparation","category":"Personal","importance":4,"confidence":0.8,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a1eacc2a","key":"65bc93cf_2:10|2023-06-08T01:11:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"09438306_2:0|2023-06-09T09:30:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"09438306_2:2|2023-06-09T09:30:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"09438306_2:4|2023-06-09T09:30:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"09438306_2:6|2023-06-09T09:30:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"09438306_2:8|2023-06-09T09:30:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"09438306_2:10|2023-06-09T09:30:10.000Z","data":{"candidates":[{"content":"Plans to use Citymapper to track daily commute","topic":"plan commute tracking","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Wants to get more exercise","topic":"goal exercise","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_194474:0|2023-06-10T12:57:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_194474:2|2023-06-10T12:57:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_194474:4|2023-06-10T12:57:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_194474:6|2023-06-10T12:57:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_194474:8|2023-06-10T12:57:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"ultrachat_194474:10|2023-06-10T12:57:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"c910dd2c_3:0|2023-06-10T18:54:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"c910dd2c_3:2|2023-06-10T18:54:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"c910dd2c_3:4|2023-06-10T18:54:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"c910dd2c_3:6|2023-06-10T18:54:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"c910dd2c_3:8|2023-06-10T18:54:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"c910dd2c_3:10|2023-06-10T18:54:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_jjOK6l1_101:1|2023-06-13T06:56:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"sharegpt_jjOK6l1_101:3|2023-06-13T06:56:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"521255f7_2:0|2023-06-16T20:47:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"521255f7_2:2|2023-06-16T20:47:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"521255f7_2:4|2023-06-16T20:47:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"521255f7_2:6|2023-06-16T20:47:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"521255f7_2:8|2023-06-16T20:47:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"521255f7_2:10|2023-06-16T20:47:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"1ccb1920:0|2023-06-18T12:54:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"1ccb1920:2|2023-06-18T12:54:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"1ccb1920:4|2023-06-18T12:54:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"1ccb1920:6|2023-06-18T12:54:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"a1eacc2a","key":"1ccb1920:8|2023-06-18T12:54:08.000Z","data":{"candidates":[{"content":"Plans to attend a coffee festival in the neighborhood on 2023-06-17","topic":"plan coffee festival","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to take photos and share them on social media accounts","topic":"plan social media photos","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Plans to reach out to event organizers or local coffee shops for collaboration","topic":"plan collaboration","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"a1eacc2a","key":"1ccb1920:10|2023-06-18T12:54:10.000Z","data":{"candidates":[{"content":"Plans to take photos of different coffee shops and their offerings at the coffee festival on 2023-06-17","topic":"plan coffee festival photos","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to do Instagram Stories to give followers a sneak peek into the coffee festival on 2023-06-17","topic":"plan Instagram Stories","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to connect with local coffee shops to collaborate on content in the future","topic":"plan coffee shop collaboration","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"build","sample":"a1eacc2a","build":{"sample":"a1eacc2a","store":"bitemporal","messages_mined":235,"failed_messages":0,"decisions":"ADD=32 NOOP=2 SUPERSEDE=1 UPDATE=7","memory_versions":40,"memory_current":32,"memory_bytes":419408,"extract_calls":235,"reconcile_calls":39,"build_input_tokens":518078,"build_output_tokens":7058,"build_cost_usd":0,"build_seconds":269.4}}
+{"type":"store_built","sample":"a1eacc2a","store":"bitemporal","versions":40}
+{"type":"row","row":{"sample":"a1eacc2a","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours","question":"How many short stories have I written since I started writing regularly?","gold":"seven","answer":"four","insufficient":false,"cited":"m1","score_f1":0,"judge_correct":0,"judge_reason":"Different number from the gold answer.","recall_at_k":0.5,"context_items":7,"context_dia":"answer_0eb23770_1:2 answer_0eb23770_2:10 1ccb1920:10 7daa121d_2:10 65bc93cf_2:6 861ed841_1:0","context_tokens_est":823,"retrieval_ms":40.78,"answer_ms":1441,"judge_ms":15371,"input_tokens":1481,"output_tokens":25,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"a1eacc2a","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_temporal","question":"How many short stories have I written since I started writing regularly?","gold":"seven","answer":"four","insufficient":false,"cited":"m1","score_f1":0,"judge_correct":0,"judge_reason":"Different number from the gold answer.","recall_at_k":0.5,"context_items":7,"context_dia":"answer_0eb23770_1:2 answer_0eb23770_2:10 1ccb1920:10 7daa121d_2:10 861ed841_1:0 65bc93cf_2:6","context_tokens_est":744,"retrieval_ms":687.9,"answer_ms":6329,"judge_ms":8937,"input_tokens":1278,"output_tokens":25,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"a1eacc2a","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_provenance","question":"How many short stories have I written since I started writing regularly?","gold":"seven","answer":"four","insufficient":false,"cited":"m1","score_f1":0,"judge_correct":0,"judge_reason":"Different number from the gold answer.","recall_at_k":0.5,"context_items":7,"context_dia":"answer_0eb23770_1:2 answer_0eb23770_2:10 1ccb1920:10 7daa121d_2:10 65bc93cf_2:6 861ed841_1:0","context_tokens_est":211,"retrieval_ms":751.17,"answer_ms":11418,"judge_ms":9842,"input_tokens":818,"output_tokens":25,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"a1eacc2a","store":"overwrite"}
+{"type":"build","sample":"a1eacc2a","build":{"sample":"a1eacc2a","store":"overwrite","messages_mined":235,"failed_messages":0,"decisions":"ADD=32 NOOP=2 SUPERSEDE=1 UPDATE=7","memory_versions":32,"memory_current":32,"memory_bytes":335352,"extract_calls":0,"reconcile_calls":39,"build_input_tokens":38487,"build_output_tokens":2457,"build_cost_usd":0,"build_seconds":78}}
+{"type":"store_built","sample":"a1eacc2a","store":"overwrite","versions":32}
+{"type":"row","row":{"sample":"a1eacc2a","qa_index":0,"category":5,"question_type":"knowledge-update","system":"overwrite_memory","question":"How many short stories have I written since I started writing regularly?","gold":"seven","answer":"four","insufficient":false,"cited":"m1","score_f1":0,"judge_correct":0,"judge_reason":"Different number from the gold answer.","recall_at_k":0.5,"context_items":7,"context_dia":"answer_0eb23770_1:2 answer_0eb23770_2:10 1ccb1920:10 7daa121d_2:10 65bc93cf_2:6 861ed841_1:0","context_tokens_est":822,"retrieval_ms":42.42,"answer_ms":1437,"judge_ms":15421,"input_tokens":1481,"output_tokens":25,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"a1eacc2a"}
+{"type":"complete","at":"2026-10-22T06:38:12.229Z"}
