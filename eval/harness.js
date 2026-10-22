@@ -379,4 +379,4 @@ async function reattach(prior, parts) {
   return { perspectives, sources: new Map(stored.map((m) => [String(m._id), m])) };
 }
 
-module.exports = { evaluateSample, pickQuestions, mirror, prepareLocomo, prepareLongMemEval, NO_INFO };
+module.exports = { evaluateSample, pickQuestions, mirror, prepareLocomo, prepareLongMemEval, answerAndScore, NO_INFO };
