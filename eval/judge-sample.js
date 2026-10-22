@@ -1,6 +1,7 @@
 // Builds ONE blind labelling sheet for the LLM judge from ALL finished LoCoMo samples (not one sample's 50 rows).
 //   npm run eval:judge-sample                      5 rows from each sample, 50 in all, seed 11
 //   npm run eval:judge-sample -- --per-sample 6 --seed 11 --prefix stage6-locomo-ollama-conv-
+//   npm run eval:judge-sample -- --prefix stage6c-lme-pilot- --per-sample 2 --out-name stage6c-lme-judge-validation --label "LongMemEval (benchmark), pilot"
 // Writes results/stage6-locomo-judge-validation/: judge_validation.csv (what you label: question, gold answer,
 // candidate answer; NO system name and NO judge verdict), judge_validation_key.csv (the judge's verdict and where
 // the row came from: do not open it before you have labelled) and LABEL.txt. Then:
@@ -18,6 +19,8 @@ function main() {
   const prefix = option(args, '--prefix', 'stage6-locomo-ollama-conv-');
   const perSample = Number(option(args, '--per-sample', 5));
   const seed = Number(option(args, '--seed', 11));
+  const outName = option(args, '--out-name', 'stage6-locomo-judge-validation');
+  const label = option(args, '--label', 'LoCoMo run');
   const dirs = fs.readdirSync(RESULTS).filter((d) => d.startsWith(prefix) && fs.existsSync(path.join(RESULTS, d, 'answers.csv'))).sort();
   if (!dirs.length) throw new Error(`no ${prefix}* folders with answers.csv under results/`);
   const rng = createRng(seed);
@@ -35,14 +38,14 @@ function main() {
     const j = rng.int(0, i);
     [picked[i], picked[j]] = [picked[j], picked[i]];
   }
-  const out = path.join(RESULTS, 'stage6-locomo-judge-validation');
+  const out = path.join(RESULTS, outName);
   fs.mkdirSync(out, { recursive: true });
   const sheet = picked.map(({ r }, idx) => ({ row_id: idx + 1, question: r.question, gold: r.gold, candidate: r.answer, human_correct: '' }));
   const key = picked.map(({ r, i, folder }, idx) => ({ row_id: idx + 1, folder, raw_row: i, sample: r.sample, qa_index: r.qa_index, system: r.system, judge_correct: r.judge_correct }));
   fs.writeFileSync(path.join(out, 'judge_validation.csv'), toCsv(sheet));
   fs.writeFileSync(path.join(out, 'judge_validation_key.csv'), toCsv(key));
   fs.writeFileSync(path.join(out, 'LABEL.txt'), [
-    'Judge validation sheet for the LoCoMo run (dataset: benchmark, LoCoMo). Rows are a seeded random draw, not chosen by hand.',
+    `Judge validation sheet for the ${label}. Rows are a seeded random draw, not chosen by hand.`,
     `command: ${command('eval:judge-sample', args)}`,
     `commit: ${gitCommit()} (the code that ran)`,
     `date: ${new Date().toISOString()}`,
@@ -50,7 +53,7 @@ function main() {
     'Fill human_correct with 1 (the candidate is correct) or 0 (wrong), following prompts/judge.v1.md. Do not open judge_validation_key.csv first.',
     '',
   ].join('\n'));
-  console.log(`Wrote ${sheet.length} rows to ${path.relative(process.cwd(), out)}/ (label judge_validation.csv, then: npm run eval:judge-agreement -- results/stage6-locomo-judge-validation)`);
+  console.log(`Wrote ${sheet.length} rows to ${path.relative(process.cwd(), out)}/ (label judge_validation.csv, then: npm run eval:judge-agreement -- results/${outName})`);
 }
 
 main();
