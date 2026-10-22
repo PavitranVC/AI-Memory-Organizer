@@ -17,7 +17,9 @@ const BASELINE = 'ours';
 
 const num = (x) => (x === '' || x === undefined ? null : Number(x));
 
-function load(prefix) {
+// retryDir: a folder of answers.csv rows that ask again questions which failed (eval:retry). A retried row that
+// answered replaces the failed row of the same (sample, question, system); a retried row that failed again changes nothing.
+function load(prefix, retryDir = null) {
   const dirs = fs.readdirSync(RESULTS).filter((d) => d.startsWith(prefix) && fs.existsSync(path.join(RESULTS, d, 'answers.csv'))).sort();
   const rows = [];
   for (const d of dirs) {
@@ -36,7 +38,17 @@ function load(prefix) {
       });
     }
   }
-  return { dirs, rows };
+  let repaired = 0;
+  if (retryDir && fs.existsSync(path.join(retryDir, 'answers.csv'))) {
+    for (const r of parseCsv(fs.readFileSync(path.join(retryDir, 'answers.csv'), 'utf8'))) {
+      if (r.error) continue;
+      const row = rows.find((x) => x.key === `${r.sample}|${r.qa_index}` && x.system === r.system && x.error);
+      if (!row) continue;
+      Object.assign(row, { f1: num(r.score_f1) || 0, judge: num(r.judge_correct) || 0, recall: num(r.recall_at_k), error: '', abstained: r.insufficient === 'true', ms: (num(r.retrieval_ms) || 0) + (num(r.answer_ms) || 0) });
+      repaired += 1;
+    }
+  }
+  return { dirs, rows, repaired };
 }
 
 const by = (rows, key) => rows.reduce((m, r) => m.set(key(r), [...(m.get(key(r)) || []), r]), new Map());
@@ -62,7 +74,8 @@ function main() {
   const prefix = option(args, '--prefix', 'stage6-locomo-ollama-conv-');
   const outName = option(args, '--out-name', 'stage6-locomo-pooled');
   const datasetLabel = option(args, '--dataset-label', 'LoCoMo (benchmark, CC BY-NC 4.0)');
-  const { dirs, rows } = load(prefix);
+  const retryDir = option(args, '--retry-dir') ? path.resolve(option(args, '--retry-dir')) : null;
+  const { dirs, rows, repaired } = load(prefix, retryDir);
   if (!rows.length) throw new Error(`no ${prefix}* folders with answers.csv under results/`);
   const systems = SYSTEM_IDS.filter((s) => rows.some((r) => r.system === s));
   const samples = [...new Set(rows.map((r) => r.sample))].sort();
@@ -109,6 +122,7 @@ function main() {
     command: command('eval:pool', args),
     commit: `${gitCommit()} (the code that ran; the results are committed in a later commit)`,
     date: new Date().toISOString(),
+    ...(retryDir ? { repaired: `${repaired} failed answers replaced by answered retries from ${path.relative(process.cwd(), retryDir)}` } : {}),
     dataset: `${datasetLabel}: ${samples.length} samples, ${questions} questions, ${systems.length} systems; run folders ${dirs.length}`,
   };
   const pct = (x) => (x === null ? 'n/a' : x.toFixed(3));
