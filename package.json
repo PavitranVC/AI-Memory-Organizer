@@ -36,6 +36,7 @@
     "eval:retry": "node eval/retry-failed.js",
     "eval:token-fit": "node eval/token-fit.js",
     "eval:launch-retry": "node eval/launch-retry.js",
+    "eval:lme-diagnostics": "node eval/lme-diagnostics.js",
     "eval:retry-status": "node eval/retry-status.js",
     "eval:launch": "node eval/launch.js",
     "erasure:verify": "node scripts/verify-erasure.js",
