@@ -1,0 +1,19 @@
+LongMemEval pilot diagnostics (dataset: benchmark, LongMemEval; knowledge-update and temporal-reasoning)
+command: npm run eval:lme-diagnostics
+commit: ef73cc5585e292ea9654e46096e063189d00d886 + uncommitted changes (the code that ran; the results are committed in a later commit)
+date: 2026-10-22T19:09:10.826Z
+questions: 48
+
+answers that say the information is not available (abstained), per system:
+  rag_messages: 8 of 48
+  ours: 19 of 48
+  ours_no_temporal: 20 of 48
+  ours_no_provenance: 22 of 48
+  overwrite_memory: 19 of 48
+
+identical answer text, ours and overwrite_memory: 45 of 48 questions
+
+memory store per question (means):
+  user messages mined: 239.9
+  bitemporal memory versions: 31.8 (current 27.5, superseded 4.3)
+  overwrite memories: 27.5

@@ -1,7 +1,8 @@
-Pooled LoCoMo results across all finished samples
-command: npm run eval:pool
-commit: 4ad823aa30184321312d92c5bed2cd2e46bd04b1 (the code that ran; the results are committed in a later commit)
-date: 2026-10-21T20:00:30.706Z
+Pooled results across all finished samples: LoCoMo (benchmark, CC BY-NC 4.0)
+command: npm run eval:pool -- --retry-dir results/stage6e-locomo-retry-full_context
+commit: ef73cc5585e292ea9654e46096e063189d00d886 + uncommitted changes (the code that ran; the results are committed in a later commit)
+date: 2026-10-22T19:09:19.102Z
+repaired: 5 failed answers replaced by answered retries from results/stage6e-locomo-retry-full_context
 dataset: LoCoMo (benchmark, CC BY-NC 4.0): 10 samples, 1986 questions, 6 systems; run folders 10
 models: answer/extract/reconcile qwen2.5-coder:14b, judge deepseek-r1:14b, embeddings nomic-embed-text (from each run's meta.txt)
 intervals: 95% bootstrap over questions (2000 resamples, seeded). Questions from one conversation are not independent,
@@ -9,7 +10,7 @@ so the true uncertainty is wider than these intervals; the per-sample table and 
 judge scores come from an LLM judge whose agreement with a human has NOT been measured yet (see judge_validation.csv).
 
 ALL questions (a failed call is scored wrong, as in the per-sample summaries)
-full_context         n=1986 failed=1546  F1 0.093 [0.083, 0.105]  judge 0.101 [0.088, 0.115]  recall@k 1.000
+full_context         n=1986 failed=1541  F1 0.094 [0.083, 0.105]  judge 0.102 [0.089, 0.116]  recall@k 1.000
 rag_messages         n=1986 failed=  13  F1 0.496 [0.478, 0.515]  judge 0.511 [0.488, 0.533]  recall@k 0.642
 overwrite_memory     n=1986 failed=  15  F1 0.437 [0.419, 0.457]  judge 0.452 [0.430, 0.474]  recall@k 0.501
 ours                 n=1986 failed=   9  F1 0.429 [0.410, 0.448]  judge 0.443 [0.421, 0.465]  recall@k 0.496
@@ -17,7 +18,7 @@ ours_no_temporal     n=1986 failed=  18  F1 0.438 [0.419, 0.457]  judge 0.457 [0
 ours_no_provenance   n=1986 failed=   2  F1 0.385 [0.366, 0.405]  judge 0.401 [0.379, 0.423]  recall@k 0.496
 
 VALID answers only (failed calls left out; compare n before comparing means)
-full_context         n= 440 failed=   0  F1 0.422 [0.386, 0.459]  judge 0.457 [0.411, 0.502]  recall@k 1.000
+full_context         n= 445 failed=   0  F1 0.418 [0.382, 0.453]  judge 0.456 [0.411, 0.503]  recall@k 1.000
 rag_messages         n=1973 failed=   0  F1 0.499 [0.479, 0.517]  judge 0.514 [0.491, 0.535]  recall@k 0.641
 overwrite_memory     n=1971 failed=   0  F1 0.441 [0.422, 0.459]  judge 0.456 [0.434, 0.477]  recall@k 0.500
 ours                 n=1977 failed=   0  F1 0.431 [0.412, 0.450]  judge 0.445 [0.424, 0.467]  recall@k 0.494
@@ -25,16 +26,16 @@ ours_no_temporal     n=1968 failed=   0  F1 0.442 [0.422, 0.460]  judge 0.461 [0
 ours_no_provenance   n=1984 failed=   0  F1 0.386 [0.366, 0.405]  judge 0.401 [0.380, 0.422]  recall@k 0.496
 
 PAIRED: ours minus another system, on questions both answered (95% paired bootstrap interval of the difference)
-ours minus full_context            all types   judge accuracy  n= 440  diff -0.009 [-0.068, 0.050]  excludes 0: no  ours higher in 1 / lower in 2 of 3 samples
-ours minus full_context            all types   token F1        n= 440  diff +0.006 [-0.041, 0.055]  excludes 0: no  ours higher in 1 / lower in 2 of 3 samples
-ours minus full_context            adversarial judge accuracy  n= 100  diff +0.510 [0.410, 0.620]  excludes 0: yes  ours higher in 3 / lower in 0 of 3 samples
-ours minus full_context            adversarial token F1        n= 100  diff +0.510 [0.410, 0.620]  excludes 0: yes  ours higher in 3 / lower in 0 of 3 samples
-ours minus full_context            multi-hop   judge accuracy  n=  67  diff -0.060 [-0.179, 0.075]  excludes 0: no  ours higher in 0 / lower in 1 of 3 samples
-ours minus full_context            multi-hop   token F1        n=  67  diff -0.087 [-0.180, 0.009]  excludes 0: no  ours higher in 1 / lower in 2 of 3 samples
+ours minus full_context            all types   judge accuracy  n= 445  diff -0.007 [-0.070, 0.056]  excludes 0: no  ours higher in 1 / lower in 2 of 3 samples
+ours minus full_context            all types   token F1        n= 445  diff +0.010 [-0.038, 0.060]  excludes 0: no  ours higher in 1 / lower in 2 of 3 samples
+ours minus full_context            adversarial judge accuracy  n= 102  diff +0.510 [0.412, 0.608]  excludes 0: yes  ours higher in 3 / lower in 0 of 3 samples
+ours minus full_context            adversarial token F1        n= 102  diff +0.510 [0.412, 0.608]  excludes 0: yes  ours higher in 3 / lower in 0 of 3 samples
+ours minus full_context            multi-hop   judge accuracy  n=  68  diff -0.059 [-0.176, 0.073]  excludes 0: no  ours higher in 0 / lower in 1 of 3 samples
+ours minus full_context            multi-hop   token F1        n=  68  diff -0.086 [-0.179, 0.006]  excludes 0: no  ours higher in 1 / lower in 2 of 3 samples
 ours minus full_context            open-domain judge accuracy  n=  24  diff -0.125 [-0.292, 0.042]  excludes 0: no  ours higher in 0 / lower in 1 of 2 samples
 ours minus full_context            open-domain token F1        n=  24  diff -0.079 [-0.241, 0.081]  excludes 0: no  ours higher in 1 / lower in 1 of 2 samples
-ours minus full_context            single-hop  judge accuracy  n= 154  diff -0.357 [-0.448, -0.266]  excludes 0: yes  ours higher in 0 / lower in 3 of 3 samples
-ours minus full_context            single-hop  token F1        n= 154  diff -0.212 [-0.281, -0.144]  excludes 0: yes  ours higher in 0 / lower in 3 of 3 samples
+ours minus full_context            single-hop  judge accuracy  n= 156  diff -0.353 [-0.442, -0.263]  excludes 0: yes  ours higher in 0 / lower in 3 of 3 samples
+ours minus full_context            single-hop  token F1        n= 156  diff -0.206 [-0.274, -0.137]  excludes 0: yes  ours higher in 0 / lower in 3 of 3 samples
 ours minus full_context            temporal    judge accuracy  n=  95  diff +0.074 [-0.053, 0.200]  excludes 0: no  ours higher in 2 / lower in 1 of 3 samples
 ours minus full_context            temporal    token F1        n=  95  diff -0.082 [-0.145, -0.015]  excludes 0: yes  ours higher in 0 / lower in 3 of 3 samples
 ours minus rag_messages            all types   judge accuracy  n=1965  diff -0.068 [-0.091, -0.044]  excludes 0: yes  ours higher in 2 / lower in 8 of 10 samples
@@ -87,13 +88,13 @@ ours minus ours_no_provenance      temporal    judge accuracy  n= 321  diff +0.0
 ours minus ours_no_provenance      temporal    token F1        n= 321  diff +0.030 [0.013, 0.049]  excludes 0: yes  ours higher in 7 / lower in 3 of 10 samples
 
 BY QUESTION TYPE (all questions)
-adversarial    full_context         n= 446 failed=346  F1 0.070 [0.047, 0.094]  judge 0.065 [0.043, 0.090]  recall@k 1.000
+adversarial    full_context         n= 446 failed=344  F1 0.070 [0.047, 0.094]  judge 0.065 [0.043, 0.090]  recall@k 1.000
 adversarial    rag_messages         n= 446 failed=  0  F1 0.715 [0.675, 0.758]  judge 0.715 [0.675, 0.758]  recall@k 0.522
 adversarial    overwrite_memory     n= 446 failed=  0  F1 0.812 [0.776, 0.848]  judge 0.807 [0.771, 0.843]  recall@k 0.547
 adversarial    ours                 n= 446 failed=  0  F1 0.805 [0.767, 0.841]  judge 0.800 [0.762, 0.836]  recall@k 0.539
 adversarial    ours_no_temporal     n= 446 failed=  1  F1 0.839 [0.805, 0.872]  judge 0.839 [0.803, 0.872]  recall@k 0.575
 adversarial    ours_no_provenance   n= 446 failed=  0  F1 0.899 [0.870, 0.926]  judge 0.895 [0.866, 0.924]  recall@k 0.539
-multi-hop      full_context         n= 282 failed=215  F1 0.095 [0.069, 0.123]  judge 0.071 [0.043, 0.103]  recall@k 1.000
+multi-hop      full_context         n= 282 failed=214  F1 0.095 [0.069, 0.123]  judge 0.071 [0.043, 0.103]  recall@k 1.000
 multi-hop      rag_messages         n= 282 failed=  2  F1 0.308 [0.270, 0.349]  judge 0.216 [0.167, 0.266]  recall@k 0.447
 multi-hop      overwrite_memory     n= 282 failed=  0  F1 0.289 [0.253, 0.327]  judge 0.206 [0.160, 0.255]  recall@k 0.360
 multi-hop      ours                 n= 282 failed=  1  F1 0.286 [0.248, 0.323]  judge 0.192 [0.149, 0.238]  recall@k 0.354
@@ -105,7 +106,7 @@ open-domain    overwrite_memory     n=  96 failed=  0  F1 0.236 [0.166, 0.316]  
 open-domain    ours                 n=  96 failed=  0  F1 0.181 [0.119, 0.251]  judge 0.177 [0.104, 0.250]  recall@k 0.284
 open-domain    ours_no_temporal     n=  96 failed=  0  F1 0.229 [0.160, 0.303]  judge 0.240 [0.156, 0.333]  recall@k 0.321
 open-domain    ours_no_provenance   n=  96 failed=  0  F1 0.177 [0.114, 0.248]  judge 0.167 [0.094, 0.250]  recall@k 0.284
-single-hop     full_context         n= 841 failed=687  F1 0.102 [0.084, 0.121]  judge 0.134 [0.112, 0.158]  recall@k 1.000
+single-hop     full_context         n= 841 failed=685  F1 0.103 [0.084, 0.121]  judge 0.137 [0.114, 0.161]  recall@k 1.000
 single-hop     rag_messages         n= 841 failed=  9  F1 0.537 [0.510, 0.565]  judge 0.608 [0.576, 0.640]  recall@k 0.737
 single-hop     overwrite_memory     n= 841 failed= 15  F1 0.371 [0.342, 0.400]  judge 0.398 [0.365, 0.432]  recall@k 0.507
 single-hop     ours                 n= 841 failed=  8  F1 0.368 [0.340, 0.397]  judge 0.395 [0.364, 0.427]  recall@k 0.499

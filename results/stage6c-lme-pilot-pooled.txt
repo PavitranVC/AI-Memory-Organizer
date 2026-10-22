@@ -1,0 +1,61 @@
+Pooled results across all finished samples: LongMemEval (benchmark), pilot, knowledge-update and temporal-reasoning
+command: npm run eval:pool -- --prefix stage6c-lme-pilot- --out-name stage6c-lme-pilot-pooled --dataset-label LongMemEval (benchmark), pilot, knowledge-update and temporal-reasoning
+commit: ef73cc5585e292ea9654e46096e063189d00d886 + uncommitted changes (the code that ran; the results are committed in a later commit)
+date: 2026-10-22T19:09:19.979Z
+dataset: LongMemEval (benchmark), pilot, knowledge-update and temporal-reasoning: 48 samples, 48 questions, 5 systems; run folders 48
+models: answer/extract/reconcile qwen2.5-coder:14b, judge deepseek-r1:14b, embeddings nomic-embed-text (from each run's meta.txt)
+intervals: 95% bootstrap over questions (2000 resamples, seeded). Questions from one conversation are not independent,
+so the true uncertainty is wider than these intervals; the per-sample table and win counts show the spread.
+judge scores come from an LLM judge whose agreement with a human has NOT been measured yet (see judge_validation.csv).
+
+ALL questions (a failed call is scored wrong, as in the per-sample summaries)
+rag_messages         n=  48 failed=   0  F1 0.507 [0.380, 0.633]  judge 0.521 [0.375, 0.667]  recall@k 0.828
+overwrite_memory     n=  48 failed=   0  F1 0.309 [0.193, 0.423]  judge 0.333 [0.188, 0.458]  recall@k 0.396
+ours                 n=  48 failed=   0  F1 0.298 [0.178, 0.411]  judge 0.333 [0.188, 0.458]  recall@k 0.407
+ours_no_temporal     n=  48 failed=   0  F1 0.307 [0.190, 0.421]  judge 0.333 [0.208, 0.458]  recall@k 0.407
+ours_no_provenance   n=  48 failed=   0  F1 0.294 [0.172, 0.406]  judge 0.354 [0.208, 0.479]  recall@k 0.407
+
+VALID answers only (failed calls left out; compare n before comparing means)
+rag_messages         n=  48 failed=   0  F1 0.507 [0.380, 0.633]  judge 0.521 [0.375, 0.667]  recall@k 0.828
+overwrite_memory     n=  48 failed=   0  F1 0.309 [0.193, 0.423]  judge 0.333 [0.188, 0.458]  recall@k 0.396
+ours                 n=  48 failed=   0  F1 0.298 [0.178, 0.411]  judge 0.333 [0.188, 0.458]  recall@k 0.407
+ours_no_temporal     n=  48 failed=   0  F1 0.307 [0.190, 0.421]  judge 0.333 [0.208, 0.458]  recall@k 0.407
+ours_no_provenance   n=  48 failed=   0  F1 0.294 [0.172, 0.406]  judge 0.354 [0.208, 0.479]  recall@k 0.407
+
+PAIRED: ours minus another system, on questions both answered (95% paired bootstrap interval of the difference)
+ours minus rag_messages            all types   judge accuracy  n=  48  diff -0.188 [-0.354, -0.042]  excludes 0: yes  ours higher in 4 / lower in 13 of 48 samples
+ours minus rag_messages            all types   token F1        n=  48  diff -0.208 [-0.350, -0.070]  excludes 0: yes  ours higher in 5 / lower in 17 of 48 samples
+ours minus rag_messages            knowledge-update judge accuracy  n=  24  diff -0.375 [-0.625, -0.125]  excludes 0: yes  ours higher in 2 / lower in 11 of 24 samples
+ours minus rag_messages            knowledge-update token F1        n=  24  diff -0.417 [-0.639, -0.195]  excludes 0: yes  ours higher in 1 / lower in 13 of 24 samples
+ours minus rag_messages            temporal-reasoning judge accuracy  n=  24  diff +0.000 [-0.167, 0.167]  excludes 0: no  ours higher in 2 / lower in 2 of 24 samples
+ours minus rag_messages            temporal-reasoning token F1        n=  24  diff +0.000 [-0.119, 0.118]  excludes 0: no  ours higher in 4 / lower in 4 of 24 samples
+ours minus overwrite_memory        all types   judge accuracy  n=  48  diff +0.000 [0.000, 0.000]  excludes 0: no  ours higher in 0 / lower in 0 of 48 samples
+ours minus overwrite_memory        all types   token F1        n=  48  diff -0.010 [-0.031, 0.000]  excludes 0: no  ours higher in 0 / lower in 1 of 48 samples
+ours minus overwrite_memory        knowledge-update judge accuracy  n=  24  diff +0.000 [0.000, 0.000]  excludes 0: no  ours higher in 0 / lower in 0 of 24 samples
+ours minus overwrite_memory        knowledge-update token F1        n=  24  diff +0.000 [0.000, 0.000]  excludes 0: no  ours higher in 0 / lower in 0 of 24 samples
+ours minus overwrite_memory        temporal-reasoning judge accuracy  n=  24  diff +0.000 [0.000, 0.000]  excludes 0: no  ours higher in 0 / lower in 0 of 24 samples
+ours minus overwrite_memory        temporal-reasoning token F1        n=  24  diff -0.021 [-0.063, 0.000]  excludes 0: no  ours higher in 0 / lower in 1 of 24 samples
+ours minus ours_no_temporal        all types   judge accuracy  n=  48  diff +0.000 [-0.063, 0.063]  excludes 0: no  ours higher in 1 / lower in 1 of 48 samples
+ours minus ours_no_temporal        all types   token F1        n=  48  diff -0.008 [-0.035, 0.014]  excludes 0: no  ours higher in 1 / lower in 2 of 48 samples
+ours minus ours_no_temporal        knowledge-update judge accuracy  n=  24  diff +0.042 [0.000, 0.125]  excludes 0: no  ours higher in 1 / lower in 0 of 24 samples
+ours minus ours_no_temporal        knowledge-update token F1        n=  24  diff +0.012 [0.000, 0.036]  excludes 0: no  ours higher in 1 / lower in 0 of 24 samples
+ours minus ours_no_temporal        temporal-reasoning judge accuracy  n=  24  diff -0.042 [-0.125, 0.000]  excludes 0: no  ours higher in 0 / lower in 1 of 24 samples
+ours minus ours_no_temporal        temporal-reasoning token F1        n=  24  diff -0.028 [-0.078, 0.000]  excludes 0: no  ours higher in 0 / lower in 2 of 24 samples
+ours minus ours_no_provenance      all types   judge accuracy  n=  48  diff -0.021 [-0.104, 0.063]  excludes 0: no  ours higher in 2 / lower in 3 of 48 samples
+ours minus ours_no_provenance      all types   token F1        n=  48  diff +0.005 [-0.066, 0.084]  excludes 0: no  ours higher in 3 / lower in 6 of 48 samples
+ours minus ours_no_provenance      knowledge-update judge accuracy  n=  24  diff +0.042 [0.000, 0.125]  excludes 0: no  ours higher in 1 / lower in 0 of 24 samples
+ours minus ours_no_provenance      knowledge-update token F1        n=  24  diff +0.038 [-0.011, 0.125]  excludes 0: no  ours higher in 1 / lower in 1 of 24 samples
+ours minus ours_no_provenance      temporal-reasoning judge accuracy  n=  24  diff -0.083 [-0.250, 0.083]  excludes 0: no  ours higher in 1 / lower in 3 of 24 samples
+ours minus ours_no_provenance      temporal-reasoning token F1        n=  24  diff -0.029 [-0.155, 0.097]  excludes 0: no  ours higher in 2 / lower in 5 of 24 samples
+
+BY QUESTION TYPE (all questions)
+knowledge-update rag_messages         n=  24 failed=  0  F1 0.721 [0.543, 0.887]  judge 0.792 [0.625, 0.917]  recall@k 0.985
+knowledge-update overwrite_memory     n=  24 failed=  0  F1 0.304 [0.125, 0.500]  judge 0.417 [0.208, 0.625]  recall@k 0.295
+knowledge-update ours                 n=  24 failed=  0  F1 0.304 [0.125, 0.500]  judge 0.417 [0.208, 0.625]  recall@k 0.295
+knowledge-update ours_no_temporal     n=  24 failed=  0  F1 0.292 [0.125, 0.500]  judge 0.375 [0.167, 0.583]  recall@k 0.295
+knowledge-update ours_no_provenance   n=  24 failed=  0  F1 0.266 [0.099, 0.458]  judge 0.375 [0.167, 0.583]  recall@k 0.295
+temporal-reasoning rag_messages         n=  24 failed=  0  F1 0.293 [0.149, 0.448]  judge 0.250 [0.083, 0.417]  recall@k 0.685
+temporal-reasoning overwrite_memory     n=  24 failed=  0  F1 0.314 [0.175, 0.464]  judge 0.250 [0.083, 0.458]  recall@k 0.489
+temporal-reasoning ours                 n=  24 failed=  0  F1 0.293 [0.158, 0.446]  judge 0.250 [0.083, 0.458]  recall@k 0.510
+temporal-reasoning ours_no_temporal     n=  24 failed=  0  F1 0.322 [0.186, 0.468]  judge 0.292 [0.125, 0.500]  recall@k 0.510
+temporal-reasoning ours_no_provenance   n=  24 failed=  0  F1 0.322 [0.175, 0.478]  judge 0.333 [0.167, 0.542]  recall@k 0.510

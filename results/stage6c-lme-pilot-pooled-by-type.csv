@@ -1,0 +1,11 @@
+system,type,n,errors,f1,f1_low,f1_high,judge,judge_low,judge_high,recall_at_k,abstained
+rag_messages,knowledge-update,24,0,0.7209,0.5433,0.8869,0.7917,0.625,0.9167,0.9848,1
+overwrite_memory,knowledge-update,24,0,0.3036,0.125,0.5,0.4167,0.2083,0.625,0.2955,12
+ours,knowledge-update,24,0,0.3036,0.125,0.5,0.4167,0.2083,0.625,0.2955,12
+ours_no_temporal,knowledge-update,24,0,0.2917,0.125,0.5,0.375,0.1667,0.5833,0.2955,13
+ours_no_provenance,knowledge-update,24,0,0.2657,0.099,0.4583,0.375,0.1667,0.5833,0.2955,13
+rag_messages,temporal-reasoning,24,0,0.2931,0.1488,0.4482,0.25,0.0833,0.4167,0.6847,7
+overwrite_memory,temporal-reasoning,24,0,0.3143,0.1754,0.4635,0.25,0.0833,0.4583,0.4889,7
+ours,temporal-reasoning,24,0,0.2935,0.1581,0.4464,0.25,0.0833,0.4583,0.5097,7
+ours_no_temporal,temporal-reasoning,24,0,0.3219,0.1857,0.4675,0.2917,0.125,0.5,0.5097,7
+ours_no_provenance,temporal-reasoning,24,0,0.3223,0.1752,0.4778,0.3333,0.1667,0.5417,0.5097,9
