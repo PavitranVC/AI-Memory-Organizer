@@ -1,12 +1,12 @@
 {
-  "state": "running",
+  "state": "done",
   "pid": 8128,
   "startedAt": "2026-10-22T08:44:02.889Z",
   "total": 60,
   "answeredBefore": 0,
   "answered": 5,
   "failedAgain": 55,
-  "current": "conv-49 #190",
+  "current": null,
   "lastBackup": "committed; push failed (retried at the next backup)",
-  "updatedAt": "2026-10-22T13:29:16.568Z"
+  "updatedAt": "2026-10-22T13:29:18.388Z"
 }
