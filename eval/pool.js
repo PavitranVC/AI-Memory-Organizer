@@ -1,6 +1,7 @@
 // Pools the per-sample LoCoMo runs into one table, with the same bootstrap helpers as the single-run summaries.
 //   npm run eval:pool                       pools results/stage6-locomo-ollama-conv-*  ->  results/stage6-locomo-pooled.*
 //   npm run eval:pool -- --prefix <name>    another run-folder prefix
+//   npm run eval:pool -- --prefix stage6c-lme-pilot- --out-name stage6c-lme-pilot-pooled --dataset-label "LongMemEval (benchmark), pilot"
 // It reads only answers.csv (one row per question x system), so every pooled number comes from the same rows the
 // per-sample summaries were built from. Failed answers are shown in two ways, never hidden:
 //   all     every question; a failed call is scored wrong, exactly as the per-sample summaries do
@@ -59,6 +60,8 @@ function line(system, rows, extra = {}) {
 function main() {
   const args = process.argv.slice(2);
   const prefix = option(args, '--prefix', 'stage6-locomo-ollama-conv-');
+  const outName = option(args, '--out-name', 'stage6-locomo-pooled');
+  const datasetLabel = option(args, '--dataset-label', 'LoCoMo (benchmark, CC BY-NC 4.0)');
   const { dirs, rows } = load(prefix);
   if (!rows.length) throw new Error(`no ${prefix}* folders with answers.csv under results/`);
   const systems = SYSTEM_IDS.filter((s) => rows.some((r) => r.system === s));
@@ -106,12 +109,12 @@ function main() {
     command: command('eval:pool', args),
     commit: `${gitCommit()} (the code that ran; the results are committed in a later commit)`,
     date: new Date().toISOString(),
-    dataset: `LoCoMo (benchmark, CC BY-NC 4.0): ${samples.length} samples, ${questions} questions, ${systems.length} systems; run folders ${dirs.length}`,
+    dataset: `${datasetLabel}: ${samples.length} samples, ${questions} questions, ${systems.length} systems; run folders ${dirs.length}`,
   };
   const pct = (x) => (x === null ? 'n/a' : x.toFixed(3));
   const table = (list) => list.map((r) => `${r.system.padEnd(20)} n=${String(r.n).padStart(4)} failed=${String(r.errors).padStart(4)}  F1 ${pct(r.f1)} [${pct(r.f1_low)}, ${pct(r.f1_high)}]  judge ${pct(r.judge)} [${pct(r.judge_low)}, ${pct(r.judge_high)}]  recall@k ${pct(r.recall_at_k)}`).join('\n');
   const text = [
-    'Pooled LoCoMo results across all finished samples',
+    `Pooled results across all finished samples: ${datasetLabel}`,
     ...Object.entries(stamp).map(([k, v]) => `${k}: ${v}`),
     'models: answer/extract/reconcile qwen2.5-coder:14b, judge deepseek-r1:14b, embeddings nomic-embed-text (from each run\'s meta.txt)',
     'intervals: 95% bootstrap over questions (2000 resamples, seeded). Questions from one conversation are not independent,',
@@ -132,7 +135,7 @@ function main() {
     '',
   ].join('\n');
 
-  const base = path.join(RESULTS, 'stage6-locomo-pooled');
+  const base = path.join(RESULTS, outName);
   fs.writeFileSync(`${base}.txt`, text);
   fs.writeFileSync(`${base}-all.csv`, toCsv(out.all));
   fs.writeFileSync(`${base}-valid.csv`, toCsv(out.valid));
