@@ -1,0 +1,12 @@
+{
+  "state": "running",
+  "pid": 8128,
+  "startedAt": "2026-10-22T08:44:02.889Z",
+  "total": 60,
+  "answeredBefore": 0,
+  "answered": 0,
+  "failedAgain": 9,
+  "current": "conv-26 #126",
+  "lastBackup": null,
+  "updatedAt": "2026-10-22T09:29:34.093Z"
+}
