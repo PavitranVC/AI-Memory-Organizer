@@ -1,3 +1,6 @@
+## Handoff (22 Oct 2026, stage 9)
+Next step: the author labels the judge sheets (results/stage6-locomo-judge-validation and results/stage6c-lme-judge-validation on branch claude/stage-6d-judge-validation) and runs npm run eval:judge-agreement on each; then the kappa replaces the [PENDING] placeholder in the report (Cautions paragraph of section 7.4) and the abstract/limitations are checked. Done: LoCoMo (10 samples) and the 48-question LongMemEval pilot are pooled (results/stage6-locomo-pooled.txt, results/stage6c-lme-pilot-pooled.txt). The retry of the full-context timeouts answered 5 of 60 and is closed. Still the author's: title page names, Appendix F screenshots, late-data policy question, DPDP/GDPR check, PDF/Word export.
+
 # Overnight Report — 2026-10-18
 
 Branch: `claude/stage-6-ollama-run`
