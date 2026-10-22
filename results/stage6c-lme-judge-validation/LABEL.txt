@@ -1,0 +1,6 @@
+Judge validation sheet for the LongMemEval pilot (dataset: benchmark, LongMemEval, 48 questions). Rows are a seeded random draw, not chosen by hand.
+command: npm run eval:judge-sample -- --prefix stage6c-lme-pilot- --per-sample 1 --out-name stage6c-lme-judge-validation --label LongMemEval pilot (dataset: benchmark, LongMemEval, 48 questions)
+commit: f46a29f9c35a75d72dfdbd4f1ef9ba913ede00e8 (the code that ran)
+date: 2026-10-22T18:26:33.922Z
+rows: 48 (1 from each of 48 samples; answers whose call failed are excluded); seed 11
+Fill human_correct with 1 (the candidate is correct) or 0 (wrong), following prompts/judge.v1.md. Do not open judge_validation_key.csv first.
