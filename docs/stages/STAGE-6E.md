@@ -46,7 +46,7 @@ three conversations that do fit; `npm run eval:retry` asks exactly those again w
 ```powershell
 git checkout claude/stage-6e-fullcontext-retry
 npm install
-npm run eval:token-fit                         # which conversations fit, and the measured ratio
+npm run eval:token-fit                         # which conversations fit, and the measured ratio (changes no file)
 npm run eval:launch-retry -- --provider ollama # checks, then runs the 60 timeouts in the background; about an hour
 npm run eval:retry-status                      # progress; run the launch command again after an interruption
 ```
