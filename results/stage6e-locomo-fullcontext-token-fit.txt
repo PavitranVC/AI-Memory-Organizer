@@ -1,0 +1,18 @@
+Full-context prompt size against the context window, LoCoMo runs on local models (dataset: benchmark, LoCoMo)
+command: npm run eval:token-fit
+commit: 155c2677a333da80d1429274aeae6c04aeb4cf8e (the code that ran; the results are committed in a later commit)
+date: 2026-10-22T07:42:17.630Z
+real characters per token (Ollama's input_tokens against the prompt, 440 answered questions): mean 3.18, min 3.06, max 3.32; the harness assumed 3.3
+window 32768 tokens; the harness reserves 2560 for the answer and a margin
+
+sample   questions  answered  timeouts  not-fit  conversation tokens (measured ratio)  needed  fits
+conv-26        199       175        24        0                                 24830   27390  yes
+conv-30        105        89        16        0                                 18390   20950  yes
+conv-41        193         0         0      193                                 36915   39475  NO
+conv-42        260         0         0      260                                 30794   33354  NO
+conv-43        242         0         0      242                                 36593   39153  NO
+conv-44        158         0         0      158                                 34950   37510  NO
+conv-47        190         0         0      190                                 33775   36335  NO
+conv-48        239         0         0      239                                 32475   35035  NO
+conv-49        196       176        20        0                                 25919   28479  yes
+conv-50        204         0         0      204                                 33241   35801  NO
