@@ -5,8 +5,8 @@
   "total": 60,
   "answeredBefore": 0,
   "answered": 4,
-  "failedAgain": 35,
-  "current": "conv-30 #83",
+  "failedAgain": 45,
+  "current": "conv-49 #84",
   "lastBackup": "committed; push failed (retried at the next backup)",
-  "updatedAt": "2026-10-22T11:47:38.239Z"
+  "updatedAt": "2026-10-22T12:38:16.294Z"
 }
