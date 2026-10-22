@@ -1,0 +1,5 @@
+sample,store,messages_mined,failed_messages,decisions,memory_versions,memory_current,memory_bytes,extract_calls,reconcile_calls,build_input_tokens,build_output_tokens,build_cost_usd,build_seconds
+8fb83627,raw messages,0,,,,,579496,,,,,,
+8fb83627,rag message vectors,0,,,,,2979840,,,,,,
+8fb83627,bitemporal,241,0,ADD=33 NOOP=4 UPDATE=5,38,33,398079,241,36,525527,6910,0,266.1
+8fb83627,overwrite,241,0,ADD=33 NOOP=4 UPDATE=5,33,33,345584,0,36,34993,2261,0,71.8

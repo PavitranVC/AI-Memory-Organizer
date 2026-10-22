@@ -1,0 +1,10 @@
+label: LongMemEval QA evaluation with qwen2.5-coder:14b (answers) and deepseek-r1:14b (judge), local models through Ollama. Judge not yet validated against human labels.
+command: npm run eval -- --dataset longmemeval --file longmemeval_s_cleaned.json --ids c8090214_abs --provider ollama --embeddings ollama --judge-sample 5 --max-item-chars 1400 --run-id stage6c-lme-pilot-c8090214_abs
+git commit: 7cb875cfc77a1eb9aea0fd2d9fb937a6a107b714 + uncommitted changes (the code that ran; results are committed in a later commit)
+date: 2026-10-22T15:39:16.262Z
+dataset: BENCHMARK - LongMemEval (data\longmemeval\longmemeval_s_cleaned.json, 1 questions: c8090214_abs)
+max characters per retrieved message: 1400
+llm provider: ollama; embeddings: ollama:nomic-embed-text:768; k = 10; seed = 1
+models: extract qwen2.5-coder:14b, reconcile qwen2.5-coder:14b, answer qwen2.5-coder:14b, judge deepseek-r1:14b; ollama 0.32.13
+checkpoint: results\stage6c-lme-pilot-c8090214_abs\checkpoint.jsonl; started again after an interruption 0 time(s)
+wall-clock of the last process: 490 s; machine: 24 x Intel(R) Core(TM) Ultra 9 275HX, 31 GB RAM, win32 10.0.26300; node v24.19.0; mongodb 8.3.11

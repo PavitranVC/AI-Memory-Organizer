@@ -1,0 +1,268 @@
+{"type":"run","at":"2026-10-22T16:08:51.334Z","commit":"b1cc2a723ab9ece60f37735cfe39bae9c53ea208 + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["f9e8c073"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"f9e8c073","userIds":["6ada35138a0372bc7b5b8f40"]}
+{"type":"build","sample":"f9e8c073","build":{"sample":"f9e8c073","store":"raw messages","messages_mined":0,"memory_bytes":597104}}
+{"type":"build","sample":"f9e8c073","build":{"sample":"f9e8c073","store":"rag message vectors","messages_mined":0,"memory_bytes":3096576}}
+{"type":"row","row":{"sample":"f9e8c073","qa_index":0,"category":5,"question_type":"knowledge-update","system":"rag_messages","question":"How many sessions of the bereavement support group did I attend?","gold":"five","answer":"five","insufficient":false,"cited":"answer_b191df5b_2:6","score_f1":1,"judge_correct":1,"judge_reason":"Same numerical value.","recall_at_k":1,"context_items":10,"context_dia":"answer_b191df5b_1:1 answer_b191df5b_1:2 answer_b191df5b_1:3 answer_b191df5b_1:4 answer_b191df5b_2:6 answer_b191df5b_2:7 answer_b191df5b_2:8 answer_b191df5b_2:9 answer_b191df5b_2:10 answer_b191df5b_2:11","context_tokens_est":2489,"retrieval_ms":38.45,"answer_ms":8605,"judge_ms":9617,"input_tokens":2770,"output_tokens":35,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"f9e8c073"}
+{"type":"store_start","sample":"f9e8c073","store":"bitemporal"}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_QmVUZ8v_4:0|2023-04-13T04:21:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_HK2HHXS_0:0|2023-04-13T06:52:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"97795a16_3:0|2023-04-14T18:41:00.000Z","data":{"candidates":[{"content":"Plans a trip to the mountains next weekend","topic":"plan mountain trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Cleaned camera sensor on 2023-04-22","topic":"event camera cleaning","category":"Hobbies","importance":2,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-22"}]}}
+{"type":"cache","sample":"f9e8c073","key":"97795a16_3:2|2023-04-14T18:41:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"97795a16_3:4|2023-04-14T18:41:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"97795a16_3:6|2023-04-14T18:41:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"97795a16_3:8|2023-04-14T18:41:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"97795a16_3:10|2023-04-14T18:41:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_WQun2Qq_0:0|2023-04-14T22:42:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_WQun2Qq_0:2|2023-04-14T22:42:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_WQun2Qq_0:4|2023-04-14T22:42:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"b94ad1bc_1:0|2023-04-14T22:56:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"b94ad1bc_1:2|2023-04-14T22:56:02.000Z","data":{"candidates":[{"content":"Posted a short reel about morning yoga routine on 2023-04-14","topic":"event yoga reel","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-04-14"},{"content":"Plans to do a series of posts about yoga and meditation","topic":"plan yoga series","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"b94ad1bc_1:4|2023-04-14T22:56:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"b94ad1bc_1:6|2023-04-14T22:56:06.000Z","data":{"candidates":[{"content":"Posted a photo of the desk on 2023-04-11","topic":"event desk photo","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-04-11"},{"content":"Plans to share more behind-the-scenes content","topic":"plan behind-the-scenes content","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"b94ad1bc_1:8|2023-04-14T22:56:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"b94ad1bc_1:10|2023-04-14T22:56:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"85a49fe0_3:0|2023-04-15T14:34:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"85a49fe0_3:2|2023-04-15T14:34:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"85a49fe0_3:4|2023-04-15T14:34:04.000Z","data":{"candidates":[{"content":"Plans to look into Stackable Jewelry Trays","topic":"plan jewelry organizer","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Needs to get engagement ring resized","topic":"event ring resizing","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"85a49fe0_3:6|2023-04-15T14:34:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"85a49fe0_3:8|2023-04-15T14:34:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"85a49fe0_3:10|2023-04-15T14:34:10.000Z","data":{"candidates":[{"content":"Started cleaning and organizing jewelry box on 2023-04-15","topic":"event jewelry cleaning","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-04-15"},{"content":"Plans to get a jewelry cleaning solution and polishing cloths","topic":"plan jewelry supplies","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Checked on silver chain and saw it needs polishing","topic":"event silver chain check","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-04-15"},{"content":"Plans to schedule an appointment with a jeweler to get engagement ring resized","topic":"plan engagement ring resize","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_368546:0|2023-04-19T10:50:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_368546:2|2023-04-19T10:50:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_368546:4|2023-04-19T10:50:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"669318cf_3:0|2023-04-22T07:59:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"669318cf_3:2|2023-04-22T07:59:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"669318cf_3:4|2023-04-22T07:59:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"669318cf_3:6|2023-04-22T07:59:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"669318cf_3:8|2023-04-22T07:59:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"669318cf_3:10|2023-04-22T07:59:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"d5283595_1:0|2023-04-23T19:33:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"d5283595_1:2|2023-04-23T19:33:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"d5283595_1:4|2023-04-23T19:33:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"d5283595_1:6|2023-04-23T19:33:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"d5283595_1:8|2023-04-23T19:33:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"d5283595_1:10|2023-04-23T19:33:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_XVq0Pv9_33:1|2023-04-28T08:07:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_XVq0Pv9_33:3|2023-04-28T08:07:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_XVq0Pv9_33:5|2023-04-28T08:07:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_XVq0Pv9_33:7|2023-04-28T08:07:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_398099:0|2023-04-30T08:33:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_398099:2|2023-04-30T08:33:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_398099:4|2023-04-30T08:33:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_398099:6|2023-04-30T08:33:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_Ap0jhCm_11:1|2023-05-04T01:30:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_Ap0jhCm_11:3|2023-05-04T01:30:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_Ap0jhCm_11:5|2023-05-04T01:30:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_Ap0jhCm_11:7|2023-05-04T01:30:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_88473:0|2023-05-04T08:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_88473:2|2023-05-04T08:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_88473:4|2023-05-04T08:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_88473:6|2023-05-04T08:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_88473:8|2023-05-04T08:02:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_K7G7JSc_0:0|2023-05-04T16:29:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_K7G7JSc_0:2|2023-05-04T16:29:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"a49a1438_2:0|2023-05-06T13:44:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"a49a1438_2:2|2023-05-06T13:44:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"a49a1438_2:4|2023-05-06T13:44:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"a49a1438_2:6|2023-05-06T13:44:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"a49a1438_2:8|2023-05-06T13:44:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"a49a1438_2:10|2023-05-06T13:44:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"8a5fe67a:0|2023-05-06T20:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"8a5fe67a:2|2023-05-06T20:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"8a5fe67a:4|2023-05-06T20:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"8a5fe67a:6|2023-05-06T20:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"8a5fe67a:8|2023-05-06T20:02:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"8a5fe67a:10|2023-05-06T20:02:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_76215:0|2023-05-08T11:55:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_76215:2|2023-05-08T11:55:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_76215:4|2023-05-08T11:55:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_76215:6|2023-05-08T11:55:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_357526:0|2023-05-08T21:44:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_357526:2|2023-05-08T21:44:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_357526:4|2023-05-08T21:44:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_357526:6|2023-05-08T21:44:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_357526:8|2023-05-08T21:44:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"9ef698bc_2:0|2023-05-10T05:35:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"9ef698bc_2:2|2023-05-10T05:35:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"9ef698bc_2:4|2023-05-10T05:35:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"9ef698bc_2:6|2023-05-10T05:35:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"9ef698bc_2:8|2023-05-10T05:35:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"9ef698bc_2:10|2023-05-10T05:35:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"answer_b191df5b_1:0|2023-05-11T02:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"answer_b191df5b_1:2|2023-05-11T02:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"answer_b191df5b_1:4|2023-05-11T02:24:04.000Z","data":{"candidates":[{"content":"Attended three sessions of a bereavement support group on 2023-05-08, 2023-05-09, and 2023-05-10","topic":"event bereavement support group","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-08"}]}}
+{"type":"cache","sample":"f9e8c073","key":"answer_b191df5b_1:6|2023-05-11T02:24:06.000Z","data":{"candidates":[{"content":"Created a memory box on 2023-05-11","topic":"event memory box","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-11"},{"content":"Includes grandmother's locket and handwritten recipe book in the memory box","topic":"event memory box contents","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-05-11"}]}}
+{"type":"cache","sample":"f9e8c073","key":"answer_b191df5b_1:8|2023-05-11T02:24:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"answer_b191df5b_1:10|2023-05-11T02:24:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_Fhigp7F_1:1|2023-05-13T20:39:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_Fhigp7F_1:3|2023-05-13T20:39:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_Fhigp7F_1:5|2023-05-13T20:39:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_Fhigp7F_1:7|2023-05-13T20:39:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_Fhigp7F_1:9|2023-05-13T20:39:09.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_bLaSZdD_0:0|2023-05-15T23:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_bLaSZdD_0:2|2023-05-15T23:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_bLaSZdD_0:4|2023-05-15T23:32:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_bLaSZdD_0:6|2023-05-15T23:32:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_bLaSZdD_0:8|2023-05-15T23:32:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_rDNsXPP_0:0|2023-05-28T23:49:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_471439:0|2023-05-29T12:52:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_471439:2|2023-05-29T12:52:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_471439:4|2023-05-29T12:52:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_471439:6|2023-05-29T12:52:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_471439:8|2023-05-29T12:52:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_483728:0|2023-05-30T05:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_483728:2|2023-05-30T05:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_483728:4|2023-05-30T05:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_483728:6|2023-05-30T05:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"1d14730c_1:0|2023-06-08T16:39:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"1d14730c_1:2|2023-06-08T16:39:02.000Z","data":{"candidates":[{"content":"Met a friendly yoga instructor named Rachel at a new studio a week after meeting Sophia","topic":"event yoga instructor","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-15"},{"content":"Looking for yoga classes in the neighborhood","topic":"plan yoga classes","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"1d14730c_1:4|2023-06-08T16:39:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"1d14730c_1:6|2023-06-08T16:39:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"1d14730c_1:8|2023-06-08T16:39:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"1d14730c_1:10|2023-06-08T16:39:10.000Z","data":{"candidates":[{"content":"Met a vet student named Lucy at a shelter on 2023-06-03","topic":"event shelter meeting","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-06-03"},{"content":"Plans to volunteer at a local animal shelter","topic":"plan animal shelter volunteering","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"4604bc73_2:0|2023-06-13T01:05:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"4604bc73_2:2|2023-06-13T01:05:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"4604bc73_2:4|2023-06-13T01:05:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"4604bc73_2:6|2023-06-13T01:05:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"4604bc73_2:8|2023-06-13T01:05:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"4604bc73_2:10|2023-06-13T01:05:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"4dd737a9_2:0|2023-07-01T02:38:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"4dd737a9_2:2|2023-07-01T02:38:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"4dd737a9_2:4|2023-07-01T02:38:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"4dd737a9_2:6|2023-07-01T02:38:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"4dd737a9_2:8|2023-07-01T02:38:08.000Z","data":{"candidates":[{"content":"Attended a life drawing class at the community center on 2023-06-30","topic":"event life drawing class","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-30"},{"content":"Plans to create a watercolor piece inspired by Monet's garden","topic":"plan watercolor piece","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"4dd737a9_2:10|2023-07-01T02:38:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"068ba24d:0|2023-07-14T22:12:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"068ba24d:2|2023-07-14T22:12:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"068ba24d:4|2023-07-14T22:12:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"068ba24d:6|2023-07-14T22:12:06.000Z","data":{"candidates":[{"content":"Practices vinyasa flow yoga","topic":"hobby yoga","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-01-01"},{"content":"Finds yoga helpful for flexibility and balance","topic":"hobby yoga benefits","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-01-01"},{"content":"Yoga helps with overall endurance, especially during spin classes","topic":"hobby yoga impact","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-01-01"}]}}
+{"type":"cache","sample":"f9e8c073","key":"068ba24d:8|2023-07-14T22:12:08.000Z","data":{"candidates":[{"content":"Started doing yoga on 2023-01-02","topic":"event yoga start","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-01-02"},{"content":"Consistently doing yoga for about 4 weeks","topic":"event yoga consistency","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-14"},{"content":"Yoga has improved overall fitness and endurance","topic":"event yoga benefits","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-06-14"}]}}
+{"type":"cache","sample":"f9e8c073","key":"068ba24d:10|2023-07-14T22:12:10.000Z","data":{"candidates":[{"content":"Started doing yoga on 2023-01-02","topic":"event yoga start","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-01-02"},{"content":"Improved upper body strength and endurance","topic":"event strength improvement","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-07-14"},{"content":"Improved spin class performance","topic":"event spin class improvement","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-07-14"}]}}
+{"type":"cache","sample":"f9e8c073","key":"22db3cc3_1:0|2023-07-15T03:44:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"22db3cc3_1:2|2023-07-15T03:44:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"22db3cc3_1:4|2023-07-15T03:44:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"22db3cc3_1:6|2023-07-15T03:44:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"22db3cc3_1:8|2023-07-15T03:44:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"22db3cc3_1:10|2023-07-15T03:44:10.000Z","data":{"candidates":[{"content":"Plans to visit an art supply store on 5th Street on 2023-07-15","topic":"plan art supply store visit","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_235881:0|2023-07-22T01:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_235881:2|2023-07-22T01:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_235881:4|2023-07-22T01:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_235881:6|2023-07-22T01:19:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_GDFyxeT_0:0|2023-08-01T15:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_418282:0|2023-08-04T21:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_418282:2|2023-08-04T21:18:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_418282:4|2023-08-04T21:18:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_418282:6|2023-08-04T21:18:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_418282:8|2023-08-04T21:18:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_219619:0|2023-08-22T14:52:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_219619:2|2023-08-22T14:52:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_219619:4|2023-08-22T14:52:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_219619:6|2023-08-22T14:52:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_219619:8|2023-08-22T14:52:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_219619:10|2023-08-22T14:52:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_vGZ5lH1_33:1|2023-08-29T10:31:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_vGZ5lH1_33:3|2023-08-29T10:31:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_vGZ5lH1_33:5|2023-08-29T10:31:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_vGZ5lH1_33:7|2023-08-29T10:31:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_Jpt7Vv4_0:0|2023-09-09T10:30:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_Jpt7Vv4_0:2|2023-09-09T10:30:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_Jpt7Vv4_0:4|2023-09-09T10:30:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_Jpt7Vv4_0:6|2023-09-09T10:30:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"0a042aef_2:0|2023-10-12T23:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"0a042aef_2:2|2023-10-12T23:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"0a042aef_2:4|2023-10-12T23:24:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"0a042aef_2:6|2023-10-12T23:24:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"0a042aef_2:8|2023-10-12T23:24:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"0a042aef_2:10|2023-10-12T23:24:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_yxmGlRt_16:0|2023-10-13T18:05:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_yxmGlRt_16:2|2023-10-13T18:05:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_yxmGlRt_16:4|2023-10-13T18:05:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_y6KAtOv_0:0|2023-10-15T06:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_y6KAtOv_0:2|2023-10-15T06:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"answer_b191df5b_2:0|2023-10-30T07:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"answer_b191df5b_2:2|2023-10-30T07:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"answer_b191df5b_2:4|2023-10-30T07:19:04.000Z","data":{"candidates":[{"content":"Plans to start exercising 10-15 minutes a day, 3 times a week","topic":"plan exercise","category":"Health","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to get back into reading","topic":"plan reading","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"answer_b191df5b_2:6|2023-10-30T07:19:06.000Z","data":{"candidates":[{"content":"Started reading 'Wild: From Lost to Found on the Pacific Crest Trail' by Cheryl Strayed","topic":"hobby reading","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-30"},{"content":"Started reading 'Daring Greatly' by Brené Brown","topic":"hobby reading","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-30"},{"content":"Attended a bereavement support group last year","topic":"event bereavement support group","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":"2022-01-01"}]}}
+{"type":"cache","sample":"f9e8c073","key":"answer_b191df5b_2:8|2023-10-30T07:19:08.000Z","data":{"candidates":[{"content":"Attended a bereavement support group last year, finding it helpful in processing emotions and feeling less alone in grief.","topic":"event bereavement support group","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2022-10-01"}]}}
+{"type":"cache","sample":"f9e8c073","key":"answer_b191df5b_2:10|2023-10-30T07:19:10.000Z","data":{"candidates":[{"content":"Plans to seek out a therapist or counselor for guidance and support","topic":"plan therapy","category":"Health","importance":4,"confidence":0.9,"sensitivity":"special","validFrom":null},{"content":"Plans to join online forums or social media communities focusing on grief, loss, and mental health","topic":"plan online support groups","category":"Health","importance":3,"confidence":0.8,"sensitivity":"special","validFrom":null},{"content":"Plans to start a journal to process emotions and reflect on experiences","topic":"plan journaling","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Plans to reach out to friends and family members who have gone through similar experiences","topic":"plan reaching out for support","category":"Personal","importance":3,"confidence":0.8,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"43f2d083_3:0|2023-10-30T13:36:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"43f2d083_3:2|2023-10-30T13:36:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"43f2d083_3:4|2023-10-30T13:36:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"43f2d083_3:6|2023-10-30T13:36:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"43f2d083_3:8|2023-10-30T13:36:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"43f2d083_3:10|2023-10-30T13:36:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_K7liqgE_0:0|2023-10-30T22:59:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"50b32eed_2:0|2023-10-31T02:08:00.000Z","data":{"candidates":[{"content":"Participated in a charity dog walk on 2023-10-28 and raised $50 in sponsorships","topic":"event charity dog walk","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-28"},{"content":"Plans to stay motivated and engaged in volunteer work","topic":"plan volunteer work","category":"Personal","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"50b32eed_2:2|2023-10-31T02:08:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"50b32eed_2:4|2023-10-31T02:08:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"50b32eed_2:6|2023-10-31T02:08:06.000Z","data":{"candidates":[{"content":"Set a specific fundraising goal for a charity cycling event","topic":"plan fundraising","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Raised $300 in a bake sale for a children's hospital","topic":"event bake sale","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Raised $50 in sponsorships at a charity dog walk on 2023-10-28","topic":"event charity dog walk","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-28"}]}}
+{"type":"cache","sample":"f9e8c073","key":"50b32eed_2:8|2023-10-31T02:08:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"50b32eed_2:10|2023-10-31T02:08:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_132644:0|2023-10-31T21:51:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_132644:2|2023-10-31T21:51:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_132644:4|2023-10-31T21:51:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_132644:6|2023-10-31T21:51:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_132644:8|2023-10-31T21:51:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_132644:10|2023-10-31T21:51:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_132644:12|2023-10-31T21:51:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_xVdCPKq_0:0|2023-11-01T11:17:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_541135:0|2023-11-01T16:45:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_541135:2|2023-11-01T16:45:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_541135:4|2023-11-01T16:45:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_541135:6|2023-11-01T16:45:06.000Z","data":{"candidates":[{"content":"Begins bringing own containers for takeout","topic":"plan takeout containers","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_541135:8|2023-11-01T16:45:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_xaVYX4c_12:0|2023-11-02T07:23:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_xaVYX4c_12:2|2023-11-02T07:23:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_xaVYX4c_12:4|2023-11-02T07:23:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_xaVYX4c_12:6|2023-11-02T07:23:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_xaVYX4c_12:8|2023-11-02T07:23:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_xaVYX4c_12:10|2023-11-02T07:23:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_xaVYX4c_12:12|2023-11-02T07:23:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"sharegpt_xaVYX4c_12:14|2023-11-02T07:23:14.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"445e6a7a_1:0|2023-11-02T23:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"445e6a7a_1:2|2023-11-02T23:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"445e6a7a_1:4|2023-11-02T23:43:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"445e6a7a_1:6|2023-11-02T23:43:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"445e6a7a_1:8|2023-11-02T23:43:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"445e6a7a_1:10|2023-11-02T23:43:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_179318:0|2023-11-03T12:25:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_179318:2|2023-11-03T12:25:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_179318:4|2023-11-03T12:25:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_179318:6|2023-11-03T12:25:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_179318:8|2023-11-03T12:25:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_179318:10|2023-11-03T12:25:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"e7aa3f51_3:0|2023-11-03T13:49:00.000Z","data":{"candidates":[{"content":"Has skin issues since the beginning of winter due to dry air","topic":"health skin issues","category":"Health","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":"2023-11-01"},{"content":"Started making a conscious effort to exfoliate and moisturize more regularly since Thanksgiving","topic":"health skincare routine","category":"Health","importance":3,"confidence":0.8,"sensitivity":"normal","validFrom":"2023-11-24"}]}}
+{"type":"cache","sample":"f9e8c073","key":"e7aa3f51_3:2|2023-11-03T13:49:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"e7aa3f51_3:4|2023-11-03T13:49:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"e7aa3f51_3:6|2023-11-03T13:49:06.000Z","data":{"candidates":[{"content":"Started taking vitamin D supplements","topic":"health vitamin D","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-02"},{"content":"Began adding skin-friendly foods to diet","topic":"health diet","category":"Health","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-03"},{"content":"Plans to get a humidifier for home","topic":"plan humidifier","category":"Personal","importance":3,"confidence":0.8,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"e7aa3f51_3:8|2023-11-03T13:49:08.000Z","data":{"candidates":[{"content":"Started using a humidifier at home","topic":"hobby","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Exfoliates and moisturizes more regularly","topic":"hobby","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null},{"content":"Hosted Thanksgiving dinner at home","topic":"event thanksgiving dinner","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-11-24"},{"content":"Looking forward to getting back into routine with longer days in spring","topic":"plan spring routine","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"f9e8c073","key":"e7aa3f51_3:10|2023-11-03T13:49:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_64132:0|2023-11-04T00:01:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_64132:2|2023-11-04T00:01:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_64132:4|2023-11-04T00:01:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_64132:6|2023-11-04T00:01:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_64132:8|2023-11-04T00:01:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"d5f4d9fa_3:0|2023-11-04T01:28:00.000Z","data":{"candidates":[{"content":"Plans to go to Japan","topic":"plan trip to Japan","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Attends language exchange events every Saturday since February 2023","topic":"event language exchange","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-02-01"}]}}
+{"type":"cache","sample":"f9e8c073","key":"d5f4d9fa_3:2|2023-11-04T01:28:02.000Z","data":{"candidates":[{"content":"Attended a Japanese festival in the city on 2023-11-03","topic":"event festival","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-03"}]}}
+{"type":"cache","sample":"f9e8c073","key":"d5f4d9fa_3:4|2023-11-04T01:28:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"d5f4d9fa_3:6|2023-11-04T01:28:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"d5f4d9fa_3:8|2023-11-04T01:28:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"d5f4d9fa_3:10|2023-11-04T01:28:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_74503:0|2023-11-06T00:34:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_74503:2|2023-11-06T00:34:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_74503:4|2023-11-06T00:34:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_74503:6|2023-11-06T00:34:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_74503:8|2023-11-06T00:34:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"f9e8c073","key":"ultrachat_74503:10|2023-11-06T00:34:10.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"f9e8c073","build":{"sample":"f9e8c073","store":"bitemporal","messages_mined":250,"failed_messages":0,"decisions":"ADD=45 NOOP=5 SUPERSEDE=1 UPDATE=8","memory_versions":54,"memory_current":45,"memory_bytes":566568,"extract_calls":250,"reconcile_calls":57,"build_input_tokens":562695,"build_output_tokens":9776,"build_cost_usd":0,"build_seconds":343.6}}
+{"type":"store_built","sample":"f9e8c073","store":"bitemporal","versions":54}
+{"type":"row","row":{"sample":"f9e8c073","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours","question":"How many sessions of the bereavement support group did I attend?","gold":"five","answer":"three","insufficient":false,"cited":"m1","score_f1":0,"judge_correct":0,"judge_reason":"Different number from the gold answer.","recall_at_k":0.5,"context_items":10,"context_dia":"answer_b191df5b_1:4 answer_b191df5b_2:10 d5f4d9fa_3:2 4dd737a9_2:8 answer_b191df5b_1:6 1d14730c_1:2 068ba24d:8 d5f4d9fa_3:0","context_tokens_est":1158,"retrieval_ms":40.09,"answer_ms":1673,"judge_ms":17740,"input_tokens":1889,"output_tokens":25,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"f9e8c073","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_temporal","question":"How many sessions of the bereavement support group did I attend?","gold":"five","answer":"three","insufficient":false,"cited":"m1","score_f1":0,"judge_correct":0,"judge_reason":"Different number from the gold answer.","recall_at_k":0.5,"context_items":10,"context_dia":"answer_b191df5b_1:4 answer_b191df5b_2:10 4dd737a9_2:8 answer_b191df5b_1:6 d5f4d9fa_3:0 d5f4d9fa_3:2 1d14730c_1:2 068ba24d:8","context_tokens_est":1045,"retrieval_ms":681,"answer_ms":7843,"judge_ms":11931,"input_tokens":1599,"output_tokens":25,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"f9e8c073","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_provenance","question":"How many sessions of the bereavement support group did I attend?","gold":"five","answer":"three","insufficient":false,"cited":"m1","score_f1":0,"judge_correct":0,"judge_reason":"Different number from the gold answer.","recall_at_k":0.5,"context_items":10,"context_dia":"answer_b191df5b_1:4 answer_b191df5b_2:10 d5f4d9fa_3:2 4dd737a9_2:8 answer_b191df5b_1:6 1d14730c_1:2 068ba24d:8 d5f4d9fa_3:0","context_tokens_est":331,"retrieval_ms":760.54,"answer_ms":7521,"judge_ms":12598,"input_tokens":998,"output_tokens":25,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"f9e8c073","store":"overwrite"}
+{"type":"build","sample":"f9e8c073","build":{"sample":"f9e8c073","store":"overwrite","messages_mined":250,"failed_messages":0,"decisions":"ADD=45 NOOP=5 SUPERSEDE=1 UPDATE=8","memory_versions":45,"memory_current":45,"memory_bytes":471958,"extract_calls":0,"reconcile_calls":57,"build_input_tokens":59544,"build_output_tokens":3688,"build_cost_usd":0,"build_seconds":114.6}}
+{"type":"store_built","sample":"f9e8c073","store":"overwrite","versions":45}
+{"type":"row","row":{"sample":"f9e8c073","qa_index":0,"category":5,"question_type":"knowledge-update","system":"overwrite_memory","question":"How many sessions of the bereavement support group did I attend?","gold":"five","answer":"three","insufficient":false,"cited":"m1","score_f1":0,"judge_correct":0,"judge_reason":"Different number from the gold answer.","recall_at_k":0.5,"context_items":10,"context_dia":"answer_b191df5b_1:4 answer_b191df5b_2:8 answer_b191df5b_2:10 d5f4d9fa_3:2 4dd737a9_2:8 answer_b191df5b_1:6 1d14730c_1:2 068ba24d:8","context_tokens_est":1179,"retrieval_ms":36.12,"answer_ms":1607,"judge_ms":17691,"input_tokens":1904,"output_tokens":25,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"f9e8c073"}
+{"type":"complete","at":"2026-10-22T16:18:12.214Z"}

@@ -1,0 +1,264 @@
+{"type":"run","at":"2026-10-22T16:01:49.636Z","commit":"84a54fc38e642edef95cdc8b0715dfc22b6a1135 + uncommitted changes","fingerprint":{"dataset":"longmemeval","maxItemChars":1400,"samples":["031748ae"],"questionsPerSample":1,"k":10,"seed":1,"systems":["rag_messages","overwrite_memory","ours","ours_no_temporal","ours_no_provenance"],"provider":"ollama","models":{"extract":"qwen2.5-coder:14b","reconcile":"qwen2.5-coder:14b","answer":"qwen2.5-coder:14b","judge":"deepseek-r1:14b"},"ollama":{"numCtx":8192,"numCtxLarge":32768},"embeddings":{"provider":"ollama","model":"ollama:nomic-embed-text:768"},"prompts":{"answer":"eval-answer.v1","judge":"judge.v1","extract":"extract.v2","reconcile":"reconcile.v1"}}}
+{"type":"data","sample":"031748ae","userIds":["6ada336de0f2b59d064a21fc"]}
+{"type":"build","sample":"031748ae","build":{"sample":"031748ae","store":"raw messages","messages_mined":0,"memory_bytes":597214}}
+{"type":"build","sample":"031748ae","build":{"sample":"031748ae","store":"rag message vectors","messages_mined":0,"memory_bytes":3035136}}
+{"type":"row","row":{"sample":"031748ae","qa_index":0,"category":5,"question_type":"knowledge-update","system":"rag_messages","question":"How many engineers do I lead when I just started my new role as Senior Software Engineer? How many engineers do I lead now?","gold":"When you just started your new role as Senior Software Engineer, you led 4 engineers. Now, you lead 5 engineers","answer":"4 engineers","insufficient":false,"cited":"answer_8748f791_1:10","score_f1":0.1818,"judge_correct":0,"judge_reason":"The candidate answer only includes the number of engineers when the person started, missing the current number.","recall_at_k":1,"context_items":10,"context_dia":"answer_8748f791_1:4 answer_8748f791_1:6 answer_8748f791_1:8 answer_8748f791_1:9 answer_8748f791_1:10 answer_8748f791_1:11 answer_8748f791_2:2 answer_8748f791_2:3 answer_8748f791_2:7 answer_8748f791_2:9","context_tokens_est":1690,"retrieval_ms":26.27,"answer_ms":8288,"judge_ms":10290,"input_tokens":2150,"output_tokens":39,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"cache_reset","sample":"031748ae"}
+{"type":"store_start","sample":"031748ae","store":"bitemporal"}
+{"type":"cache","sample":"031748ae","key":"answer_8748f791_1:0|2023-05-11T02:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"answer_8748f791_1:2|2023-05-11T02:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"answer_8748f791_1:4|2023-05-11T02:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"answer_8748f791_1:6|2023-05-11T02:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"answer_8748f791_1:8|2023-05-11T02:02:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"answer_8748f791_1:10|2023-05-11T02:02:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_362770:0|2023-06-15T22:28:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_362770:2|2023-06-15T22:28:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_362770:4|2023-06-15T22:28:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_362770:6|2023-06-15T22:28:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_362770:8|2023-06-15T22:28:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_362770:10|2023-06-15T22:28:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"7a085b95_1:0|2023-06-26T12:04:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"7a085b95_1:2|2023-06-26T12:04:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"7a085b95_1:4|2023-06-26T12:04:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"7a085b95_1:6|2023-06-26T12:04:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"7a085b95_1:8|2023-06-26T12:04:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"7a085b95_1:10|2023-06-26T12:04:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"f89f184e_1:0|2023-08-04T11:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"f89f184e_1:2|2023-08-04T11:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"f89f184e_1:4|2023-08-04T11:32:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"f89f184e_1:6|2023-08-04T11:32:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"f89f184e_1:8|2023-08-04T11:32:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"f89f184e_1:10|2023-08-04T11:32:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"5ac7f9c5_3:0|2023-08-05T21:11:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"5ac7f9c5_3:2|2023-08-05T21:11:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"5ac7f9c5_3:4|2023-08-05T21:11:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"5ac7f9c5_3:6|2023-08-05T21:11:06.000Z","data":{"candidates":[{"content":"Chose Wix's Unlimited plan on 2023-08-05","topic":"event choosing website plan","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-08-05"},{"content":"Plans to use site analytics and email marketing tools for freelance business","topic":"plan using tools","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"031748ae","key":"5ac7f9c5_3:8|2023-08-05T21:11:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"5ac7f9c5_3:10|2023-08-05T21:11:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_6J4MSPx_0:0|2023-08-06T12:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_6J4MSPx_0:2|2023-08-06T12:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_472644:0|2023-10-24T03:27:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_472644:2|2023-10-24T03:27:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_472644:4|2023-10-24T03:27:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_472644:6|2023-10-24T03:27:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_472644:8|2023-10-24T03:27:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"answer_8748f791_2:0|2023-10-24T13:53:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"answer_8748f791_2:2|2023-10-24T13:53:02.000Z","data":{"candidates":[{"content":"Plans to go on a group hike","topic":"plan group hike","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Works as a Senior Software Engineer","topic":"employer","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Leads a team of five engineers","topic":"team","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"031748ae","key":"answer_8748f791_2:4|2023-10-24T13:53:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"answer_8748f791_2:6|2023-10-24T13:53:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"answer_8748f791_2:8|2023-10-24T13:53:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"answer_8748f791_2:10|2023-10-24T13:53:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"70764af1_4:0|2023-10-25T03:09:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"70764af1_4:2|2023-10-25T03:09:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"70764af1_4:4|2023-10-25T03:09:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"70764af1_4:6|2023-10-25T03:09:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"70764af1_4:8|2023-10-25T03:09:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"70764af1_4:10|2023-10-25T03:09:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_q3qJzui_0:0|2023-10-25T10:29:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_q3qJzui_0:2|2023-10-25T10:29:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_q3qJzui_0:4|2023-10-25T10:29:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_q3qJzui_0:6|2023-10-25T10:29:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_pPNVaqR_0:0|2023-10-25T21:21:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_pPNVaqR_0:2|2023-10-25T21:21:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_pPNVaqR_0:4|2023-10-25T21:21:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_XgksWad_7:1|2023-10-26T21:08:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_XgksWad_7:3|2023-10-26T21:08:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_XgksWad_7:5|2023-10-26T21:08:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_XgksWad_7:7|2023-10-26T21:08:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_Ukl9zsG_0:0|2023-10-27T01:25:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_A3DTUI4_55:1|2023-10-27T06:18:01.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_A3DTUI4_55:3|2023-10-27T06:18:03.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_A3DTUI4_55:5|2023-10-27T06:18:05.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_A3DTUI4_55:7|2023-10-27T06:18:07.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_A3DTUI4_55:9|2023-10-27T06:18:09.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_A3DTUI4_55:11|2023-10-27T06:18:11.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_A3DTUI4_55:13|2023-10-27T06:18:13.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_A3DTUI4_55:15|2023-10-27T06:18:15.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"4dd1ba8d_1:0|2023-10-27T06:28:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"4dd1ba8d_1:2|2023-10-27T06:28:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"4dd1ba8d_1:4|2023-10-27T06:28:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"4dd1ba8d_1:6|2023-10-27T06:28:06.000Z","data":{"candidates":[{"content":"Created a group chat for planning a trip to Hawaii","topic":"plan Hawaii trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Invited Rachel, David, and others to the group chat","topic":"plan Hawaii trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Had lunch with Rachel last Friday","topic":"event lunch with Rachel","category":"Personal","importance":2,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-10-20"},{"content":"Rachel got a promotion at work","topic":"event Rachel promotion","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-10-20"},{"content":"Struggling to find a new job","topic":"personal situation","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"031748ae","key":"4dd1ba8d_1:8|2023-10-27T06:28:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"4dd1ba8d_1:10|2023-10-27T06:28:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"bc660b5f_1:0|2023-10-28T04:41:00.000Z","data":{"candidates":[{"content":"Bought a new Fender acoustic guitar on 2023-09-15","topic":"event guitar purchase","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-09-15"},{"content":"Plans to learn more songs on the acoustic guitar","topic":"plan guitar learning","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"031748ae","key":"bc660b5f_1:2|2023-10-28T04:41:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"bc660b5f_1:4|2023-10-28T04:41:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"bc660b5f_1:6|2023-10-28T04:41:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"bc660b5f_1:8|2023-10-28T04:41:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"bc660b5f_1:10|2023-10-28T04:41:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_LaG73Rk_0:0|2023-10-28T10:47:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_LaG73Rk_0:2|2023-10-28T10:47:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_LaG73Rk_0:4|2023-10-28T10:47:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_LaG73Rk_0:6|2023-10-28T10:47:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_LaG73Rk_0:8|2023-10-28T10:47:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_LaG73Rk_0:10|2023-10-28T10:47:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_LaG73Rk_0:12|2023-10-28T10:47:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"3620a0a3:0|2023-10-28T13:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"3620a0a3:2|2023-10-28T13:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"3620a0a3:4|2023-10-28T13:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"3620a0a3:6|2023-10-28T13:19:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"3620a0a3:8|2023-10-28T13:19:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"3620a0a3:10|2023-10-28T13:19:10.000Z","data":{"candidates":[{"content":"Plans to create an Instagram Reel showcasing personality and creativity","topic":"plan Instagram Reel","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to collaborate with another user or influencer on Instagram Reel","topic":"plan collaboration","category":"Hobbies","importance":3,"confidence":0.8,"sensitivity":"personal","validFrom":null}]}}
+{"type":"cache","sample":"031748ae","key":"39a056ae:0|2023-10-29T15:46:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"39a056ae:2|2023-10-29T15:46:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"39a056ae:4|2023-10-29T15:46:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"39a056ae:6|2023-10-29T15:46:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"39a056ae:8|2023-10-29T15:46:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"39a056ae:10|2023-10-29T15:46:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"31702c20_3:0|2023-10-29T20:02:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"31702c20_3:2|2023-10-29T20:02:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"31702c20_3:4|2023-10-29T20:02:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"31702c20_3:6|2023-10-29T20:02:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"31702c20_3:8|2023-10-29T20:02:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"31702c20_3:10|2023-10-29T20:02:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_74296:0|2023-10-30T01:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_74296:2|2023-10-30T01:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_74296:4|2023-10-30T01:32:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_74296:6|2023-10-30T01:32:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_74296:8|2023-10-30T01:32:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_74296:10|2023-10-30T01:32:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"920fa36f:0|2023-10-30T04:03:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"920fa36f:2|2023-10-30T04:03:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"920fa36f:4|2023-10-30T04:03:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"920fa36f:6|2023-10-30T04:03:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"920fa36f:8|2023-10-30T04:03:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"920fa36f:10|2023-10-30T04:03:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"e0f71050_2:0|2023-10-30T05:38:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"e0f71050_2:2|2023-10-30T05:38:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"e0f71050_2:4|2023-10-30T05:38:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"e0f71050_2:6|2023-10-30T05:38:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"e0f71050_2:8|2023-10-30T05:38:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"e0f71050_2:10|2023-10-30T05:38:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"52bc942f_1:0|2023-10-30T08:28:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"52bc942f_1:2|2023-10-30T08:28:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"52bc942f_1:4|2023-10-30T08:28:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"52bc942f_1:6|2023-10-30T08:28:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"52bc942f_1:8|2023-10-30T08:28:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"52bc942f_1:10|2023-10-30T08:28:10.000Z","data":{"candidates":[{"content":"Bought a vintage leather jacket on ThredUp for $60 last month","topic":"event leather jacket purchase","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-01"},{"content":"Wears the vintage leather jacket to social events","topic":"event social events","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Plans to pair the vintage leather jacket with distressed denim jeans and a graphic tee","topic":"plan outfit","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"031748ae","key":"803b3655_1:0|2023-10-31T16:32:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"803b3655_1:2|2023-10-31T16:32:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"803b3655_1:4|2023-10-31T16:32:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"803b3655_1:6|2023-10-31T16:32:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"803b3655_1:8|2023-10-31T16:32:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"803b3655_1:10|2023-10-31T16:32:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"c86a22a2_2:0|2023-11-01T13:22:00.000Z","data":{"candidates":[{"content":"Plans a fishing trip to Colorado next month","topic":"plan fishing trip","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Went hunting on a solo trip to family's property in rural Wisconsin during the early archery season","topic":"event hunting trip","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-10-25"}]}}
+{"type":"cache","sample":"031748ae","key":"c86a22a2_2:2|2023-11-01T13:22:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"c86a22a2_2:4|2023-11-01T13:22:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"c86a22a2_2:6|2023-11-01T13:22:06.000Z","data":{"candidates":[{"content":"Saw fresh buck rubs near a tree stand on 2023-11-01","topic":"event hunting","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-11-01"},{"content":"Spent two days in a tree stand on 2023-11-01","topic":"event hunting","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-11-01"},{"content":"Spent quality time with parents at a cabin on 2023-11-01","topic":"event family visit","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-11-01"},{"content":"Helped fix a broken fence post and split firewood on 2023-11-01","topic":"event chores","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-11-01"}]}}
+{"type":"cache","sample":"031748ae","key":"c86a22a2_2:8|2023-11-01T13:22:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"c86a22a2_2:10|2023-11-01T13:22:10.000Z","data":{"candidates":[{"content":"Checked trail camera regularly to track a buck's movement patterns and habits","topic":"event trail camera","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-25"},{"content":"Plans to hunt a specific buck during the rifle season","topic":"plan rifle hunt","category":"Hobbies","importance":4,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Gets to the property a day or two before the hunt to get settled in and get a feel for the land","topic":"plan pre-hunt preparation","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"031748ae","key":"b70ac29f_1:0|2023-11-02T08:21:00.000Z","data":{"candidates":[{"content":"Plans a weekend in NYC with a friend","topic":"plan NYC trip","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null},{"content":"Visited the Impressionist exhibit at the Met with friend Sarah on 2023-10-28","topic":"event Met visit","category":"Hobbies","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-28"}]}}
+{"type":"cache","sample":"031748ae","key":"b70ac29f_1:2|2023-11-02T08:21:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"b70ac29f_1:4|2023-11-02T08:21:04.000Z","data":{"candidates":[{"content":"Visited the Museum of Modern Art in October 2023 to see the Frida Kahlo retrospective","topic":"event Frida Kahlo retrospective","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-01"}]}}
+{"type":"cache","sample":"031748ae","key":"b70ac29f_1:6|2023-11-02T08:21:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"b70ac29f_1:8|2023-11-02T08:21:08.000Z","data":{"candidates":[{"content":"Attended the Impressionist exhibit at the Met on 2023-10-28","topic":"event impressionist exhibit","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-28"},{"content":"Visited the Met with friend Sarah on 2023-10-28","topic":"event met visit","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-10-28"}]}}
+{"type":"cache","sample":"031748ae","key":"b70ac29f_1:10|2023-11-02T08:21:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"90403fb9_2:0|2023-11-02T22:43:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"90403fb9_2:2|2023-11-02T22:43:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"90403fb9_2:4|2023-11-02T22:43:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"90403fb9_2:6|2023-11-02T22:43:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"90403fb9_2:8|2023-11-02T22:43:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"90403fb9_2:10|2023-11-02T22:43:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_556006:0|2023-11-03T04:35:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_556006:2|2023-11-03T04:35:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_556006:4|2023-11-03T04:35:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"d6c6dadf:0|2023-11-03T15:59:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"d6c6dadf:2|2023-11-03T15:59:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"d6c6dadf:4|2023-11-03T15:59:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"d6c6dadf:6|2023-11-03T15:59:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"d6c6dadf:8|2023-11-03T15:59:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"d6c6dadf:10|2023-11-03T15:59:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"eff063bb_2:0|2023-11-04T02:00:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"eff063bb_2:2|2023-11-04T02:00:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"eff063bb_2:4|2023-11-04T02:00:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"eff063bb_2:6|2023-11-04T02:00:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"eff063bb_2:8|2023-11-04T02:00:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"eff063bb_2:10|2023-11-04T02:00:10.000Z","data":{"candidates":[{"content":"Watched 'Parasite' on 2023-11-04","topic":"event watching Parasite","category":"Learning","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-11-04"}]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_406392:0|2023-11-04T04:06:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_406392:2|2023-11-04T04:06:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_406392:4|2023-11-04T04:06:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_406392:6|2023-11-04T04:06:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_406392:8|2023-11-04T04:06:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_406392:10|2023-11-04T04:06:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_493540:0|2023-11-04T11:15:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_493540:2|2023-11-04T11:15:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_493540:4|2023-11-04T11:15:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_493540:6|2023-11-04T11:15:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_493540:8|2023-11-04T11:15:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_xjZo5Ac_0:0|2023-11-04T19:12:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_xjZo5Ac_0:2|2023-11-04T19:12:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"6a747f2e:0|2023-11-05T03:33:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"6a747f2e:2|2023-11-05T03:33:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"6a747f2e:4|2023-11-05T03:33:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"6a747f2e:6|2023-11-05T03:33:06.000Z","data":{"candidates":[{"content":"Packed 7 shirts on the last trip to Chicago","topic":"event trip to Chicago","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":"2023-10-31"},{"content":"Plans to pack clothes that can be easily hand-washed and dried","topic":"plan packing","category":"Personal","importance":3,"confidence":0.9,"sensitivity":"normal","validFrom":null}]}}
+{"type":"cache","sample":"031748ae","key":"6a747f2e:8|2023-11-05T03:33:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"6a747f2e:10|2023-11-05T03:33:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_69185:0|2023-11-05T05:35:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_69185:2|2023-11-05T05:35:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_69185:4|2023-11-05T05:35:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_435543:0|2023-11-05T09:24:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_435543:2|2023-11-05T09:24:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_435543:4|2023-11-05T09:24:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_435543:6|2023-11-05T09:24:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_435543:8|2023-11-05T09:24:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_219083:0|2023-11-05T11:16:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_219083:2|2023-11-05T11:16:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_219083:4|2023-11-05T11:16:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_219083:6|2023-11-05T11:16:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"bd3880f4:0|2023-11-05T21:53:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"bd3880f4:2|2023-11-05T21:53:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"bd3880f4:4|2023-11-05T21:53:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"bd3880f4:6|2023-11-05T21:53:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"bd3880f4:8|2023-11-05T21:53:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"bd3880f4:10|2023-11-05T21:53:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"f9e54d9c:0|2023-11-06T18:34:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"f9e54d9c:2|2023-11-06T18:34:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"f9e54d9c:4|2023-11-06T18:34:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"f9e54d9c:6|2023-11-06T18:34:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"f9e54d9c:8|2023-11-06T18:34:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"f9e54d9c:10|2023-11-06T18:34:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"b383b475_2:0|2023-11-06T21:18:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"b383b475_2:2|2023-11-06T21:18:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"b383b475_2:4|2023-11-06T21:18:04.000Z","data":{"candidates":[{"content":"Got proposed to by Sarah during a sunset walk on the shore on 2023-11-05","topic":"event proposal","category":"Personal","importance":4,"confidence":0.9,"sensitivity":"personal","validFrom":"2023-11-05"}]}}
+{"type":"cache","sample":"031748ae","key":"b383b475_2:6|2023-11-06T21:18:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"b383b475_2:8|2023-11-06T21:18:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"b383b475_2:10|2023-11-06T21:18:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_3D7sTTH_0:0|2023-11-07T19:22:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_363088:0|2023-11-07T21:19:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_363088:2|2023-11-07T21:19:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_363088:4|2023-11-07T21:19:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_363088:6|2023-11-07T21:19:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_363088:8|2023-11-07T21:19:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"ultrachat_363088:10|2023-11-07T21:19:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_BvuMJIh_0:0|2023-11-08T23:06:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_BvuMJIh_0:2|2023-11-08T23:06:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_BvuMJIh_0:4|2023-11-08T23:06:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_BvuMJIh_0:6|2023-11-08T23:06:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_BvuMJIh_0:8|2023-11-08T23:06:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_BvuMJIh_0:10|2023-11-08T23:06:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_BvuMJIh_0:12|2023-11-08T23:06:12.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_BvuMJIh_0:14|2023-11-08T23:06:14.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"sharegpt_BvuMJIh_0:16|2023-11-08T23:06:16.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"d0488050:0|2023-11-09T17:55:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"d0488050:2|2023-11-09T17:55:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"d0488050:4|2023-11-09T17:55:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"d0488050:6|2023-11-09T17:55:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"d0488050:8|2023-11-09T17:55:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"d0488050:10|2023-11-09T17:55:10.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"c36f4196:0|2023-11-10T00:07:00.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"c36f4196:2|2023-11-10T00:07:02.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"c36f4196:4|2023-11-10T00:07:04.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"c36f4196:6|2023-11-10T00:07:06.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"c36f4196:8|2023-11-10T00:07:08.000Z","data":{"candidates":[]}}
+{"type":"cache","sample":"031748ae","key":"c36f4196:10|2023-11-10T00:07:10.000Z","data":{"candidates":[]}}
+{"type":"build","sample":"031748ae","build":{"sample":"031748ae","store":"bitemporal","messages_mined":246,"failed_messages":0,"decisions":"ADD=28 NOOP=3 UPDATE=4","memory_versions":32,"memory_current":28,"memory_bytes":335372,"extract_calls":246,"reconcile_calls":34,"build_input_tokens":534538,"build_output_tokens":6307,"build_cost_usd":0,"build_seconds":253.1}}
+{"type":"store_built","sample":"031748ae","store":"bitemporal","versions":32}
+{"type":"row","row":{"sample":"031748ae","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours","question":"How many engineers do I lead when I just started my new role as Senior Software Engineer? How many engineers do I lead now?","gold":"When you just started your new role as Senior Software Engineer, you led 4 engineers. Now, you lead 5 engineers","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate says it is not available.","recall_at_k":0.5,"context_items":3,"context_dia":"answer_8748f791_2:2 bc660b5f_1:0","context_tokens_est":307,"retrieval_ms":35.73,"answer_ms":1185,"judge_ms":15991,"input_tokens":940,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"031748ae","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_temporal","question":"How many engineers do I lead when I just started my new role as Senior Software Engineer? How many engineers do I lead now?","gold":"When you just started your new role as Senior Software Engineer, you led 4 engineers. Now, you lead 5 engineers","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate says it is not available.","recall_at_k":0.5,"context_items":3,"context_dia":"answer_8748f791_2:2 bc660b5f_1:0","context_tokens_est":273,"retrieval_ms":615.7,"answer_ms":7296,"judge_ms":11052,"input_tokens":853,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"row","row":{"sample":"031748ae","qa_index":0,"category":5,"question_type":"knowledge-update","system":"ours_no_provenance","question":"How many engineers do I lead when I just started my new role as Senior Software Engineer? How many engineers do I lead now?","gold":"When you just started your new role as Senior Software Engineer, you led 4 engineers. Now, you lead 5 engineers","answer":"0, 5","insufficient":false,"cited":"m1 m2","score_f1":0.0909,"judge_correct":0,"judge_reason":"The candidate provides a different number for the initial count of engineers led.","recall_at_k":0.5,"context_items":3,"context_dia":"answer_8748f791_2:2 bc660b5f_1:0","context_tokens_est":71,"retrieval_ms":650.58,"answer_ms":7424,"judge_ms":12362,"input_tokens":663,"output_tokens":32,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"store_start","sample":"031748ae","store":"overwrite"}
+{"type":"build","sample":"031748ae","build":{"sample":"031748ae","store":"overwrite","messages_mined":246,"failed_messages":0,"decisions":"ADD=29 NOOP=2 UPDATE=4","memory_versions":29,"memory_current":29,"memory_bytes":303792,"extract_calls":0,"reconcile_calls":34,"build_input_tokens":33740,"build_output_tokens":2065,"build_cost_usd":0,"build_seconds":67.1}}
+{"type":"store_built","sample":"031748ae","store":"overwrite","versions":29}
+{"type":"row","row":{"sample":"031748ae","qa_index":0,"category":5,"question_type":"knowledge-update","system":"overwrite_memory","question":"How many engineers do I lead when I just started my new role as Senior Software Engineer? How many engineers do I lead now?","gold":"When you just started your new role as Senior Software Engineer, you led 4 engineers. Now, you lead 5 engineers","answer":"No information available","insufficient":true,"cited":"","score_f1":0,"judge_correct":0,"judge_reason":"The gold answer provides specific information, but the candidate says it is not available.","recall_at_k":0.5,"context_items":3,"context_dia":"answer_8748f791_2:2 bc660b5f_1:0","context_tokens_est":307,"retrieval_ms":42.15,"answer_ms":1094,"judge_ms":15449,"input_tokens":940,"output_tokens":23,"cache_read_tokens":0,"cache_write_tokens":0,"tokens_estimated":false,"answer_cost_usd":0,"judge_cost_usd":0,"provider":"ollama","model":"qwen2.5-coder:14b","judge_model":"deepseek-r1:14b","error":null}}
+{"type":"sample_done","sample":"031748ae"}
+{"type":"complete","at":"2026-10-22T16:08:45.724Z"}
