@@ -1,0 +1,6 @@
+row_id,question,gold,candidate,human_correct
+1,Do I go to the gym more frequently than I did previously?,Yes,Yes,
+2,Do I go to the gym more frequently than I did previously?,Yes,No information available,
+3,Do I go to the gym more frequently than I did previously?,Yes,No information available,
+4,Do I go to the gym more frequently than I did previously?,Yes,No information available,
+5,Do I go to the gym more frequently than I did previously?,Yes,No information available,

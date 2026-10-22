@@ -3,7 +3,8 @@ const llm = require('../services/llm');
 const { longmemevalScore } = require('../eval/metrics');
 const { evaluateSample, prepareLongMemEval } = require('../eval/harness');
 const { fullContextFit } = require('../eval/preflight');
-const { SYSTEM_IDS } = require('../eval/systems');
+const { SYSTEM_IDS, setItemCharCap, formatMessage } = require('../eval/systems');
+const { worstAnswerPrompt } = require('../eval/gate');
 const miniLongMemEval = require('./fixtures/longmemeval-mini');
 
 const { User, Message, Memory } = models;
@@ -38,6 +39,25 @@ describe('LongMemEval evaluation (no database)', () => {
     expect(fullContextFit(messages, cfg)).toMatchObject({ fits: true });
     const long = Array.from({ length: 400 }, (_, i) => ({ ...messages[0], content: 'x'.repeat(500), source: { ...messages[0].source, id: `s:${i}` } }));
     expect(fullContextFit(long, cfg)).toMatchObject({ fits: false, window: null });
+  });
+});
+
+describe('overflow guards (no database)', () => {
+  afterEach(() => setItemCharCap(0));
+
+  test('a cap on one message keeps ten retrieved messages inside the small window; no cap does not', () => {
+    expect(worstAnswerPrompt({ k: 10, maxItemChars: 1400, numCtx: 8192 }).fits).toBe(true);
+    expect(worstAnswerPrompt({ k: 10, maxItemChars: 2000, numCtx: 8192 }).fits).toBe(false);
+    expect(worstAnswerPrompt({ k: 10, maxItemChars: 0, numCtx: 8192 }).fits).toBe(false);
+  });
+
+  test('the cap shortens a long message and marks it; a short one is untouched; no cap changes nothing', () => {
+    const m = { source: { id: 's:0', speaker: 'user' }, sentAt: new Date('2023-06-01T00:00:00Z'), content: 'x'.repeat(5000) };
+    expect(formatMessage(m).length).toBeGreaterThan(5000);
+    setItemCharCap(1400);
+    expect(formatMessage(m)).toMatch(/ \[truncated\]$/);
+    expect(formatMessage(m).length).toBeLessThan(1500);
+    expect(formatMessage({ ...m, content: 'short' })).toMatch(/user: short$/);
   });
 });
 

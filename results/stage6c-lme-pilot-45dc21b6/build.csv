@@ -1,0 +1,5 @@
+sample,store,messages_mined,failed_messages,decisions,memory_versions,memory_current,memory_bytes,extract_calls,reconcile_calls,build_input_tokens,build_output_tokens,build_cost_usd,build_seconds
+45dc21b6,raw messages,0,,,,,570085,,,,,,
+45dc21b6,rag message vectors,0,,,,,2979840,,,,,,
+45dc21b6,bitemporal,242,0,ADD=27 SKIP=2 UPDATE=4,31,27,325160,242,30,515935,6156,0,246.5
+45dc21b6,overwrite,242,0,ADD=27 SKIP=2 UPDATE=4,27,27,283017,0,30,29884,1979,0,63.8

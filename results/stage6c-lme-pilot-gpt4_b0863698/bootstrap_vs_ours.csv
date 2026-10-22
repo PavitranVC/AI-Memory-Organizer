@@ -1,0 +1,9 @@
+comparison,metric,n,diff,ci_low,ci_high,resamples,interval_excludes_0
+ours - rag_messages,judge_correct,1,1,1,1,2000,yes
+ours - rag_messages,score_f1,1,0.1667,0.1667,0.1667,2000,yes
+ours - ours_no_temporal,judge_correct,1,0,0,0,2000,no
+ours - ours_no_temporal,score_f1,1,0,0,0,2000,no
+ours - ours_no_provenance,judge_correct,1,0,0,0,2000,no
+ours - ours_no_provenance,score_f1,1,0,0,0,2000,no
+ours - overwrite_memory,judge_correct,1,0,0,0,2000,no
+ours - overwrite_memory,score_f1,1,0,0,0,2000,no
